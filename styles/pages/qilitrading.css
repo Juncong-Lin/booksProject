@@ -536,12 +536,13 @@ body.has-sidebar .main {
   }
 }
 
-/* Hero Banner Section */
+/* Hero Banner Section - Commented out for future use */
+/*
 .hero-banner {
   width: 100%;
   margin-bottom: 40px;
   padding: 0;
-  display: none; /* Initially hidden, shown by JavaScript */
+  display: none;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -605,7 +606,6 @@ body.has-sidebar .main {
 }
 
 .hero-card-wide {
-  /* Middle slide gets special treatment for being wider */
   position: relative;
 }
 
@@ -763,8 +763,10 @@ body.has-sidebar .main {
   border-color: rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.6);
 }
+*/
 
-/* Responsive Design */
+/* Responsive Design for Hero Banner - Commented out for future use */
+/*
 @media screen and (max-width: 1024px) {
   .hero-container {
     height: 380px;
@@ -778,7 +780,6 @@ body.has-sidebar .main {
     font-size: 1rem;
   }
   
-  /* Middle slide responsive adjustments */
   .hero-slide[data-index="1"] .hero-title {
     font-size: 1.8rem;
   }
@@ -897,10 +898,14 @@ body.has-sidebar .main {
   
   .hero-indicator:hover {
     transform: none !important;
+    border-color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
   }
 }
+*/
 
-/* Large screen optimization */
+/* Large screen optimization - Hero section commented out for future use */
+/*
 @media screen and (min-width: 1400px) {
   .hero-container {
     height: 500px;

@@ -11,7 +11,8 @@ import {channelLetterBendingMechineProducts} from '../../data/channelLetterBendi
 import {otherProducts} from '../../data/other-products.js';
 import { formatCurrency, formatPriceRange } from '../shared/money.js';
 
-// Early search parameter detection to prevent hero banner flash
+// Early search parameter detection to prevent hero banner flash - Commented out for future use
+/*
 // Check immediately if this is a search request and hide hero banner
 const urlParams = new URLSearchParams(window.location.search);
 const isSearchRequest = urlParams.has('search');
@@ -30,6 +31,7 @@ if (isSearchRequest) {
   // Also set a flag for the search system to know this is an early detection
   window.isEarlySearchDetection = true;
 }
+*/
 
 // Unified product rendering function with optional type parameter
 function renderProducts(productList, type = 'regular') {
@@ -94,7 +96,7 @@ window.loadPrintheadProducts = function(brand) {
     hideActiveSubmenus();
     
     // Hide hero banner for specific category views
-    hideHeroBanner();
+    // hideHeroBanner(); // Commented out for future use
     
     // Highlight selected menu item(brand);
     highlightSelectedMenuItem(brand);
@@ -125,7 +127,7 @@ window.loadAllPrintheadProducts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -172,13 +174,15 @@ window.loadAllProducts = function() {
   
   // Highlight selected menu item
   highlightSelectedMenuItem('all');
-    // Show hero banner for main homepage view
-  showHeroBanner();
-    // Initialize hero carousel
+    // Show hero banner for main homepage view - Commented out for future use
+  // showHeroBanner();
+    // Initialize hero carousel - Commented out for future use
+  /*
   if (!heroCarousel) {
     heroCarousel = new HeroCarousel();
     window.heroCarousel = heroCarousel;
   }
+  */
   
   // Clear products grid for homepage - just show hero banner
   const productsGrid = document.querySelector('.js-prodcts-grid');
@@ -204,7 +208,7 @@ window.loadXP600Printers = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item
   highlightSelectedMenuItem('xp600-printers');
@@ -238,7 +242,7 @@ window.loadI1600Printers = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item
   highlightSelectedMenuItem('i1600-printers');
@@ -271,7 +275,7 @@ window.loadI3200Printers = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item
   highlightSelectedMenuItem('i3200-printers');
@@ -306,7 +310,7 @@ window.loadUpgradingKitProducts = function(brand) {
     hideActiveSubmenus();
     
     // Hide hero banner for specific category views
-    hideHeroBanner();
+    // hideHeroBanner(); // Commented out for future use
     
     // Highlight selected menu item
     highlightSelectedMenuItem(brand);
@@ -341,7 +345,7 @@ window.loadAllUpgradingKitProducts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -394,7 +398,7 @@ window.loadLedLcdProducts = function(category) {
     hideActiveSubmenus();
     
     // Hide hero banner for specific category views
-    hideHeroBanner();
+    // hideHeroBanner(); // Commented out for future use
     
     // Highlight selected menu item
     highlightSelectedMenuItem(category);
@@ -429,7 +433,7 @@ window.loadAllLedLcdProducts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -496,6 +500,8 @@ function showLoadingState() {
   productsGrid.classList.remove('showing-coming-soon');
 }
 
+// Hero Banner Functions - Commented out for future use
+/*
 // Function to show hero banner
 function showHeroBanner() {
   const heroBanner = document.querySelector('.hero-banner');
@@ -519,6 +525,7 @@ function hideHeroBanner() {
     }, 600);
   }
 }
+*/
 
 // Function to show coming soon message
 function showComingSoonMessage() {
@@ -2002,7 +2009,7 @@ window.loadSpecificCategory = function(categoryName) {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
     // Add loading animation
   showLoadingState();
 
@@ -2831,7 +2838,7 @@ window.loadAllPrintSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -2883,7 +2890,7 @@ window.loadEpsonPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -2930,7 +2937,7 @@ window.loadRolandPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -2977,7 +2984,7 @@ window.loadCanonPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3024,7 +3031,7 @@ window.loadRicohPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3071,7 +3078,7 @@ window.loadInfinitiChallengerPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3119,7 +3126,7 @@ window.loadFloraPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3167,7 +3174,7 @@ window.loadGalaxyPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3216,7 +3223,7 @@ window.loadMimakiPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3264,7 +3271,7 @@ window.loadMutohPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3313,7 +3320,7 @@ window.loadWitColorPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3362,7 +3369,7 @@ window.loadGongzhengPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3411,7 +3418,7 @@ window.loadHumanPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3460,7 +3467,7 @@ window.loadTeflonPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3509,7 +3516,7 @@ window.loadWiperPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3558,7 +3565,7 @@ window.loadXaarPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3607,7 +3614,7 @@ window.loadToshibaPrinterSpareParts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3650,7 +3657,8 @@ window.loadToshibaPrinterSpareParts = function() {
   }, 200);
 };
 
-// Hero Carousel functionality
+// Hero Carousel functionality - Commented out for future use
+/*
 class HeroCarousel {
   constructor() {
     this.currentSlide = 0;
@@ -3752,9 +3760,12 @@ class HeroCarousel {
     }
   }
 }
+*/
 
-// Initialize hero carousel
+// Initialize hero carousel - Commented out for future use
+/*
 let heroCarousel;
+*/
 
 // Make heroCarousel globally accessible
 window.heroCarousel = null;
@@ -3788,7 +3799,7 @@ window.loadMaterialProducts = function(category) {
     hideActiveSubmenus();
     
     // Hide hero banner for specific category views
-    hideHeroBanner();
+    // hideHeroBanner(); // Commented out for future use
     
     // Highlight selected menu item
     highlightSelectedMenuItem(category);
@@ -3823,7 +3834,7 @@ window.loadAllMaterialProducts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3874,7 +3885,7 @@ window.loadChannelLetterProducts = function(category) {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3921,7 +3932,7 @@ window.loadAllChannelLetterProducts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -3972,7 +3983,7 @@ window.loadOtherProducts = function(category) {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -4020,7 +4031,7 @@ window.loadAllOtherProducts = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -4071,7 +4082,7 @@ window.loadAllEconomicVersionPrinters = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item in the navigation
   document.querySelectorAll('.sub-header-link').forEach(link => {
@@ -4203,7 +4214,7 @@ window.loadDTFPrinters = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item
   highlightSelectedMenuItem('dtf-printers');
@@ -4239,7 +4250,7 @@ window.loadDirectToFabricFilmPrinters = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item
   highlightSelectedMenuItem('direct-to-fabric-film');
@@ -4283,7 +4294,7 @@ window.loadUVDTFPrinters = function() {
   hideActiveSubmenus();
   
   // Hide hero banner for specific category views
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   // Highlight selected menu item
   highlightSelectedMenuItem('uv-dtf-printers');
@@ -4316,7 +4327,7 @@ window.loadUVDTFPrinters = function() {
 // Function to load all solvent inkjet printers
 window.loadAllSolventPrinters = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
@@ -4350,7 +4361,7 @@ window.loadAllSolventPrinters = function() {
 // Function to load solvent printers with KM512i printhead
 window.loadSolventKM512iPrinters = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
@@ -4384,7 +4395,7 @@ window.loadSolventKM512iPrinters = function() {
 // Function to load solvent printers with KM1024i printhead
 window.loadSolventKM1024iPrinters = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
@@ -4534,7 +4545,7 @@ export function getUvHybridRicohGen6Printers() {
 // Function to load all UV inkjet printers
 window.loadAllUvInkjetPrinters = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
@@ -4568,7 +4579,7 @@ window.loadAllUvInkjetPrinters = function() {
 // Function to load all UV hybrid inkjet printers
 window.loadAllUvHybridPrinters = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
@@ -4602,7 +4613,7 @@ window.loadAllUvHybridPrinters = function() {
 // Function to load UV inkjet printers with Ricoh Gen6 printhead
 window.loadUvRicohGen6Printers = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
@@ -4638,7 +4649,7 @@ window.loadUvRicohGen6Printers = function() {
 // Function to load UV flatbed printers with Konica KM1024i printhead
 window.loadUvKonica1024iPrinters = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
@@ -4672,7 +4683,7 @@ window.loadUvKonica1024iPrinters = function() {
 // Function to load UV Flatbed Printers
 window.loadUvFlatbedPrinters = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
@@ -4725,7 +4736,7 @@ function getAllDoubleSidePrinters() {
 // Function to load all double side printers
 window.loadAllDoubleSidePrinters = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
@@ -4759,7 +4770,7 @@ window.loadAllDoubleSidePrinters = function() {
 // Function to load double side direct printing printers
 window.loadDoubleSideDirectPrinting = function() {
   hideActiveSubmenus();
-  hideHeroBanner();
+  // hideHeroBanner(); // Commented out for future use
   
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
