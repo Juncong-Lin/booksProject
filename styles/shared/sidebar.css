@@ -2,7 +2,7 @@ body.has-sidebar .departments-sidebar {
   position: fixed;
   top: 92px; /* 60px (main header) + 32px (sub-header) */
   bottom: 0;
-  left: 0;  width: 166px;
+  left: 0;  width: 220px;
   background-color: #1A252F;
   color: white;
   z-index: 1;
@@ -43,7 +43,7 @@ body.has-sidebar .departments-sidebar {
   visibility: hidden;
   opacity: 0;
   position: fixed;
-  left: 166px; /* Same as sidebar width */
+  left: 220px; /* Same as sidebar width */
   top: 92px; /* Adjusted: 60px (main header) + 32px (sub-header) */
   bottom: 0;
   width: 260px; /* Increased width for longer text */  background-color: #232F3E;
@@ -63,7 +63,7 @@ body.has-sidebar .departments-sidebar {
 
 .department-subgroup > .submenu {
   position: fixed;
-  left: 426px; /* parent submenu width (320px) + sidebar width (150px) */
+  left: 480px; /* parent submenu width (260px) + sidebar width (220px) */
   background-color: #37475A;
 }
 

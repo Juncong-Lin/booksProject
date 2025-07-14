@@ -1,6 +1,6 @@
 body.has-sidebar .main {
   margin-top: 97px; /* 60px (main header) + 32px (sub-header) + 5px (gap) */
-  padding: 20px 20px 20px 190px; /* Add left padding to offset sidebar width (166px + 24px gap) */
+  padding: 20px 20px 20px 244px; /* Add left padding to offset sidebar width (220px + 24px gap) */
   width: 100%; /* Remove max-width for true fluid layout */
   margin-left: 0;
   margin-right: 0;

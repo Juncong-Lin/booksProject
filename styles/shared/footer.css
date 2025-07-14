@@ -238,7 +238,7 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding-left: 166px; /* Keep sidebar padding in landscape mode */
+    padding-left: 220px; /* Keep sidebar padding in landscape mode */
   }
   
   .footer-section {
