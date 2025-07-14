@@ -1,24 +1,271 @@
 <!-- Shared Sub Header Navigation Component -->
 <div class="sub-header">
   <div class="sub-header-content">
-    <nav class="sub-header-nav">      <a class="sub-header-link all-products-link active" href="javascript:void(0)" onclick="handleNavigationClick('')">See All Departments</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="inkjet-printers" onclick="handleNavigationClick('#inkjet-printers')">Inkjet Printers</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="print-heads" onclick="handleNavigationClick('#print-heads')">Print Heads</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="print-spare-parts" onclick="handleNavigationClick('#print-spare-parts')">Print Spare Parts</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="upgrading-kit" onclick="handleNavigationClick('#upgrading-kit')">Upgrading Kit</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="material" onclick="handleNavigationClick('#material')">Material</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="led-lcd" onclick="handleNavigationClick('#led-lcd')">LED & LCD</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="laser" onclick="handleNavigationClick('#laser')">Laser</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="cutting" onclick="handleNavigationClick('#cutting')">Cutting</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="channel-letter" onclick="handleNavigationClick('#channel-letter')">Channel Letter</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="cnc" onclick="handleNavigationClick('#cnc')">CNC</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="displays" onclick="handleNavigationClick('#displays')">Displays</a>
-      <a class="sub-header-link" href="javascript:void(0)" data-submenu="other" onclick="handleNavigationClick('#other')">Other</a>
+    <nav class="sub-header-nav">      <a class="sub-header-link all-products-link active" href="javascript:void(0)" onclick="handleNavigationClick('')">Browse All
+Books</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="fiction" onclick="handleNavigationClick('#fiction')">Fiction</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="non-fiction" onclick="handleNavigationClick('#non-fiction')">Non-
+Fiction</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="children-young-adult" onclick="handleNavigationClick('#children-young-adult')">Children &
+Young Adult</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="academic-educational" onclick="handleNavigationClick('#academic-educational')">Academic &
+Educational</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="arts-culture" onclick="handleNavigationClick('#arts-culture')">Arts &
+Culture</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="health-self-help" onclick="handleNavigationClick('#health-self-help')">Health &
+Self-Help</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="religion-spirituality" onclick="handleNavigationClick('#religion-spirituality')">Religion &
+Spirituality</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="business-politics" onclick="handleNavigationClick('#business-politics')">Business &
+Politics</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="science-technology" onclick="handleNavigationClick('#science-technology')">Science &
+Technology</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="biography-history" onclick="handleNavigationClick('#biography-history')">Biography &
+History</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="poetry-literature" onclick="handleNavigationClick('#poetry-literature')">Poetry &
+Literature</a>
+      <a class="sub-header-link" href="javascript:void(0)" data-submenu="specialty-genres" onclick="handleNavigationClick('#specialty-genres')">Specialty
+Genres</a>
     </nav>
   </div>
   
   <!-- Sub-header Submenus -->
-  <div class="sub-header-submenu" id="submenu-inkjet-printers">
+  <div class="sub-header-submenu" id="submenu-fiction">
+    <div class="sub-header-submenu-content">
+      <!-- Literary Fiction Row -->
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Literary Fiction')">Literary Fiction</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Classics')">Classics</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Contemporary')">Contemporary</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Historical Fiction')">Historical Fiction</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Novels')">Novels</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Genre Fiction')">Genre Fiction</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Mystery')">Mystery</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Thriller')">Thriller</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Suspense')">Suspense</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Crime')">Crime</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Speculative Fiction')">Speculative Fiction</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Science Fiction')">Science Fiction</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Fantasy')">Fantasy</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Horror')">Horror</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Paranormal')">Paranormal</a>
+        </div>
+      </div>
+      
+      <!-- Romance & Other Fiction Row -->
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Romance & Women\'s Fiction')">Romance & Women's Fiction</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Romance')">Romance</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Womens Fiction')">Women's Fiction</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Erotica')">Erotica</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Short Fiction')">Short Fiction</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Short Stories')">Short Stories</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-non-fiction">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('General Non-Fiction')">General Non-Fiction</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Nonfiction')">Non-Fiction</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-children-young-adult">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Children\'s Books')">Children's Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Childrens')">Children's</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Young Adult Books')">Young Adult Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Young Adult')">Young Adult</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('New Adult')">New Adult</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-academic-educational">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Academic Books')">Academic Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Academic')">Academic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-arts-culture">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Visual Arts')">Visual Arts</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Art')">Art</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Sequential Art')">Sequential Art</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Music & Performance')">Music & Performance</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Music')">Music</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Cultural Studies')">Cultural Studies</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Cultural')">Cultural</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-health-self-help">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Health & Wellness')">Health & Wellness</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Health')">Health</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Self-Improvement')">Self-Improvement</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Self Help')">Self Help</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Psychology Books')">Psychology Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Psychology')">Psychology</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Parenting Books')">Parenting Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Parenting')">Parenting</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-religion-spirituality">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Religious Books')">Religious Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Religion')">Religion</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Christian')">Christian</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Christian Fiction')">Christian Fiction</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Spiritual Books')">Spiritual Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Spirituality')">Spirituality</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Philosophy')">Philosophy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-business-politics">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Business Books')">Business Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Business')">Business</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Political Books')">Political Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Politics')">Politics</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-science-technology">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Science Books')">Science Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Science')">Science</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-biography-history">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Biography Books')">Biography Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Biography')">Biography</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Autobiography')">Autobiography</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('History Books')">History Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('History')">History</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Historical')">Historical</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-poetry-literature">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Poetry Books')">Poetry Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Poetry')">Poetry</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header-submenu" id="submenu-specialty-genres">
+    <div class="sub-header-submenu-content">
+      <div class="sub-header-submenu-row">
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Entertainment Books')">Entertainment Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Humor')">Humor</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Sports and Games')">Sports and Games</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Lifestyle Books')">Lifestyle Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Food and Drink')">Food and Drink</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Travel')">Travel</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Adult Fiction Books')">Adult Fiction Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Adult Fiction')">Adult Fiction</a>
+        </div>
+        
+        <div class="sub-header-submenu-column">
+          <a class="sub-header-submenu-title sub-header-submenu-title-link" href="javascript:void(0)" onclick="handleCategoryClick('Miscellaneous Books')">Miscellaneous Books</a>
+          <a class="sub-header-submenu-item" href="javascript:void(0)" onclick="handleCategoryClick('Default')">Default</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     <div class="sub-header-submenu-content">
       <!-- Direct to Fabric & Film Technologies Row -->
       <div class="sub-header-submenu-row">
