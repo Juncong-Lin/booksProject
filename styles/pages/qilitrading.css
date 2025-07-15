@@ -1,3 +1,14 @@
+/* Force hide all hero elements - commented out for future use */
+.hero-banner,
+.hero-carousel,
+.hero-slide,
+.hero-card,
+section.hero-banner {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
 body.has-sidebar .main {
   margin-top: 97px; /* 60px (main header) + 32px (sub-header) + 5px (gap) */
   padding: 20px 20px 20px 244px; /* Add left padding to offset sidebar width (220px + 24px gap) */

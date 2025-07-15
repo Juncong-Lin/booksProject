@@ -47,40 +47,7 @@ window.handleNavigationClick = function(hash) {  // Check if we're on the index 
 window.handleCategoryClick = function(categoryName) {
   // Hide the dropdown menu for all inkjet printer subcategories
   const inkjetCategories = [
-    'DTF Printer',
-    'UV DTF Printer',
-    'Direct to Fabric & Film',
-    'Eco-Solvent Printers',
-    'Eco-Solvent Inkjet Printers - With XP600 Printhead',
-    'Eco-Solvent Inkjet Printers - With I1600 Printhead',
-    'Eco-Solvent Inkjet Printers - With I3200 Printhead',
-    'Solvent Inkjet Printers',
-    'Solvent Inket Printers - With Ricoh Gen5 Printhead',
-    'Solvent Inket Printers - With Ricoh Gen6 Printhead',
-    'Solvent Inket Printers - With Konica KM512i Printhead',
-    'Solvent Inket Printers - With Konica KM1024i Printhead',
-    'Sublimation Printers',
-    'Sublimation Printers - With XP600 Printhead',
-    'Sublimation Printers - With I1600 Printhead',
-    'Sublimation Printers - With I3200 Printhead',
-    'UV Inkjet Printers',
-    'UV Inkjet Printers - With XP600 Printhead',
-    'UV Inkjet Printers - With I1600 Printhead',
-    'UV Inkjet Printers - With I3200 Printhead',
-    'UV Inkjet Printers - With Ricoh Gen5 Printhead',
-    'UV Inkjet Printers - With Ricoh Gen6 Printhead',
-    'UV Inkjet Printers - With Konica KM1024i Printhead',
-    'UV Flatbed Printers',
-    'UV Flatbed Printers - With XP600 Printhead',
-    'UV Flatbed Printers - With I3200 Printhead',
-    'UV Flatbed Printers - With Ricoh Gen5 Printhead',
-    'UV Flatbed Printers - With Ricoh Gen6 Printhead',
-    'UV Flatbed Printers - With Konica KM1024i Printheads',
-    'UV Hybrid Inkjet Printer',
-    'UV Hybrid Inkjet Printer - With Ricoh Gen6 Printheads',
-    'UV Hybrid Inkjet Printer - With Konica KM1024i Printheads',
-    'Double Side Printers',
-    'Direct Printing'
+
   ];
   
   if (inkjetCategories.includes(categoryName) && window.subHeaderNav && window.subHeaderNav.hideAllSubmenus) {
@@ -93,13 +60,7 @@ window.handleCategoryClick = function(categoryName) {
     
     // Map category names to their correct hash values for consistency
     let hashValue = '';
-    if (categoryName === 'Eco-Solvent Inkjet Printers - With XP600 Printhead') {
-      hashValue = '#eco-solvent-xp600-printers';
-    } else if (categoryName === 'Eco-Solvent Inkjet Printers - With I1600 Printhead') {
-      hashValue = '#eco-solvent-i1600-printers';
-    } else if (categoryName === 'Eco-Solvent Inkjet Printers - With I3200 Printhead') {
-      hashValue = '#eco-solvent-i3200-printers';
-    } else if (categoryName === 'Epson Printer Spare Parts') {
+    if (categoryName === 'Epson Printer Spare Parts') {
       hashValue = '#epson-printer-spare-parts';
     } else if (categoryName === 'Roland Printer Spare Parts') {
       hashValue = '#roland-printer-spare-parts';
@@ -134,28 +95,6 @@ window.handleCategoryClick = function(categoryName) {
       hashValue = '#xaar-printer-spare-parts';
     } else if (categoryName === 'Toshiba Printer Spare Parts') {
       hashValue = '#toshiba-printer-spare-parts';
-    } else if (categoryName === 'DTF Printer') {
-      hashValue = '#dtf-printer';
-    } else if (categoryName === 'UV DTF Printer') {
-      hashValue = '#uv-dtf-printer';
-    } else if (categoryName === 'Solvent Inkjet Printers') {
-      hashValue = '#solvent-inkjet-printers';
-    } else if (categoryName === 'Solvent Inket Printers - With Konica KM512i Printhead') {
-      hashValue = '#solvent-km512i-printers';
-    } else if (categoryName === 'Solvent Inket Printers - With Konica KM1024i Printhead') {
-      hashValue = '#solvent-km1024i-printers';
-    } else if (categoryName === 'Solvent Inket Printers - With Ricoh Gen5 Printhead') {
-      hashValue = '#solvent-ricoh-gen5-printers';
-    } else if (categoryName === 'Solvent Inket Printers - With Ricoh Gen6 Printhead') {
-      hashValue = '#solvent-ricoh-gen6-printers';
-    } else if (categoryName === 'Sublimation Printers') {
-      hashValue = '#sublimation-printers';
-    } else if (categoryName === 'Sublimation Printers - With XP600 Printhead') {
-      hashValue = '#sublimation-xp600-printers';
-    } else if (categoryName === 'Sublimation Printers - With I1600 Printhead') {
-      hashValue = '#sublimation-i1600-printers';
-    } else if (categoryName === 'Sublimation Printers - With I3200 Printhead') {
-      hashValue = '#sublimation-printers---with-i3200-printhead';
     } else {
       // Default hash conversion for other categories
       const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '').replace(/\//g, '-');
@@ -206,50 +145,6 @@ window.handleCategoryClick = function(categoryName) {
       window.loadDTFPrinters();
     } else if (categoryName === 'UV DTF Printer' && window.loadUVDTFPrinters) {
       window.loadUVDTFPrinters();
-    } else if (categoryName === 'Solvent Inkjet Printers' && window.loadAllSolventPrinters) {
-      window.loadAllSolventPrinters();
-    } else if (categoryName === 'Solvent Inket Printers - With Konica KM512i Printhead' && window.loadSolventKM512iPrinters) {
-      window.loadSolventKM512iPrinters();
-    } else if (categoryName === 'Solvent Inket Printers - With Konica KM1024i Printhead' && window.loadSolventKM1024iPrinters) {
-      window.loadSolventKM1024iPrinters();
-    } else if (categoryName === 'Sublimation Printers' && window.loadSpecificCategory) {
-      window.loadSpecificCategory(categoryName);
-    } else if (categoryName === 'Sublimation Printers - With XP600 Printhead' && window.loadSpecificCategory) {
-      // Set flag to prevent hash regeneration
-      window.preventHashUpdate = true;
-      window.loadSpecificCategory(categoryName);
-      // Clear flag after a short delay
-      setTimeout(() => { window.preventHashUpdate = false; }, 100);
-    } else if (categoryName === 'Sublimation Printers - With I1600 Printhead' && window.loadSpecificCategory) {
-      // Set flag to prevent hash regeneration
-      window.preventHashUpdate = true;
-      window.loadSpecificCategory(categoryName);
-      // Clear flag after a short delay
-      setTimeout(() => { window.preventHashUpdate = false; }, 100);
-    } else if (categoryName === 'Sublimation Printers - With I3200 Printhead' && window.loadSpecificCategory) {
-      // Set flag to prevent hash regeneration
-      window.preventHashUpdate = true;
-      window.loadSpecificCategory(categoryName);
-      // Clear flag after a short delay
-      setTimeout(() => { window.preventHashUpdate = false; }, 100);
-    } else if (categoryName === 'Eco-Solvent Inkjet Printers - With XP600 Printhead' && window.loadSpecificCategory) {
-      // Set flag to prevent hash regeneration
-      window.preventHashUpdate = true;
-      window.loadSpecificCategory(categoryName);
-      // Clear flag after a short delay
-      setTimeout(() => { window.preventHashUpdate = false; }, 100);
-    } else if (categoryName === 'Eco-Solvent Inkjet Printers - With I1600 Printhead' && window.loadSpecificCategory) {
-      // Set flag to prevent hash regeneration
-      window.preventHashUpdate = true;
-      window.loadSpecificCategory(categoryName);
-      // Clear flag after a short delay
-      setTimeout(() => { window.preventHashUpdate = false; }, 100);
-    } else if (categoryName === 'Eco-Solvent Inkjet Printers - With I3200 Printhead' && window.loadSpecificCategory) {
-      // Set flag to prevent hash regeneration
-      window.preventHashUpdate = true;
-      window.loadSpecificCategory(categoryName);
-      // Clear flag after a short delay
-      setTimeout(() => { window.preventHashUpdate = false; }, 100);
     } else {
       // For other categories, use the generic loader
       window.loadSpecificCategory(categoryName);
@@ -257,13 +152,7 @@ window.handleCategoryClick = function(categoryName) {
   } else {
     // We're on a different page - navigate to index and handle the category loading
     let hashValue = '';
-    if (categoryName === 'Eco-Solvent Inkjet Printers - With XP600 Printhead') {
-      hashValue = '#eco-solvent-xp600-printers';
-    } else if (categoryName === 'Eco-Solvent Inkjet Printers - With I1600 Printhead') {
-      hashValue = '#eco-solvent-i1600-printers';
-    } else if (categoryName === 'Eco-Solvent Inkjet Printers - With I3200 Printhead') {
-      hashValue = '#eco-solvent-i3200-printers';
-    } else if (categoryName === 'Epson Printer Spare Parts') {
+    if (categoryName === 'Epson Printer Spare Parts') {
       hashValue = '#epson-printer-spare-parts';
     } else if (categoryName === 'Roland Printer Spare Parts') {
       hashValue = '#roland-printer-spare-parts';
@@ -298,28 +187,6 @@ window.handleCategoryClick = function(categoryName) {
       hashValue = '#xaar-printer-spare-parts';
     } else if (categoryName === 'Toshiba Printer Spare Parts') {
       hashValue = '#toshiba-printer-spare-parts';
-    } else if (categoryName === 'DTF Printer') {
-      hashValue = '#dtf-printer';
-    } else if (categoryName === 'UV DTF Printer') {
-      hashValue = '#uv-dtf-printer';
-    } else if (categoryName === 'Solvent Inkjet Printers') {
-      hashValue = '#solvent-inkjet-printers';
-    } else if (categoryName === 'Solvent Inket Printers - With Konica KM512i Printhead') {
-      hashValue = '#solvent-km512i-printers';
-    } else if (categoryName === 'Solvent Inket Printers - With Konica KM1024i Printhead') {
-      hashValue = '#solvent-km1024i-printers';
-    } else if (categoryName === 'Solvent Inket Printers - With Ricoh Gen5 Printhead') {
-      hashValue = '#solvent-ricoh-gen5-printers';
-    } else if (categoryName === 'Solvent Inket Printers - With Ricoh Gen6 Printhead') {
-      hashValue = '#solvent-ricoh-gen6-printers';
-    } else if (categoryName === 'Sublimation Printers') {
-      hashValue = '#sublimation-printers';
-    } else if (categoryName === 'Sublimation Printers - With XP600 Printhead') {
-      hashValue = '#sublimation-xp600-printers';
-    } else if (categoryName === 'Sublimation Printers - With I1600 Printhead') {
-      hashValue = '#sublimation-i1600-printers';
-    } else if (categoryName === 'Sublimation Printers - With I3200 Printhead') {
-      hashValue = '#sublimation-printers---with-i3200-printhead';
     } else {
       // Default hash conversion - for other pages, no category prefix is needed since the above covers all Print Spare Parts
       const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '').replace(/\//g, '-');
@@ -339,80 +206,15 @@ window.handleEconomicVersionClick = function() {
   }
   
   // Check if we're on the index page
-  if (UrlUtils.isIndexPage() && window.loadAllEconomicVersionPrinters && typeof window.loadAllEconomicVersionPrinters === 'function') {
-    // We're on index page - use the new economic version function
-    window.loadAllEconomicVersionPrinters();
-    window.location.hash = 'eco-solvent-inkjet-printers';
+  if (UrlUtils.isIndexPage() && window.loadSpecificCategory && typeof window.loadSpecificCategory === 'function') {
+    // We're on index page - use generic category loader
+    window.loadSpecificCategory('Books');
+    window.location.hash = 'books';
   } else {
     // We're on a different page - navigate to index with hash
-    UrlUtils.navigateToIndex('#eco-solvent-inkjet-printers');
+    UrlUtils.navigateToIndex('#books');
   }
 };
-
-// Helper function to fix Eco-Solvent submenu items click behavior
-function fixEcoSolventSubmenuItems() {
-  // We specifically want to ensure these problematic submenu items work on first click
-  setTimeout(() => {
-    // Find and fix the eco-solvent and sublimation submenu items
-    const ecosolventItems = document.querySelectorAll('.sub-header-submenu-item');
-    
-    ecosolventItems.forEach(item => {
-      // Target only the problematic items
-      let categoryName = "";
-      let hashValue = "";
-      if (item.textContent.includes('With XP600 Printhead')) {
-        if (item.closest('.sub-header-submenu-column') && item.closest('.sub-header-submenu-column').textContent.includes('Sublimation Printers')) {
-          categoryName = 'Sublimation Printers - With XP600 Printhead';
-          hashValue = 'sublimation-xp600-printers';
-        } else {
-          categoryName = 'Eco-Solvent Inkjet Printers - With XP600 Printhead';
-          hashValue = 'eco-solvent-xp600-printers';
-        }
-      } else if (item.textContent.includes('With I1600 Printhead')) {
-        if (item.closest('.sub-header-submenu-column') && item.closest('.sub-header-submenu-column').textContent.includes('Sublimation Printers')) {
-          categoryName = 'Sublimation Printers - With I1600 Printhead';
-          hashValue = 'sublimation-i1600-printers';
-        } else {
-          categoryName = 'Eco-Solvent Inkjet Printers - With I1600 Printhead';
-          hashValue = 'eco-solvent-i1600-printers';
-        }
-      } else if (item.textContent.includes('With I3200 Printhead')) {
-        if (item.closest('.sub-header-submenu-column') && item.closest('.sub-header-submenu-column').textContent.includes('Sublimation Printers')) {
-          categoryName = 'Sublimation Printers - With I3200 Printhead';
-          hashValue = 'sublimation-printers---with-i3200-printhead';
-        } else {
-          categoryName = 'Eco-Solvent Inkjet Printers - With I3200 Printhead';
-          hashValue = 'eco-solvent-i3200-printers';
-        }
-      }
-      // Only continue if we found a match
-      if (categoryName && hashValue) {
-        // Clone and replace the element to override any existing click handlers
-        const newItem = item.cloneNode(true);
-        item.parentNode.replaceChild(newItem, item);
-        // Add a direct click event handler that will work on any page
-        newItem.addEventListener('click', function(event) {
-          event.preventDefault();
-          // Hide any active submenus
-          document.querySelectorAll('.sub-header-submenu.active').forEach(submenu => {
-            submenu.classList.remove('active');
-          });
-          // Check if we're on the index page or another page
-          if (UrlUtils.isIndexPage() && window.loadSpecificCategory) {
-            if (history.pushState) {
-              history.pushState(null, null, `#${hashValue}`);
-            } else {
-              window.location.hash = `#${hashValue}`;
-            }
-            window.loadSpecificCategory(categoryName);
-          } else {
-            UrlUtils.navigateToIndex(`#${hashValue}`);
-          }
-        });
-      }
-    });
-  }, 300); // Small delay to ensure shared subheader is fully loaded
-}
 
 // Helper function to fix Print Spare Parts submenu items click behavior
 function fixPrintSparePartsSubmenuItems() {
@@ -656,42 +458,6 @@ window.handleOtherClick = function(otherCategory) {
   }
 };
 
-// Handler for Double Side Printers
-window.handleDoubleSidePrintersClick = function() {
-  // Hide the dropdown menu
-  if (window.subHeaderNav && window.subHeaderNav.hideAllSubmenus) {
-    window.subHeaderNav.hideAllSubmenus();
-  }
-  
-  // Check if we're on the index page
-  if (UrlUtils.isIndexPage() && window.loadAllDoubleSidePrinters && typeof window.loadAllDoubleSidePrinters === 'function') {
-    // We're on index page - load double side printers directly
-    window.loadAllDoubleSidePrinters();
-    window.location.hash = 'double-side-printers';
-  } else {
-    // We're on a different page - navigate to index with hash
-    UrlUtils.navigateToIndex('#double-side-printers');
-  }
-};
-
-// Handler for Double Side Direct Printing
-window.handleDoubleSideDirectPrintingClick = function() {
-  // Hide the dropdown menu
-  if (window.subHeaderNav && window.subHeaderNav.hideAllSubmenus) {
-    window.subHeaderNav.hideAllSubmenus();
-  }
-  
-  // Check if we're on the index page
-  if (UrlUtils.isIndexPage() && window.loadDoubleSideDirectPrinting && typeof window.loadDoubleSideDirectPrinting === 'function') {
-    // We're on index page - load double side direct printing directly
-    window.loadDoubleSideDirectPrinting();
-    window.location.hash = 'double-side-printers---direct-printing';
-  } else {
-    // We're on a different page - navigate to index with hash
-    UrlUtils.navigateToIndex('#double-side-printers---direct-printing');
-  }
-};
-
 // Function to initialize sub-header navigation after shared content is loaded
 function initializeSubHeaderAfterLoad() {
   // Wait a bit to ensure DOM is fully updated
@@ -699,9 +465,6 @@ function initializeSubHeaderAfterLoad() {
     // Create a new instance of SubHeaderNavigation if the class exists
     if (typeof SubHeaderNavigation !== 'undefined') {
       window.subHeaderNav = new SubHeaderNavigation();
-      
-      // Fix for Eco-Solvent submenu items clicking issue
-      fixEcoSolventSubmenuItems();
       
       // Fix for Print Spare Parts submenu items clicking issue
       fixPrintSparePartsSubmenuItems();

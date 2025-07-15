@@ -1569,13 +1569,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const isIndexPage = document.querySelector('.products-grid') || document.querySelector('#products-grid');
     
     if (isIndexPage && !hash && !isSearchRequest) {
-      // Show hero banner for default homepage view only
-      showHeroBanner();
-        // Initialize hero carousel
+      // Show hero banner for default homepage view only - Commented out for future use
+      // showHeroBanner();
+        // Initialize hero carousel - Commented out for future use
+      /*
       if (!heroCarousel) {
         heroCarousel = new HeroCarousel();
         window.heroCarousel = heroCarousel;
       }
+      */
     }
   }, 150);
 });
