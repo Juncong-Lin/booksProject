@@ -1,6 +1,7 @@
 // Temporarily commented out cart imports - preserved for future reuse
 // import {cart, addToCart} from '../../data/cart.js'; 
 import {products} from '../../data/products.js';
+import {booksProducts} from '../../data/books.js';
 import {printheadProducts} from '../../data/printhead-products.js';
 import {inkjetPrinterProducts} from '../../data/inkjetPrinter-products.js';
 import {printSparePartProducts} from '../../data/printsparepart-products.js';
@@ -1886,39 +1887,20 @@ function updateCartQuantity() {
   */
 }
 
-// Function to find any product by ID (regular, printhead, print spare parts, or upgrading kit)
+// Function to find any product by ID (books)
 export function findProductById(productId) {
-  // First check regular products
-  let product = products.find(p => p.id === productId);
-  
-  // If not found, check printhead products
-  if (!product) {
-    for (const brand in printheadProducts) {
-      const brandProducts = printheadProducts[brand];
-      product = brandProducts.find(p => p.id === productId);
-      if (product) break;
+  // Search through all book categories
+  for (const category in booksProducts) {
+    const categoryBooks = booksProducts[category];
+    const product = categoryBooks.find(p => p.id === productId);
+    if (product) {
+      return product;
     }
   }
   
-  // If not found, check print spare part products
-  if (!product) {
-    for (const brand in printSparePartProducts) {
-      const brandProducts = printSparePartProducts[brand];
-      product = brandProducts.find(p => p.id === productId);
-      if (product) break;
-    }
-  }
-  
-  // If not found, check upgrading kit products
-  if (!product) {
-    for (const brand in upgradingKitProducts) {
-      const brandProducts = upgradingKitProducts[brand];
-      product = brandProducts.find(p => p.id === productId);
-      if (product) break;
-    }
-  }
-  
-  return product;
+  // Fallback to regular products if books not found (for backward compatibility)
+  return products.find(p => p.id === productId);
+};
 }
 
 // Function to highlight selected menu item
@@ -2005,143 +1987,132 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Function to handle loading of specific category products
+// Function to handle loading of specific book category products
 window.loadSpecificCategory = function(categoryName) {
   // Hide the submenu after selection
   hideActiveSubmenus();
   
-  // Hide hero banner for specific category views
-  // hideHeroBanner(); // Commented out for future use
-    // Add loading animation
+  // Add loading animation
   showLoadingState();
 
-  // --- Highlight the corresponding nav item (including special sidebar categories) ---
-  const subHeaderMap = {
-    'Eco-Solvent Inkjet Printers': 'Inkjet Printers',
-    'Solvent Inkjet Printers': 'Inkjet Printers',
-    'Solvent Inkjet Printers': 'Inkjet Printers',
-    'Solvent Inkjet Printers - With Konica KM512i Printhead': 'Inkjet Printers',
-    'Solvent Inkjet Printers - With Konica KM512i Printhead': 'Inkjet Printers',
-    'Solvent Inkjet Printers - With Konica KM1024i Printhead': 'Inkjet Printers',
-    'Solvent Inkjet Printers - With Konica KM1024i Printhead': 'Inkjet Printers',
-    'Solvent Inkjet Printers - With Ricoh Gen5 Printhead': 'Inkjet Printers',
-    'Solvent Inkjet Printers - With Ricoh Gen5 Printhead': 'Inkjet Printers',
-    'Solvent Inkjet Printers - With Ricoh Gen6 Printhead': 'Inkjet Printers',
-    'Solvent Inkjet Printers - With Ricoh Gen6 Printhead': 'Inkjet Printers',
-    'UV Inkjet Printers': 'Inkjet Printers',
-    'UV Inkjet Printers - With Ricoh Gen6 Printhead': 'Inkjet Printers',
-    'UV Inkjet Printers - With Konica KM1024i Printhead': 'Inkjet Printers',
-    'UV Flatbed Printers': 'Inkjet Printers',
-    'UV Flatbed Printers - With Ricoh Gen6 Printhead': 'Inkjet Printers',
-    'UV Flatbed Printers - With Ricoh Gen5 Printhead': 'Inkjet Printers',
-    'UV Flatbed Printers - With I3200 Printhead': 'Inkjet Printers',
-    'UV Flatbed Printers - With XP600 Printhead': 'Inkjet Printers',
-    'UV Flatbed Printers - With Konica KM1024i Printhead': 'Inkjet Printers',
-    'UV Flatbed Printers - With Konica KM1024i Printheads': 'Inkjet Printers',
-    'UV Hybrid Inkjet Printer': 'Inkjet Printers',
-    'UV Hybrid Inkjet Printer - With Konica KM1024i Printheads': 'Inkjet Printers',
-    'UV Hybrid Inkjet Printer - With Konica KM1024i Printhead': 'Inkjet Printers',
-    'UV Hybrid Inkjet Printer - With Ricoh Gen6 Printheads': 'Inkjet Printers',
-    'UV Hybrid Inkjet Printer - With Ricoh Gen6 Printhead': 'Inkjet Printers',
-    'Sublimation Printers': 'Inkjet Printers',
-    'Double Side Printers': 'Inkjet Printers',
-    'Epson Printer Spare Parts': 'Print Spare Parts',
-    'Roland Printer Spare Parts': 'Print Spare Parts',
-    'Canon Printer Spare Parts': 'Print Spare Parts',
-    'Ricoh Printer Spare Parts': 'Print Spare Parts',
-    // fallback: categoryName itself
-  };
+  // --- Highlight the corresponding nav item ---
   document.querySelectorAll('.sub-header-link').forEach(link => {
     link.classList.remove('active');
-    if (
-      link.textContent.trim() === (subHeaderMap[categoryName] || categoryName)
-    ) {
+    if (link.textContent.trim() === categoryName) {
       link.classList.add('active');
     }
   });
 
   // Convert category for use in hash navigation
-  const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '');
+  const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '');
 
-  // Update URL hash without triggering a navigation (unless prevented by flag)
+  // Update URL hash without triggering a navigation
   if (!window.preventHashUpdate) {
-    // Add a flag to prevent recursive navigation
     window.updatingHashFromCategory = true;
     if (history.pushState) {
       history.pushState(null, null, `#${categorySlug}`);
     } else {
       location.hash = `#${categorySlug}`;
     }
-    // Clear the flag after a short delay
     setTimeout(() => {
       window.updatingHashFromCategory = false;
     }, 100);
   }
+
   // Small delay for smooth transition
-  setTimeout(() => {    
-    // Special handling for economic version printers
-    if (categoryName === 'Eco-Solvent Inkjet Printers') {
-      // Use the new economic version printers function
-      if (window.loadAllEconomicVersionPrinters) {
-        window.loadAllEconomicVersionPrinters();
-        return;
-      }
-    }
+  setTimeout(() => {
+    // Map category names to book category keys
+    const categoryMap = {
+      'Classics': 'classics',
+      'Contemporary': 'contemporary',
+      'Crime': 'crime', 
+      'Erotica': 'erotica',
+      'Fantasy': 'fantasy',
+      'Historical Fiction': 'historical_fiction',
+      'Horror': 'horror',
+      'Mystery': 'mystery',
+      'Novels': 'novels',
+      'Paranormal': 'paranormal',
+      'Romance': 'romance',
+      'Science Fiction': 'science_fiction',
+      'Short Stories': 'short_stories',
+      'Suspense': 'suspense',
+      'Thriller': 'thriller',
+      'Womens Fiction': 'womens_fiction',
+      'Women\'s Fiction': 'womens_fiction',
+      'Nonfiction': 'nonfiction',
+      'Non-Fiction': 'nonfiction',
+      'Childrens': 'childrens',
+      'Children\'s': 'childrens',
+      'Young Adult': 'young_adult',
+      'New Adult': 'new_adult',
+      'Academic': 'academic',
+      'Art': 'art',
+      'Sequential Art': 'sequential_art',
+      'Music': 'music',
+      'Cultural': 'cultural',
+      'Health': 'health',
+      'Self Help': 'self_help',
+      'Psychology': 'psychology',
+      'Parenting': 'parenting',
+      'Religion': 'religion',
+      'Christian': 'christian',
+      'Christian Fiction': 'christian_fiction',
+      'Spirituality': 'spirituality',
+      'Philosophy': 'philosophy',
+      'Business': 'business',
+      'Politics': 'politics',
+      'Science': 'science',
+      'Biography': 'biography',
+      'Autobiography': 'autobiography',
+      'History': 'history',
+      'Historical': 'historical',
+      'Poetry': 'poetry',
+      'Humor': 'humor',
+      'Sports and Games': 'sports_and_games',
+      'Food and Drink': 'food_and_drink',
+      'Travel': 'travel',
+      'Adult Fiction': 'adult_fiction',
+      'Default': 'default'
+    };
+
+    // Get the book category key
+    const bookCategoryKey = categoryMap[categoryName];
     
-    // Special handling for printer categories
-    if (categoryName === 'Inkjet Printers') {
-      // Load all inkjet printer products (eco-solvent + solvent + others)
-      const ecoSolventPrinters = getAllEcoSolventPrinters();
-      const solventPrinters = getAllSolventPrinters();
-      const dtfPrinters = inkjetPrinterProducts.dtf_printer || [];
-      const uvDtfPrinters = inkjetPrinterProducts.uv_dtf || [];
-      const sublimationPrinters = inkjetPrinterProducts.sublimation || [];
-      const uvInkjetPrinters = inkjetPrinterProducts.amo_uv_inkjet || [];
-      const uvFlatbedPrinters = inkjetPrinterProducts.uv_flatbed || [];
-      const hybridUvPrinters = inkjetPrinterProducts.hybrid_uv || [];
-      const doubleSidePrinters = inkjetPrinterProducts.double_side || [];
-      
-      const allPrinters = [
-        ...ecoSolventPrinters,
-        ...solventPrinters,
-        ...dtfPrinters,
-        ...uvDtfPrinters,
-        ...sublimationPrinters,
-        ...uvInkjetPrinters,
-        ...uvFlatbedPrinters,
-        ...hybridUvPrinters,
-        ...doubleSidePrinters
-      ];
-      
-      const productsHTML = renderProducts(allPrinters, 'printer');
+    if (bookCategoryKey && booksProducts[bookCategoryKey]) {
+      // Load books from the specific category
+      const categoryBooks = booksProducts[bookCategoryKey];
+      const productsHTML = renderProducts(categoryBooks, 'book');
       const productsGrid = document.querySelector('.js-prodcts-grid');
       productsGrid.innerHTML = productsHTML;
       productsGrid.classList.remove('showing-coming-soon');
       
-      // Re-attach event listeners for the new add to cart buttons
+      // Re-attach event listeners
       attachAddToCartListeners();
       
       // Update page header
-      updatePageHeader('Inkjet Printers', allPrinters.length);
+      updatePageHeader(categoryName, categoryBooks.length);
       
       // Update breadcrumb navigation
-      updateBreadcrumb('inkjetPrinters');
-    } else if (categoryName === 'Eco-Solvent Inkjet Printers - With XP600 Printhead') {
-      // Load XP600 printers instead of showing placeholder
-      const xp600Printers = getEcoSolventXP600Printers();
-      const productsHTML = renderProducts(xp600Printers, 'printer');
+      updateBreadcrumb(bookCategoryKey);
+      
+      // Scroll to products
+      scrollToProducts();
+    } else {
+      // Fallback for unknown categories
       const productsGrid = document.querySelector('.js-prodcts-grid');
-      productsGrid.innerHTML = productsHTML;
-      productsGrid.classList.remove('showing-coming-soon');
-      
-      // Re-attach event listeners for the new add to cart buttons
-      attachAddToCartListeners();
-      
-      // Update page header
-      updatePageHeader('XP600 Eco-Solvent Inkjet Printers', xp600Printers.length);
-      
-      // Update breadcrumb navigation
-      updateBreadcrumb('xp600Printers');    } else if (categoryName === 'Eco-Solvent Inkjet Printers - With I1600 Printhead') {
+      productsGrid.innerHTML = `
+        <div class="coming-soon">
+          <h2>Category Not Found</h2>
+          <p>The category "${categoryName}" was not found. Please check the navigation menu.</p>
+        </div>
+      `;
+      productsGrid.classList.add('showing-coming-soon');
+    }
+  }, 200);
+};
+
+// Load default products on page load
       // Load I1600 printers instead of showing placeholder
       const i1600Printers = getEcoSolventI1600Printers();
       const productsHTML = renderProducts(i1600Printers, 'printer');
