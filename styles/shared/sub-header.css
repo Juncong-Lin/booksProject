@@ -7,16 +7,17 @@
   left: 0;
   right: 0;
   height: 60px; /* Increased height for two-line layout */
-  z-index: 1000; /* Ensure it's above main content but below submenu */
+  z-index: 9000; /* High enough to be visible but below main header */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  visibility: visible !important;
 }
 
 .sub-header-content {
-  display: flex;
+  display: flex !important;
   align-items: center;
   width: 100%;
   max-width: 100%; /* Full width */
@@ -24,6 +25,7 @@
   overflow-x: auto;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+  visibility: visible !important;
 }
 
 .sub-header-content::-webkit-scrollbar {
@@ -31,7 +33,7 @@
 }
 
 .sub-header-nav {
-  display: flex;
+  display: flex !important;
   align-items: center;
   white-space: normal; /* Allow text wrapping */
   gap: 0;
@@ -39,6 +41,7 @@
   justify-content: flex-start;
   padding: 8px 15px; /* Vertical padding for two-line layout */
   flex-wrap: nowrap; /* Keep items in a row but allow text to wrap within each item */
+  visibility: visible !important;
 }
 
 .sub-header-link {

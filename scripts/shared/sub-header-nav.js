@@ -35,110 +35,118 @@ class SubHeaderNavigation {
         }
         
         // Check if we're on the index page by looking for product grid or if load functions exist
-        const isIndexPage = window.loadSpecificCategory && window.loadAllPrintheadProducts && window.loadAllMaterialProducts && window.loadAllLedLcdProducts;// Handle navigation based on the category
+        const isIndexPage = window.loadSpecificCategory;
+        
+        // Handle navigation based on the category
         let hash = '';
-        if (linkText === 'Inkjet Printers') {
-            hash = '#inkjet-printers';
-        } else if (linkText === 'Print Heads') {
-            hash = '#print-heads';
-        } else if (linkText === 'Print Spare Parts') {
-            hash = '#print-spare-parts';
-        } else if (linkText === 'Upgrading Kit') {
-            hash = '#upgrading-kit';
-        } else if (linkText === 'Material') {
-            hash = '#material';
-        } else if (linkText === 'LED & LCD') {
-            hash = '#led-lcd';
-        } else if (linkText === 'Laser') {
-            hash = '#laser';
-        } else if (linkText === 'Cutting') {
-            hash = '#cutting';
-        } else if (linkText === 'Channel Letter') {
-            hash = '#channel-letter';
-        } else if (linkText === 'CNC') {
-            hash = '#cnc';
-        } else if (linkText === 'Displays') {
-            hash = '#displays';
-        } else if (linkText === 'Other') {
-            hash = '#other';
+        if (linkText === 'Fiction') {
+            hash = '#fiction';
+        } else if (linkText === 'Non-Fiction') {
+            hash = '#non-fiction';
+        } else if (linkText === 'Children & Young Adult') {
+            hash = '#children-young-adult';
+        } else if (linkText === 'Academic & Educational') {
+            hash = '#academic-educational';
+        } else if (linkText === 'Arts & Culture') {
+            hash = '#arts-culture';
+        } else if (linkText === 'Health & Self-Help') {
+            hash = '#health-self-help';
+        } else if (linkText === 'Religion & Spirituality') {
+            hash = '#religion-spirituality';
+        } else if (linkText === 'Business & Politics') {
+            hash = '#business-politics';
+        } else if (linkText === 'Science & Technology') {
+            hash = '#science-technology';
+        } else if (linkText === 'Biography & History') {
+            hash = '#biography-history';
+        } else if (linkText === 'Poetry & Literature') {
+            hash = '#poetry-literature';
+        } else if (linkText === 'Specialty Genres') {
+            hash = '#specialty-genres';
         }
 
         if (isIndexPage) {
           // We're on index page - use existing category loading functions
-          if (linkText === 'Inkjet Printers' && window.loadSpecificCategory) {
-            window.loadSpecificCategory('Inkjet Printers');
-            this.setActiveCategory('Inkjet Printers');
+          if (linkText === 'Fiction' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Fiction');
+            this.setActiveCategory('Fiction');
             window.location.hash = hash;
-          } else if (linkText === 'Print Heads' && window.loadAllPrintheadProducts) {
-            window.loadAllPrintheadProducts();
-            this.setActiveCategory('Print Heads');
+          } else if (linkText === 'Non-Fiction' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Non-Fiction');
+            this.setActiveCategory('Non-Fiction');
             window.location.hash = hash;
-          } else if (linkText === 'Print Spare Parts' && window.loadSpecificCategory) {
-            window.loadSpecificCategory('Print Spare Parts');
-            this.setActiveCategory('Print Spare Parts');
-            window.location.hash = hash;          } else if (linkText === 'Upgrading Kit' && window.loadSpecificCategory) {
-            window.loadSpecificCategory('Upgrading Kit');
-            this.setActiveCategory('Upgrading Kit');
-            window.location.hash = hash;          }          else if (linkText === 'Material' && window.loadAllMaterialProducts) {
-            window.loadAllMaterialProducts();
-            this.setActiveCategory('Material');
+          } else if (linkText === 'Children & Young Adult' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Children & Young Adult');
+            this.setActiveCategory('Children & Young Adult');
             window.location.hash = hash;
-          } else if (linkText === 'LED & LCD' && window.loadAllLedLcdProducts) {
-            window.loadAllLedLcdProducts();
-            this.setActiveCategory('LED & LCD');
+          } else if (linkText === 'Academic & Educational' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Academic & Educational');
+            this.setActiveCategory('Academic & Educational');
             window.location.hash = hash;
-          } else if (linkText === 'Laser' && window.loadSpecificCategory) {
-            window.loadSpecificCategory('Laser');
-            this.setActiveCategory('Laser');
-            window.location.hash = hash;          } else if (linkText === 'Cutting' && window.loadSpecificCategory) {
-            window.loadSpecificCategory('Cutting');
-            this.setActiveCategory('Cutting');
+          } else if (linkText === 'Arts & Culture' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Arts & Culture');
+            this.setActiveCategory('Arts & Culture');
             window.location.hash = hash;
-          } else if (linkText === 'Channel Letter' && window.loadSpecificCategory) {
-            window.loadSpecificCategory('Channel Letter');
-            this.setActiveCategory('Channel Letter');
+          } else if (linkText === 'Health & Self-Help' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Health & Self-Help');
+            this.setActiveCategory('Health & Self-Help');
             window.location.hash = hash;
-          } else if (linkText === 'CNC' && window.loadSpecificCategory) {
-            window.loadSpecificCategory('CNC');
-            this.setActiveCategory('CNC');
-            window.location.hash = hash;          } else if (linkText === 'Displays' && window.loadSpecificCategory) {
-            window.loadSpecificCategory('Displays');
-            this.setActiveCategory('Displays');
+          } else if (linkText === 'Religion & Spirituality' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Religion & Spirituality');
+            this.setActiveCategory('Religion & Spirituality');
             window.location.hash = hash;
-          } else if (linkText === 'Other' && window.loadSpecificCategory) {
-            window.loadSpecificCategory('Other');
-            this.setActiveCategory('Other');
+          } else if (linkText === 'Business & Politics' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Business & Politics');
+            this.setActiveCategory('Business & Politics');
+            window.location.hash = hash;
+          } else if (linkText === 'Science & Technology' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Science & Technology');
+            this.setActiveCategory('Science & Technology');
+            window.location.hash = hash;
+          } else if (linkText === 'Biography & History' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Biography & History');
+            this.setActiveCategory('Biography & History');
+            window.location.hash = hash;
+          } else if (linkText === 'Poetry & Literature' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Poetry & Literature');
+            this.setActiveCategory('Poetry & Literature');
+            window.location.hash = hash;
+          } else if (linkText === 'Specialty Genres' && window.loadSpecificCategory) {
+            window.loadSpecificCategory('Specialty Genres');
+            this.setActiveCategory('Specialty Genres');
             window.location.hash = hash;
           }
         } else {
           // We're on a different page - navigate to index page with hash
           event.preventDefault();
           
-          if (linkText === 'Inkjet Printers') {
-            hash = '#inkjet-printers';
-          } else if (linkText === 'Print Heads') {
-            hash = '#print-heads';
-          } else if (linkText === 'Print Spare Parts') {
-            hash = '#print-spare-parts';
-          } else if (linkText === 'Upgrading Kit') {
-            hash = '#upgrading-kit';
-          } else if (linkText === 'Material') {
-            hash = '#material';
-          } else if (linkText === 'LED & LCD') {
-            hash = '#led-lcd';
-          } else if (linkText === 'Laser') {
-            hash = '#laser';
-          } else if (linkText === 'Cutting') {
-            hash = '#cutting';
-          } else if (linkText === 'Channel Letter') {
-            hash = '#channel-letter';
-          } else if (linkText === 'CNC') {
-            hash = '#cnc';
-          } else if (linkText === 'Displays') {
-            hash = '#displays';
-          } else if (linkText === 'Other') {
-            hash = '#other';
-          }          // Navigate to index page with the appropriate hash
+          if (linkText === 'Fiction') {
+            hash = '#fiction';
+          } else if (linkText === 'Non-Fiction') {
+            hash = '#non-fiction';
+          } else if (linkText === 'Children & Young Adult') {
+            hash = '#children-young-adult';
+          } else if (linkText === 'Academic & Educational') {
+            hash = '#academic-educational';
+          } else if (linkText === 'Arts & Culture') {
+            hash = '#arts-culture';
+          } else if (linkText === 'Health & Self-Help') {
+            hash = '#health-self-help';
+          } else if (linkText === 'Religion & Spirituality') {
+            hash = '#religion-spirituality';
+          } else if (linkText === 'Business & Politics') {
+            hash = '#business-politics';
+          } else if (linkText === 'Science & Technology') {
+            hash = '#science-technology';
+          } else if (linkText === 'Biography & History') {
+            hash = '#biography-history';
+          } else if (linkText === 'Poetry & Literature') {
+            hash = '#poetry-literature';
+          } else if (linkText === 'Specialty Genres') {
+            hash = '#specialty-genres';
+          }
+          
+          // Navigate to index page with the appropriate hash
           if (hash) {
             UrlUtils.navigateToIndex(hash);
             return;

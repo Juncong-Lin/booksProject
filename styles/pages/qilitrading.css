@@ -3,6 +3,9 @@
 .hero-carousel,
 .hero-slide,
 .hero-card,
+.hero-nav-arrow,
+.hero-nav-prev,
+.hero-nav-next,
 section.hero-banner {
   display: none !important;
   visibility: hidden !important;
@@ -10,7 +13,7 @@ section.hero-banner {
 }
 
 body.has-sidebar .main {
-  margin-top: 97px; /* 60px (main header) + 32px (sub-header) + 5px (gap) */
+  margin-top: 120px; /* 60px (main header) + 60px (sub-header) */
   padding: 20px 20px 20px 244px; /* Add left padding to offset sidebar width (220px + 24px gap) */
   width: 100%; /* Remove max-width for true fluid layout */
   margin-left: 0;
@@ -22,7 +25,7 @@ body.has-sidebar .main {
 
 /* Default main content styling for pages without sidebar */
 .main {
-  margin-top: 97px;
+  margin-top: 120px;
   padding: 20px;
   width: 100%;
   margin-left: auto;
@@ -702,7 +705,8 @@ body.has-sidebar .main {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Navigation Arrows */
+/* Navigation Arrows - Commented out for future use */
+/*
 .hero-nav-arrow {
   position: absolute;
   top: 50%;
@@ -742,6 +746,7 @@ body.has-sidebar .main {
   line-height: 1;
   transform: translateY(-1px);
 }
+*/
 
 /* Carousel Indicators */
 .hero-indicators {
@@ -813,6 +818,7 @@ body.has-sidebar .main {
     right: 15px;
   }
 }
+*/
 
 @media screen and (max-width: 768px) {
   .hero-container {
@@ -835,14 +841,17 @@ body.has-sidebar .main {
     width: 40px;
     height: 40px;
     font-size: 18px;
+    display: none !important; /* Force hide hero arrows */
   }
   
   .hero-nav-prev {
     left: 10px;
+    display: none !important; /* Force hide hero arrows */
   }
   
   .hero-nav-next {
     right: 10px;
+    display: none !important; /* Force hide hero arrows */
   }
   
   .hero-cta {
@@ -878,11 +887,14 @@ body.has-sidebar .main {
     padding: 25px 15px 15px;
   }
   
+  /* Commented out hero navigation arrows - for future use */
+  /*
   .hero-nav-arrow {
     width: 35px;
     height: 35px;
     font-size: 16px;
   }
+  */
   
   .hero-indicators {
     bottom: 10px;

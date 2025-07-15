@@ -1,6 +1,6 @@
 body.has-sidebar .departments-sidebar {
   position: fixed;
-  top: 92px; /* 60px (main header) + 32px (sub-header) */
+  top: 120px; /* 60px (main header) + 60px (sub-header) */
   bottom: 0;
   left: 0;  width: 220px;
   background-color: #1A252F;
@@ -44,7 +44,7 @@ body.has-sidebar .departments-sidebar {
   opacity: 0;
   position: fixed;
   left: 220px; /* Same as sidebar width */
-  top: 92px; /* Adjusted: 60px (main header) + 32px (sub-header) */
+  top: 120px; /* Adjusted: 60px (main header) + 60px (sub-header) */
   bottom: 0;
   width: 260px; /* Increased width for longer text */  background-color: #232F3E;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
@@ -54,7 +54,7 @@ body.has-sidebar .departments-sidebar {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-  max-height: calc(100vh - 92px); /* Adjusted: Ensure it doesn\'t overflow viewport */
+  max-height: calc(100vh - 120px); /* Adjusted: Ensure it doesn\'t overflow viewport */
 }
 
 .department-subgroup {
