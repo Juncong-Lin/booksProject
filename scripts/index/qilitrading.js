@@ -1928,94 +1928,39 @@ window.loadSpecificCategory = function(categoryName) {
 
   // Small delay for smooth transition
   setTimeout(() => {
-    // Map category names to book category keys
-    const categoryMap = {
-      'Classics': 'classics',
-      'Contemporary': 'contemporary',
-      'Crime': 'crime', 
-      'Erotica': 'erotica',
-      'Fantasy': 'fantasy',
-      'Historical Fiction': 'historical_fiction',
-      'Horror': 'horror',
-      'Mystery': 'mystery',
-      'Novels': 'novels',
-      'Paranormal': 'paranormal',
-      'Romance': 'romance',
-      'Science Fiction': 'science_fiction',
-      'Short Stories': 'short_stories',
-      'Suspense': 'suspense',
-      'Thriller': 'thriller',
-      'Womens Fiction': 'womens_fiction',
-      'Women\'s Fiction': 'womens_fiction',
-      'Nonfiction': 'nonfiction',
-      'Non-Fiction': 'nonfiction',
-      'Childrens': 'childrens',
-      'Children\'s': 'childrens',
-      'Young Adult': 'young_adult',
-      'New Adult': 'new_adult',
-      'Academic': 'academic',
-      'Art': 'art',
-      'Sequential Art': 'sequential_art',
-      'Music': 'music',
-      'Cultural': 'cultural',
-      'Health': 'health',
-      'Self Help': 'self_help',
-      'Psychology': 'psychology',
-      'Parenting': 'parenting',
-      'Religion': 'religion',
-      'Christian': 'christian',
-      'Christian Fiction': 'christian_fiction',
-      'Spirituality': 'spirituality',
-      'Philosophy': 'philosophy',
-      'Business': 'business',
-      'Politics': 'politics',
-      'Science': 'science',
-      'Biography': 'biography',
-      'Autobiography': 'autobiography',
-      'History': 'history',
-      'Historical': 'historical',
-      'Poetry': 'poetry',
-      'Humor': 'humor',
-      'Sports and Games': 'sports_and_games',
-      'Food and Drink': 'food_and_drink',
-      'Travel': 'travel',
-      'Adult Fiction': 'adult_fiction',
-      'Default': 'default'
-    };
-
-    // Get the book category key
-    const bookCategoryKey = categoryMap[categoryName];
+    // Check if this is a book category - if so, delegate to books-loader.js
+    const bookCategories = [
+      'Classics', 'Contemporary', 'Crime', 'Erotica', 'Fantasy', 'Historical Fiction', 
+      'Horror', 'Mystery', 'Novels', 'Paranormal', 'Romance', 'Science Fiction', 
+      'Short Stories', 'Suspense', 'Thriller', 'Womens Fiction', 'Women\'s Fiction',
+      'Fiction', 'Nonfiction', 'Non-Fiction', 'Childrens', 'Children\'s', 'Young Adult', 
+      'New Adult', 'Academic', 'Art', 'Sequential Art', 'Music', 'Cultural', 'Health', 
+      'Self Help', 'Psychology', 'Parenting', 'Religion', 'Christian', 'Christian Fiction', 
+      'Spirituality', 'Philosophy', 'Business', 'Politics', 'Science', 'Biography', 
+      'Autobiography', 'History', 'Historical', 'Poetry', 'Humor', 'Sports and Games', 
+      'Food and Drink', 'Travel', 'Adult Fiction', 'Default', 'Children & Young Adult',
+      'Academic & Educational', 'Arts & Culture', 'Health & Self-Help', 'Religion & Spirituality',
+      'Business & Politics', 'Science & Technology', 'Biography & History', 'Poetry & Literature',
+      'Specialty Genres'
+    ];
     
-    if (bookCategoryKey && booksProducts[bookCategoryKey]) {
-      // Load books from the specific category
-      const categoryBooks = booksProducts[bookCategoryKey];
-      const productsHTML = renderProducts(categoryBooks, 'book');
-      const productsGrid = document.querySelector('.js-prodcts-grid');
-      productsGrid.innerHTML = productsHTML;
-      productsGrid.classList.remove('showing-coming-soon');
-      
-      // Re-attach event listeners
-      attachAddToCartListeners();
-      
-      // Update page header
-      updatePageHeader(categoryName, categoryBooks.length);
-      
-      // Update breadcrumb navigation
-      updateBreadcrumb(bookCategoryKey);
-      
-      // Scroll to products
-      scrollToProducts();
-    } else {
-      // Fallback for unknown categories
-      const productsGrid = document.querySelector('.js-prodcts-grid');
-      productsGrid.innerHTML = `
-        <div class="coming-soon">
-          <h2>Category Not Found</h2>
-          <p>The category "${categoryName}" was not found. Please check the navigation menu.</p>
-        </div>
-      `;
-      productsGrid.classList.add('showing-coming-soon');
+    if (bookCategories.includes(categoryName)) {
+      // This is a book category - let books-loader.js handle it
+      console.log('Delegating book category to books-loader.js:', categoryName);
+      return;
     }
+    
+    // Handle non-book categories below
+    // For now, show "Category Not Found" for non-book categories
+    // since this is primarily a book website
+    const productsGrid = document.querySelector('.js-prodcts-grid');
+    productsGrid.innerHTML = `
+      <div class="coming-soon">
+        <h2>Category Not Found</h2>
+        <p>The category "${categoryName}" was not found. Please check the navigation menu.</p>
+      </div>
+    `;
+    productsGrid.classList.add('showing-coming-soon');
   }, 200);
 };
 

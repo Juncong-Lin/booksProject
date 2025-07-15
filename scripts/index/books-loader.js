@@ -250,7 +250,10 @@ window.loadAllBooks = function() {
 };
 
 // Function to handle loading of specific book category products
-window.loadSpecificCategory = function(categoryName) {
+// Make sure this overwrites any other loadSpecificCategory functions
+// Use setTimeout to ensure this runs after other scripts load
+setTimeout(() => {
+  window.loadSpecificCategory = function(categoryName) {
   // Hide the submenu after selection
   hideActiveSubmenus();
   
@@ -393,7 +396,7 @@ window.loadSpecificCategory = function(categoryName) {
       const categorySlugForBreadcrumb = Array.isArray(bookCategoryMapping) ? 
         categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '') : 
         bookCategoryMapping;
-      updateBreadcrumb(categorySlugForBreadcrumb);
+      updateBreadcrumb(categoryName, bookCategoryMapping);
       
       // Scroll to products
       scrollToProducts();
@@ -413,6 +416,7 @@ window.loadSpecificCategory = function(categoryName) {
     }
   }, 200);
 };
+}, 10); // Close the setTimeout that wraps loadSpecificCategory
 
 // Function to hide all active submenus
 function hideActiveSubmenus() {
@@ -475,7 +479,7 @@ function updatePageHeader(title, productCount = null) {
 }
 
 // Function to update breadcrumb navigation
-function updateBreadcrumb(category) {
+function updateBreadcrumb(categoryDisplayName, categoryDataKey) {
   let breadcrumbElement = document.querySelector('.breadcrumb-nav');
   if (!breadcrumbElement) {
     // Create breadcrumb if it doesn't exist
@@ -486,12 +490,101 @@ function updateBreadcrumb(category) {
     mainElement.insertBefore(breadcrumbElement, mainElement.firstChild);
   }
   
-  if (category && category !== 'all') {
-    breadcrumbElement.innerHTML = `
-      <a href="index.html" class="breadcrumb-link">Home</a>
-      <span class="breadcrumb-separator"> > </span>
-      <span class="breadcrumb-current">${category}</span>
-    `;
+  if (categoryDisplayName && categoryDisplayName !== 'all') {
+    // Define parent-child relationships for breadcrumb navigation
+    const categoryHierarchy = {
+      // Second-level categories under Fiction
+      'classics': 'Fiction',
+      'contemporary': 'Fiction',
+      'crime': 'Fiction', 
+      'erotica': 'Fiction',
+      'fantasy': 'Fiction',
+      'historical_fiction': 'Fiction',
+      'horror': 'Fiction',
+      'mystery': 'Fiction',
+      'novels': 'Fiction',
+      'paranormal': 'Fiction',
+      'romance': 'Fiction',
+      'science_fiction': 'Fiction',
+      'short_stories': 'Fiction',
+      'suspense': 'Fiction',
+      'thriller': 'Fiction',
+      'womens_fiction': 'Fiction',
+      
+      // Second-level categories under Children & Young Adult
+      'childrens': 'Children & Young Adult',
+      'young_adult': 'Children & Young Adult',
+      'new_adult': 'Children & Young Adult',
+      
+      // Second-level categories under Academic & Educational
+      'academic': 'Academic & Educational',
+      
+      // Second-level categories under Arts & Culture
+      'art': 'Arts & Culture',
+      'sequential_art': 'Arts & Culture',
+      'music': 'Arts & Culture',
+      'cultural': 'Arts & Culture',
+      
+      // Second-level categories under Health & Self-Help
+      'health': 'Health & Self-Help',
+      'self_help': 'Health & Self-Help',
+      'psychology': 'Health & Self-Help',
+      
+      // Second-level categories under Religion & Spirituality
+      'religion': 'Religion & Spirituality',
+      'christian': 'Religion & Spirituality',
+      'christian_fiction': 'Religion & Spirituality',
+      'spirituality': 'Religion & Spirituality',
+      'philosophy': 'Religion & Spirituality',
+      
+      // Second-level categories under Business & Politics
+      'business': 'Business & Politics',
+      'politics': 'Business & Politics',
+      
+      // Second-level categories under Science & Technology
+      'science': 'Science & Technology',
+      
+      // Second-level categories under Biography & History
+      'biography': 'Biography & History',
+      'autobiography': 'Biography & History',
+      'history': 'Biography & History',
+      'historical': 'Biography & History',
+      
+      // Second-level categories under Poetry & Literature
+      'poetry': 'Poetry & Literature',
+      
+      // Second-level categories under Specialty Genres
+      'humor': 'Specialty Genres',
+      'sports_and_games': 'Specialty Genres',
+      'food_and_drink': 'Specialty Genres',
+      'travel': 'Specialty Genres',
+      'adult_fiction': 'Specialty Genres',
+      'default': 'Specialty Genres',
+      'add_a_comment': 'Specialty Genres'
+    };
+    
+    // Check if this category has a parent (is a second-level category)
+    // Use the data key for hierarchy lookup
+    const dataKey = categoryDataKey || categoryDisplayName.toLowerCase().replace(/\s+/g, '_').replace(/&/g, '').replace(/'/g, '');
+    const parentCategory = categoryHierarchy[dataKey];
+    
+    if (parentCategory) {
+      // Second-level category - show Home > Parent > Current
+      breadcrumbElement.innerHTML = `
+        <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="javascript:void(0)" onclick="loadSpecificCategory('${parentCategory}')" class="breadcrumb-link">${parentCategory}</a>
+        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-current">${categoryDisplayName}</span>
+      `;
+    } else {
+      // First-level category - show Home > Current
+      breadcrumbElement.innerHTML = `
+        <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-current">${categoryDisplayName}</span>
+      `;
+    }
   } else {
     // For homepage (all products), remove breadcrumb completely for clean look
     if (breadcrumbElement) {

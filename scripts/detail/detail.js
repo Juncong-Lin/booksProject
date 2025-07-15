@@ -8,6 +8,7 @@ import { materialProducts } from '../../data/material-products.js';
 import { ledAndLcdProducts } from '../../data/ledAndLcd-products.js';
 import { channelLetterBendingMechineProducts } from '../../data/channelLetterBendingMechine-products.js';
 import { otherProducts } from '../../data/other-products.js';
+import { booksProducts } from '../../data/books.js';
 // Temporarily commented out cart imports - preserved for future reuse
 // import { cart, addToCart } from '../../data/cart.js';
 // import { updateCartQuantity } from '../shared/cart-quantity.js';
@@ -84,6 +85,17 @@ function findChannelLetterById(id) {
 function findOtherById(id) {
   for (const category in otherProducts) {
     const product = otherProducts[category].find(item => item.id === id);
+    if (product) {
+      return { ...product, category };
+    }
+  }
+  return null;
+}
+
+// Helper function to find book by ID across all categories
+function findBookById(id) {
+  for (const category in booksProducts) {
+    const product = booksProducts[category].find(item => item.id === id);
     if (product) {
       return { ...product, category };
     }
@@ -183,6 +195,11 @@ if (productType === 'printsparepart' || productType === 'print-spare-parts') {
   if (product) {
     productBrand = product.category;
   }
+} else if (productType === 'book' || productType === 'books') {
+  product = findBookById(productId);
+  if (product) {
+    productBrand = product.category;
+  }
 } else {
   // Search in regular products or auto-detect if no productType specified
   product = products.find(product => product.id === productId);
@@ -275,6 +292,15 @@ if (!product && !urlProductType) {
       productBrand = product.category;
     }
   }
+  
+  // If not found in Other products, search in Books
+  if (!product) {
+    product = findBookById(productId);
+    if (product) {
+      productType = 'book';
+      productBrand = product.category;
+    }
+  }
 }
 
 if (product) {
@@ -364,6 +390,8 @@ if (product) {
     setupChannelLetterProductContent(product);
   } else if (productType === 'other') {
     setupOtherProductContent(product);
+  } else if (productType === 'book' || productType === 'books') {
+    setupBookProductContent(product);
   } else if (productType === 'printer') {
     setupPrinterProductContent(product);
   } else {
@@ -1680,6 +1708,122 @@ function setupFallbackOtherContent(product) {
   document.querySelector('.product-specifications-section').style.display = 'none';
 }
 
+async function setupBookProductContent(product) {
+  try {
+    // Extract the path to the markdown file from the image path
+    const imagePath = product.image;
+    // Get the category folder and product folder from the image path
+    // Format: products/books/Category/Product Name/image/...
+    const pathParts = imagePath.split('/');
+    const categoryFolder = pathParts[2]; // Category folder
+    const productFolder = pathParts[3]; // Product name folder
+    
+    // Construct path to MD file
+    const mdFilePath = `products/books/${categoryFolder}/${productFolder}/${productFolder}.md`;
+    
+    // Fetch the markdown file content
+    const response = await fetch(mdFilePath);
+    if (!response.ok) {
+      console.log(`Markdown file not found for ${product.name}: ${mdFilePath}`);
+      // Fallback to hardcoded content if markdown file is not found
+      setupFallbackBookContent(product);
+      return;
+    }
+    
+    const mdContent = await response.text();
+    
+    // Update product description and content with the markdown content
+    // For book products, we'll use the entire markdown content as the main content
+    const parsedContent = parseMarkdown(mdContent);
+    
+    // Update the product details tab content with the full markdown content
+    document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
+    
+    // Hide sections since books don't need detailed specs/compatibility
+    document.querySelector('.product-compatibility-section').style.display = 'none';
+    document.querySelector('.product-specifications-section').style.display = 'none';
+    
+  } catch (error) {
+    console.error('Error loading book markdown content:', error);
+    setupFallbackBookContent(product);
+  }
+}
+
+function setupFallbackBookContent(product) {
+  // Set minimal fallback content for books
+  const categoryDisplayMap = {
+    'academic': 'Academic',
+    'add_a_comment': 'Add a comment',
+    'adult_fiction': 'Adult Fiction',
+    'art': 'Art',
+    'autobiography': 'Autobiography',
+    'biography': 'Biography',
+    'business': 'Business',
+    'childrens': 'Children\'s',
+    'christian': 'Christian',
+    'christian_fiction': 'Christian Fiction',
+    'classics': 'Classics',
+    'contemporary': 'Contemporary',
+    'crime': 'Crime',
+    'cultural': 'Cultural',
+    'default': 'Default',
+    'erotica': 'Erotica',
+    'fantasy': 'Fantasy',
+    'fiction': 'Fiction',
+    'food_and_drink': 'Food and Drink',
+    'health': 'Health',
+    'historical': 'Historical',
+    'historical_fiction': 'Historical Fiction',
+    'history': 'History',
+    'horror': 'Horror',
+    'humor': 'Humor',
+    'music': 'Music',
+    'mystery': 'Mystery',
+    'new_adult': 'New Adult',
+    'novels': 'Novels',
+    'paranormal': 'Paranormal',
+    'philosophy': 'Philosophy',
+    'poetry': 'Poetry',
+    'politics': 'Politics',
+    'psychology': 'Psychology',
+    'religion': 'Religion',
+    'romance': 'Romance',
+    'science': 'Science',
+    'science_fiction': 'Science Fiction',
+    'self_help': 'Self Help',
+    'sequential_art': 'Sequential Art',
+    'short_stories': 'Short Stories',
+    'spirituality': 'Spirituality',
+    'sports_and_games': 'Sports and Games',
+    'suspense': 'Suspense',
+    'thriller': 'Thriller',
+    'travel': 'Travel',
+    'womens_fiction': 'Women\'s Fiction',
+    'young_adult': 'Young Adult'
+  };
+  
+  const categoryName = categoryDisplayMap[product.category] || product.category;
+  
+  document.querySelector('.js-product-details-content').innerHTML = `
+    <h3>${product.name}</h3>
+    <p>A ${categoryName} book with engaging content. Book details are currently being updated. Please check back for more information.</p>
+    <div class="book-details">
+      <h4>Category</h4>
+      <p>${categoryName}</p>
+      
+      <h4>Genre</h4>
+      <p>${categoryName}</p>
+      
+      <p><strong>About this Book</strong></p>
+      <p>This book offers readers an engaging experience in the ${categoryName} genre. For detailed reviews, author information, and additional book details, please explore our book collection.</p>
+    </div>
+  `;
+  
+  // Hide sections since books don't need detailed specs/compatibility
+  document.querySelector('.product-compatibility-section').style.display = 'none';
+  document.querySelector('.product-specifications-section').style.display = 'none';
+}
+
 // Expose product data globally for search system
 window.inkjetPrinterProducts = inkjetPrinterProducts;
 window.printheadProducts = printheadProducts;
@@ -1689,6 +1833,7 @@ window.materialProducts = materialProducts;
 window.ledAndLcdProducts = ledAndLcdProducts;
 window.channelLetterBendingMechineProducts = channelLetterBendingMechineProducts;
 window.otherProducts = otherProducts;
+window.booksProducts = booksProducts;
 
 // Add to cart functionality - Temporarily commented out
 // All cart functionality is preserved for future reuse
@@ -2381,6 +2526,161 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       <span class="breadcrumb-separator">&gt;</span>
       <span class="breadcrumb-current">${product.name}</span>
     `;
+  } else if (productType === 'book' || productType === 'books') {
+    // For book products, show proper hierarchical breadcrumb navigation
+    // Map category names to display names and their parent categories
+    const categoryDisplayMap = {
+      'academic': 'Academic',
+      'add_a_comment': 'Add a comment',
+      'adult_fiction': 'Adult Fiction',
+      'art': 'Art',
+      'autobiography': 'Autobiography',
+      'biography': 'Biography',
+      'business': 'Business',
+      'childrens': 'Children\'s',
+      'christian': 'Christian',
+      'christian_fiction': 'Christian Fiction',
+      'classics': 'Classics',
+      'contemporary': 'Contemporary',
+      'crime': 'Crime',
+      'cultural': 'Cultural',
+      'default': 'Default',
+      'erotica': 'Erotica',
+      'fantasy': 'Fantasy',
+      'fiction': 'Fiction',
+      'food_and_drink': 'Food and Drink',
+      'health': 'Health',
+      'historical': 'Historical',
+      'historical_fiction': 'Historical Fiction',
+      'history': 'History',
+      'horror': 'Horror',
+      'humor': 'Humor',
+      'music': 'Music',
+      'mystery': 'Mystery',
+      'new_adult': 'New Adult',
+      'novels': 'Novels',
+      'paranormal': 'Paranormal',
+      'philosophy': 'Philosophy',
+      'poetry': 'Poetry',
+      'politics': 'Politics',
+      'psychology': 'Psychology',
+      'religion': 'Religion',
+      'romance': 'Romance',
+      'science': 'Science',
+      'science_fiction': 'Science Fiction',
+      'self_help': 'Self Help',
+      'sequential_art': 'Sequential Art',
+      'short_stories': 'Short Stories',
+      'spirituality': 'Spirituality',
+      'sports_and_games': 'Sports and Games',
+      'suspense': 'Suspense',
+      'thriller': 'Thriller',
+      'travel': 'Travel',
+      'womens_fiction': 'Women\'s Fiction',
+      'young_adult': 'Young Adult'
+    };
+
+    // Define parent-child relationships for breadcrumb navigation
+    const categoryHierarchy = {
+      // Second-level categories under Fiction
+      'classics': 'Fiction',
+      'contemporary': 'Fiction',
+      'crime': 'Fiction', 
+      'erotica': 'Fiction',
+      'fantasy': 'Fiction',
+      'historical_fiction': 'Fiction',
+      'horror': 'Fiction',
+      'mystery': 'Fiction',
+      'novels': 'Fiction',
+      'paranormal': 'Fiction',
+      'romance': 'Fiction',
+      'science_fiction': 'Fiction',
+      'short_stories': 'Fiction',
+      'suspense': 'Fiction',
+      'thriller': 'Fiction',
+      'womens_fiction': 'Fiction',
+      
+      // Second-level categories under Children & Young Adult
+      'childrens': 'Children & Young Adult',
+      'young_adult': 'Children & Young Adult',
+      'new_adult': 'Children & Young Adult',
+      
+      // Second-level categories under Academic & Educational
+      'academic': 'Academic & Educational',
+      
+      // Second-level categories under Arts & Culture
+      'art': 'Arts & Culture',
+      'sequential_art': 'Arts & Culture',
+      'music': 'Arts & Culture',
+      'cultural': 'Arts & Culture',
+      
+      // Second-level categories under Health & Self-Help
+      'health': 'Health & Self-Help',
+      'self_help': 'Health & Self-Help',
+      'psychology': 'Health & Self-Help',
+      
+      // Second-level categories under Religion & Spirituality
+      'religion': 'Religion & Spirituality',
+      'christian': 'Religion & Spirituality',
+      'christian_fiction': 'Religion & Spirituality',
+      'spirituality': 'Religion & Spirituality',
+      'philosophy': 'Religion & Spirituality',
+      
+      // Second-level categories under Business & Politics
+      'business': 'Business & Politics',
+      'politics': 'Business & Politics',
+      
+      // Second-level categories under Science & Technology
+      'science': 'Science & Technology',
+      
+      // Second-level categories under Biography & History
+      'biography': 'Biography & History',
+      'autobiography': 'Biography & History',
+      'history': 'Biography & History',
+      'historical': 'Biography & History',
+      
+      // Second-level categories under Poetry & Literature
+      'poetry': 'Poetry & Literature',
+      
+      // Second-level categories under Specialty Genres
+      'humor': 'Specialty Genres',
+      'sports_and_games': 'Specialty Genres',
+      'food_and_drink': 'Specialty Genres',
+      'travel': 'Specialty Genres',
+      'adult_fiction': 'Specialty Genres',
+      'default': 'Specialty Genres',
+      'add_a_comment': 'Specialty Genres'
+    };
+
+    const currentCategory = product.category;
+    const displayName = categoryDisplayMap[currentCategory] || currentCategory;
+    const parentCategory = categoryHierarchy[currentCategory];
+
+    if (parentCategory) {
+      // Second-level category - show Home > Parent > Current
+      breadcrumbElement.innerHTML = `
+        <a href="index.html" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="index.html#books" class="breadcrumb-link">Books</a>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="javascript:void(0)" onclick="loadSpecificCategory('${parentCategory}')" class="breadcrumb-link">${parentCategory}</a>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="javascript:void(0)" onclick="loadSpecificCategory('${displayName}')" class="breadcrumb-link">${displayName}</a>
+        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-current">${product.name}</span>
+      `;
+    } else {
+      // First-level category - show Home > Books > Current
+      breadcrumbElement.innerHTML = `
+        <a href="index.html" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="index.html#books" class="breadcrumb-link">Books</a>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="javascript:void(0)" onclick="loadSpecificCategory('${displayName}')" class="breadcrumb-link">${displayName}</a>
+        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-current">${product.name}</span>
+      `;
+    }
   }else {
     // For regular products, show category, subcategory, brand if available
     let html = `<a href="index.html" class="breadcrumb-link">Home</a>`;
