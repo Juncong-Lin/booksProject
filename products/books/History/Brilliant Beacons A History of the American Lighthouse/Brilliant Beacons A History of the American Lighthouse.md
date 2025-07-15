@@ -1,0 +1,15 @@
+# Brilliant Beacons: A History of the American Lighthouse
+
+Price: USD:$11.45-$11.45
+
+Product Details:
+
+Set against the backdrop of an expanding nation,Brilliant Beaconstraces the evolution of America's lighthouse system from its earliest days, highlighting the political, military, and technological battles fought to illuminate the nation's hardscrabble coastlines. Beginning with "Boston Light,"America’s first lighthouse, Dolin shows how the story of America, from colony to Set against the backdrop of an expanding nation, Brilliant Beacons traces the evolution of America's lighthouse system from its earliest days, highlighting the political, military, and technological battles fought to illuminate the nation's hardscrabble coastlines. Beginning with "Boston Light," America’s first lighthouse, Dolin shows how the story of America, from colony to regional backwater, to fledging nation, and eventually to global industrial power, can be illustrated through its lighthouses.Even in the colonial era, the question of how best to solve the collective problem of lighting our ports, reefs, and coasts through a patchwork of private interests and independent localities telegraphed the great American debate over federalism and the role of a centralized government. As the nation expanded, throughout the nineteenth and early twentieth centuries, so too did the coastlines in need of illumination, from New England to the Gulf of Mexico, the Great Lakes, the Pacific Coast all the way to Alaska. In Dolin's hands we see how each of these beacons tell its own story of political squabbling, technological advancement, engineering marvel, and individual derring-do.In rollicking detail, Dolin treats readers to a memorable cast of characters, from the penny-pinching Treasury official Stephen Pleasonton, who hamstrung the country's efforts to adopt the revolutionary Fresnel lens, to the indomitable Katherine Walker, who presided so heroically over New York Harbor as keeper at Robbins Reef Lighthouse that she was hailed as a genuine New York City folk hero upon her death in 1931. He also animates American military history from the Revolution to the Civil War and presents tales both humorous and harrowing of soldiers, saboteurs, Civil War battles, ruthless egg collectors, and, most important, the lighthouse keepers themselves, men and women who often performed astonishing acts of heroism in carrying out their duties.In the modern world of GPS and satellite-monitored shipping lanes, Brilliant Beacons forms a poignant elegy for the bygone days of the lighthouse, a symbol of American ingenuity that served as both a warning and a sign of hope for generations of mariners; and it also shows how these sentinels have endured, retaining their vibrancy to the present day. Containing over 150 photographs and illustrations, Brilliant Beacons vividly reframes America's history. ...more
+
+UPC: 7f5157bf53065d36
+Product Type: Books
+Price (excl. tax): $11.45
+Price (incl. tax): $11.45
+Tax: $0.00
+Availability: In stock (8 available)
+Number of reviews: 0

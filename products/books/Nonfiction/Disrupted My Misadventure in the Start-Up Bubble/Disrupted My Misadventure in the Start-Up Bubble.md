@@ -1,0 +1,15 @@
+# Disrupted: My Misadventure in the Start-Up Bubble
+
+Price: USD:$15.28-$15.28
+
+Product Details:
+
+INSTANT NEW YORK TIMES BESTSELLER "Wildly entertaining ... Lyons has injected a dose of sanity into a world gone mad." ---Ashlee Vance, New York Times-bestselling author of Elon MuskFor twenty-five years Dan Lyons was a magazine writer at the top of his profession--until one Friday morning when he received a phone call: Poof. His job no longer existed. "I think they just w INSTANT NEW YORK TIMES BESTSELLER "Wildly entertaining ... Lyons has injected a dose of sanity into a world gone mad." ---Ashlee Vance, New York Times-bestselling author of Elon MuskFor twenty-five years Dan Lyons was a magazine writer at the top of his profession--until one Friday morning when he received a phone call: Poof. His job no longer existed. "I think they just want to hire younger people," his boss at Newsweek told him. Fifty years old and with a wife and two young kids, Dan was, in a word, screwed. Then an idea hit. Dan had long reported on Silicon Valley and the tech explosion. Why not join it? HubSpot, a Boston start-up, was flush with $100 million in venture capital. They offered Dan a pile of stock options for the vague role of "marketing fellow." What could go wrong? HubSpotters were true believers: They were making the world a better place ... by selling email spam. The office vibe was frat house meets cult compound: The party began at four thirty on Friday and lasted well into the night; "shower pods" became hook-up dens; a push-up club met at noon in the lobby, while nearby, in the "content factory," Nerf gun fights raged. Groups went on "walking meetings," and Dan's absentee boss sent cryptic emails about employees who had "graduated" (read: been fired). In the middle of all this was Dan, exactly twice the age of the average HubSpot employee, and literally old enough to be the father of most of his co-workers, sitting at his desk on his bouncy-ball "chair."Mixed in with Lyons's uproarious tale of his rise and fall at Hubspot is a trenchant analysis of the start-up world, a de facto conspiracy between those who start companies and those who fund them, a world where bad ideas are rewarded with hefty investments, where companies blow money lavishing perks on their post-collegiate workforces, and where everybody is trying to hang on just long enough to reach an IPO and cash out. With a cast of characters that includes devilish angel investors, fad-chasing venture capitalists, entrepreneurs and "wantrapreneurs," bloggers and brogrammers, social climbers and sociopaths, Disrupted is a gripping and definitive account of life in the (second) tech bubble. ...more
+
+UPC: 81372abc86f65c79
+Product Type: Books
+Price (excl. tax): $15.28
+Price (incl. tax): $15.28
+Tax: $0.00
+Availability: In stock (3 available)
+Number of reviews: 0

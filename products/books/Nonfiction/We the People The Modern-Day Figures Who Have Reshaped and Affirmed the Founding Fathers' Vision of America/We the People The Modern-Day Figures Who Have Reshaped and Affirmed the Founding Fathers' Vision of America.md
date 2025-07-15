@@ -1,0 +1,15 @@
+# We the People: The Modern-Day Figures Who Have Reshaped and Affirmed the Founding Fathers' Vision of America
+
+Price: USD:$31.95-$31.95
+
+Product Details:
+
+What would the Founding Fathers think about America today? Over 200 years ago the Founders broke away from the tyranny of the British Empire to build a nation based on the principles of freedom, equal rights, and opportunity for all men. But life in the United States today is vastly different from anything the original Founders could have imagined in the late 1700s. The no What would the Founding Fathers think about America today? Over 200 years ago the Founders broke away from the tyranny of the British Empire to build a nation based on the principles of freedom, equal rights, and opportunity for all men. But life in the United States today is vastly different from anything the original Founders could have imagined in the late 1700s. The notion of an African-American president of the United States, or a woman such as Condoleezza Rice or Hillary Clinton as Secretary of State, would have been unimaginable to the men who wrote the Declaration of Independence and the Constitution, or who ratified the Constitution or the Bill of Rights.   In a fascinating work of history told through a series of in depth profiles, prize-winning journalist, bestselling author, and Fox political analyst Juan Williams takes readers into the life and work of a new generation of American Founders, who honor the original Founders’ vision, even as they have quietly led revolutions in American politics, immigration, economics, sexual behavior, and reshaped the landscape of the nation. Among the modern-day pioneers Williams writes about in this compelling new book are the passionate conservative President Reagan; the determined fighters for equal rights, Thurgood Marshall and Martin Luther King, Jr.; the profound imprint of Rev. Billy Graham’s evangelism on national politics; the focus on global human rights advocated by First Lady Eleanor Roosevelt; the leaders of the gay community who refused to back down during the Stonewall Riots and brought gay life into America’s public square; the re-imagined role of women in contemporary life as shaped by Betty Friedan.   Williams reveals how each of these modern-day founders has extended the Founding Fathers original vision and changed fundamental aspects of our country, from immigration, to the role of American labor in the economy, from modern police strategies, to the importance of religion in our political discourse. America in the 21st Century remains rooted in the Great American experiment in democracy that began in 1776. For all the changes our economy and our cultural and demographic make-up, there remains a straight line from the first Founders’ original vision, to the principles and ideals of today’s courageous modern day pioneers. ...more
+
+UPC: 06bab964fd536971
+Product Type: Books
+Price (excl. tax): $31.95
+Price (incl. tax): $31.95
+Tax: $0.00
+Availability: In stock (3 available)
+Number of reviews: 0

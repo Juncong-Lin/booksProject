@@ -1,0 +1,15 @@
+# The Sound Of Love
+
+Price: USD:$57.84-$57.84
+
+Product Details:
+
+Born and raised on her family farm in rural East Tennessee, Danielle Adams always dreamed of moving to Nashville—known in her family as the “big city”. She had the voice of an angel and her skills on the piano put her on par with some of the best pianists in the world. On her twenty-first birthday, Danielle’s parents bought her a one-way ticket to “the big city” and gave h Born and raised on her family farm in rural East Tennessee, Danielle Adams always dreamed of moving to Nashville—known in her family as the “big city”. She had the voice of an angel and her skills on the piano put her on par with some of the best pianists in the world. On her twenty-first birthday, Danielle’s parents bought her a one-way ticket to “the big city” and gave her enough money to live for a year. Her parents—along with everyone at their church and all through the town—knew of her talents and felt it was time she shared her GOD-given gifts with the world.Danielle’s life in Nashville starts off rocky, but eventually she finds her way. Before long, a music producer notices her talents and signs her to a record deal. After performing in a few shows, she instantly becomes the new darling of Nashville. One day while performing, Danielle notices that her hearing seems to be going in and out. After this happens a couple more times, Danielle decides it’s time for her to go see a doctor. To her shock, she learns that she has a rare genetic disorder that will cause her to eventually become deaf. Her doctor gives her a referral to someone who can teach her sign language and other useful devices that will make life easier once her hearing is fully gone. Danielle—devastated to say the least—falls into a deep depression and begins questioning GOD’s plan for her life.Eventually, Danielle goes to meet with the doctor’s referral, Walker Davenport; who turns out to be an exceptionally handsome and kind man—who also happens to be a musician himself. He helps her prepare for life as a deaf person—starting with making her a hearing “bucket list”. Walker even shows her ways she can still have music in her life even if she is unable to hear. Over time, Daniele and Walker become close and eventually fall in love. Their young love blossoms, and marriage seems to be right on the horizon. That is, until the day that they had been planning for finally arrives—when Danielle’s hearing is completely gone. Unable to handle her new reality, Danielle rebuffs Walker, and shuts out the rest of the world—even her close nit family. Walker then finds himself trying to prove to her that the sound of love can still be heard even when your world is silent. ...more
+
+UPC: 5ba3d703d1ae0c1d
+Product Type: Books
+Price (excl. tax): $57.84
+Price (incl. tax): $57.84
+Tax: $0.00
+Availability: In stock (6 available)
+Number of reviews: 0

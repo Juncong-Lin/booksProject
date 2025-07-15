@@ -1,0 +1,15 @@
+# The Power Greens Cookbook: 140 Delicious Superfood Recipes
+
+Price: USD:$11.05-$11.05
+
+Product Details:
+
+The Power Greens Cookbook presents 140 delicious, healthy recipes for dark, leafy greens that will please your palate and inspire you to clean your plate.Kale and collards don’t have to be the only greens on your shopping list anymore. Rising stars include romaine and parsley, Brussels sprouts and beet greens, and more. But say the words “Eat your greens,” and even though The Power Greens Cookbook presents 140 delicious, healthy recipes for dark, leafy greens that will please your palate and inspire you to clean your plate. Kale and collards don’t have to be the only greens on your shopping list anymore. Rising stars include romaine and parsley, Brussels sprouts and beet greens, and more. But say the words “Eat your greens,” and even though we know they’re good for us, many people are afraid that they won’t taste good. Fear no more! The Power Greens Cookbook provides go-to recipes that are both nutritious and delicious.   Acclaimed cookbook author and blogger Dana Jacobi expands your culinary repertoire and introduces the fifteen Power Greens—from arugula to watercress—that are loaded with health-supporting nutrients and phytochemicals that enhance vitality, all the while protecting against diabetes, heart disease, and high blood pressure, fortifying eyes and muscles, even making your skin glow. Jacobi also shares simple cooking techniques that help you prepare these super veggies quickly. Including main dishes and hearty salads, dips, spreads, snacks, and even drinks, The Power Greens Cookbook offers myriad mouthwatering vegetable-centric recipes.  • Soups: Cabbage and Brussels Sprouts Soup, Spinach Gazpacho with Walnuts, Hoppin’ John Stew with Mustard Greens• Salads: Caesar Salad with Parmesan Chickpeas, Tuscan Kale Salad with Pomegranate Seeds and Walnuts, Beets and Beet Greens with Citrus Dressing• Main Dishes: Red Beans and Smoky Greens, Kale-Smothered Pork Chops with Carrot and Apple, Tortelloni with Broccoli Rabe Florets• Small Meals and Snacks: Avocado and Watercress Tartine, Grilled Cheese and Tomato Sandwich with Kimchi, Poached Eggs in a Nest of Bacon-Wilted Kale• Side Dishes and Condiments: Carrots with Wild Arugula Pesto, French Lettuce Stir-Fry, Tahini Creamed Spinach, Kale Za’atar  Shown in dozens of tantalizing photographs, these dishes are sure to become mainstays in your kitchen for weeknight family meals, casual entertaining, and elegant dinner parties. From the cruciferous and crunchy to the leafy and light, The Power Greens Cookbook is just what the doctor—and your taste buds—ordered. ...more
+
+UPC: f701fae56b645ef7
+Product Type: Books
+Price (excl. tax): $11.05
+Price (incl. tax): $11.05
+Tax: $0.00
+Availability: In stock (5 available)
+Number of reviews: 0

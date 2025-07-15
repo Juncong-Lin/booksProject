@@ -1,0 +1,15 @@
+# Art and Fear: Observations on the Perils (and Rewards) of Artmaking
+
+Price: USD:$48.63-$48.63
+
+Product Details:
+
+"This is a book about making art. Ordinary art. Ordinary art means something like: all art not made by Mozart. After all, art is rarely made by Mozart-like people; essentially—statistically speaking—there aren't any people like that. Geniuses get made once-a-century or so, yet good art gets made all the time, so to equate the making of art with the workings of genius remov "This is a book about making art. Ordinary art. Ordinary art means something like: all art not made by Mozart. After all, art is rarely made by Mozart-like people; essentially—statistically speaking—there aren't any people like that. Geniuses get made once-a-century or so, yet good art gets made all the time, so to equate the making of art with the workings of genius removes this intimately human activity to a strangely unreachable and unknowable place. For all practical purposes making art can be examined in great detail without ever getting entangled in the very remote problems of genius."—-from the IntroductionArt & Fear explores the way art gets made, the reasons it often doesn't get made, and the nature of the difficulties that cause so many artists to give up along the way. The book's co-authors, David Bayles and Ted Orland, are themselves both working artists, grappling daily with the problems of making art in the real world. Their insights and observations, drawn from personal experience, provide an incisive view into the world of art as it is expeienced by artmakers themselves.This is not your typical self-help book. This is a book written by artists, for artists -— it's about what it feels like when artists sit down at their easel or keyboard, in their studio or performance space, trying to do the work they need to do. First published in 1994, Art & Fear quickly became an underground classic. Word-of-mouth response alone—now enhanced by internet posting—has placed it among the best-selling books on artmaking and creativity nationally.Art & Fear has attracted a remarkably diverse audience, ranging from beginning to accomplished artists in every medium, and including an exceptional concentration among students and teachers. The original Capra Press edition of Art & Fear sold 80,000 copies.An excerpt:Today, more than it was however many years ago, art is hard because you have to keep after it so consistently. On so many different fronts. For so little external reward. Artists become veteran artists only by making peace not just with themselves, but with a huge range of issues. You have to find your work... ...more
+
+UPC: d6d9ffea95f2f8bf
+Product Type: Books
+Price (excl. tax): $48.63
+Price (incl. tax): $48.63
+Tax: $0.00
+Availability: In stock (9 available)
+Number of reviews: 0

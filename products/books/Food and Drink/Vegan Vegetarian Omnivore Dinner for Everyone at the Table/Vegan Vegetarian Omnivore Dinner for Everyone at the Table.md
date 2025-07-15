@@ -1,0 +1,15 @@
+# Vegan Vegetarian Omnivore: Dinner for Everyone at the Table
+
+Price: USD:$13.66-$13.66
+
+Product Details:
+
+For years, Anna Thomas’s fans have cooked from her trailblazing vegetarian cookbooks. Now, Anna turns her thoughts to that larger question. We are eating differently: your daughter is a vegan, or you are but your in-laws don’t think it’s dinner without meat, or you’re hosting Thanksgiving for a mixed group… In this timely and useful new book, Anna offers her solutions for For years, Anna Thomas’s fans have cooked from her trailblazing vegetarian cookbooks. Now, Anna turns her thoughts to that larger question. We are eating differently: your daughter is a vegan, or you are but your in-laws don’t think it’s dinner without meat, or you’re hosting Thanksgiving for a mixed group… In this timely and useful new book, Anna offers her solutions for reuniting our divided tables.“My idea is simple,” says Anna. “Start with the food everyone eats, design a meal or a dish around that, then expand and elaborate with just the right amounts of the right cheeses, meats, or fish for your omnivores. Everyone feels welcome, and we eat the same meal—but in variations.”Anna shows us how to cook for today’s table, with over 150 recipes for all tastes, and menus for every occasion. For a casual evening with friends, Farro with Lentils and Lavender served with Ratatouille from the Charcoal Grill makes a beautiful vegan supper—and also pairs wonderfully with garlic-and-herb rubbed lamb chops for the omnivores. Anna’s crowd-pleasing Easy Fish Soup begins as a robust vegetable soup, with seafood added five minutes before serving—an ideal two-way dish. A vegetarian Lemon Risotto with Sautéed Fresh Fava Beans is perfect on its own, and can easily take on tender shrimp. For dessert, have vegan Pumpkin Gingerbread and add vanilla ice cream, or serve a delectable Dark Chocolate Almond Bark studded with ginger and dried cherries.Anna’s festive “Thanksgiving for Everyone” menu centers on a sumptuous Polenta Torta with Roasted Squash and onion marmalade, surrounded by an array of seasonal vegetables—all pairing equally well with roast turkey for the traditionalists. “Taco Night at Home” allows everyone to design their perfect meal, mixing and matching from a spread of Spicy Black Beans, Poblano Peppers with Portobello Mushrooms, Carnitas, and Guajillo Chile Salsa. Anna’s exuberant Mediterranean mezze menu is a relaxed summer party, featuring vegan Roasted Eggplant and Poblano Chile Spread with flatbread, Tabbouleh with Chickpeas and Preserved Lemon, Charred Zucchini with Lemon and Mint, and Baked Lamb Kibbeh Wedges for the omnivores.With dishes inspired by the vibrant produce of farmers’ markets, Anna shares her love of cooking and of hospitality. Vegan Vegetarian Omnivore shows us how to navigate a world of change, and bring all our friends and family together at one big, generous table. ...more
+
+UPC: 4672d10b9b1e7a05
+Product Type: Books
+Price (excl. tax): $13.66
+Price (incl. tax): $13.66
+Tax: $0.00
+Availability: In stock (3 available)
+Number of reviews: 0
