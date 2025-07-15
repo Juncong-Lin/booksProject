@@ -14,6 +14,13 @@ import { otherProducts } from '../../data/other-products.js';
 import { parseMarkdown } from '../shared/markdown-parser.js';
 import { formatPriceRange } from '../shared/money.js';
 
+// Helper function to encode image URLs properly
+function encodeImagePath(imagePath) {
+  return imagePath.split('/').map(part => 
+    part.includes('(') || part.includes(')') || part.includes('#') ? encodeURIComponent(part) : part
+  ).join('/');
+}
+
 let productId;
 let productType = 'regular'; // Can be 'regular', 'printhead', 'printer', or 'printsparepart'
 let productBrand = '';
@@ -275,7 +282,7 @@ if (product) {
   updateBreadcrumbDetail(product, productType, productBrand);
 
   // Update the product details on the page
-  document.querySelector('.js-product-image').src = product.image;
+  document.querySelector('.js-product-image').src = encodeImagePath(product.image);
   document.querySelector('.js-product-name').textContent = product.name;
     // For printer products, hide the product description (red box)
   if (productType === 'printer') {
@@ -420,16 +427,16 @@ function setupImageGallery(product) {
         if (validImages.length === 0) {
           // If no thumbnail images exist, use the main product image
           thumbnailsHTML = `
-            <div class="thumbnail-item active" data-image="${product.image}" data-index="0">
-              <img src="${product.image}" alt="${product.name} thumbnail" class="thumbnail-img">
+            <div class="thumbnail-item active" data-image="${encodeImagePath(product.image)}" data-index="0">
+              <img src="${encodeImagePath(product.image)}" alt="${product.name} thumbnail" class="thumbnail-img">
             </div>
           `;
         } else {
           // Create thumbnails for existing images only
           validImages.forEach((img, i) => {
             thumbnailsHTML += `
-              <div class="thumbnail-item ${i === 0 ? 'active' : ''}" data-image="${img.path}" data-index="${i}">
-                <img src="${img.path}" alt="${product.name} thumbnail ${i + 1}" class="thumbnail-img">
+              <div class="thumbnail-item ${i === 0 ? 'active' : ''}" data-image="${encodeImagePath(img.path)}" data-index="${i}">
+                <img src="${encodeImagePath(img.path)}" alt="${product.name} thumbnail ${i + 1}" class="thumbnail-img">
               </div>
             `;
           });
@@ -491,16 +498,16 @@ function setupImageGallery(product) {
         if (validImages.length === 0) {
           // Fallback to main product image only
           thumbnailsHTML = `
-            <div class="thumbnail-item active" data-image="${product.image}" data-index="0">
-              <img src="${product.image}" alt="${product.name} thumbnail" class="thumbnail-img">
+            <div class="thumbnail-item active" data-image="${encodeImagePath(product.image)}" data-index="0">
+              <img src="${encodeImagePath(product.image)}" alt="${product.name} thumbnail" class="thumbnail-img">
             </div>
           `;
         } else {
           // Create thumbnails for existing images
           validImages.forEach((img, i) => {
             thumbnailsHTML += `
-              <div class="thumbnail-item ${i === 0 ? 'active' : ''}" data-image="${img.path}" data-index="${i}" title="${img.label}">
-                <img src="${img.path}" alt="${img.label}" class="thumbnail-img">
+              <div class="thumbnail-item ${i === 0 ? 'active' : ''}" data-image="${encodeImagePath(img.path)}" data-index="${i}" title="${img.label}">
+                <img src="${encodeImagePath(img.path)}" alt="${img.label}" class="thumbnail-img">
               </div>
             `;
           });
@@ -558,16 +565,16 @@ function setupImageGallery(product) {
         if (validImages.length === 0) {
           // If no thumbnail images exist, use the main product image
           thumbnailsHTML = `
-            <div class="thumbnail-item active" data-image="${product.image}" data-index="0">
-              <img src="${product.image}" alt="${product.name} thumbnail" class="thumbnail-img">
+            <div class="thumbnail-item active" data-image="${encodeImagePath(product.image)}" data-index="0">
+              <img src="${encodeImagePath(product.image)}" alt="${product.name} thumbnail" class="thumbnail-img">
             </div>
           `;
         } else {
           // Create thumbnails for existing images only
           validImages.forEach((img, i) => {
             thumbnailsHTML += `
-              <div class="thumbnail-item ${i === 0 ? 'active' : ''}" data-image="${img.path}" data-index="${i}">
-                <img src="${img.path}" alt="${product.name} thumbnail ${i + 1}" class="thumbnail-img">
+              <div class="thumbnail-item ${i === 0 ? 'active' : ''}" data-image="${encodeImagePath(img.path)}" data-index="${i}">
+                <img src="${encodeImagePath(img.path)}" alt="${product.name} thumbnail ${i + 1}" class="thumbnail-img">
               </div>
             `;
           });          // Set main image to first valid image
@@ -626,8 +633,8 @@ function setupMultipleImageGallery(product) {
 function setupSingleImageGallery(product) {
   const thumbnailsContainer = document.querySelector('.js-product-thumbnails');
   thumbnailsContainer.innerHTML = `
-    <div class="thumbnail-item active" data-image="${product.image}" data-index="0">
-      <img src="${product.image}" alt="${product.name} thumbnail" class="thumbnail-img">
+    <div class="thumbnail-item active" data-image="${encodeImagePath(product.image)}" data-index="0">
+      <img src="${encodeImagePath(product.image)}" alt="${product.name} thumbnail" class="thumbnail-img">
     </div>
   `;
   

@@ -2,6 +2,13 @@
 import {booksProducts} from '../../data/books.js';
 import { formatCurrency, formatPriceRange } from '../shared/money.js';
 
+// Helper function to encode image URLs properly
+function encodeImagePath(imagePath) {
+  return imagePath.split('/').map(part => 
+    part.includes('(') || part.includes(')') || part.includes('#') ? encodeURIComponent(part) : part
+  ).join('/');
+}
+
 // Unified product rendering function for books
 function renderProducts(productList, type = 'book') {
   let productsHTML = '';
@@ -10,7 +17,7 @@ function renderProducts(productList, type = 'book') {
       <div class="product-container">        
         <div class="product-image-container">
           <a href="detail.html?productId=${product.id}" class="product-image-link">
-            <img class="product-image" src="${product.image}">
+            <img class="product-image" src="${encodeImagePath(product.image)}">
           </a>
         </div>
         <div class="product-name limit-text-to-3-lines">

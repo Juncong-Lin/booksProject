@@ -12,6 +12,13 @@ import {channelLetterBendingMechineProducts} from '../../data/channelLetterBendi
 import {otherProducts} from '../../data/other-products.js';
 import { formatCurrency, formatPriceRange } from '../shared/money.js';
 
+// Helper function to encode image URLs properly
+function encodeImagePath(imagePath) {
+  return imagePath.split('/').map(part => 
+    part.includes('(') || part.includes(')') || part.includes('#') ? encodeURIComponent(part) : part
+  ).join('/');
+}
+
 // Unified product rendering function with optional type parameter
 function renderProducts(productList, type = 'regular') {
   let productsHTML = '';
@@ -20,7 +27,7 @@ function renderProducts(productList, type = 'regular') {
       <div class="product-container">        
         <div class="product-image-container">
           <a href="detail.html?productId=${product.id}" class="product-image-link">
-            <img class="product-image" src="${product.image}">
+            <img class="product-image" src="${encodeImagePath(product.image)}">
           </a>
         </div>
         <div class="product-name limit-text-to-3-lines">
@@ -2052,8 +2059,7 @@ window.loadAllPrintSpareParts = function() {
     productsGrid.classList.remove('showing-coming-soon');
     
     // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-      // Update page title or add a header to show print spare parts category
+    attachAddToCartListeners();      // Update page title or add a header to show print spare parts category
     updatePageHeader('Print Spare Parts', allPrintSpareParts.length);
     
     // Update breadcrumb navigation
@@ -2098,8 +2104,7 @@ window.loadEpsonPrinterSpareParts = function() {
     productsGrid.classList.remove('showing-coming-soon');
     
     // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-      // Update page title or add a header to show Epson printer spare parts category
+    attachAddToCartListeners();      // Update page title or add a header to show Epson printer spare parts category
     updatePageHeader('Epson Printer Spare Parts', epsonSpareParts.length);
     
     // Update breadcrumb navigation
@@ -2143,8 +2148,7 @@ window.loadRolandPrinterSpareParts = function() {
     productsGrid.classList.remove('showing-coming-soon');
     
     // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-      // Update page title or add a header to show Roland printer spare parts category
+    attachAddToCartListeners();      // Update page title or add a header to show Roland printer spare parts category
     updatePageHeader('Roland Printer Spare Parts', rolandSpareParts.length);
     
     // Update breadcrumb navigation
@@ -2188,8 +2192,7 @@ window.loadCanonPrinterSpareParts = function() {
     productsGrid.classList.remove('showing-coming-soon');
     
     // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-      // Update page title or add a header to show Canon printer spare parts category
+    attachAddToCartListeners();      // Update page title or add a header to show Canon printer spare parts category
     updatePageHeader('Canon Printer Spare Parts', canonSpareParts.length);
     
     // Update breadcrumb navigation
@@ -2233,8 +2236,7 @@ window.loadRicohPrinterSpareParts = function() {
     productsGrid.classList.remove('showing-coming-soon');
     
     // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-      // Update page title or add a header to show Ricoh printer spare parts category
+    attachAddToCartListeners();      // Update page title or add a header to show Ricoh printer spare parts category
     updatePageHeader('Ricoh Printer Spare Parts', ricohSpareParts.length);
     
     // Update breadcrumb navigation
@@ -2279,8 +2281,7 @@ window.loadInfinitiChallengerPrinterSpareParts = function() {
     productsGrid.classList.remove('showing-coming-soon');
     
     // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-      // Update page title or add a header to show Infiniti/Challenger printer spare parts category
+    attachAddToCartListeners();      // Update page title or add a header to show Infiniti/Challenger printer spare parts category
     updatePageHeader('Infiniti / Challenger Printer Spare Parts', infinitiChallengerSpareParts.length);
     
     // Update breadcrumb navigation
@@ -2325,8 +2326,7 @@ window.loadFloraPrinterSpareParts = function() {
     productsGrid.classList.remove('showing-coming-soon');
     
     // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-      // Update page title or add a header to show Flora printer spare parts category
+    attachAddToCartListeners();      // Update page title or add a header to show Flora printer spare parts category
     updatePageHeader('Flora Printer Spare Parts', floraSpareParts.length);
     
     // Update breadcrumb navigation
@@ -2372,8 +2372,7 @@ window.loadGalaxyPrinterSpareParts = function() {
     productsGrid.classList.remove('showing-coming-soon');
     
     // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-      // Update page title or add a header to show Galaxy printer spare parts category
+    attachAddToCartListeners();      // Update page title or add a header to show Galaxy printer spare parts category
     updatePageHeader('Galaxy Printer Spare Parts', galaxySpareParts.length);
     
     // Update breadcrumb navigation
@@ -2418,8 +2417,7 @@ window.loadMimakiPrinterSpareParts = function() {
     productsGrid.classList.remove('showing-coming-soon');
     
     // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-      // Update page title or add a header to show Mimaki printer spare parts category
+    attachAddToCartListeners();      // Update page title or add a header to show Mimaki printer spare parts category
     updatePageHeader('Mimaki Printer Spare Parts', mimakiSpareParts.length);
     
     // Update breadcrumb navigation
@@ -3727,25 +3725,6 @@ window.loadUvFlatbedPrinters = function() {
   }, 200);
 };
 
-// Export functions for global access
-window.getAllUvInkjetPrinters = getAllUvInkjetPrinters;
-window.getAllUvHybridPrinters = getAllUvHybridPrinters;
-window.getUvRicohGen6Printers = getUvRicohGen6Printers;
-window.getUvInkjetKonica1024iPrinters = getUvInkjetKonica1024iPrinters;
-window.getUvFlatbedRicohGen6Printers = getUvFlatbedRicohGen6Printers;
-window.getUvFlatbedRicohGen5Printers = getUvFlatbedRicohGen5Printers;
-window.getUvFlatbedI3200Printers = getUvFlatbedI3200Printers;
-window.getUvFlatbedXP600Printers = getUvFlatbedXP600Printers;
-window.getUvHybridKonica1024iPrinters = getUvHybridKonica1024iPrinters;
-window.getUvHybridRicohGen6Printers = getUvHybridRicohGen6Printers;
-window.getUvKonica1024iPrinters = getUvKonica1024iPrinters;
-window.getUvFlatbedPrinters = getUvFlatbedPrinters;
-
-// Function to get all double side printers
-function getAllDoubleSidePrinters() {
-  return inkjetPrinterProducts.double_side || [];
-}
-
 // Function to load all double side printers
 window.loadAllDoubleSidePrinters = function() {
   hideActiveSubmenus();
@@ -3814,6 +3793,10 @@ window.loadDoubleSideDirectPrinting = function() {
   }, 200);
 };
 
-// Export double side printer functions for global access
-window.getAllDoubleSidePrinters = getAllDoubleSidePrinters;
+// Helper function to encode image URLs properly
+function encodeImagePath(imagePath) {
+  return imagePath.split('/').map(part => 
+    part.includes('(') || part.includes(')') || part.includes('#') ? encodeURIComponent(part) : part
+  ).join('/');
+}
 

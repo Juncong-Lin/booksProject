@@ -1,3 +1,21 @@
+import { booksProducts } from '../../data/books.js';
+import { printheadProducts } from '../../data/printhead-products.js';
+import { inkjetPrinterProducts } from '../../data/inkjetPrinter-products.js';
+import { printSparePartProducts } from '../../data/printsparepart-products.js';
+import { upgradingKitProducts } from '../../data/upgradingkit-products.js';
+import { materialProducts } from '../../data/material-products.js';
+import { ledAndLcdProducts } from '../../data/ledAndLcd-products.js';
+import { channelLetterBendingMechineProducts } from '../../data/channelLetterBendingMechine-products.js';
+import { otherProducts } from '../../data/other-products.js';
+import { formatPriceRange } from './money.js';
+
+// Helper function to encode image URLs properly
+function encodeImagePath(imagePath) {
+  return imagePath.split('/').map(part => 
+    part.includes('(') || part.includes(')') || part.includes('#') ? encodeURIComponent(part) : part
+  ).join('/');
+}
+
 // Search functionality for the header
 class SearchSystem {  constructor() {
     this.searchInput = null;
@@ -467,7 +485,7 @@ class SearchSystem {  constructor() {
         <div class="product-container">        
           <div class="product-image-container">
             <a href="detail.html?productId=${product.id}&type=${product.type}" class="product-image-link">
-              <img class="product-image" src="${product.image}">
+              <img class="product-image" src="${encodeImagePath(product.image)}">
             </a>
           </div>
           <div class="product-name limit-text-to-3-lines">
