@@ -44,14 +44,14 @@
   padding: 0 8px;
 }
 
-/* Give About Us section more width */
-.footer-section:first-child {
-  flex: 0 0 35%;
+/* Make About Us section narrower */
+.footer-section.about-us {
+  flex: 0 0 30%;
 }
 
 /* Make Quick Links wider */
 .footer-section.quick-links {
-  flex: 0 0 25%;
+  flex: 0 0 30%;
 }
 
 /* Make other sections take remaining space equally */
