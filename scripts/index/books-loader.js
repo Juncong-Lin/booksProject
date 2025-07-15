@@ -285,6 +285,21 @@ window.loadSpecificCategory = function(categoryName) {
   setTimeout(() => {
     // Map category names to book category keys
     const categoryMap = {
+      // Main categories
+      'Fiction': 'fiction',
+      'Non-Fiction': 'nonfiction',
+      'Children & Young Adult': ['childrens', 'young_adult', 'new_adult'],
+      'Academic & Educational': 'academic',
+      'Arts & Culture': ['art', 'sequential_art', 'music', 'cultural'],
+      'Health & Self-Help': ['health', 'self_help', 'psychology', 'parenting'],
+      'Religion & Spirituality': ['religion', 'christian', 'christian_fiction', 'spirituality', 'philosophy'],
+      'Business & Politics': ['business', 'politics'],
+      'Science & Technology': 'science',
+      'Biography & History': ['biography', 'autobiography', 'history', 'historical'],
+      'Poetry & Literature': 'poetry',
+      'Specialty Genres': ['humor', 'sports_and_games', 'food_and_drink', 'travel', 'adult_fiction', 'default'],
+      
+      // Sub-categories
       'Classics': 'classics',
       'Contemporary': 'contemporary',
       'Crime': 'crime', 
@@ -303,7 +318,6 @@ window.loadSpecificCategory = function(categoryName) {
       'Womens Fiction': 'womens_fiction',
       'Women\'s Fiction': 'womens_fiction',
       'Nonfiction': 'nonfiction',
-      'Non-Fiction': 'nonfiction',
       'Childrens': 'childrens',
       'Children\'s': 'childrens',
       'Young Adult': 'young_adult',
@@ -338,12 +352,25 @@ window.loadSpecificCategory = function(categoryName) {
       'Default': 'default'
     };
 
-    // Get the book category key
-    const bookCategoryKey = categoryMap[categoryName];
+    // Get the book category key(s)
+    const bookCategoryMapping = categoryMap[categoryName];
     
-    if (bookCategoryKey && booksProducts[bookCategoryKey]) {
-      // Load books from the specific category
-      const categoryBooks = booksProducts[bookCategoryKey];
+    let categoryBooks = [];
+    
+    if (Array.isArray(bookCategoryMapping)) {
+      // Handle main categories that map to multiple subcategories
+      bookCategoryMapping.forEach(categoryKey => {
+        if (booksProducts[categoryKey]) {
+          categoryBooks = categoryBooks.concat(booksProducts[categoryKey]);
+        }
+      });
+    } else if (bookCategoryMapping && booksProducts[bookCategoryMapping]) {
+      // Handle single category mapping
+      categoryBooks = booksProducts[bookCategoryMapping];
+    }
+    
+    if (categoryBooks.length > 0) {
+      // Load books from the category(ies)
       currentProducts = categoryBooks; // Store current products for pagination
       const paginatedProducts = getPaginatedProducts(currentProducts, currentPage);
       const productsHTML = renderProducts(paginatedProducts, 'book');
@@ -363,7 +390,10 @@ window.loadSpecificCategory = function(categoryName) {
       updatePageHeader(categoryName, categoryBooks.length);
       
       // Update breadcrumb navigation
-      updateBreadcrumb(bookCategoryKey);
+      const categorySlugForBreadcrumb = Array.isArray(bookCategoryMapping) ? 
+        categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '') : 
+        bookCategoryMapping;
+      updateBreadcrumb(categorySlugForBreadcrumb);
       
       // Scroll to products
       scrollToProducts();
@@ -492,10 +522,20 @@ export function findProductById(productId) {
 document.addEventListener('DOMContentLoaded', function() {
   // Check if this is the home page (no hash or specific parameters)
   const urlParams = new URLSearchParams(window.location.search);
-  const hash = window.location.hash;
+  const hash = window.location.hash.substring(1); // Remove the # symbol
   
-  // If no specific category is requested, load all books
-  if (!hash && !urlParams.get('category')) {
-    loadAllBooks();
-  }
+  // Wait for shared components to load before handling initialization
+  setTimeout(() => {
+    if (hash) {
+      // If there's a hash, the subheader loader should handle it
+      // Only load all books if no navigation system handles it
+      if (!window.subHeaderNav || !window.subHeaderNav.handleHashNavigation) {
+        // Fallback to loadAllBooks if navigation system not ready
+        loadAllBooks();
+      }
+    } else if (!urlParams.get('category')) {
+      // If no specific category is requested, load all books
+      loadAllBooks();
+    }
+  }, 200); // Wait for shared components to initialize
 });

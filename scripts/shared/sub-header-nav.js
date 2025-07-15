@@ -683,6 +683,21 @@ class SubHeaderNavigation {
 
 // Handle other category hashes
     const categoryMap = {
+      // Book categories
+      'fiction': 'Fiction',
+      'non-fiction': 'Non-Fiction',
+      'children-young-adult': 'Children & Young Adult',
+      'academic-educational': 'Academic & Educational',
+      'arts-culture': 'Arts & Culture',
+      'health-self-help': 'Health & Self-Help',
+      'religion-spirituality': 'Religion & Spirituality',
+      'business-politics': 'Business & Politics',
+      'science-technology': 'Science & Technology',
+      'biography-history': 'Biography & History',
+      'poetry-literature': 'Poetry & Literature',
+      'specialty-genres': 'Specialty Genres',
+      
+      // Other product categories
       'inkjet-printers': 'Inkjet Printers',
       'inkjetprinters-ecosolvent': 'Eco-Solvent Inkjet Printers',
       'direct-to-fabric-film': 'Direct to Fabric & Film',
@@ -723,17 +738,22 @@ class SubHeaderNavigation {
     const categoryName = categoryMap[hash];
     if (categoryName && window.loadSpecificCategory) {
       window.loadSpecificCategory(categoryName);
-      this.setActiveCategory(categoryName);        // Expand appropriate sidebar menu
+      this.setActiveCategory(categoryName);        
+      
+      // Expand appropriate sidebar menu
       if (categoryName === 'Inkjet Printers' || categoryName.startsWith('Sublimation Printers')) {
         this.expandInkjetPrintersMenu();
       } else if (categoryName === 'Print Spare Parts') {
         this.expandPrintSparePartsMenu();
-      } else if (categoryName === 'Upgrading Kit') {        this.expandUpgradingKitMenu();
+      } else if (categoryName === 'Upgrading Kit') {        
+        this.expandUpgradingKitMenu();
       } else if (categoryName === 'Material') {
         this.expandMaterialMenu();
       } else if (categoryName === 'LED & LCD') {
         this.expandLedLcdMenu();
       }
+      
+      // For book categories, no sidebar menu expansion needed since they handle their own navigation
     }
   }
 }
