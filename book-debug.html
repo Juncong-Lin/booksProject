@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Debug Test</title>
+</head>
+<body>
+    <h1>Book Debug Test</h1>
+    <div id="debug-output"></div>
+    
+    <script type="module">
+        import { booksProducts } from './data/books.js';
+        
+        console.log('Books products loaded:', booksProducts);
+        
+        // Helper function to find book by ID across all categories
+        function findBookById(id) {
+            for (const category in booksProducts) {
+                const product = booksProducts[category].find(item => item.id === id);
+                if (product) {
+                    return { ...product, category };
+                }
+            }
+            return null;
+        }
+        
+        const bookId = "A-Light-in-the-Attic";
+        const book = findBookById(bookId);
+        
+        const output = document.getElementById('debug-output');
+        
+        if (book) {
+            output.innerHTML = `
+                <h2>Book Found!</h2>
+                <p><strong>ID:</strong> ${book.id}</p>
+                <p><strong>Name:</strong> ${book.name}</p>
+                <p><strong>Category:</strong> ${book.category}</p>
+                <p><strong>Image:</strong> ${book.image}</p>
+                <p><strong>Stars:</strong> ${book.star}</p>
+                <p><strong>Price:</strong> ${book.lower_price} - ${book.higher_price}</p>
+            `;
+        } else {
+            output.innerHTML = '<h2>Book Not Found!</h2>';
+        }
+        
+        // Also check if the category exists
+        console.log('Poetry category exists:', booksProducts.poetry ? 'Yes' : 'No');
+        if (booksProducts.poetry) {
+            console.log('Poetry books count:', booksProducts.poetry.length);
+            console.log('First few poetry books:', booksProducts.poetry.slice(0, 3));
+        }
+    </script>
+</body>
+</html>

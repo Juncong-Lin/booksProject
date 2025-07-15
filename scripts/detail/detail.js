@@ -94,19 +94,47 @@ function findOtherById(id) {
 
 // Helper function to find book by ID across all categories
 function findBookById(id) {
+  console.log('🔍 Searching for book ID:', id);
+  console.log('📚 Available categories:', Object.keys(booksProducts));
+  
+  // First try direct match
   for (const category in booksProducts) {
+    console.log(`🔍 Checking category "${category}" with ${booksProducts[category].length} books`);
     const product = booksProducts[category].find(item => item.id === id);
     if (product) {
+      console.log('✅ Found book (direct match):', product);
       return { ...product, category };
     }
   }
+  
+  // If direct match fails, try normalized ID (replace # with -, & with -, etc.)
+  const normalizedId = id.replace(/#/g, '-').replace(/&/g, '-').replace(/\s+/g, '-');
+  if (normalizedId !== id) {
+    console.log('🔍 Trying normalized ID:', normalizedId);
+    for (const category in booksProducts) {
+      const product = booksProducts[category].find(item => item.id === normalizedId);
+      if (product) {
+        console.log('✅ Found book (normalized match):', product);
+        return { ...product, category };
+      }
+    }
+  }
+  
+  console.log('❌ Book not found in any category');
   return null;
 }
 
 // Get the product ID and type from URL parameters
 const urlParams = new URLSearchParams(window.location.search);
-productId = urlParams.get('id') || urlParams.get('productId') || urlParams.get('product');
+let rawProductId = urlParams.get('id') || urlParams.get('productId') || urlParams.get('product');
+
+// Decode the product ID to handle special characters like #, &, etc.
+productId = rawProductId ? decodeURIComponent(rawProductId) : null;
+
 const urlProductType = urlParams.get('productType');
+
+console.log('URL Params - Raw Product ID:', rawProductId, 'Decoded Product ID:', productId, 'Product Type:', urlProductType);
+console.log('Current URL:', window.location.href);
 
 // If productType is specified in URL, use it directly
 if (urlProductType) {
@@ -295,15 +323,21 @@ if (!product && !urlProductType) {
   
   // If not found in Other products, search in Books
   if (!product) {
+    console.log('Searching for book with ID:', productId);
     product = findBookById(productId);
     if (product) {
+      console.log('Book found:', product.name, 'Category:', product.category);
       productType = 'book';
       productBrand = product.category;
+    } else {
+      console.log('Book not found with ID:', productId);
     }
   }
 }
 
 if (product) {
+  console.log('Product found:', product.name, 'Type:', productType);
+  
   // Unified breadcrumb rendering
   updateBreadcrumbDetail(product, productType, productBrand);
 
@@ -322,12 +356,26 @@ if (product) {
   const ratingElement = document.querySelector('.js-product-rating');
   const ratingCountElement = document.querySelector('.js-product-rating-count');
   
-  if (product.rating && typeof product.rating === 'object' && product.rating.stars) {
-    // For regular products that still have ratings
-    ratingElement.src = `images/ratings/rating-${Math.round(product.rating.stars * 10)}.png`;
+  // Check for both rating formats: product.rating.stars (regular products) and product.star (books)
+  if ((product.rating && typeof product.rating === 'object' && product.rating.stars) || product.star) {
+    // For regular products that have ratings or books with star rating
+    let stars, count;
+    if (product.rating && product.rating.stars) {
+      stars = product.rating.stars;
+      count = product.rating.count;
+    } else if (product.star) {
+      stars = product.star;
+      count = 0; // Books might not have rating count
+    }
+    
+    ratingElement.src = `images/ratings/rating-${Math.round(stars * 10)}.png`;
     ratingElement.style.display = 'block';
-    ratingCountElement.textContent = `(${product.rating.count})`;
-    ratingCountElement.style.display = 'block';
+    if (count > 0) {
+      ratingCountElement.textContent = `(${count})`;
+      ratingCountElement.style.display = 'block';
+    } else {
+      ratingCountElement.style.display = 'none';
+    }
   } else {
     // For printhead products or products without ratings, hide rating elements
     const ratingContainer = document.querySelector('.product-rating-container');
@@ -391,6 +439,7 @@ if (product) {
   } else if (productType === 'other') {
     setupOtherProductContent(product);
   } else if (productType === 'book' || productType === 'books') {
+    console.log('Setting up book product content for:', product.name);
     setupBookProductContent(product);
   } else if (productType === 'printer') {
     setupPrinterProductContent(product);
@@ -624,8 +673,12 @@ function setupImageGallery(product) {
       setupSingleImageGallery(product);
     }
   } else {
-    // For products with only main image (regular products or printers without additional images)
-    setupSingleImageGallery(product);
+    // For books and products with only main image (regular products or printers without additional images)
+    if (productType === 'book' || productType === 'books') {
+      setupBookImageGallery(product);
+    } else {
+      setupSingleImageGallery(product);
+    }
   }
 }
 
@@ -686,6 +739,52 @@ function setupSingleImageGallery(product) {
   
   // Setup image magnifier
   setupImageMagnifier();
+}
+
+/**
+ * Setup gallery specifically for book products with enhanced book cover display
+ */
+function setupBookImageGallery(product) {
+  const thumbnailsContainer = document.querySelector('.js-product-thumbnails');
+  const mainImageContainer = document.querySelector('.product-main-image-container');
+  
+  // Add book-specific CSS class for styling
+  mainImageContainer.classList.add('book-cover-container');
+  
+  thumbnailsContainer.innerHTML = `
+    <div class="thumbnail-item active book-thumbnail" data-image="${encodeImagePath(product.image)}" data-index="0">
+      <img src="${encodeImagePath(product.image)}" alt="${product.name} book cover" class="thumbnail-img book-cover-thumbnail">
+    </div>
+  `;
+  
+  // Hide arrows for single image
+  const leftArrow = document.querySelector('.js-thumbnail-arrow-left');
+  const rightArrow = document.querySelector('.js-thumbnail-arrow-right');
+  if (leftArrow) leftArrow.style.display = 'none';
+  if (rightArrow) rightArrow.style.display = 'none';
+  
+  // Setup basic thumbnail click functionality
+  const thumbnail = document.querySelector('.thumbnail-item');
+  if (thumbnail) {
+    thumbnail.addEventListener('click', () => {
+      document.querySelector('.js-product-image').src = thumbnail.dataset.image;
+      
+      // Reinitialize magnifier for the new image
+      if (window.imageMagnifier) {
+        setupImageMagnifier();
+      }
+    });
+  }
+  
+  // Setup image magnifier specifically for book covers
+  setupImageMagnifier();
+  
+  // Add book-specific image styling
+  const productImage = document.querySelector('.js-product-image');
+  if (productImage) {
+    productImage.classList.add('book-cover-image');
+    productImage.alt = `${product.name} - Book Cover`;
+  }
 }
 
 /**
@@ -1709,20 +1808,37 @@ function setupFallbackOtherContent(product) {
 }
 
 async function setupBookProductContent(product) {
+  console.log('Setting up book product content for:', product.name);
   try {
     // Extract the path to the markdown file from the image path
     const imagePath = product.image;
+    console.log('Image path:', imagePath);
+    
     // Get the category folder and product folder from the image path
     // Format: products/books/Category/Product Name/image/...
     const pathParts = imagePath.split('/');
     const categoryFolder = pathParts[2]; // Category folder
     const productFolder = pathParts[3]; // Product name folder
     
-    // Construct path to MD file
-    const mdFilePath = `products/books/${categoryFolder}/${productFolder}/${productFolder}.md`;
+    console.log('Category folder:', categoryFolder);
+    console.log('Product folder:', productFolder);
     
-    // Fetch the markdown file content
-    const response = await fetch(mdFilePath);
+    // Construct path to MD file - encode folder name for file system compatibility
+    const encodedProductFolder = encodeURIComponent(productFolder);
+    const mdFilePath = `products/books/${categoryFolder}/${encodedProductFolder}/${encodedProductFolder}.md`;
+    console.log('Markdown file path:', mdFilePath);
+    
+    // Try to fetch the markdown file content
+    let response = await fetch(mdFilePath);
+    
+    // If that fails, try with the original folder name
+    if (!response.ok) {
+      console.log('Encoded path failed, trying original folder name...');
+      const originalMdFilePath = `products/books/${categoryFolder}/${productFolder}/${productFolder}.md`;
+      console.log('Trying original path:', originalMdFilePath);
+      response = await fetch(originalMdFilePath);
+    }
+    
     if (!response.ok) {
       console.log(`Markdown file not found for ${product.name}: ${mdFilePath}`);
       // Fallback to hardcoded content if markdown file is not found
@@ -1731,13 +1847,15 @@ async function setupBookProductContent(product) {
     }
     
     const mdContent = await response.text();
+    console.log('Markdown content loaded, length:', mdContent.length);
     
-    // Update product description and content with the markdown content
-    // For book products, we'll use the entire markdown content as the main content
-    const parsedContent = parseMarkdown(mdContent);
+    // Parse book details from markdown content
+    const bookDetails = parseBookMarkdownContent(mdContent, product, categoryFolder);
+    console.log('Parsed book details:', bookDetails);
     
-    // Update the product details tab content with the full markdown content
-    document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
+    // Update the product details tab content with enhanced book display
+    setupEnhancedBookDisplay(bookDetails, product);
+    console.log('Enhanced book display setup complete');
     
     // Hide sections since books don't need detailed specs/compatibility
     document.querySelector('.product-compatibility-section').style.display = 'none';
@@ -1749,79 +1867,105 @@ async function setupBookProductContent(product) {
   }
 }
 
-function setupFallbackBookContent(product) {
-  // Set minimal fallback content for books
-  const categoryDisplayMap = {
-    'academic': 'Academic',
-    'add_a_comment': 'Add a comment',
-    'adult_fiction': 'Adult Fiction',
-    'art': 'Art',
-    'autobiography': 'Autobiography',
-    'biography': 'Biography',
-    'business': 'Business',
-    'childrens': 'Children\'s',
-    'christian': 'Christian',
-    'christian_fiction': 'Christian Fiction',
-    'classics': 'Classics',
-    'contemporary': 'Contemporary',
-    'crime': 'Crime',
-    'cultural': 'Cultural',
-    'default': 'Default',
-    'erotica': 'Erotica',
-    'fantasy': 'Fantasy',
-    'fiction': 'Fiction',
-    'food_and_drink': 'Food and Drink',
-    'health': 'Health',
-    'historical': 'Historical',
-    'historical_fiction': 'Historical Fiction',
-    'history': 'History',
-    'horror': 'Horror',
-    'humor': 'Humor',
-    'music': 'Music',
-    'mystery': 'Mystery',
-    'new_adult': 'New Adult',
-    'novels': 'Novels',
-    'paranormal': 'Paranormal',
-    'philosophy': 'Philosophy',
-    'poetry': 'Poetry',
-    'politics': 'Politics',
-    'psychology': 'Psychology',
-    'religion': 'Religion',
-    'romance': 'Romance',
-    'science': 'Science',
-    'science_fiction': 'Science Fiction',
-    'self_help': 'Self Help',
-    'sequential_art': 'Sequential Art',
-    'short_stories': 'Short Stories',
-    'spirituality': 'Spirituality',
-    'sports_and_games': 'Sports and Games',
-    'suspense': 'Suspense',
-    'thriller': 'Thriller',
-    'travel': 'Travel',
-    'womens_fiction': 'Women\'s Fiction',
-    'young_adult': 'Young Adult'
+function parseBookMarkdownContent(mdContent, product, categoryFolder) {
+  const lines = mdContent.split('\n');
+  const bookDetails = {
+    title: product.name,
+    category: categoryFolder,
+    price: '',
+    upc: '',
+    productType: '',
+    availability: '',
+    reviews: '',
+    description: '',
+    fullContent: mdContent
   };
   
-  const categoryName = categoryDisplayMap[product.category] || product.category;
+  let descriptionStarted = false;
+  let description = [];
   
-  document.querySelector('.js-product-details-content').innerHTML = `
-    <h3>${product.name}</h3>
-    <p>A ${categoryName} book with engaging content. Book details are currently being updated. Please check back for more information.</p>
-    <div class="book-details">
-      <h4>Category</h4>
-      <p>${categoryName}</p>
-      
-      <h4>Genre</h4>
-      <p>${categoryName}</p>
-      
-      <p><strong>About this Book</strong></p>
-      <p>This book offers readers an engaging experience in the ${categoryName} genre. For detailed reviews, author information, and additional book details, please explore our book collection.</p>
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    if (line.startsWith('Price:')) {
+      bookDetails.price = line.replace('Price:', '').trim();
+    } else if (line.startsWith('UPC:')) {
+      bookDetails.upc = line.replace('UPC:', '').trim();
+    } else if (line.startsWith('Product Type:')) {
+      bookDetails.productType = line.replace('Product Type:', '').trim();
+    } else if (line.startsWith('Availability:')) {
+      bookDetails.availability = line.replace('Availability:', '').trim();
+    } else if (line.startsWith('Number of reviews:')) {
+      bookDetails.reviews = line.replace('Number of reviews:', '').trim();
+    } else if (line === 'Product Details:') {
+      descriptionStarted = true;
+      continue;
+    } else if (descriptionStarted && line && !line.startsWith('UPC:') && !line.startsWith('Product Type:')) {
+      description.push(line);
+    }
+  }
+  
+  bookDetails.description = description.join(' ').trim();
+  return bookDetails;
+}
+
+function setupEnhancedBookDisplay(bookDetails, product) {
+  // Hide the standard product description section for books to avoid duplication
+  const standardDescriptionElement = document.querySelector('.js-product-description');
+  if (standardDescriptionElement) {
+    standardDescriptionElement.style.display = 'none';
+  }
+  
+  // Hide other standard sections that might create duplicates
+  const compatibilitySection = document.querySelector('.product-compatibility-section');
+  if (compatibilitySection) {
+    compatibilitySection.style.display = 'none';
+  }
+  
+  const specificationsSection = document.querySelector('.product-specifications-section');
+  if (specificationsSection) {
+    specificationsSection.style.display = 'none';
+  }
+  
+  const enhancedBookHTML = `
+    <div class="book-detail-container">
+      <div class="book-additional-info">
+        <div class="book-info-content">
+          ${parseMarkdown(bookDetails.fullContent)}
+        </div>
+      </div>
     </div>
   `;
   
+  document.querySelector('.js-product-details-content').innerHTML = enhancedBookHTML;
+}
+
+function setupFallbackBookContent(product) {
+  console.log('Setting up fallback book content for:', product.name);
+  
+  // Create simple fallback book display
+  const enhancedBookHTML = `
+    <div class="book-detail-container">
+      <div class="book-additional-info">
+        <div class="book-info-content">
+          <p>This book offers readers an engaging experience. Book details are currently being updated. Please check back for more information.</p>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.querySelector('.js-product-details-content').innerHTML = enhancedBookHTML;
+  
   // Hide sections since books don't need detailed specs/compatibility
-  document.querySelector('.product-compatibility-section').style.display = 'none';
-  document.querySelector('.product-specifications-section').style.display = 'none';
+  const compatibilitySection = document.querySelector('.product-compatibility-section');
+  if (compatibilitySection) {
+    compatibilitySection.style.display = 'none';
+  }
+  
+  const specificationsSection = document.querySelector('.product-specifications-section');
+  if (specificationsSection) {
+    specificationsSection.style.display = 'none';
+  }
 }
 
 // Expose product data globally for search system
@@ -2661,8 +2805,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       breadcrumbElement.innerHTML = `
         <a href="index.html" class="breadcrumb-link">Home</a>
         <span class="breadcrumb-separator"> > </span>
-        <a href="index.html#books" class="breadcrumb-link">Books</a>
-        <span class="breadcrumb-separator"> > </span>
         <a href="javascript:void(0)" onclick="loadSpecificCategory('${parentCategory}')" class="breadcrumb-link">${parentCategory}</a>
         <span class="breadcrumb-separator"> > </span>
         <a href="javascript:void(0)" onclick="loadSpecificCategory('${displayName}')" class="breadcrumb-link">${displayName}</a>
@@ -2670,11 +2812,9 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
         <span class="breadcrumb-current">${product.name}</span>
       `;
     } else {
-      // First-level category - show Home > Books > Current
+      // First-level category - show Home > Current
       breadcrumbElement.innerHTML = `
         <a href="index.html" class="breadcrumb-link">Home</a>
-        <span class="breadcrumb-separator"> > </span>
-        <a href="index.html#books" class="breadcrumb-link">Books</a>
         <span class="breadcrumb-separator"> > </span>
         <a href="javascript:void(0)" onclick="loadSpecificCategory('${displayName}')" class="breadcrumb-link">${displayName}</a>
         <span class="breadcrumb-separator"> > </span>

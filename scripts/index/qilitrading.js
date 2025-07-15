@@ -3744,10 +3744,3 @@ window.loadDoubleSideDirectPrinting = function() {
   }, 200);
 };
 
-// Helper function to encode image URLs properly
-function encodeImagePath(imagePath) {
-  return imagePath.split('/').map(part => 
-    part.includes('(') || part.includes(')') || part.includes('#') ? encodeURIComponent(part) : part
-  ).join('/');
-}
-
