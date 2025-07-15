@@ -2,12 +2,134 @@
 import {booksProducts} from '../../data/books.js';
 import { formatCurrency, formatPriceRange } from '../shared/money.js';
 
+// Pagination configuration
+const ITEMS_PER_PAGE = 20;
+let currentPage = 1;
+let totalItems = 0;
+let currentProducts = [];
+
 // Helper function to encode image URLs properly
 function encodeImagePath(imagePath) {
   return imagePath.split('/').map(part => 
     part.includes('(') || part.includes(')') || part.includes('#') ? encodeURIComponent(part) : part
   ).join('/');
 }
+
+// Function to create pagination HTML
+function createPaginationHTML(currentPage, totalPages, totalItems) {
+  if (totalPages <= 1) return '';
+  
+  let paginationHTML = `
+    <div class="pagination-container">
+      <div class="pagination-info">
+        Page ${currentPage} of ${totalPages} Results (${totalItems} total)
+      </div>
+      <div class="pagination-controls">
+  `;
+  
+  // Previous button
+  if (currentPage > 1) {
+    paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage - 1})">Previous</button>`;
+  }
+  
+  // Page numbers
+  const startPage = Math.max(1, currentPage - 2);
+  const endPage = Math.min(totalPages, currentPage + 2);
+  
+  if (startPage > 1) {
+    paginationHTML += `<button class="pagination-btn" onclick="changePage(1)">1</button>`;
+    if (startPage > 2) {
+      paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+    }
+  }
+  
+  for (let i = startPage; i <= endPage; i++) {
+    const activeClass = i === currentPage ? 'active' : '';
+    paginationHTML += `<button class="pagination-btn ${activeClass}" onclick="changePage(${i})">${i}</button>`;
+  }
+  
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) {
+      paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+    }
+    paginationHTML += `<button class="pagination-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
+  }
+  
+  // Next button
+  if (currentPage < totalPages) {
+    paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage + 1})">Next</button>`;
+  }
+  
+  // Last button
+  if (currentPage < totalPages) {
+    paginationHTML += `<button class="pagination-btn" onclick="changePage(${totalPages})">Last</button>`;
+  }
+  
+  paginationHTML += `
+      </div>
+    </div>
+  `;
+  
+  return paginationHTML;
+}
+
+// Function to clear pagination display
+function clearPaginationDisplay() {
+  const paginationElement = document.querySelector('.pagination-wrapper');
+  if (paginationElement) {
+    paginationElement.remove();
+  }
+}
+
+// Function to update pagination display
+function updatePaginationDisplay(currentPage, totalPages, totalItems) {
+  // Remove existing pagination if it exists
+  let paginationElement = document.querySelector('.pagination-wrapper');
+  if (paginationElement) {
+    paginationElement.remove();
+  }
+  
+  // Only create pagination if we have more than one page
+  if (totalPages > 1) {
+    // Create new pagination element
+    paginationElement = document.createElement('div');
+    paginationElement.className = 'pagination-wrapper';
+    paginationElement.innerHTML = createPaginationHTML(currentPage, totalPages, totalItems);
+    
+    // Insert pagination after the products grid
+    const mainElement = document.querySelector('.main');
+    const productsGrid = document.querySelector('.js-prodcts-grid');
+    mainElement.insertBefore(paginationElement, productsGrid.nextSibling);
+  }
+}
+
+// Function to get paginated products
+function getPaginatedProducts(products, page = 1) {
+  const startIndex = (page - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  return products.slice(startIndex, endIndex);
+}
+
+// Global function to change page
+window.changePage = function(page) {
+  currentPage = page;
+  const paginatedProducts = getPaginatedProducts(currentProducts, currentPage);
+  const productsHTML = renderProducts(paginatedProducts, 'book');
+  const totalPages = Math.ceil(currentProducts.length / ITEMS_PER_PAGE);
+  
+  // Update products grid
+  const productsGrid = document.querySelector('.js-prodcts-grid');
+  productsGrid.innerHTML = productsHTML;
+  
+  // Update pagination separately
+  updatePaginationDisplay(currentPage, totalPages, currentProducts.length);
+  
+  // Re-attach event listeners
+  attachAddToCartListeners();
+  
+  // Scroll to top of products
+  scrollToProducts();
+};
 
 // Unified product rendering function for books
 function renderProducts(productList, type = 'book') {
@@ -61,6 +183,74 @@ function renderProducts(productList, type = 'book') {
   });
   return productsHTML;
 }
+
+// Function to load all books with pagination
+window.loadAllBooks = function() {
+  // Hide the submenu after selection  
+  hideActiveSubmenus();
+  
+  // Add loading animation
+  showLoadingState();
+
+  // Reset active nav items
+  document.querySelectorAll('.sub-header-link').forEach(link => {
+    link.classList.remove('active');
+  });
+  
+  // Set the "Browse All Books" link as active
+  const allBooksLink = document.querySelector('.all-products-link');
+  if (allBooksLink) {
+    allBooksLink.classList.add('active');
+  }
+
+  // Clear URL hash
+  if (history.pushState) {
+    history.pushState(null, null, window.location.pathname);
+  } else {
+    location.hash = '';
+  }
+
+  setTimeout(() => {
+    // Get all books from all categories
+    let allBooks = [];
+    for (const category in booksProducts) {
+      allBooks = allBooks.concat(booksProducts[category]);
+    }
+    
+    if (allBooks.length > 0) {
+      currentProducts = allBooks;
+      currentPage = 1;
+      totalItems = allBooks.length;
+      
+      // Get paginated products for first page
+      const paginatedProducts = getPaginatedProducts(allBooks, currentPage);
+      const productsHTML = renderProducts(paginatedProducts, 'book');
+      const totalPages = Math.ceil(allBooks.length / ITEMS_PER_PAGE);
+      
+      const productsGrid = document.querySelector('.js-prodcts-grid');
+      productsGrid.innerHTML = productsHTML;
+      productsGrid.classList.remove('showing-coming-soon');
+      
+      // Update pagination separately
+      updatePaginationDisplay(currentPage, totalPages, allBooks.length);
+      
+      // Re-attach event listeners
+      attachAddToCartListeners();
+      
+      // Update page header
+      updatePageHeader('All Books', allBooks.length);
+      
+      // Remove breadcrumb for all books view
+      const breadcrumbElement = document.querySelector('.breadcrumb-nav');
+      if (breadcrumbElement) {
+        breadcrumbElement.remove();
+      }
+      
+      // Scroll to products
+      scrollToProducts();
+    }
+  }, 200);
+};
 
 // Function to handle loading of specific book category products
 window.loadSpecificCategory = function(categoryName) {
@@ -157,10 +347,17 @@ window.loadSpecificCategory = function(categoryName) {
     if (bookCategoryKey && booksProducts[bookCategoryKey]) {
       // Load books from the specific category
       const categoryBooks = booksProducts[bookCategoryKey];
-      const productsHTML = renderProducts(categoryBooks, 'book');
+      currentProducts = categoryBooks; // Store current products for pagination
+      const paginatedProducts = getPaginatedProducts(currentProducts, currentPage);
+      const productsHTML = renderProducts(paginatedProducts, 'book');
+      const totalPages = Math.ceil(currentProducts.length / ITEMS_PER_PAGE);
+      
       const productsGrid = document.querySelector('.js-prodcts-grid');
       productsGrid.innerHTML = productsHTML;
       productsGrid.classList.remove('showing-coming-soon');
+      
+      // Update pagination separately
+      updatePaginationDisplay(currentPage, totalPages, currentProducts.length);
       
       // Re-attach event listeners
       attachAddToCartListeners();
@@ -183,6 +380,9 @@ window.loadSpecificCategory = function(categoryName) {
         </div>
       `;
       productsGrid.classList.add('showing-coming-soon');
+      
+      // Clear pagination for error state
+      clearPaginationDisplay();
     }
   }, 200);
 };
@@ -291,45 +491,14 @@ export function findProductById(productId) {
   return null;
 }
 
-// Load default products on page load
-document.addEventListener('DOMContentLoaded', () => {
-  // Only run on the main index page, not on checkout or other pages
-  const isIndexPage = document.querySelector('.products-grid') || document.querySelector('#products-grid');
-  if (isIndexPage) {
-    // Small delay to ensure sub-header navigation is initialized
-    setTimeout(() => {
-      // Check for search parameters first
-      const urlParams = new URLSearchParams(window.location.search);
-      const isSearchRequest = urlParams.has('search');
-      
-      // If this is a search request, don't load default products
-      if (isSearchRequest) {
-        return;
-      }
-      
-      // Check if there's a hash in the URL that should load specific content
-      const hash = window.location.hash.substring(1);    
-      if (hash) {
-        // If there's a hash, let the sub-header navigation handle it
-        if (window.subHeaderNav && window.subHeaderNav.handleHashNavigation) {
-          return;
-        } else {
-          // Fallback: wait a bit more for sub-header to initialize
-          setTimeout(() => {
-            if (window.subHeaderNav && window.subHeaderNav.handleHashNavigation) {
-              window.subHeaderNav.handleHashNavigation(hash);
-            }
-          }, 200);
-          return;
-        }
-      } else {
-        // Clear products grid for clean homepage
-        const productsGrid = document.querySelector('.js-prodcts-grid');
-        if (productsGrid) {
-          productsGrid.innerHTML = '';
-          productsGrid.classList.remove('showing-coming-soon');
-        }
-      }
-    }, 100);
+// Initialize page when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if this is the home page (no hash or specific parameters)
+  const urlParams = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
+  
+  // If no specific category is requested, load all books
+  if (!hash && !urlParams.get('category')) {
+    loadAllBooks();
   }
 });

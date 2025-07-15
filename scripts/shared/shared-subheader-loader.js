@@ -34,9 +34,9 @@ window.handleNavigationClick = function(hash) {  // Check if we're on the index 
     if (hash) {
       window.location.hash = hash;
     } else {
-      // For "See All Departments", load all products
-      if (window.loadAllProducts && typeof window.loadAllProducts === 'function') {
-        window.loadAllProducts();
+      // For "Browse All Books", load all books with pagination
+      if (window.loadAllBooks && typeof window.loadAllBooks === 'function') {
+        window.loadAllBooks();
       }
     }  } else {
     // We're on a different page - navigate to index with hash
