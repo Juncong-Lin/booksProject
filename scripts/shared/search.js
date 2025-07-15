@@ -389,11 +389,6 @@ class SearchSystem {  constructor() {
     return false;
   }
   displaySearchResults(results, searchTerm) {
-    // Hide hero banner
-    if (window.hideHeroBanner) {
-      window.hideHeroBanner();
-    }
-
     // Hide any active submenus
     if (window.hideActiveSubmenus) {
       window.hideActiveSubmenus();
@@ -545,13 +540,8 @@ class SearchSystem {  constructor() {
       // Add to search history (but only if not already added)
       this.addToSearchHistory(searchTerm);
       
-      // If this was detected early, hide hero banner and active submenus immediately
+      // If this was detected early, hide active submenus immediately
       if (window.isEarlySearchDetection) {
-        // Hide hero banner
-        if (window.hideHeroBanner) {
-          window.hideHeroBanner();
-        }
-        
         // Hide any active submenus
         if (window.hideActiveSubmenus) {
           window.hideActiveSubmenus();
