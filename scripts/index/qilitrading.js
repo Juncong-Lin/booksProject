@@ -34,7 +34,13 @@ function renderProducts(productList, type = 'regular') {
           <a href="detail.html?productId=${product.id}" class="product-link">
             ${product.name}
           </a>
-        </div>        <div class="product-price">
+        </div>
+        ${type === 'book' && product.star !== undefined ? `
+        <div class="product-rating">
+          <img class="product-rating-stars" src="images/ratings/rating-${product.star * 10}.png" alt="${product.star} stars">
+          <div class="product-rating-count">${Math.floor(Math.random() * 500) + 50}</div>
+        </div>` : ''}
+        <div class="product-price">
           ${(() => {
             if (type === 'regular' && product.getPrice) {
               return product.getPrice();

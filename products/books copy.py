@@ -17,7 +17,7 @@ from PIL import Image
 # --- Configuration ---
 BASE_URL = "https://books.toscrape.com"
 URL_TEMPLATE = "https://books.toscrape.com/catalogue/category/books_1/page-{page_num}.html"
-TOTAL_PAGES = 50
+TOTAL_PAGES = 2
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
 }

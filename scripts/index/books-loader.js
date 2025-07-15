@@ -148,10 +148,7 @@ function renderProducts(productList, type = 'book') {
           </a>
         </div>
         <div class="product-rating-container">
-          <img class="product-rating-stars" src="images/ratings/rating-45.png">
-          <div class="product-rating-count link-primary">
-            87
-          </div>
+          <img class="product-rating-stars" src="images/ratings/rating-${product.star * 10}.png" alt="${product.star} stars">
         </div>
         <div class="product-price">
           ${formatPriceRange(product.lower_price, product.higher_price)}

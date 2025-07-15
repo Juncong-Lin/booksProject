@@ -187,7 +187,7 @@ body.has-sidebar .main {
 }
 
 .product-name {
-  height: 100px; /* Increased height to accommodate 4 lines */
+  height: 4.5em; /* Match the 3-line text height */
   margin-bottom: 5px;
   /* Ensure consistent text display */
   display: flex;
@@ -216,6 +216,9 @@ body.has-sidebar .main {
   font-size: 16px;
   margin-right: 6px;
   letter-spacing: 1px;
+  height: 18px;
+  width: auto;
+  max-width: 90px;
 }
 
 .product-rating-count {

@@ -151,7 +151,7 @@ input, select {
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 4.5em; /* Approximately 3 lines * 1.5em line-height */
+  height: 4.5em; /* Fixed height for exactly 3 lines * 1.5em line-height */
   line-height: 1.5;
   text-align: left;
 }
