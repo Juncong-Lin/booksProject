@@ -2,6 +2,9 @@
 import {booksProducts} from '../../data/books.js';
 import { formatCurrency, formatPriceRange } from '../shared/money.js';
 
+// Make booksProducts globally available for search system
+window.booksProducts = booksProducts;
+
 // Pagination configuration
 const ITEMS_PER_PAGE = 20;
 let currentPage = 1;

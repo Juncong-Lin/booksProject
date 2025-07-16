@@ -1,12 +1,4 @@
 import { booksProducts } from '../../data/books.js';
-import { printheadProducts } from '../../data/printhead-products.js';
-import { inkjetPrinterProducts } from '../../data/inkjetPrinter-products.js';
-import { printSparePartProducts } from '../../data/printsparepart-products.js';
-import { upgradingKitProducts } from '../../data/upgradingkit-products.js';
-import { materialProducts } from '../../data/material-products.js';
-import { ledAndLcdProducts } from '../../data/ledAndLcd-products.js';
-import { channelLetterBendingMechineProducts } from '../../data/channelLetterBendingMechine-products.js';
-import { otherProducts } from '../../data/other-products.js';
 import { formatPriceRange } from './money.js';
 
 // Helper function to encode image URLs properly
@@ -134,10 +126,10 @@ class SearchSystem {  constructor() {
       // Add some default search history for testing if none exists
       if (history.length === 0) {
         history = [
-          { term: 'inkjet', timestamp: Date.now() - 1000000 },
-          { term: 'print heads', timestamp: Date.now() - 2000000 },
-          { term: 'epson', timestamp: Date.now() - 3000000 },
-          { term: 'printer', timestamp: Date.now() - 4000000 }
+          { term: 'fiction', timestamp: Date.now() - 1000000 },
+          { term: 'mystery', timestamp: Date.now() - 2000000 },
+          { term: 'romance', timestamp: Date.now() - 3000000 },
+          { term: 'fantasy', timestamp: Date.now() - 4000000 }
         ];
       }
       
@@ -277,8 +269,7 @@ class SearchSystem {  constructor() {
     const searchTermLower = searchTerm.toLowerCase();
     let searchResults = [];    try {
       // Check if product data is available, if not wait for it to load
-      const hasProducts = window.inkjetPrinterProducts || window.printheadProducts || 
-                         window.printSparePartProducts || window.upgradingKitProducts;
+      const hasProducts = window.booksProducts;
       
       if (!hasProducts) {
         // Wait for product data to load, then retry search
@@ -286,63 +277,19 @@ class SearchSystem {  constructor() {
         return;
       }
 
-      // Search in all product datasets      // Search inkjet printer products
-      if (window.inkjetPrinterProducts) {
-        for (const category in window.inkjetPrinterProducts) {
-          const products = window.inkjetPrinterProducts[category];
+      // Search in books products only
+      if (window.booksProducts) {
+        for (const category in window.booksProducts) {
+          const products = window.booksProducts[category];
           const matches = products.filter(product => 
             this.productMatchesSearch(product, searchTermLower, {
               category: category,
               brand: null,
-              type: 'printer'
+              type: 'book'
             })
           );
-          searchResults = searchResults.concat(matches.map(p => ({...p, type: 'printer', category: category})));
+          searchResults = searchResults.concat(matches.map(p => ({...p, type: 'book', category: category})));
         }
-      }
-
-      // Search printhead products  
-      if (window.printheadProducts) {
-        for (const brand in window.printheadProducts) {
-          const products = window.printheadProducts[brand];
-          const matches = products.filter(product => 
-            this.productMatchesSearch(product, searchTermLower, {
-              category: 'printhead',
-              brand: brand,
-              type: 'printhead'
-            })
-          );
-          searchResults = searchResults.concat(matches.map(p => ({...p, type: 'printhead', brand: brand, category: 'printhead'})));
-        }
-      }
-
-      // Search print spare parts
-      if (window.printSparePartProducts) {
-        for (const brand in window.printSparePartProducts) {
-          const products = window.printSparePartProducts[brand];
-          const matches = products.filter(product => 
-            this.productMatchesSearch(product, searchTermLower, {
-              category: 'print spare parts',
-              brand: brand,
-              type: 'printsparepart'
-            })
-          );
-          searchResults = searchResults.concat(matches.map(p => ({...p, type: 'printsparepart', brand: brand, category: 'print spare parts'})));
-        }
-      }
-
-      // Search upgrading kit products
-      if (window.upgradingKitProducts) {
-        for (const brand in window.upgradingKitProducts) {
-          const products = window.upgradingKitProducts[brand];
-          const matches = products.filter(product => 
-            this.productMatchesSearch(product, searchTermLower, {
-              category: 'upgrading kit',
-              brand: brand,
-              type: 'upgradingkit'
-            })
-          );
-          searchResults = searchResults.concat(matches.map(p => ({...p, type: 'upgradingkit', brand: brand, category: 'upgrading kit'})));        }
       }
 
       this.displaySearchResults(searchResults, searchTerm);
@@ -384,24 +331,22 @@ class SearchSystem {  constructor() {
     }
 
     // Special handling for common search terms
-    // Handle "print heads" or "printheads" searches
-    if ((searchTerm.includes('print head') || searchTerm.includes('printhead')) && context.category === 'printhead') {
-      return true;
-    }
-
-    // Handle "print spare parts" searches
-    if (searchTerm.includes('print spare') && context.category === 'print spare parts') {
-      return true;
-    }
-
-    // Handle "upgrading kit" searches
-    if (searchTerm.includes('upgrading') && context.category === 'upgrading kit') {
-      return true;
-    }
-
-    // Handle printer-related searches
-    if ((searchTerm.includes('printer') || searchTerm.includes('inkjet')) && context.type === 'printer') {
-      return true;
+    // Handle book-related searches
+    if (context.type === 'book') {
+      // Handle generic book searches
+      if (searchTerm.includes('book') || searchTerm.includes('novel') || searchTerm.includes('read')) {
+        return true;
+      }
+      
+      // Handle fiction/non-fiction searches
+      if (searchTerm.includes('fiction') && (context.category.toLowerCase().includes('fiction') || product.name.toLowerCase().includes('fiction'))) {
+        return true;
+      }
+      
+      // Handle author searches (if the search term might be an author name)
+      if (product.author && product.author.toLowerCase().includes(searchTerm)) {
+        return true;
+      }
     }
 
     return false;
@@ -415,10 +360,11 @@ class SearchSystem {  constructor() {
     // Clear any sub-header highlighting for search results
     this.clearSubHeaderHighlight();
 
-    // Update page header to show search results count
-    if (window.updatePageHeader) {
-      window.updatePageHeader(`Found ${results.length} result${results.length !== 1 ? 's' : ''}`);
-    }
+    // Protect the search header from being overridden
+    this.protectSearchHeader();
+
+    // Force update the page header to show search results count
+    this.updateSearchPageHeader(results.length);
 
     // Update breadcrumb
     this.updateSearchBreadcrumb(searchTerm);
@@ -433,7 +379,12 @@ class SearchSystem {  constructor() {
     const existingHeader = document.querySelector('.search-results-header');
     if (existingHeader) {
       existingHeader.remove();
-    }    if (results.length === 0) {
+    }
+
+    if (results.length === 0) {
+      // Clear pagination for no results
+      this.clearPagination();
+      
       productsGrid.innerHTML = `
         <div class="search-no-results">
           <h2>No results found for "${searchTerm}"</h2>
@@ -441,27 +392,18 @@ class SearchSystem {  constructor() {
           <div class="search-suggestions">
             <h3>Popular categories:</h3>
             <div class="suggestion-links">
-              <a href="javascript:void(0)" onclick="window.loadAllPrintheadProducts && window.loadAllPrintheadProducts()">Print Heads</a>
-              <a href="javascript:void(0)" onclick="window.loadSpecificCategory && window.loadSpecificCategory('Inkjet Printers')">Inkjet Printers</a>
-              <a href="javascript:void(0)" onclick="window.loadSpecificCategory && window.loadSpecificCategory('Print Spare Parts')">Print Spare Parts</a>
-              <a href="javascript:void(0)" onclick="window.loadSpecificCategory && window.loadSpecificCategory('Upgrading Kit')">Upgrading Kit</a>
+              <a href="javascript:void(0)" onclick="window.loadSpecificCategory && window.loadSpecificCategory('Fiction')">Fiction</a>
+              <a href="javascript:void(0)" onclick="window.loadSpecificCategory && window.loadSpecificCategory('Non-Fiction')">Non-Fiction</a>
+              <a href="javascript:void(0)" onclick="window.loadSpecificCategory && window.loadSpecificCategory('Mystery')">Mystery</a>
+              <a href="javascript:void(0)" onclick="window.loadSpecificCategory && window.loadSpecificCategory('Romance')">Romance</a>
+              <a href="javascript:void(0)" onclick="window.loadAllBooks && window.loadAllBooks()">All Books</a>
             </div>
           </div>
         </div>
-      `;    } else {
-      // Use existing renderProducts function if available
-      if (window.renderProducts) {
-        const productsHTML = window.renderProducts(results, 'mixed');
-        productsGrid.innerHTML = productsHTML;
-        
-        // Re-attach event listeners
-        if (window.attachAddToCartListeners) {
-          window.attachAddToCartListeners();
-        }
-      } else {
-        // Fallback rendering
-        this.renderSearchResults(results, productsGrid);
-      }
+      `;
+    } else {
+      // Set up pagination for search results
+      this.setupSearchPagination(results, searchTerm);
     }
 
     productsGrid.classList.remove('showing-coming-soon');
@@ -471,10 +413,14 @@ class SearchSystem {  constructor() {
       window.scrollToProducts();
     }
 
-    // Update URL with search parameter
-    const newUrl = new URL(window.location);
-    newUrl.searchParams.set('search', searchTerm);
-    window.history.pushState(null, '', newUrl);
+    // Update URL with search parameter (only if not from pagination)
+    if (!this.isFromPagination) {
+      const newUrl = new URL(window.location);
+      newUrl.searchParams.set('search', searchTerm);
+      newUrl.searchParams.delete('page'); // Remove page param for new searches
+      window.history.pushState(null, '', newUrl);
+    }
+    this.isFromPagination = false; // Reset flag
   }
   renderSearchResults(results, container) {
     // Remove the search results info since it's now displayed in the header
@@ -536,7 +482,7 @@ class SearchSystem {  constructor() {
     }
 
     breadcrumbElement.innerHTML = `
-      <a href="javascript:void(0)" onclick="window.loadAllProducts && window.loadAllProducts()" class="breadcrumb-link">Home</a>
+      <a href="javascript:void(0)" onclick="window.searchSystem.restoreOriginalPageHeader(); window.loadAllBooks && window.loadAllBooks()" class="breadcrumb-link">Home</a>
       <span class="breadcrumb-separator">&gt;</span>
       <span class="breadcrumb-current">Search: "${searchTerm}"</span>
     `;
@@ -615,8 +561,7 @@ class SearchSystem {  constructor() {
     
     // Check for product data availability every 100ms
     const checkInterval = setInterval(() => {
-      const hasProducts = window.inkjetPrinterProducts || window.printheadProducts || 
-                         window.printSparePartProducts || window.upgradingKitProducts;
+      const hasProducts = window.booksProducts;
       
       if (hasProducts) {
         clearInterval(checkInterval);
@@ -627,8 +572,7 @@ class SearchSystem {  constructor() {
     // Stop checking after 10 seconds to avoid infinite loop
     setTimeout(() => {
       clearInterval(checkInterval);
-      if (!(window.inkjetPrinterProducts || window.printheadProducts || 
-            window.printSparePartProducts || window.upgradingKitProducts)) {
+      if (!window.booksProducts) {
         this.showSearchMessage('Unable to load product data. Please refresh the page and try again.');
       }
     }, 10000);
@@ -640,6 +584,230 @@ class SearchSystem {  constructor() {
     subHeaderLinks.forEach(link => {
       link.classList.remove('active');
     });
+  }
+
+  // Search pagination functionality
+  setupSearchPagination(results, searchTerm) {
+    const ITEMS_PER_PAGE = 20;
+    const totalPages = Math.ceil(results.length / ITEMS_PER_PAGE);
+    const currentPage = this.getCurrentSearchPage();
+    
+    // Store search results and term for pagination
+    this.currentSearchResults = results;
+    this.currentSearchTerm = searchTerm;
+    
+    // Display current page of results
+    this.displaySearchPage(currentPage, ITEMS_PER_PAGE);
+    
+    // Update pagination display
+    this.updateSearchPagination(currentPage, totalPages, results.length);
+  }
+  
+  getCurrentSearchPage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const page = parseInt(urlParams.get('page')) || 1;
+    return Math.max(1, page);
+  }
+  
+  displaySearchPage(page, itemsPerPage) {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const pageResults = this.currentSearchResults.slice(startIndex, endIndex);
+    
+    const productsGrid = document.querySelector('.js-prodcts-grid');
+    if (!productsGrid) return;
+    
+    // Use existing renderProducts function if available
+    if (window.renderProducts) {
+      const productsHTML = window.renderProducts(pageResults, 'mixed');
+      productsGrid.innerHTML = productsHTML;
+      
+      // Re-attach event listeners
+      if (window.attachAddToCartListeners) {
+        window.attachAddToCartListeners();
+      }
+    } else {
+      // Fallback rendering
+      this.renderSearchResults(pageResults, productsGrid);
+    }
+  }
+  
+  updateSearchPagination(currentPage, totalPages, totalItems) {
+    // Remove existing pagination if it exists
+    let paginationElement = document.querySelector('.pagination-wrapper');
+    if (paginationElement) {
+      paginationElement.remove();
+    }
+    
+    // Only create pagination if we have more than one page
+    if (totalPages > 1) {
+      // Create new pagination element
+      paginationElement = document.createElement('div');
+      paginationElement.className = 'pagination-wrapper';
+      paginationElement.innerHTML = this.createSearchPaginationHTML(currentPage, totalPages, totalItems);
+      
+      // Insert pagination after the products grid
+      const mainElement = document.querySelector('.main');
+      if (mainElement) {
+        mainElement.appendChild(paginationElement);
+      }
+    }
+  }
+  
+  createSearchPaginationHTML(currentPage, totalPages, totalItems) {
+    let paginationHTML = `
+      <div class="pagination-container">
+        <div class="pagination-info">
+          Page ${currentPage} of ${totalPages} Results (${totalItems} total)
+        </div>
+        <div class="pagination-controls">
+    `;
+    
+    // Previous button
+    if (currentPage > 1) {
+      paginationHTML += `<button class="pagination-btn" onclick="window.searchSystem.changeSearchPage(${currentPage - 1})">Previous</button>`;
+    }
+    
+    // Page numbers
+    const startPage = Math.max(1, currentPage - 2);
+    const endPage = Math.min(totalPages, currentPage + 2);
+    
+    if (startPage > 1) {
+      paginationHTML += `<button class="pagination-btn" onclick="window.searchSystem.changeSearchPage(1)">1</button>`;
+      if (startPage > 2) {
+        paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+      }
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+      const activeClass = i === currentPage ? 'active' : '';
+      paginationHTML += `<button class="pagination-btn ${activeClass}" onclick="window.searchSystem.changeSearchPage(${i})">${i}</button>`;
+    }
+    
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+      }
+      paginationHTML += `<button class="pagination-btn" onclick="window.searchSystem.changeSearchPage(${totalPages})">${totalPages}</button>`;
+    }
+    
+    // Next button
+    if (currentPage < totalPages) {
+      paginationHTML += `<button class="pagination-btn" onclick="window.searchSystem.changeSearchPage(${currentPage + 1})">Next</button>`;
+    }
+    
+    // Last button
+    if (currentPage < totalPages) {
+      paginationHTML += `<button class="pagination-btn" onclick="window.searchSystem.changeSearchPage(${totalPages})">Last</button>`;
+    }
+    
+    paginationHTML += `
+        </div>
+      </div>
+    `;
+    
+    return paginationHTML;
+  }
+  
+  changeSearchPage(page) {
+    if (!this.currentSearchResults || !this.currentSearchTerm) return;
+    
+    const ITEMS_PER_PAGE = 20;
+    const totalPages = Math.ceil(this.currentSearchResults.length / ITEMS_PER_PAGE);
+    
+    // Validate page number
+    if (page < 1 || page > totalPages) return;
+    
+    // Update URL with new page
+    const newUrl = new URL(window.location);
+    newUrl.searchParams.set('search', this.currentSearchTerm);
+    newUrl.searchParams.set('page', page.toString());
+    window.history.pushState(null, '', newUrl);
+    
+    // Display the new page
+    this.displaySearchPage(page, ITEMS_PER_PAGE);
+    
+    // Update pagination display
+    this.updateSearchPagination(page, totalPages, this.currentSearchResults.length);
+    
+    // Scroll to top of products
+    if (window.scrollToProducts) {
+      window.scrollToProducts();
+    }
+  }
+  
+  clearPagination() {
+    const paginationElement = document.querySelector('.pagination-wrapper');
+    if (paginationElement) {
+      paginationElement.remove();
+    }
+  }
+
+  updateSearchPageHeader(resultCount) {
+    // Force update the page header for search results
+    let headerElement = document.querySelector('.page-header');
+    if (!headerElement) {
+      // Create header if it doesn't exist
+      headerElement = document.createElement('h2');
+      headerElement.className = 'page-header';
+      headerElement.style.margin = '20px 0';
+      headerElement.style.textAlign = 'center';
+      headerElement.style.fontSize = '24px';
+      headerElement.style.fontWeight = 'bold';
+      
+      const mainElement = document.querySelector('.main');
+      if (mainElement) {
+        mainElement.insertBefore(headerElement, mainElement.firstChild);
+      }
+    }
+    
+    // Force the search result header text
+    headerElement.textContent = `Search result (${resultCount} book${resultCount !== 1 ? 's' : ''})`;
+    
+    // Mark this header as a search header to prevent other scripts from overriding it
+    headerElement.setAttribute('data-search-header', 'true');
+    
+    // Protect search header from being overridden by other scripts
+    this.protectSearchHeader();
+    
+    // Also try calling the global function as backup
+    if (window.updatePageHeader) {
+      setTimeout(() => {
+        // Delay to ensure it runs after any other page header updates
+        if (headerElement.getAttribute('data-search-header') === 'true') {
+          headerElement.textContent = `Search result (${resultCount} book${resultCount !== 1 ? 's' : ''})`;
+        }
+      }, 100);
+    }
+  }
+  
+  // Protect search header from being overridden by other scripts
+  protectSearchHeader() {
+    // Override the global updatePageHeader function temporarily for search results
+    if (window.updatePageHeader && !window.originalUpdatePageHeader) {
+      window.originalUpdatePageHeader = window.updatePageHeader;
+      
+      window.updatePageHeader = (title, count) => {
+        const headerElement = document.querySelector('.page-header');
+        // Only allow updates if this is not a search header
+        if (!headerElement || headerElement.getAttribute('data-search-header') !== 'true') {
+          window.originalUpdatePageHeader(title, count);
+        }
+      };
+    }
+  }
+  
+  // Restore the original updatePageHeader function
+  restoreOriginalPageHeader() {
+    const headerElement = document.querySelector('.page-header');
+    if (headerElement) {
+      headerElement.removeAttribute('data-search-header');
+    }
+    
+    if (window.originalUpdatePageHeader) {
+      window.updatePageHeader = window.originalUpdatePageHeader;
+      window.originalUpdatePageHeader = null;
+    }
   }
 }
 
