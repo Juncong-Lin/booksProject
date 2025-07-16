@@ -135,9 +135,13 @@ window.changePage = function(page) {
 };
 
 // Unified product rendering function for books
-function renderProducts(productList, type = 'book') {
+// Make renderProducts available globally for search system
+window.renderProducts = function(productList, type = 'book') {
   let productsHTML = '';
   productList.forEach((product) => {
+    // Make sure we have a rating or default to 0
+    const rating = product.star || 0;
+    
     productsHTML += `
       <div class="product-container">        
         <div class="product-image-container">
@@ -151,7 +155,7 @@ function renderProducts(productList, type = 'book') {
           </a>
         </div>
         <div class="product-rating-container">
-          <img class="product-rating-stars" src="images/ratings/rating-${product.star * 10}.png" alt="${product.star} stars">
+          <img class="product-rating-stars" src="images/ratings/rating-${rating * 10}.png" alt="${rating} stars">
         </div>
         <div class="product-price">
           ${formatPriceRange(product.lower_price, product.higher_price)}

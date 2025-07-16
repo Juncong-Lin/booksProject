@@ -427,17 +427,23 @@ class SearchSystem {  constructor() {
     let html = '';
 
     results.forEach(product => {
+      // Make sure we have a rating or default to 0
+      const rating = product.star || 0;
+      
       html += `
         <div class="product-container">        
           <div class="product-image-container">
-            <a href="detail.html?productId=${product.id}&type=${product.type}" class="product-image-link">
+            <a href="detail.html?productId=${product.id}" class="product-image-link">
               <img class="product-image" src="${encodeImagePath(product.image)}">
             </a>
           </div>
           <div class="product-name limit-text-to-3-lines">
-            <a href="detail.html?productId=${product.id}&type=${product.type}" class="product-link">
+            <a href="detail.html?productId=${product.id}" class="product-link">
               ${product.name}
             </a>
+          </div>
+          <div class="product-rating-container">
+            <img class="product-rating-stars" src="images/ratings/rating-${rating * 10}.png" alt="${rating} stars">
           </div>
           <div class="product-price">
             ${(() => {
@@ -460,10 +466,28 @@ class SearchSystem {  constructor() {
               }
             })()}
           </div>
+          <div class="product-quantity-container">
+            <select>
+              <option selected value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10+</option>
+            </select>
+          </div>
           <div class="product-spacer"></div>
-          <a class="add-to-cart-button button-primary" href="detail.html?productId=${product.id}&type=${product.type}">
+          <a href="detail.html?productId=${product.id}" class="add-to-cart-button button-primary">
             View Details
           </a>
+          <div class="added-message">
+            <img src="images/icons/checkmark.png">
+            Added
+          </div>
         </div>`;
     });
 
@@ -617,9 +641,10 @@ class SearchSystem {  constructor() {
     const productsGrid = document.querySelector('.js-prodcts-grid');
     if (!productsGrid) return;
     
-    // Use existing renderProducts function if available
+    // Always use renderProducts function now that it's globally available
+    // This ensures search results match the normal product display
     if (window.renderProducts) {
-      const productsHTML = window.renderProducts(pageResults, 'mixed');
+      const productsHTML = window.renderProducts(pageResults, 'book');
       productsGrid.innerHTML = productsHTML;
       
       // Re-attach event listeners
