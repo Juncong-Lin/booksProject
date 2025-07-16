@@ -13,7 +13,7 @@ import { booksProducts } from '../../data/books.js';
 // import { cart, addToCart } from '../../data/cart.js';
 // import { updateCartQuantity } from '../shared/cart-quantity.js';
 import { parseMarkdown } from '../shared/markdown-parser.js';
-import { formatPriceRange } from '../shared/money.js';
+import { formatPriceRange, formatCurrency } from '../shared/money.js';
 // Helper function to encode image URLs properly
 function encodeImagePath(imagePath) {
   return imagePath.split('/').map(part => 
@@ -1551,96 +1551,105 @@ async function setupBookProductContent(product) {
     const bookDetails = parseBookMarkdownContent(mdContent, product, categoryFolder);
     // Update the product details tab content with enhanced book display
     setupEnhancedBookDisplay(bookDetails, product);
-    // Hide sections since books don't need detailed specs/compatibility
-    document.querySelector('.product-compatibility-section').style.display = 'none';
-    document.querySelector('.product-specifications-section').style.display = 'none';
+    // Show product description but customize product information for books
+    document.querySelector('.product-compatibility-section').style.display = 'block';
+    document.querySelector('.product-specifications-section').style.display = 'block';
+    
+    // Populate the product information table with book details
+    populateProductInfoTable(product, bookDetails);
   } catch (error) {
     setupFallbackBookContent(product);
   }
 }
-function parseBookMarkdownContent(mdContent, product, categoryFolder) {
-  const lines = mdContent.split('\n');
-  const bookDetails = {
-    title: product.name,
-    category: categoryFolder,
-    price: '',
-    upc: '',
-    productType: '',
-    availability: '',
-    reviews: '',
-    description: '',
-    fullContent: mdContent
-  };
-  let descriptionStarted = false;
-  let description = [];
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (line.startsWith('Price:')) {
-      bookDetails.price = line.replace('Price:', '').trim();
-    } else if (line.startsWith('UPC:')) {
-      bookDetails.upc = line.replace('UPC:', '').trim();
-    } else if (line.startsWith('Product Type:')) {
-      bookDetails.productType = line.replace('Product Type:', '').trim();
-    } else if (line.startsWith('Availability:')) {
-      bookDetails.availability = line.replace('Availability:', '').trim();
-    } else if (line.startsWith('Number of reviews:')) {
-      bookDetails.reviews = line.replace('Number of reviews:', '').trim();
-    } else if (line === 'Product Details:') {
-      descriptionStarted = true;
-      continue;
-    } else if (descriptionStarted && line && !line.startsWith('UPC:') && !line.startsWith('Product Type:')) {
-      description.push(line);
+// Function to populate the product information table
+function populateProductInfoTable(product, bookDetails) {
+  // Set UPC from the book details if available
+  const upcElement = document.querySelector('.js-product-upc');
+  
+  if (bookDetails && bookDetails.productInfo && bookDetails.productInfo.upc) {
+    upcElement.textContent = bookDetails.productInfo.upc;
+  } else {
+    // Fallback to default UPC format
+    upcElement.textContent = 'a8-o-Onbfa1210';
+  }
+  
+  // Set product type
+  document.querySelector('.js-product-type').textContent = 'Books';
+  
+  // Set prices from book details if available
+  const priceExclElement = document.querySelector('.js-product-price-excl-tax');
+  const priceInclElement = document.querySelector('.js-product-price-incl-tax');
+  const taxElement = document.querySelector('.js-product-tax');
+  
+  if (bookDetails && bookDetails.productInfo) {
+    // Use prices from markdown if available
+    if (bookDetails.productInfo.price_excl_tax) {
+      let price = bookDetails.productInfo.price_excl_tax;
+      // Ensure the price starts with $
+      if (!price.startsWith('$')) {
+        price = price.startsWith('£') ? price.replace('£', '$') : `$${price}`;
+      }
+      priceExclElement.textContent = price;
+    } else if (product.lower_price) {
+      priceExclElement.textContent = formatCurrency(product.lower_price);
+    } else {
+      priceExclElement.textContent = '$45.17';
     }
+    
+    if (bookDetails.productInfo.price_incl_tax) {
+      let price = bookDetails.productInfo.price_incl_tax;
+      // Ensure the price starts with $
+      if (!price.startsWith('$')) {
+        price = price.startsWith('£') ? price.replace('£', '$') : `$${price}`;
+      }
+      priceInclElement.textContent = price;
+    } else if (product.lower_price) {
+      priceInclElement.textContent = formatCurrency(product.lower_price);
+    } else {
+      priceInclElement.textContent = '$45.17';
+    }
+    
+    if (bookDetails.productInfo.tax) {
+      let tax = bookDetails.productInfo.tax;
+      // Ensure the tax starts with $
+      if (!tax.startsWith('$')) {
+        tax = tax.startsWith('£') ? tax.replace('£', '$') : `$${tax}`;
+      }
+      taxElement.textContent = tax;
+    } else {
+      taxElement.textContent = '$0.00';
+    }
+  } else if (product.lower_price) {
+    // Use product price if no book details
+    const formattedPrice = formatCurrency(product.lower_price);
+    priceExclElement.textContent = formattedPrice;
+    priceInclElement.textContent = formattedPrice;
+    taxElement.textContent = '$0.00';
+  } else {
+    // Use default prices if nothing else is available
+    priceExclElement.textContent = '$45.17';
+    priceInclElement.textContent = '$45.17';
+    taxElement.textContent = '$0.00';
   }
-  bookDetails.description = description.join(' ').trim();
-  return bookDetails;
-}
-function setupEnhancedBookDisplay(bookDetails, product) {
-  // Hide the standard product description section for books to avoid duplication
-  const standardDescriptionElement = document.querySelector('.js-product-description');
-  if (standardDescriptionElement) {
-    standardDescriptionElement.style.display = 'none';
+  
+  // Set availability from book details if available
+  const availabilityElement = document.querySelector('.js-product-availability');
+  if (bookDetails && bookDetails.productInfo && bookDetails.productInfo.availability) {
+    availabilityElement.textContent = bookDetails.productInfo.availability;
+  } else {
+    // Fallback to generated availability
+    const stockNumber = product.id ? 
+      Math.max(1, (product.id.charCodeAt(0) + (product.id.charCodeAt(1) || 0)) % 30) : 
+      19;
+    availabilityElement.textContent = `In stock (${stockNumber} available)`;
   }
-  // Hide other standard sections that might create duplicates
-  const compatibilitySection = document.querySelector('.product-compatibility-section');
-  if (compatibilitySection) {
-    compatibilitySection.style.display = 'none';
-  }
-  const specificationsSection = document.querySelector('.product-specifications-section');
-  if (specificationsSection) {
-    specificationsSection.style.display = 'none';
-  }
-  const enhancedBookHTML = `
-    <div class="book-detail-container">
-      <div class="book-additional-info">
-        <div class="book-info-content">
-          ${parseMarkdown(bookDetails.fullContent)}
-        </div>
-      </div>
-    </div>
-  `;
-  document.querySelector('.js-product-details-content').innerHTML = enhancedBookHTML;
-}
-function setupFallbackBookContent(product) {
-  // Create simple fallback book display
-  const enhancedBookHTML = `
-    <div class="book-detail-container">
-      <div class="book-additional-info">
-        <div class="book-info-content">
-          <p>This book offers readers an engaging experience. Book details are currently being updated. Please check back for more information.</p>
-        </div>
-      </div>
-    </div>
-  `;
-  document.querySelector('.js-product-details-content').innerHTML = enhancedBookHTML;
-  // Hide sections since books don't need detailed specs/compatibility
-  const compatibilitySection = document.querySelector('.product-compatibility-section');
-  if (compatibilitySection) {
-    compatibilitySection.style.display = 'none';
-  }
-  const specificationsSection = document.querySelector('.product-specifications-section');
-  if (specificationsSection) {
-    specificationsSection.style.display = 'none';
+  
+  // Set review count from book details if available
+  const reviewCountElement = document.querySelector('.js-product-review-count');
+  if (bookDetails && bookDetails.productInfo && bookDetails.productInfo.reviews) {
+    reviewCountElement.textContent = bookDetails.productInfo.reviews;
+  } else {
+    reviewCountElement.textContent = product.reviewCount || '0';
   }
 }
 // Expose product data globally for search system
@@ -2037,8 +2046,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
           <a href="index.html" class="breadcrumb-link">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="index.html#inkjet-printers" class="breadcrumb-link">Inkjet Printers</a>
-          <span class="breadcrumb-separator">&gt;</span>
-          <a href="index.html#uv-flatbed-printers" class="breadcrumb-link">UV Flatbed Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="index.html#uv-flatbed-konica-km1024i-printers" class="breadcrumb-link">With Konica KM1024i Printhead</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -2657,3 +2664,289 @@ function cleanupMagnifier() {
 }
 // Clean up magnifier when page is unloaded
 window.addEventListener('beforeunload', cleanupMagnifier);
+
+/**
+ * Parse markdown content from book markdown file
+ */
+function parseBookMarkdownContent(mdContent, product, categoryName) {
+  // Extract sections from markdown
+  const sections = {
+    description: '',
+    about_author: '',
+    details: ''
+  };
+  
+  // Extract product information
+  const productInfo = {
+    upc: '',
+    price_excl_tax: '',
+    price_incl_tax: '',
+    tax: '',
+    availability: '',
+    reviews: '0'
+  };
+  
+  // Simple parsing of markdown sections and product info
+  let currentSection = 'description';
+  const lines = mdContent.split('\n');
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    // Skip price lines in the format "Price: USD:$XX.XX-$XX.XX" from description
+    if (line.toLowerCase().startsWith('price:') && line.toLowerCase().includes('usd:$')) {
+      continue;
+    }
+    
+    // Skip "Product Type: Books" line
+    if (line.toLowerCase().startsWith('product type:') || 
+        line.match(/^product\s+type\s*:\s*books\s*$/i)) {
+      continue;
+    }
+    
+    // Look for UPC information
+    if (line.toLowerCase().includes('upc') || line.toLowerCase().includes('isbn')) {
+      // Use a more specific regex to capture the UPC value after the colon
+      const upcMatch = line.match(/(?:UPC|ISBN):\s*([\w\d-]+)/i);
+      if (upcMatch && upcMatch[1]) {
+        productInfo.upc = upcMatch[1].trim();
+      } else {
+        // Fallback to the previous method if the format is different
+        const generalMatch = line.match(/[a-z\d-]+$/i);
+        if (generalMatch) {
+          productInfo.upc = generalMatch[0].trim();
+        }
+      }
+      continue;
+    }
+    
+    // Look for price information
+    if (line.toLowerCase().includes('price') && line.toLowerCase().includes('excl')) {
+      // Try to match price with format "Price (excl. tax): $16.16"
+      const priceMatch = line.match(/Price\s*\(excl\.\s*tax\):\s*([\$£]?\s?\d+\.\d+)/i);
+      if (priceMatch && priceMatch[1]) {
+        productInfo.price_excl_tax = priceMatch[1].trim();
+      } else {
+        // Fallback to more general price match
+        const generalMatch = line.match(/[\$£]?\s?(\d+\.\d+)/);
+        if (generalMatch) {
+          productInfo.price_excl_tax = generalMatch[0].trim();
+        }
+      }
+      continue;
+    }
+    
+    if (line.toLowerCase().includes('price') && line.toLowerCase().includes('incl')) {
+      // Try to match price with format "Price (incl. tax): $16.16"
+      const priceMatch = line.match(/Price\s*\(incl\.\s*tax\):\s*([\$£]?\s?\d+\.\d+)/i);
+      if (priceMatch && priceMatch[1]) {
+        productInfo.price_incl_tax = priceMatch[1].trim();
+      } else {
+        // Fallback to more general price match
+        const generalMatch = line.match(/[\$£]?\s?(\d+\.\d+)/);
+        if (generalMatch) {
+          productInfo.price_incl_tax = generalMatch[0].trim();
+        }
+      }
+      continue;
+    }
+    
+    // Look for tax information
+    if (line.toLowerCase().includes('tax') && !line.toLowerCase().includes('price')) {
+      // Try to match tax with format "Tax: $0.00"
+      const taxMatch = line.match(/Tax:\s*([\$£]?\s?\d+\.\d+)/i);
+      if (taxMatch && taxMatch[1]) {
+        productInfo.tax = taxMatch[1].trim();
+      } else {
+        // Fallback to more general tax match
+        const generalMatch = line.match(/[\$£]?\s?(\d+\.\d+)/);
+        if (generalMatch) {
+          productInfo.tax = generalMatch[0].trim();
+        }
+      }
+      continue;
+    }
+    
+    // Look for availability information
+    if (line.toLowerCase().includes('availability') || line.toLowerCase().includes('in stock')) {
+      // Try to match "Availability: In stock (1 available)"
+      const availMatch = line.match(/Availability:\s*In\s*stock\s*\((\d+)\s*available\)/i);
+      if (availMatch && availMatch[1]) {
+        productInfo.availability = `In stock (${availMatch[1]} available)`;
+      } else {
+        // Try a more general match for "In stock (X available)"
+        const generalMatch = line.match(/In\s*stock\s*\((\d+)\s*available\)/i);
+        if (generalMatch && generalMatch[1]) {
+          productInfo.availability = `In stock (${generalMatch[1]} available)`;
+        } else if (line.toLowerCase().includes('in stock')) {
+          productInfo.availability = 'In stock';
+        }
+      }
+      continue;
+    }
+    
+    // Look for review information
+    if (line.toLowerCase().includes('review')) {
+      // Try to match "Number of reviews: 0" format
+      const reviewMatch = line.match(/Number\s*of\s*reviews:\s*(\d+)/i);
+      if (reviewMatch && reviewMatch[1]) {
+        productInfo.reviews = reviewMatch[1];
+      } else {
+        // Fallback to matching any number in a line with "review"
+        const generalMatch = line.match(/\d+/);
+        if (generalMatch) {
+          productInfo.reviews = generalMatch[0];
+        }
+      }
+      continue;
+    }
+    
+    if (line.startsWith('# ') || line.startsWith('## ')) {
+      // Identify sections based on headings
+      const heading = line.replace(/^#+\s+/, '').toLowerCase();
+      
+      if (heading.includes('author') || heading.includes('about the author')) {
+        currentSection = 'about_author';
+        continue;
+      } else if (heading.includes('details') || heading.includes('information')) {
+        currentSection = 'details';
+        continue;
+      } else if (heading.includes('description') || heading.includes('summary')) {
+        currentSection = 'description';
+        continue;
+      }
+    }
+    
+    // Add content to current section (skip price information, product details line, and product type line)
+    if (!line.toLowerCase().startsWith('price:') && 
+        line !== 'Product Details:' && 
+        line !== 'product details:' &&
+        !line.toLowerCase().startsWith('product type:') &&
+        !line.match(/^product\s+type\s*:\s*books\s*$/i)) {
+      sections[currentSection] += line + '\n';
+    }
+  }
+  
+  // Clean up extra whitespace
+  for (const key in sections) {
+    sections[key] = sections[key].trim();
+  }
+  
+  // If description is empty, use the product description or name as fallback
+  if (!sections.description) {
+    sections.description = product.description || `${product.name} - ${categoryName}`;
+  }
+  
+  // If no UPC found in markdown, leave it empty - we'll use the one from the product data
+  // This ensures we always prioritize the markdown UPC
+  
+  return {
+    title: product.name,
+    category: categoryName,
+    description: sections.description,
+    about_author: sections.about_author,
+    details: sections.details,
+    productInfo: productInfo
+  };
+}
+
+/**
+ * Setup enhanced display for book products
+ */
+function setupEnhancedBookDisplay(bookDetails, product) {
+  // Add book-specific container class
+  const detailGrid = document.querySelector('.product-detail-grid');
+  if (detailGrid) {
+    detailGrid.classList.add('book-detail-container');
+  }
+  
+  // Format the book description
+  const descriptionHTML = parseMarkdown(bookDetails.description);
+  
+  // Set product description content
+  document.querySelector('.js-product-compatibility').innerHTML = descriptionHTML;
+  
+  // Set up the author info and details if available
+  let detailsHTML = '';
+  
+  if (bookDetails.about_author) {
+    detailsHTML += `
+      <div class="book-additional-info">
+        <h3>About the Author</h3>
+        <div class="book-info-content">
+          ${parseMarkdown(bookDetails.about_author)}
+        </div>
+      </div>
+    `;
+  }
+  
+  if (bookDetails.details) {
+    detailsHTML += `
+      <div class="book-additional-info">
+        <h3>Book Details</h3>
+        <div class="book-info-content">
+          ${parseMarkdown(bookDetails.details)}
+        </div>
+      </div>
+    `;
+  }
+  
+  // Set the details content
+  document.querySelector('.js-product-details-content').innerHTML = detailsHTML;
+  
+  // Hide the standard product description section for books to avoid duplication
+  document.querySelector('.js-product-description').style.display = 'none';
+  
+  // Update image styling to book-specific class
+  const productImage = document.querySelector('.js-product-image');
+  if (productImage) {
+    productImage.classList.add('book-cover-image');
+  }
+}
+
+/**
+ * Fallback function for book content when markdown loading fails
+ */
+function setupFallbackBookContent(product) {
+  // Get category name
+  let categoryName = 'Fiction';
+  if (product.image) {
+    const pathParts = product.image.split('/');
+    if (pathParts.length > 2) {
+      categoryName = pathParts[2];
+    }
+  }
+  
+  // Create a basic description
+  const descriptionHTML = `
+    <p>"${product.name}" is a ${categoryName.toLowerCase()} book that promises an engaging reading experience. 
+    This book is part of our ${categoryName} collection.</p>
+    <p>For more details about this book, including reviews and availability, please contact us.</p>
+  `;
+  
+  // Set up basic display
+  document.querySelector('.js-product-compatibility').innerHTML = descriptionHTML;
+  document.querySelector('.js-product-details-content').innerHTML = '';
+  
+  // Hide the standard product description to avoid duplication
+  document.querySelector('.js-product-description').style.display = 'none';
+  
+  // Show product information table and populate it
+  document.querySelector('.product-compatibility-section').style.display = 'block';
+  document.querySelector('.product-specifications-section').style.display = 'block';
+  
+  // Populate the product information table with book details - passing null for bookDetails to use defaults
+  populateProductInfoTable(product, null);
+  
+  // Add book-specific styling
+  const detailGrid = document.querySelector('.product-detail-grid');
+  if (detailGrid) {
+    detailGrid.classList.add('book-detail-container');
+  }
+  
+  // Update image styling
+  const productImage = document.querySelector('.js-product-image');
+  if (productImage) {
+    productImage.classList.add('book-cover-image');
+  }
+}
