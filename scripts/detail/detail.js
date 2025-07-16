@@ -1644,12 +1644,23 @@ function populateProductInfoTable(product, bookDetails) {
     availabilityElement.textContent = `In stock (${stockNumber} available)`;
   }
   
-  // Set review count from book details if available
+  // Set review count from book details if available and hide row if count is 0
   const reviewCountElement = document.querySelector('.js-product-review-count');
+  const reviewRow = document.querySelector('.js-product-review-count').closest('tr');
+  
+  let reviewCount = '0';
   if (bookDetails && bookDetails.productInfo && bookDetails.productInfo.reviews) {
-    reviewCountElement.textContent = bookDetails.productInfo.reviews;
+    reviewCount = bookDetails.productInfo.reviews;
   } else {
-    reviewCountElement.textContent = product.reviewCount || '0';
+    reviewCount = product.reviewCount || '0';
+  }
+  
+  // Set the text content
+  reviewCountElement.textContent = reviewCount;
+  
+  // Hide the row if review count is 0
+  if (reviewCount === '0' || reviewCount === 0) {
+    reviewRow.style.display = 'none';
   }
 }
 // Expose product data globally for search system

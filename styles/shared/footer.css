@@ -46,12 +46,12 @@
 
 /* Make About Us section narrower */
 .footer-section.about-us {
-  flex: 0 0 30%;
+  flex: 0 0 29%;
 }
 
 /* Make Quick Links wider */
 .footer-section.quick-links {
-  flex: 0 0 30%;
+  flex: 0 0 31%;
 }
 
 /* Make other sections take remaining space equally */
