@@ -1,13 +1,25 @@
 import {cart, cleanInvalidItems} from '../../data/cart.js';
 import {formatCurrency, formatPriceRange} from '../shared/money.js';
 import {getProduct,products} from '../../data/products.js';
-import {printheadProducts} from '../../data/printhead-products.js';
-import {inkjetPrinterProducts} from '../../data/inkjetPrinter-products.js';
-import {getInkjetPrinterById} from '../index/qilitrading.js';
-import {printSparePartProducts} from '../../data/printsparepart-products.js';
-import {upgradingKitProducts} from '../../data/upgradingkit-products.js';
+// Removed imports for deleted product files - using placeholder objects
+// import {printheadProducts} from '../../data/printhead-products.js';
+// import {inkjetPrinterProducts} from '../../data/inkjetPrinter-products.js';
+// import {getInkjetPrinterById} from '../index/qilitrading.js';
+// import {printSparePartProducts} from '../../data/printsparepart-products.js';
+// import {upgradingKitProducts} from '../../data/upgradingkit-products.js';
 import {removeFromCart, updateDeliveryOption} from '../../data/cart.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deleveryOptions.js';
+
+// Create placeholder objects for deleted product files to prevent errors
+const printheadProducts = {};
+const inkjetPrinterProducts = {};
+const printSparePartProducts = {};
+const upgradingKitProducts = {};
+
+// Placeholder function for deleted functionality
+function getInkjetPrinterById(id) {
+  return null;
+}
 
 
 export function renderPaymentSummary() {  // First, clean invalid items from cart

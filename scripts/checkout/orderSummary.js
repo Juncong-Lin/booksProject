@@ -1,16 +1,28 @@
 import {cart, removeFromCart, updateDeliveryOption} from '../../data/cart.js';   
 import {products} from '../../data/products.js';
-import {printheadProducts} from '../../data/printhead-products.js';
-import {inkjetPrinterProducts} from '../../data/inkjetPrinter-products.js';
-import {getInkjetPrinterById} from '../index/qilitrading.js';
-import {printSparePartProducts} from '../../data/printsparepart-products.js';
-import {upgradingKitProducts} from '../../data/upgradingkit-products.js';
+// Removed imports for deleted product files - using placeholder objects
+// import {printheadProducts} from '../../data/printhead-products.js';
+// import {inkjetPrinterProducts} from '../../data/inkjetPrinter-products.js';
+// import {getInkjetPrinterById} from '../index/qilitrading.js';
+// import {printSparePartProducts} from '../../data/printsparepart-products.js';
+// import {upgradingKitProducts} from '../../data/upgradingkit-products.js';
 import {formatCurrency, formatPriceRange} from '../shared/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deleveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
 import { updateCartQuantity } from '../shared/cart-quantity.js';
 import { updatePageTitle } from './checkout.js';
+
+// Create placeholder objects for deleted product files to prevent errors
+const printheadProducts = {};
+const inkjetPrinterProducts = {};
+const printSparePartProducts = {};
+const upgradingKitProducts = {};
+
+// Placeholder function for deleted functionality
+function getInkjetPrinterById(id) {
+  return null;
+}
 
 export function renderOrderSummary() {
 // Get unique items and total quantity for the heading

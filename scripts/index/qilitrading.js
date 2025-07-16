@@ -2,15 +2,26 @@
 // import {cart, addToCart} from '../../data/cart.js'; 
 import {products} from '../../data/products.js';
 import {booksProducts} from '../../data/books.js';
-import {printheadProducts} from '../../data/printhead-products.js';
-import {inkjetPrinterProducts} from '../../data/inkjetPrinter-products.js';
-import {printSparePartProducts} from '../../data/printsparepart-products.js';
-import {upgradingKitProducts} from '../../data/upgradingkit-products.js';
-import {materialProducts} from '../../data/material-products.js';
-import {ledAndLcdProducts} from '../../data/ledAndLcd-products.js';
-import {channelLetterBendingMechineProducts} from '../../data/channelLetterBendingMechine-products.js';
-import {otherProducts} from '../../data/other-products.js';
+// Removed imports for deleted product files
+// import {printheadProducts} from '../../data/printhead-products.js';
+// import {inkjetPrinterProducts} from '../../data/inkjetPrinter-products.js';
+// import {printSparePartProducts} from '../../data/printsparepart-products.js';
+// import {upgradingKitProducts} from '../../data/upgradingkit-products.js';
+// import {materialProducts} from '../../data/material-products.js';
+// import {ledAndLcdProducts} from '../../data/ledAndLcd-products.js';
+// import {channelLetterBendingMechineProducts} from '../../data/channelLetterBendingMechine-products.js';
+// import {otherProducts} from '../../data/other-products.js';
 import { formatCurrency, formatPriceRange } from '../shared/money.js';
+
+// Create placeholder objects for deleted product files to prevent errors
+const printheadProducts = {};
+const inkjetPrinterProducts = {};
+const printSparePartProducts = {};
+const upgradingKitProducts = {};
+const materialProducts = {};
+const ledAndLcdProducts = {};
+const channelLetterBendingMechineProducts = {};
+const otherProducts = {};
 
 // Helper function to encode image URLs properly
 function encodeImagePath(imagePath) {

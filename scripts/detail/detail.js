@@ -1,13 +1,4 @@
 import { products } from '../../data/products.js';
-import { printheadProducts } from '../../data/printhead-products.js';
-import { inkjetPrinterProducts } from '../../data/inkjetPrinter-products.js';
-import { getEcoSolventI1600Printers, getEcoSolventI3200Printers, getInkjetPrinterById, getAllEcoSolventPrinters, getAllSolventPrinters, getSolventKM512iPrinters, getSolventKM1024iPrinters } from '../index/qilitrading.js';
-import { printSparePartProducts } from '../../data/printsparepart-products.js';
-import { upgradingKitProducts } from '../../data/upgradingkit-products.js';
-import { materialProducts } from '../../data/material-products.js';
-import { ledAndLcdProducts } from '../../data/ledAndLcd-products.js';
-import { channelLetterBendingMechineProducts } from '../../data/channelLetterBendingMechine-products.js';
-import { otherProducts } from '../../data/other-products.js';
 import { booksProducts } from '../../data/books.js';
 // Temporarily commented out cart imports - preserved for future reuse
 // import { cart, addToCart } from '../../data/cart.js';
@@ -23,66 +14,6 @@ function encodeImagePath(imagePath) {
 let productId;
 let productType = 'regular'; // Can be 'regular', 'printhead', 'printer', or 'printsparepart'
 let productBrand = '';
-// Helper function to find print spare part by ID across all brands
-function findPrintSparePartById(id) {
-  for (const brand in printSparePartProducts) {
-    const product = printSparePartProducts[brand].find(item => item.id === id);
-    if (product) {
-      return { ...product, brand };
-    }
-  }
-  return null;
-}
-// Helper function to find upgrading kit product by ID across all brands
-function findUpgradingKitById(id) {
-  for (const brand in upgradingKitProducts) {
-    const product = upgradingKitProducts[brand].find(item => item.id === id);
-    if (product) {
-      return { ...product, brand };
-    }
-  }
-  return null;
-}
-// Helper function to find material product by ID across all categories
-function findMaterialById(id) {
-  for (const category in materialProducts) {
-    const product = materialProducts[category].find(item => item.id === id);
-    if (product) {
-      return { ...product, category };
-    }
-  }
-  return null;
-}
-// Helper function to find LED & LCD product by ID across all categories
-function findLedLcdById(id) {
-  for (const category in ledAndLcdProducts) {
-    const product = ledAndLcdProducts[category].find(item => item.id === id);
-    if (product) {
-      return { ...product, category };
-    }
-  }
-  return null;
-}
-// Helper function to find Channel Letter product by ID across all categories
-function findChannelLetterById(id) {
-  for (const category in channelLetterBendingMechineProducts) {
-    const product = channelLetterBendingMechineProducts[category].find(item => item.id === id);
-    if (product) {
-      return { ...product, category };
-    }
-  }
-  return null;
-}
-// Helper function to find Other product by ID across all categories
-function findOtherById(id) {
-  for (const category in otherProducts) {
-    const product = otherProducts[category].find(item => item.id === id);
-    if (product) {
-      return { ...product, category };
-    }
-  }
-  return null;
-}
 // Helper function to find book by ID across all categories
 function findBookById(id) {
   // First try direct match
@@ -116,86 +47,7 @@ if (urlProductType) {
 }
 let product = null;
 // If product type is specified in URL, search in the appropriate data structure
-if (productType === 'printsparepart' || productType === 'print-spare-parts') {
-  product = findPrintSparePartById(productId);
-  if (product) {    // Map brand to old category name for breadcrumb compatibility
-    const brandToCategoryMap = {
-      'epson': 'epson-printer-spare-parts',
-      'roland': 'roland-printer-spare-parts', 
-      'canon': 'canon-printer-spare-parts',
-      'ricoh': 'ricoh-printer-spare-parts',
-      'infiniti_challenger': 'infiniti-challenger-printer-spare-parts',
-      'flora': 'flora-printer-spare-parts',
-      'galaxy': 'galaxy-printer-spare-parts',
-      'mimaki': 'mimaki-printer-spare-parts',
-      'mutoh': 'mutoh-printer-spare-parts',
-      'witcolor': 'wit-color-printer-spare-parts',
-      'gongzheng': 'gongzheng-printer-spare-parts',
-      'human': 'human-printer-spare-parts',
-      'teflon': 'teflon-printer-spare-parts',
-      'wiper': 'wiper-printer-spare-parts',
-      'xaar': 'xaar-printer-spare-parts',
-      'toshiba': 'toshiba-printer-spare-parts'
-    };
-    productBrand = brandToCategoryMap[product.brand] || 'epson-printer-spare-parts';
-  }
-} else if (productType === 'printhead') {
-  // Search in printhead products
-  for (const brand in printheadProducts) {
-    const brandProducts = printheadProducts[brand];
-    product = brandProducts.find(p => p.id === productId);
-    if (product) {
-      productBrand = brand;
-      break;
-    }
-  }
-} else if (productType === 'printer') {
-  // Search in eco-solvent inkjet printer products
-  product = getInkjetPrinterById(productId);
-  if (product) {
-    // Determine the brand/category from the product
-    productBrand = product.category || 'eco-solvent';
-  }
-} else if (productType === 'solventprinter') {
-  // Search in solvent inkjet printer products
-  product = getInkjetPrinterById(productId);
-  if (product) {
-    // Determine the brand/category from the product
-    productBrand = product.category || 'solvent';
-  }
-} else if (productType === 'economicprinter') {
-  // Search in economic/eco-solvent inkjet printer products
-  product = getInkjetPrinterById(productId);
-  if (product) {
-    // Determine the brand/category from the product
-    productBrand = product.category || 'economic_version';
-  }
-} else if (productType === 'upgradingkit' || productType === 'upgrading-kit') {
-  product = findUpgradingKitById(productId);
-  if (product) {
-    productBrand = product.brand;
-  }
-} else if (productType === 'material') {
-  product = findMaterialById(productId);
-  if (product) {
-    productBrand = product.category;
-  }
-} else if (productType === 'ledlcd' || productType === 'led-lcd') {
-  product = findLedLcdById(productId);
-  if (product) {
-    productBrand = product.category;
-  }
-} else if (productType === 'channelletter' || productType === 'channel-letter') {
-  product = findChannelLetterById(productId);
-  if (product) {
-    productBrand = product.category;
-  }
-} else if (productType === 'other') {
-  product = findOtherById(productId);
-  if (product) {
-    productBrand = product.category;
-  }
-} else if (productType === 'book' || productType === 'books') {
+if (productType === 'book' || productType === 'books') {
   product = findBookById(productId);
   if (product) {
     productBrand = product.category;
@@ -204,98 +56,14 @@ if (productType === 'printsparepart' || productType === 'print-spare-parts') {
   // Search in regular products or auto-detect if no productType specified
   product = products.find(product => product.id === productId);
 }
+
 // If productType was not specified in URL and product not found, try auto-detection
 if (!product && !urlProductType) {
-  // Search in printhead products
-  for (const brand in printheadProducts) {
-    const brandProducts = printheadProducts[brand];
-    product = brandProducts.find(p => p.id === productId);
-    if (product) {
-      productType = 'printhead';
-      productBrand = brand;
-      break;
-    }
-  }
-  // If not found in printhead products, search in printer products
-  if (!product) {    // Search in eco-solvent inkjet printer products
-    product = getInkjetPrinterById(productId);
-    if (product) {
-      productType = 'printer';
-      productBrand = product.category || 'eco-solvent';
-    }
-  }// If not found in printer products, search in print spare parts
-  if (!product) {
-    product = findPrintSparePartById(productId);
-    if (product) {
-      productType = 'printsparepart';      // Map brand to old category name for breadcrumb compatibility
-      const brandToCategoryMap = {
-        'epson': 'epson-printer-spare-parts',
-        'roland': 'roland-printer-spare-parts', 
-        'canon': 'canon-printer-spare-parts',
-        'ricoh': 'ricoh-printer-spare-parts',
-        'infiniti_challenger': 'infiniti-challenger-printer-spare-parts',
-        'flora': 'flora-printer-spare-parts',
-        'galaxy': 'galaxy-printer-spare-parts',
-        'mimaki': 'mimaki-printer-spare-parts',
-        'mutoh': 'mutoh-printer-spare-parts',
-        'witcolor': 'wit-color-printer-spare-parts',
-        'gongzheng': 'gongzheng-printer-spare-parts',
-        'human': 'human-printer-spare-parts',
-        'teflon': 'teflon-printer-spare-parts',
-        'wiper': 'wiper-printer-spare-parts',
-        'xaar': 'xaar-printer-spare-parts',
-        'toshiba': 'toshiba-printer-spare-parts'
-      };
-      productBrand = brandToCategoryMap[product.brand] || 'epson-printer-spare-parts';
-    }
-  }
-    // If not found in print spare parts, search in upgrading kit products
-  if (!product) {
-    product = findUpgradingKitById(productId);
-    if (product) {
-      productType = 'upgradingkit';
-      productBrand = product.brand;
-    }
-  }
-    // If not found in upgrading kit products, search in material products
-  if (!product) {
-    product = findMaterialById(productId);
-    if (product) {
-      productType = 'material';
-      productBrand = product.category;
-    }
-  }
-    // If not found in material products, search in LED & LCD products
-  if (!product) {
-    product = findLedLcdById(productId);
-    if (product) {
-      productType = 'ledlcd';
-      productBrand = product.category;
-    }
-  }
-    // If not found in LED & LCD products, search in Channel Letter products
-  if (!product) {
-    product = findChannelLetterById(productId);
-    if (product) {
-      productType = 'channelletter';
-      productBrand = product.category;
-    }
-  }
-  // If not found in Channel Letter products, search in Other products
-  if (!product) {
-    product = findOtherById(productId);
-    if (product) {
-      productType = 'other';
-      productBrand = product.category;
-    }
-  }
-  // If not found in Other products, search in Books
-  if (!product) {
-    product = findBookById(productId);
-    if (product) {
-      productType = 'book';
-      productBrand = product.category;
-    }
+  // If not found in regular products, search in Books
+  product = findBookById(productId);
+  if (product) {
+    productType = 'book';
+    productBrand = product.category;
   }
 }
 if (product) {
