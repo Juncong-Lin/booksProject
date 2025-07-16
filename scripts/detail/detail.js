@@ -14,18 +14,15 @@ import { booksProducts } from '../../data/books.js';
 // import { updateCartQuantity } from '../shared/cart-quantity.js';
 import { parseMarkdown } from '../shared/markdown-parser.js';
 import { formatPriceRange } from '../shared/money.js';
-
 // Helper function to encode image URLs properly
 function encodeImagePath(imagePath) {
   return imagePath.split('/').map(part => 
     part.includes('(') || part.includes(')') || part.includes('#') ? encodeURIComponent(part) : part
   ).join('/');
 }
-
 let productId;
 let productType = 'regular'; // Can be 'regular', 'printhead', 'printer', or 'printsparepart'
 let productBrand = '';
-
 // Helper function to find print spare part by ID across all brands
 function findPrintSparePartById(id) {
   for (const brand in printSparePartProducts) {
@@ -36,7 +33,6 @@ function findPrintSparePartById(id) {
   }
   return null;
 }
-
 // Helper function to find upgrading kit product by ID across all brands
 function findUpgradingKitById(id) {
   for (const brand in upgradingKitProducts) {
@@ -47,7 +43,6 @@ function findUpgradingKitById(id) {
   }
   return null;
 }
-
 // Helper function to find material product by ID across all categories
 function findMaterialById(id) {
   for (const category in materialProducts) {
@@ -58,7 +53,6 @@ function findMaterialById(id) {
   }
   return null;
 }
-
 // Helper function to find LED & LCD product by ID across all categories
 function findLedLcdById(id) {
   for (const category in ledAndLcdProducts) {
@@ -69,7 +63,6 @@ function findLedLcdById(id) {
   }
   return null;
 }
-
 // Helper function to find Channel Letter product by ID across all categories
 function findChannelLetterById(id) {
   for (const category in channelLetterBendingMechineProducts) {
@@ -80,7 +73,6 @@ function findChannelLetterById(id) {
   }
   return null;
 }
-
 // Helper function to find Other product by ID across all categories
 function findOtherById(id) {
   for (const category in otherProducts) {
@@ -91,58 +83,38 @@ function findOtherById(id) {
   }
   return null;
 }
-
 // Helper function to find book by ID across all categories
 function findBookById(id) {
-  console.log('🔍 Searching for book ID:', id);
-  console.log('📚 Available categories:', Object.keys(booksProducts));
-  
   // First try direct match
   for (const category in booksProducts) {
-    console.log(`🔍 Checking category "${category}" with ${booksProducts[category].length} books`);
     const product = booksProducts[category].find(item => item.id === id);
     if (product) {
-      console.log('✅ Found book (direct match):', product);
       return { ...product, category };
     }
   }
-  
   // If direct match fails, try normalized ID (replace # with -, & with -, etc.)
   const normalizedId = id.replace(/#/g, '-').replace(/&/g, '-').replace(/\s+/g, '-');
   if (normalizedId !== id) {
-    console.log('🔍 Trying normalized ID:', normalizedId);
     for (const category in booksProducts) {
       const product = booksProducts[category].find(item => item.id === normalizedId);
       if (product) {
-        console.log('✅ Found book (normalized match):', product);
         return { ...product, category };
       }
     }
   }
-  
-  console.log('❌ Book not found in any category');
   return null;
 }
-
 // Get the product ID and type from URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 let rawProductId = urlParams.get('id') || urlParams.get('productId') || urlParams.get('product');
-
 // Decode the product ID to handle special characters like #, &, etc.
 productId = rawProductId ? decodeURIComponent(rawProductId) : null;
-
 const urlProductType = urlParams.get('productType');
-
-console.log('URL Params - Raw Product ID:', rawProductId, 'Decoded Product ID:', productId, 'Product Type:', urlProductType);
-console.log('Current URL:', window.location.href);
-
 // If productType is specified in URL, use it directly
 if (urlProductType) {
   productType = urlProductType;
 }
-
 let product = null;
-
 // If product type is specified in URL, search in the appropriate data structure
 if (productType === 'printsparepart' || productType === 'print-spare-parts') {
   product = findPrintSparePartById(productId);
@@ -232,7 +204,6 @@ if (productType === 'printsparepart' || productType === 'print-spare-parts') {
   // Search in regular products or auto-detect if no productType specified
   product = products.find(product => product.id === productId);
 }
-
 // If productType was not specified in URL and product not found, try auto-detection
 if (!product && !urlProductType) {
   // Search in printhead products
@@ -245,7 +216,6 @@ if (!product && !urlProductType) {
       break;
     }
   }
-
   // If not found in printhead products, search in printer products
   if (!product) {    // Search in eco-solvent inkjet printer products
     product = getInkjetPrinterById(productId);
@@ -311,7 +281,6 @@ if (!product && !urlProductType) {
       productBrand = product.category;
     }
   }
-  
   // If not found in Channel Letter products, search in Other products
   if (!product) {
     product = findOtherById(productId);
@@ -320,27 +289,18 @@ if (!product && !urlProductType) {
       productBrand = product.category;
     }
   }
-  
   // If not found in Other products, search in Books
   if (!product) {
-    console.log('Searching for book with ID:', productId);
     product = findBookById(productId);
     if (product) {
-      console.log('Book found:', product.name, 'Category:', product.category);
       productType = 'book';
       productBrand = product.category;
-    } else {
-      console.log('Book not found with ID:', productId);
     }
   }
 }
-
 if (product) {
-  console.log('Product found:', product.name, 'Type:', productType);
-  
   // Unified breadcrumb rendering
   updateBreadcrumbDetail(product, productType, productBrand);
-
   // Update the product details on the page
   document.querySelector('.js-product-image').src = encodeImagePath(product.image);
   document.querySelector('.js-product-name').textContent = product.name;
@@ -351,11 +311,9 @@ if (product) {
       descriptionElement.style.display = 'none';
     }
   }
-    
   // Handle rating display - hide rating elements for printhead products since ratings were removed
   const ratingElement = document.querySelector('.js-product-rating');
   const ratingCountElement = document.querySelector('.js-product-rating-count');
-  
   // Check for both rating formats: product.rating.stars (regular products) and product.star (books)
   if ((product.rating && typeof product.rating === 'object' && product.rating.stars) || product.star) {
     // For regular products that have ratings or books with star rating
@@ -367,7 +325,6 @@ if (product) {
       stars = product.star;
       count = 0; // Books might not have rating count
     }
-    
     ratingElement.src = `images/ratings/rating-${Math.round(stars * 10)}.png`;
     ratingElement.style.display = 'block';
     if (count > 0) {
@@ -394,7 +351,6 @@ if (product) {
     priceText = 'USD: #NA';
   }
   document.querySelector('.js-product-price').textContent = priceText;
-  
   // If there's an original price (for sale items), show it
   const originalPriceElement = document.querySelector('.js-product-original-price');
   if (product.originalPrice) {
@@ -404,7 +360,6 @@ if (product) {
   } else {
     originalPriceElement.style.display = 'none';
   }
-  
   // Add product tags if any
   const tagsContainer = document.querySelector('.js-product-tags');
   if (productType === 'printhead') {
@@ -423,7 +378,6 @@ if (product) {
       </div>`
     ).join('');
   }
-  
   // Set basic product description
   document.querySelector('.js-product-description').textContent = product.description || '';
     // Update the page title
@@ -439,7 +393,6 @@ if (product) {
   } else if (productType === 'other') {
     setupOtherProductContent(product);
   } else if (productType === 'book' || productType === 'books') {
-    console.log('Setting up book product content for:', product.name);
     setupBookProductContent(product);
   } else if (productType === 'printer') {
     setupPrinterProductContent(product);
@@ -448,12 +401,10 @@ if (product) {
   }
   // Set up the product image gallery
   setupImageGallery(product);
-  
   // Set up product information tabs
   setupProductTabs();
     // Initialize cart quantity display on page load - temporarily disabled
   // updateCartQuantity();
-  
 } else {
   // Handle case when product is not found
   document.querySelector('.product-detail-grid').innerHTML = `
@@ -462,14 +413,12 @@ if (product) {
     </div>
   `;
 }
-
 /**
  * Sets up the product image gallery with thumbnails
  */
 function setupImageGallery(product) {
   let mainImagePath = product.image;
   const thumbnailsContainer = document.querySelector('.js-product-thumbnails');
-  
   if (productType === 'printhead') {
     try {
       const imageParts = mainImagePath.split('/');
@@ -479,11 +428,9 @@ function setupImageGallery(product) {
       const imagePaths = [];      for (let i = 1; i <= 10; i++) {
         imagePaths.push(`${basePath}${baseFileName}.img_${i}.jpg`);
       }
-      
       // Check which images actually exist before creating thumbnails
       let validImages = [];
       let loadPromises = [];
-      
       // Create promises to check each image
       imagePaths.forEach((path, index) => {
         const promise = new Promise((resolve) => {
@@ -494,12 +441,10 @@ function setupImageGallery(product) {
         });
         loadPromises.push(promise);
       });
-      
       // Wait for all image checks to complete
       Promise.all(loadPromises).then((results) => {
         // Filter only existing images
         validImages = results.filter(img => img.exists);
-        
         let thumbnailsHTML = '';
         if (validImages.length === 0) {
           // If no thumbnail images exist, use the main product image
@@ -520,16 +465,13 @@ function setupImageGallery(product) {
             // Set main image to first valid image
           document.querySelector('.js-product-image').src = validImages[0].path;
         }          thumbnailsContainer.innerHTML = thumbnailsHTML;
-        
         // Setup thumbnail gallery functionality
         setupThumbnailGalleryLogic();
-        
         // Setup image magnifier
         setupImageMagnifier();
-        
       });
     } catch (error) {
-      console.error('Error setting up printhead image gallery:', error);
+      // Error handling for printhead image gallery setup
     }
   } else if (productType === 'printer' && product.additionalImages && product.additionalImages.length > 0) {
     // Handle printer products with additional images
@@ -538,7 +480,6 @@ function setupImageGallery(product) {
       const allImages = [
         { path: product.image, label: 'Main Product Image' }
       ];
-      
       // Add additional images with descriptive labels
       product.additionalImages.forEach((imagePath, index) => {
         let label = 'Additional Image';
@@ -551,11 +492,9 @@ function setupImageGallery(product) {
         }
         allImages.push({ path: imagePath, label: label });
       });
-      
       // Check which images actually exist
       let validImages = [];
       let loadPromises = [];
-      
       allImages.forEach((imageObj, index) => {
         const promise = new Promise((resolve) => {
           const img = new Image();
@@ -565,12 +504,10 @@ function setupImageGallery(product) {
         });
         loadPromises.push(promise);
       });
-      
       // Wait for all image checks to complete
       Promise.all(loadPromises).then((results) => {
         // Filter only existing images
         validImages = results.filter(img => img.exists);
-        
         let thumbnailsHTML = '';
         if (validImages.length === 0) {
           // Fallback to main product image only
@@ -591,17 +528,13 @@ function setupImageGallery(product) {
             // Set main image to first valid image
           document.querySelector('.js-product-image').src = validImages[0].path;
         }
-        
         thumbnailsContainer.innerHTML = thumbnailsHTML;
-        
         // Setup thumbnail gallery functionality
         setupThumbnailGalleryLogic();
-        
         // Setup image magnifier
         setupImageMagnifier();
-        
       });    } catch (error) {
-      console.error('Error setting up printer image gallery:', error);
+      // Error handling for printer image gallery setup
       // Fallback to main image only
       setupSingleImageGallery(product);
     }
@@ -613,15 +546,12 @@ function setupImageGallery(product) {
       const basePath = mainImagePath.substring(0, mainImagePath.lastIndexOf('/') + 1);
       const baseFileName = fileName.split('.img_')[0];
       const imagePaths = [];
-
       for (let i = 1; i <= 10; i++) {
         imagePaths.push(`${basePath}${baseFileName}.img_${i}.jpg`);
       }
-
       // Check which images actually exist before creating thumbnails
       let validImages = [];
       let loadPromises = [];
-
       // Create promises to check each image
       imagePaths.forEach((path, index) => {
         const promise = new Promise((resolve) => {
@@ -632,12 +562,10 @@ function setupImageGallery(product) {
         });
         loadPromises.push(promise);
       });
-
       // Wait for all image checks to complete
       Promise.all(loadPromises).then((results) => {
         // Filter only existing images
         validImages = results.filter(img => img.exists);
-
         let thumbnailsHTML = '';
         if (validImages.length === 0) {
           // If no thumbnail images exist, use the main product image
@@ -657,18 +585,14 @@ function setupImageGallery(product) {
           });          // Set main image to first valid image
           document.querySelector('.js-product-image').src = validImages[0].path;
         }
-
         thumbnailsContainer.innerHTML = thumbnailsHTML;
-
         // Setup thumbnail gallery functionality
         setupThumbnailGalleryLogic();
-
         // Setup image magnifier
         setupImageMagnifier();
-
       });
     } catch (error) {
-      console.error('Error setting up print spare part image gallery:', error);
+      // Error handling for print spare part image gallery setup
       // Fallback to main image only
       setupSingleImageGallery(product);
     }
@@ -681,13 +605,11 @@ function setupImageGallery(product) {
     }
   }
 }
-
 /**
  * Setup gallery for products with multiple images (like print spare parts)
  */
 function setupMultipleImageGallery(product) {
   const thumbnailsContainer = document.querySelector('.js-product-thumbnails');
-  
   let thumbnailsHTML = '';
   product.images.forEach((imagePath, index) => {
     thumbnailsHTML += `
@@ -696,18 +618,14 @@ function setupMultipleImageGallery(product) {
       </div>
     `;
   });
-  
   thumbnailsContainer.innerHTML = thumbnailsHTML;
     // Set main image to first image
   document.querySelector('.js-product-image').src = product.images[0];
-  
   // Setup thumbnail gallery functionality
   setupThumbnailGalleryLogic();
-  
   // Setup image magnifier
   setupImageMagnifier();
 }
-
 /**
  * Setup gallery for products with only a main image
  */
@@ -718,7 +636,6 @@ function setupSingleImageGallery(product) {
       <img src="${encodeImagePath(product.image)}" alt="${product.name} thumbnail" class="thumbnail-img">
     </div>
   `;
-  
   // Hide arrows for single image
   const leftArrow = document.querySelector('.js-thumbnail-arrow-left');
   const rightArrow = document.querySelector('.js-thumbnail-arrow-right');
@@ -729,56 +646,46 @@ function setupSingleImageGallery(product) {
   if (thumbnail) {
     thumbnail.addEventListener('click', () => {
       document.querySelector('.js-product-image').src = thumbnail.dataset.image;
-      
       // Reinitialize magnifier for the new image
       if (window.imageMagnifier) {
         setupImageMagnifier();
       }
     });
   }
-  
   // Setup image magnifier
   setupImageMagnifier();
 }
-
 /**
  * Setup gallery specifically for book products with enhanced book cover display
  */
 function setupBookImageGallery(product) {
   const thumbnailsContainer = document.querySelector('.js-product-thumbnails');
   const mainImageContainer = document.querySelector('.product-main-image-container');
-  
   // Add book-specific CSS class for styling
   mainImageContainer.classList.add('book-cover-container');
-  
   thumbnailsContainer.innerHTML = `
     <div class="thumbnail-item active book-thumbnail" data-image="${encodeImagePath(product.image)}" data-index="0">
       <img src="${encodeImagePath(product.image)}" alt="${product.name} book cover" class="thumbnail-img book-cover-thumbnail">
     </div>
   `;
-  
   // Hide arrows for single image
   const leftArrow = document.querySelector('.js-thumbnail-arrow-left');
   const rightArrow = document.querySelector('.js-thumbnail-arrow-right');
   if (leftArrow) leftArrow.style.display = 'none';
   if (rightArrow) rightArrow.style.display = 'none';
-  
   // Setup basic thumbnail click functionality
   const thumbnail = document.querySelector('.thumbnail-item');
   if (thumbnail) {
     thumbnail.addEventListener('click', () => {
       document.querySelector('.js-product-image').src = thumbnail.dataset.image;
-      
       // Reinitialize magnifier for the new image
       if (window.imageMagnifier) {
         setupImageMagnifier();
       }
     });
   }
-  
   // Setup image magnifier specifically for book covers
   setupImageMagnifier();
-  
   // Add book-specific image styling
   const productImage = document.querySelector('.js-product-image');
   if (productImage) {
@@ -786,7 +693,6 @@ function setupBookImageGallery(product) {
     productImage.alt = `${product.name} - Book Cover`;
   }
 }
-
 /**
  * Setup thumbnail gallery navigation logic (shared between printhead and printer galleries)
  */
@@ -795,7 +701,6 @@ function setupThumbnailGalleryLogic() {
   let startIndex = 0;
   const maxVisible = 5;
   const thumbnails = Array.from(document.querySelectorAll('.thumbnail-item'));
-  
   function updateVisibleThumbnails() {
     thumbnails.forEach((thumb, idx) => {
       if (idx >= startIndex && idx < startIndex + maxVisible) {
@@ -805,28 +710,23 @@ function setupThumbnailGalleryLogic() {
       }
     });
   }
-  
   // Only show arrows if we have more thumbnails than maxVisible
   const leftArrow = document.querySelector('.js-thumbnail-arrow-left');
   const rightArrow = document.querySelector('.js-thumbnail-arrow-right');
-  
   // Check if we're on mobile (integrated mobile functionality)
   const isMobile = window.innerWidth <= 768;
-  
   if (isMobile) {
     // On mobile, show arrows and setup touch scrolling
     leftArrow.style.display = 'flex';
     rightArrow.style.display = 'flex';
     // Show all thumbnails on mobile (scroll-based approach)
     thumbnails.forEach(thumb => thumb.style.display = '');
-    
     // Setup mobile-specific touch scrolling and arrow functionality
     setupMobileArrowScrolling(leftArrow, rightArrow, document.querySelector('.js-product-thumbnails'));
   } else {
     // Show arrows and setup scrolling (desktop - visibility-based approach)
     leftArrow.style.display = 'flex';
     rightArrow.style.display = 'flex';
-    
     // If we have 5 or fewer thumbnails, show all and disable arrow functionality
     if (thumbnails.length <= maxVisible) {
       // Show all thumbnails when we have 5 or fewer
@@ -838,15 +738,12 @@ function setupThumbnailGalleryLogic() {
       // Enable arrows and setup scrolling for more than 5 thumbnails
       leftArrow.disabled = false;
       rightArrow.disabled = false;
-      
       updateVisibleThumbnails();
-      
       function updateArrows() {
         leftArrow.disabled = startIndex === 0;
         rightArrow.disabled = startIndex + maxVisible >= thumbnails.length;
       }
       updateArrows();
-      
       leftArrow.addEventListener('click', () => {
         if (startIndex > 0) {
           startIndex--;
@@ -854,7 +751,6 @@ function setupThumbnailGalleryLogic() {
           updateArrows();
         }
       });
-      
       rightArrow.addEventListener('click', () => {
         if (startIndex + maxVisible < thumbnails.length) {
           startIndex++;
@@ -870,33 +766,26 @@ function setupThumbnailGalleryLogic() {
       document.querySelector('.js-product-image').src = thumbnail.dataset.image;
       thumbnails.forEach(t => t.classList.remove('active'));
       thumbnail.classList.add('active');
-      
       // Reinitialize magnifier for the new image
       if (window.imageMagnifier) {
         setupImageMagnifier();
       }
     });
   });
-
   // Mobile touch scrolling for thumbnails
   setupMobileTouchScrolling(document.querySelector('.js-product-thumbnails'));
-  
   // Mobile-friendly image sizing
   setupMobileImageSizing();
-  
   // Setup image magnifier
   setupImageMagnifier();
-  
   // Handle window resize to switch between mobile and desktop scrolling modes
   function handleResize() {
     const isMobileNow = window.innerWidth <= 768;
     const leftArrowResize = document.querySelector('.js-thumbnail-arrow-left');
     const rightArrowResize = document.querySelector('.js-thumbnail-arrow-right');
-    
     // Always show arrows regardless of thumbnail count
     leftArrowResize.style.display = 'flex';
     rightArrowResize.style.display = 'flex';
-    
     if (isMobileNow) {
       // Switch to mobile mode: show all thumbnails, enable mobile scrolling
       thumbnails.forEach(thumb => thumb.style.display = '');
@@ -910,11 +799,9 @@ function setupThumbnailGalleryLogic() {
       if (rightArrowResize._mobileHandler) {
         rightArrowResize.removeEventListener('click', rightArrowResize._mobileHandler, true);
       }
-      
       // Restore normal overflow for desktop visibility-based scrolling
       document.querySelector('.js-product-thumbnails').style.overflow = 'hidden';
       document.querySelector('.js-product-thumbnails').style.scrollBehavior = 'auto';
-      
       if (thumbnails.length <= maxVisible) {
         // Show all thumbnails and disable arrows when we have 5 or fewer
         thumbnails.forEach(thumb => thumb.style.display = '');
@@ -930,12 +817,10 @@ function setupThumbnailGalleryLogic() {
       }
     }
   }
-  
   // Listen for resize events
   window.addEventListener('resize', handleResize);
   window.addEventListener('orientationchange', handleResize);
 }
-
 /**
  * Load detailed information for printhead products
  */
@@ -948,10 +833,8 @@ async function loadPrintheadDetails(product) {
     const pathParts = imagePath.split('/');
     const brandFolder = pathParts[2]; // "Canon printhead"
     const modelFolder = pathParts[3]; // "Canon PF-03 Printhead"
-    
     // Construct path to MD file
     const mdFilePath = `products/printhead/${brandFolder}/${modelFolder}/${modelFolder}.md`;
-    
     // Fetch the markdown file content
     const response = await fetch(mdFilePath);
     if (!response.ok) {
@@ -959,26 +842,20 @@ async function loadPrintheadDetails(product) {
       setupFallbackPrintheadContent(product);
       return;
     }
-    
     const mdContent = await response.text();
-    
     // For printhead products, load the entire markdown content directly
     const parsedContent = parseMarkdown(mdContent);
-    
     // Update the product details tab content with the full markdown content
     document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
-    
     // Hide compatibility and specifications sections since we're loading everything from markdown
     document.querySelector('.product-compatibility-section').style.display = 'none';
     document.querySelector('.product-specifications-section').style.display = 'none';
-    
   } catch (error) {
-    console.error('Error loading printhead details:', error);
+    // Error handling for printhead details loading
     // Fallback to hardcoded content if there's an error
     setupFallbackPrintheadContent(product);
   }
 }
-
 /**
  * Load markdown content for printer products (similar to print heads)
  */
@@ -986,9 +863,7 @@ async function loadPrinterMarkdownContent(product) {
   try {
     const imagePath = product.image;
     const pathParts = imagePath.split('/');
-    
     let mdFilePath = '';
-    
     // Handle different path structures for printer products
     if (pathParts.length >= 6 && pathParts[1] === 'inkjetPrinter' && pathParts[2] === 'economic version') {
       // Economic version format: products/inkjetPrinter/economic version/Product Name/image/Product Name.jpg
@@ -998,10 +873,8 @@ async function loadPrinterMarkdownContent(product) {
       // Old format: products/inkjetPrinter/inkjet printer with/.../Product Name/Product Name.md
       const productFolder = pathParts[pathParts.length - 2]; // Folder containing the image
       const pathUpToProduct = pathParts.slice(0, -1).join('/'); // Path up to the product folder
-      
       // Try to find markdown file with same name as product folder
       mdFilePath = `${pathUpToProduct}/${productFolder}.md`;
-      
       // If image has a special suffix, try that for the MD file too
       const imageName = pathParts[pathParts.length - 1];
       const baseImageName = imageName.split('.')[0];
@@ -1012,70 +885,55 @@ async function loadPrinterMarkdownContent(product) {
       // Standard printer format: products/inkjetPrinter/category/Product Name/image/Product Name.jpg
       const productFolder = pathParts[3]; // Product folder is at index 3
       const category = pathParts[2]; // Category like 'solvent', 'double side', 'uv flatbed', etc.
-      
       // Construct path: products/inkjetPrinter/category/Product Name/Product Name.md
       mdFilePath = `products/inkjetPrinter/${category}/${productFolder}/${productFolder}.md`;
     } else {
       // Fallback to basic content if path doesn't match expected format
-      console.warn('Unknown printer product path structure:', imagePath);
       setupBasicPrinterContent(product);
       return;
     }
-    
     // Fetch the markdown file content
     const response = await fetch(mdFilePath);
     if (!response.ok) {
-      console.warn(`Markdown file not found: ${mdFilePath}`);
       // Fallback to basic content if markdown file is not found
       setupBasicPrinterContent(product);
       return;
     }
-    
     const mdContent = await response.text();
-    
     // Parse and display the markdown content
     const parsedContent = parseMarkdown(mdContent);
-    
     // Update the product details tab content with the full markdown content
     document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
-    
     // Hide compatibility and specifications sections since we're loading everything from markdown
     const compatibilitySection = document.querySelector('.product-compatibility-section');
     const specificationsSection = document.querySelector('.product-specifications-section');
-    
     if (compatibilitySection) compatibilitySection.style.display = 'none';
     if (specificationsSection) specificationsSection.style.display = 'none';
-    
   } catch (error) {
-    console.error('Error loading printer markdown content:', error);
+    // Error handling for printer markdown content loading
     // Fallback to basic content if there's an error
     setupBasicPrinterContent(product);
   }
 }
-
 /**
  * Set up the product information tabs
  */
 function setupProductTabs() {
   const tabHeaders = document.querySelectorAll('.tab-header');
   const tabPanels = document.querySelectorAll('.tab-panel');
-  
   tabHeaders.forEach(header => {
     header.addEventListener('click', () => {
       // Remove active class from all headers and panels
       tabHeaders.forEach(h => h.classList.remove('active'));
       tabPanels.forEach(p => p.classList.remove('active'));
-      
       // Add active class to clicked header
       header.classList.add('active');
-      
       // Add active class to corresponding panel
       const tabId = header.dataset.tab;
       document.getElementById(tabId).classList.add('active');
     });
   });
 }
-
 /**
  * Set up content for regular (non-printhead) products
  */
@@ -1084,31 +942,26 @@ async function setupRegularProductContent(product) {
     // Extract the path to the markdown file from the image path
     const imagePath = product.image;
     const pathParts = imagePath.split('/');
-    
     // Check if this is an inkjet printer product
     if (pathParts.length >= 5 && pathParts[2] === 'inkjetPrinter') {
       // This is a printer product, use the same logic as dedicated printer content loader
       await loadPrinterMarkdownContent(product);
       return;
     }
-    
     // For non-printer products, use the existing logic
     if (pathParts.length >= 6 && pathParts[3] === 'inkjet' && pathParts[4] === 'printer' && pathParts[5] === 'with') {
       // Handle old format: products/inkjetPrinter/inkjet printer with/...
       // Find the product folder (usually the second-to-last folder before the image file)
       const productFolder = pathParts[pathParts.length - 2]; // Folder containing the image
       const pathUpToProduct = pathParts.slice(0, -1).join('/'); // Path up to the product folder
-      
       // Try to find markdown file with same name as product folder
       let mdFilePath = `${pathUpToProduct}/${productFolder}.md`;
-      
       // If image has a special suffix like "(the economic version)", try that for the MD file too
       const imageName = pathParts[pathParts.length - 1];
       const baseImageName = imageName.split('.')[0];
       if (baseImageName !== productFolder) {
         mdFilePath = `${pathUpToProduct}/${baseImageName}.md`;
       }
-      
       // Fetch the markdown file content
       const response = await fetch(mdFilePath);
       if (!response.ok) {
@@ -1116,16 +969,12 @@ async function setupRegularProductContent(product) {
         setupFallbackRegularProductContent(product);
         return;
       }
-      
       const mdContent = await response.text();
-      
       // Update product description and content with the markdown content
       // For regular products, we'll use the entire markdown content as the main content
       const parsedContent = parseMarkdown(mdContent);
-      
       // Update the product details tab content with the full markdown content
       document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
-      
       // Hide compatibility and specifications sections since we're loading everything from markdown
       document.querySelector('.product-compatibility-section').style.display = 'none';
       document.querySelector('.product-specifications-section').style.display = 'none';
@@ -1133,14 +982,12 @@ async function setupRegularProductContent(product) {
       // If path doesn't match expected format, use fallback
       setupFallbackRegularProductContent(product);
     }
-    
   } catch (error) {
-    console.error('Error loading regular product details:', error);
+    // Error handling for regular product details loading
     // Fallback to hardcoded content if there's an error
     setupFallbackRegularProductContent(product);
   }
 }
-
 /**
  * Fallback function for regular product content when markdown loading fails
  */
@@ -1150,12 +997,10 @@ function setupFallbackRegularProductContent(product) {
     <h3>${product.name}</h3>
     <p>Product information is currently being updated. Please contact us for detailed specifications.</p>
   `;
-
   // Hide sections since we don't have structured data
   document.querySelector('.product-compatibility-section').style.display = 'none';
   document.querySelector('.product-specifications-section').style.display = 'none';
 }
-
 /**
  * Fallback function for printhead content when markdown loading fails
  */
@@ -1165,29 +1010,25 @@ function setupFallbackPrintheadContent(product) {
     <h3>${product.name}</h3>
     <p>High-quality printhead for industrial inkjet printing applications. Product information is currently being updated. Please contact us for detailed specifications and compatibility information.</p>
   `;
-
   // Hide sections since we don't have structured data
   document.querySelector('.product-compatibility-section').style.display = 'none';
   document.querySelector('.product-specifications-section').style.display = 'none';
 }
-
 /**
  * Set up content for printer products (now uses markdown loading like print heads)
  */
 async function setupPrinterProductContent(product) {
   // Set basic product description
   document.querySelector('.js-product-description').innerHTML = product.description || 'High-quality inkjet printer designed for professional printing applications.';
-  
   // Try to load markdown content for printer products
   try {
     await loadPrinterMarkdownContent(product);
   } catch (error) {
-    console.error('Error loading markdown content for printer:', error);
+    // Error handling for printer markdown content loading
     // Fallback to basic content if markdown loading fails
     setupBasicPrinterContent(product);
   }
 }
-
 /**
  * Fallback function for printer content when document loading fails
  */
@@ -1197,53 +1038,42 @@ function setupBasicPrinterContent(product) {
     <h3>${product.name}</h3>
     <p>Product specifications and detailed information are being updated. Please contact our support team for the latest details and technical specifications.</p>
   `;
-  
   // Hide sections that aren't relevant for basic printer display
   const compatibilitySection = document.querySelector('.product-compatibility-section');
   const specificationsSection = document.querySelector('.product-specifications-section');
-  
   if (compatibilitySection) compatibilitySection.style.display = 'none';
   if (specificationsSection) specificationsSection.style.display = 'none';
 }
-
 /**
  * Clean up formatting issues in upgrading kit markdown content
  */
 function cleanUpgradingKitMarkdown(mdContent) {
   if (!mdContent) return '';
-  
   let cleaned = mdContent;
-  
   // Remove HTML comments
   cleaned = cleaned.replace(/<!--[\s\S]*?-->/g, '');
-  
   // Split into lines for processing
   let lines = cleaned.split('\n');
   let processedLines = [];
   let currentSection = '';
-  
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i].trim();
-    
     // Skip empty lines at this stage
     if (!line) {
       processedLines.push('');
       continue;
     }
-    
     // Keep headers as-is
     if (line.startsWith('#')) {
       processedLines.push(line);
       continue;
     }
-    
     // Keep price lines as-is
     if (line.startsWith('Price:')) {
       processedLines.push(line);
       processedLines.push(''); // Add empty line after price
       continue;
     }
-    
     // Handle section headers (like "Product Details:", "Application:", etc.)
     if (line.endsWith(':') && !line.includes(' ')) {
       currentSection = line;
@@ -1256,26 +1086,21 @@ function cleanUpgradingKitMarkdown(mdContent) {
       processedLines.push(`### ${line}`);
       continue;
     }
-    
     // Handle broken lines - if current line seems incomplete, try to join with next non-empty line
     if (line.length > 0 && !line.endsWith('.') && !line.endsWith(',') && !line.endsWith(')') && !line.endsWith(':') && !line.match(/^(Photo|Below|Image|\d+\.)/)) {
       let nextLineIndex = i + 1;
       let combinedLine = line;
-      
       // Look ahead to combine broken lines
       while (nextLineIndex < lines.length) {
         let nextLine = lines[nextLineIndex].trim();
-        
         if (!nextLine) {
           nextLineIndex++;
           continue;
         }
-        
         // If next line starts with uppercase or looks like a new section, don't combine
         if (nextLine.startsWith('#') || nextLine.endsWith(':') || nextLine.startsWith('Price:')) {
           break;
         }
-        
         // If next line is very short (likely continuation), combine it
         if (nextLine.length <= 50 && !nextLine.match(/^(Photo \d+|Below Photo)/)) {
           combinedLine += ' ' + nextLine;
@@ -1285,34 +1110,27 @@ function cleanUpgradingKitMarkdown(mdContent) {
           break;
         }
       }
-      
       processedLines.push(combinedLine);
     } else {
       processedLines.push(line);
     }
   }
-  
   // Join lines back together
   cleaned = processedLines.join('\n');
   // Clean up multiple consecutive empty lines
   cleaned = cleaned.replace(/\n\n\n+/g, '\n\n');
-  
   // Remove empty photo references
   cleaned = cleaned.replace(/Photo \d+:\s*\n/g, '');
   cleaned = cleaned.replace(/photo \d+:\s*\n/g, '');
   cleaned = cleaned.replace(/Below Photo Referencia[^\n]*\n/g, '');
-  
   // Fix common formatting issues
   cleaned = cleaned.replace(/：/g, ':'); // Replace Chinese colon with regular colon
   cleaned = cleaned.replace(/，/g, ','); // Replace Chinese comma with regular comma
-  
   // Clean up spacing around punctuation
   cleaned = cleaned.replace(/\s+([,.;:])/g, '$1');
   cleaned = cleaned.replace(/([,.;:])\s+/g, '$1 ');
-  
   return cleaned;
 }
-
 /**
  * Set up content for upgrading kit products
  */
@@ -1325,48 +1143,36 @@ async function setupUpgradingKitContent(product) {
     const pathParts = imagePath.split('/');
     const brandFolder = pathParts[2]; // Brand folder
     const productFolder = pathParts[3]; // Product name folder
-    
     // Construct path to MD file
     const mdFilePath = `products/upgradingKit/${brandFolder}/${productFolder}/${productFolder}.md`;
       // Fetch the markdown file content
     const response = await fetch(mdFilePath);
     if (!response.ok) {
-      console.log(`Markdown file not found for ${product.name}: ${mdFilePath}`);
       // Fallback to hardcoded content if markdown file is not found
       setupFallbackUpgradingKitContent(product);
       return;
     }
-    
     const mdContent = await response.text();
-    
     // Clean up the markdown content to fix formatting issues
     const cleanedMdContent = cleanUpgradingKitMarkdown(mdContent);
-    
     if (cleanedMdContent && cleanedMdContent.trim()) {
       // Update product description and content with the cleaned markdown content
       // For upgrading kits, we'll use the entire markdown content as the main content
       const parsedContent = parseMarkdown(cleanedMdContent);
-      
       // Update the product details tab content with the full markdown content
       document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
-      
-      console.log(`Successfully loaded and cleaned markdown content for ${product.name}`);
     } else {
-      console.log(`Empty or invalid markdown content for ${product.name}, using fallback`);
       setupFallbackUpgradingKitContent(product);
     }
-    
     // Hide compatibility and specifications sections since upgrading kits typically don't have structured sections
     document.querySelector('.product-compatibility-section').style.display = 'none';
     document.querySelector('.product-specifications-section').style.display = 'none';
-    
   } catch (error) {
-    console.error('Error loading upgrading kit details:', error);
+    // Error handling for upgrading kit details loading
     // Fallback to hardcoded content if there's an error
     setupFallbackUpgradingKitContent(product);
   }
 }
-
 /**
  * Fallback function for upgrading kit content when markdown loading fails
  */
@@ -1374,12 +1180,10 @@ function setupFallbackUpgradingKitContent(product) {
   // Set more informative fallback content based on product name analysis
   const brandName = product.brand.charAt(0).toUpperCase() + product.brand.slice(1).replace(/_/g, ' ');
   const productName = product.name;
-  
   // Extract key information from product name
   let printerType = 'inkjet printer';
   let printHeadInfo = '';
   let styleInfo = '';
-  
   // Detect printer style
   if (productName.toLowerCase().includes('flatbed')) {
     printerType = 'flatbed printer';
@@ -1391,13 +1195,11 @@ function setupFallbackUpgradingKitContent(product) {
     printerType = 'UV printer';
     styleInfo = 'This kit is designed for UV printing applications.';
   }
-  
   // Extract printhead information
   if (productName.match(/(\d+)\s*(piece|pieces|head|heads)/i)) {
     const match = productName.match(/(\d+)\s*(piece|pieces|head|heads)/i);
     printHeadInfo = `This kit supports ${match[1]} printhead${match[1] > 1 ? 's' : ''}.`;
   }
-  
   // Extract printhead type
   let headType = '';
   if (productName.toLowerCase().includes('i3200')) {
@@ -1409,10 +1211,8 @@ function setupFallbackUpgradingKitContent(product) {
   } else if (productName.toLowerCase().includes('i1600')) {
     headType = 'I1600 printheads';
   }
-  
   document.querySelector('.js-product-details-content').innerHTML = `
     <h3>${productName}</h3>
-    
     <div class="product-info-section">
       <h4>Product Overview</h4>
       <p>This is a ${brandName} upgrading kit designed to upgrade your existing ${printerType} with modern components and improved performance.</p>
@@ -1420,7 +1220,6 @@ function setupFallbackUpgradingKitContent(product) {
       ${printHeadInfo ? `<p><strong>Configuration:</strong> ${printHeadInfo}</p>` : ''}
       ${styleInfo ? `<p><strong>Application:</strong> ${styleInfo}</p>` : ''}
     </div>
-    
     <div class="product-info-section">
       <h4>General Features</h4>
       <ul>
@@ -1430,7 +1229,6 @@ function setupFallbackUpgradingKitContent(product) {
         <li>Professional installation recommended</li>
       </ul>
     </div>
-    
     <div class="product-info-section">
       <h4>Typical Applications</h4>
       <ul>
@@ -1440,18 +1238,15 @@ function setupFallbackUpgradingKitContent(product) {
         <li>Extending printer lifespan</li>
       </ul>
     </div>
-    
     <div class="contact-info">
       <p><strong>Need More Information?</strong></p>
       <p>For detailed specifications, compatibility information, and installation support, please contact our technical team.</p>
     </div>
   `;
-  
   // Hide sections since we don't have detailed structured data
   document.querySelector('.product-compatibility-section').style.display = 'none';
   document.querySelector('.product-specifications-section').style.display = 'none';
 }
-
 /**
  * Set up content for print spare parts products
  */
@@ -1464,10 +1259,8 @@ async function setupPrintSparePartContent(product) {
     const pathParts = imagePath.split('/');
     const brandFolder = pathParts[2]; // Brand folder
     const productFolder = pathParts[3]; // Product name folder
-    
     // Construct path to MD file
     const mdFilePath = `products/printSparePart/${brandFolder}/${productFolder}/${productFolder}.md`;
-    
     // Fetch the markdown file content
     const response = await fetch(mdFilePath);
     if (!response.ok) {
@@ -1475,43 +1268,33 @@ async function setupPrintSparePartContent(product) {
       setupFallbackPrintSparePartContent(product);
       return;
     }
-    
     const mdContent = await response.text();
-    
     // Update product description and content with the markdown content
     // For spare parts, we'll use the entire markdown content as the main content
     const parsedContent = parseMarkdown(mdContent);
-    
     // Update the product details tab content with the full markdown content
     document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
-    
     // Hide compatibility and specifications sections since spare parts typically don't have structured sections
     document.querySelector('.product-compatibility-section').style.display = 'none';
     document.querySelector('.product-specifications-section').style.display = 'none';
-    
   } catch (error) {
-    console.error('Error loading print spare part details:', error);
     // Fallback to hardcoded content if there's an error
     setupFallbackPrintSparePartContent(product);
   }
 }
-
 /**
  * Fallback function for print spare part content when markdown loading fails
  */
 function setupFallbackPrintSparePartContent(product) {
   // Set minimal fallback content
   const brandName = product.brand.charAt(0).toUpperCase() + product.brand.slice(1);
-  
   document.querySelector('.js-product-details-content').innerHTML = `
     <h3>${product.name}</h3>
     <p>${brandName} printer spare part. Product information is currently being updated. Please contact us for detailed specifications.</p>
   `;
-  
   // Hide sections since we don't have detailed data
   document.querySelector('.product-compatibility-section').style.display = 'none';  document.querySelector('.product-specifications-section').style.display = 'none';
 }
-
 /**
  * Set up content for material products
  */
@@ -1524,67 +1307,50 @@ async function setupMaterialProductContent(product) {
     const pathParts = imagePath.split('/');
     const categoryFolder = pathParts[2]; // Category folder
     const productFolder = pathParts[3]; // Product name folder
-    
     // Construct path to MD file
     const mdFilePath = `products/material/${categoryFolder}/${productFolder}/${productFolder}.md`;
-    
     // Fetch the markdown file content
     const response = await fetch(mdFilePath);
     if (!response.ok) {
-      console.log(`Markdown file not found for ${product.name}: ${mdFilePath}`);
       // Fallback to hardcoded content if markdown file is not found
       setupFallbackMaterialContent(product);
       return;
     }
-    
     const mdContent = await response.text();
-    
     // Update product description and content with the markdown content
     // For materials, we'll use the entire markdown content as the main content
     const parsedContent = parseMarkdown(mdContent);
-    
     // Update the product details tab content with the full markdown content
     document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
-    
-    console.log(`Successfully loaded markdown content for ${product.name}`);
-    
     // Hide compatibility and specifications sections since materials typically don't have structured sections
     document.querySelector('.product-compatibility-section').style.display = 'none';
     document.querySelector('.product-specifications-section').style.display = 'none';
-    
   } catch (error) {
-    console.error('Error loading material details:', error);
     // Fallback to hardcoded content if there's an error
     setupFallbackMaterialContent(product);
   }
 }
-
 /**
  * Fallback function for material content when markdown loading fails
  */
 function setupFallbackMaterialContent(product) {
   // Set minimal fallback content
   const categoryName = product.category.charAt(0).toUpperCase() + product.category.slice(1);
-  
   document.querySelector('.js-product-details-content').innerHTML = `
     <h3>${product.name}</h3>
     <p>${categoryName} material for printing applications. Product information is currently being updated. Please contact us for detailed specifications.</p>
     <div class="product-specifications">
       <h4>Product Category</h4>
       <p>${categoryName}</p>
-      
       <h4>Applications</h4>
       <p>Suitable for various printing and signage applications.</p>
-      
       <p><strong>Need More Information?</strong></p>
       <p>For detailed specifications, compatibility information, and application guidelines, please contact our technical team.</p>
     </div>
   `;
-  
   // Hide sections since we don't have detailed data
   document.querySelector('.product-compatibility-section').style.display = 'none';  document.querySelector('.product-specifications-section').style.display = 'none';
 }
-
 /**
  * Set up content for LED & LCD products
  */
@@ -1597,68 +1363,51 @@ async function setupLedLcdProductContent(product) {
     const pathParts = imagePath.split('/');
     const categoryFolder = pathParts[2]; // Category folder
     const productFolder = pathParts[3]; // Product name folder
-    
     // Construct path to MD file
     const mdFilePath = `products/ledAndLcd/${categoryFolder}/${productFolder}/${productFolder}.md`;
-    
     // Fetch the markdown file content
     const response = await fetch(mdFilePath);
     if (!response.ok) {
-      console.log(`Markdown file not found for ${product.name}: ${mdFilePath}`);
       // Fallback to hardcoded content if markdown file is not found
       setupFallbackLedLcdContent(product);
       return;
     }
-    
     const mdContent = await response.text();
-    
     // Update product description and content with the markdown content
     // For LED & LCD, we'll use the entire markdown content as the main content
     const parsedContent = parseMarkdown(mdContent);
-    
     // Update the product details tab content with the full markdown content
     document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
-    
-    console.log(`Successfully loaded markdown content for ${product.name}`);
-    
     // Hide compatibility and specifications sections since LED & LCD typically don't have structured sections
     document.querySelector('.product-compatibility-section').style.display = 'none';
     document.querySelector('.product-specifications-section').style.display = 'none';
-    
   } catch (error) {
-    console.error('Error loading LED & LCD details:', error);
     // Fallback to hardcoded content if there's an error
     setupFallbackLedLcdContent(product);
   }
 }
-
 /**
  * Fallback function for LED & LCD content when markdown loading fails
  */
 function setupFallbackLedLcdContent(product) {
   // Set minimal fallback content
   const categoryName = product.category.charAt(0).toUpperCase() + product.category.slice(1);
-  
   document.querySelector('.js-product-details-content').innerHTML = `
     <h3>${product.name}</h3>
     <p>${categoryName} LED & LCD display for professional applications. Product information is currently being updated. Please contact us for detailed specifications.</p>
     <div class="product-specifications">
       <h4>Product Category</h4>
       <p>${categoryName} LED & LCD</p>
-      
       <h4>Applications</h4>
       <p>Suitable for various display and signage applications.</p>
-      
       <p><strong>Need More Information?</strong></p>
       <p>For detailed specifications, compatibility information, and application guidelines, please contact our technical team.</p>
     </div>
   `;
-  
   // Hide sections since we don't have detailed data
   document.querySelector('.product-compatibility-section').style.display = 'none';
   document.querySelector('.product-specifications-section').style.display = 'none';
 }
-
 /**
  * Set up content for Channel Letter Bending Machine products
  */
@@ -1671,68 +1420,51 @@ async function setupChannelLetterProductContent(product) {
     const pathParts = imagePath.split('/');
     const categoryFolder = pathParts[2]; // Category folder
     const productFolder = pathParts[3]; // Product name folder
-    
     // Construct path to MD file
     const mdFilePath = `products/channelLetterBendingMechine/${categoryFolder}/${productFolder}/${productFolder}.md`;
-    
     // Fetch the markdown file content
     const response = await fetch(mdFilePath);
     if (!response.ok) {
-      console.log(`Markdown file not found for ${product.name}: ${mdFilePath}`);
       // Fallback to hardcoded content if markdown file is not found
       setupFallbackChannelLetterContent(product);
       return;
     }
-    
     const mdContent = await response.text();
-    
     // Update product description and content with the markdown content
     // For Channel Letter, we'll use the entire markdown content as the main content
     const parsedContent = parseMarkdown(mdContent);
-    
     // Update the product details tab content with the full markdown content
     document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
-    
-    console.log(`Successfully loaded markdown content for ${product.name}`);
-    
     // Hide compatibility and specifications sections since Channel Letter typically don't have structured sections
     document.querySelector('.product-compatibility-section').style.display = 'none';
     document.querySelector('.product-specifications-section').style.display = 'none';
-    
   } catch (error) {
-    console.error('Error loading Channel Letter details:', error);
     // Fallback to hardcoded content if there's an error
     setupFallbackChannelLetterContent(product);
   }
 }
-
 /**
  * Fallback function for Channel Letter content when markdown loading fails
  */
 function setupFallbackChannelLetterContent(product) {
   // Set minimal fallback content
   const categoryName = product.category.charAt(0).toUpperCase() + product.category.slice(1);
-  
   document.querySelector('.js-product-details-content').innerHTML = `
     <h3>${product.name}</h3>
     <p>${categoryName} Channel Letter Bending Machine for professional signage manufacturing. Product information is currently being updated. Please contact us for detailed specifications.</p>
     <div class="product-specifications">
       <h4>Product Category</h4>
       <p>${categoryName} Channel Letter Bending Machine</p>
-      
       <h4>Applications</h4>
       <p>Suitable for various channel letter and signage manufacturing applications.</p>
-      
       <p><strong>Need More Information?</strong></p>
       <p>For detailed specifications, compatibility information, and application guidelines, please contact our technical team.</p>
     </div>
   `;
-  
   // Hide sections since we don't have detailed data
   document.querySelector('.product-compatibility-section').style.display = 'none';
   document.querySelector('.product-specifications-section').style.display = 'none';
 }
-
 /**
  * Set up content for Other products
  */
@@ -1745,128 +1477,87 @@ async function setupOtherProductContent(product) {
     const pathParts = imagePath.split('/');
     const categoryFolder = pathParts[2]; // Category folder
     const productFolder = pathParts[3]; // Product name folder
-    
     // Construct path to MD file
     const mdFilePath = `products/other/${categoryFolder}/${productFolder}/${productFolder}.md`;
-    
     // Fetch the markdown file content
     const response = await fetch(mdFilePath);
     if (!response.ok) {
-      console.log(`Markdown file not found for ${product.name}: ${mdFilePath}`);
       // Fallback to hardcoded content if markdown file is not found
       setupFallbackOtherContent(product);
       return;
     }
-    
     const mdContent = await response.text();
-    
     // Update product description and content with the markdown content
     // For Other products, we'll use the entire markdown content as the main content
     const parsedContent = parseMarkdown(mdContent);
-    
     // Update the product details tab content with the full markdown content
     document.querySelector('.js-product-details-content').innerHTML = parsedContent || '';
-    
-    console.log(`Successfully loaded markdown content for ${product.name}`);
-    
     // Hide compatibility and specifications sections since Other products typically don't have structured sections
     document.querySelector('.product-compatibility-section').style.display = 'none';
     document.querySelector('.product-specifications-section').style.display = 'none';
-    
   } catch (error) {
-    console.error('Error loading Other product details:', error);
     // Fallback to hardcoded content if there's an error
     setupFallbackOtherContent(product);
   }
 }
-
 /**
  * Fallback function for Other product content when markdown loading fails
  */
 function setupFallbackOtherContent(product) {
   // Set minimal fallback content
   const categoryName = product.category.charAt(0).toUpperCase() + product.category.slice(1);
-  
   document.querySelector('.js-product-details-content').innerHTML = `
     <h3>${product.name}</h3>
     <p>${categoryName} product for professional applications. Product information is currently being updated. Please contact us for detailed specifications.</p>
     <div class="product-specifications">
       <h4>Product Category</h4>
       <p>${categoryName}</p>
-      
       <h4>Applications</h4>
       <p>Suitable for various professional applications.</p>
-      
       <p><strong>Need More Information?</strong></p>
       <p>For detailed specifications, compatibility information, and application guidelines, please contact our technical team.</p>
     </div>
   `;
-  
   // Hide sections since we don't have detailed data
   document.querySelector('.product-compatibility-section').style.display = 'none';
   document.querySelector('.product-specifications-section').style.display = 'none';
 }
-
 async function setupBookProductContent(product) {
-  console.log('Setting up book product content for:', product.name);
   try {
     // Extract the path to the markdown file from the image path
     const imagePath = product.image;
-    console.log('Image path:', imagePath);
-    
     // Get the category folder and product folder from the image path
     // Format: products/books/Category/Product Name/image/...
     const pathParts = imagePath.split('/');
     const categoryFolder = pathParts[2]; // Category folder
     const productFolder = pathParts[3]; // Product name folder
-    
-    console.log('Category folder:', categoryFolder);
-    console.log('Product folder:', productFolder);
-    
     // Construct path to MD file - encode folder name for file system compatibility
     const encodedProductFolder = encodeURIComponent(productFolder);
     const mdFilePath = `products/books/${categoryFolder}/${encodedProductFolder}/${encodedProductFolder}.md`;
-    console.log('Markdown file path:', mdFilePath);
-    
     // Try to fetch the markdown file content
     let response = await fetch(mdFilePath);
-    
     // If that fails, try with the original folder name
     if (!response.ok) {
-      console.log('Encoded path failed, trying original folder name...');
       const originalMdFilePath = `products/books/${categoryFolder}/${productFolder}/${productFolder}.md`;
-      console.log('Trying original path:', originalMdFilePath);
       response = await fetch(originalMdFilePath);
     }
-    
     if (!response.ok) {
-      console.log(`Markdown file not found for ${product.name}: ${mdFilePath}`);
       // Fallback to hardcoded content if markdown file is not found
       setupFallbackBookContent(product);
       return;
     }
-    
     const mdContent = await response.text();
-    console.log('Markdown content loaded, length:', mdContent.length);
-    
     // Parse book details from markdown content
     const bookDetails = parseBookMarkdownContent(mdContent, product, categoryFolder);
-    console.log('Parsed book details:', bookDetails);
-    
     // Update the product details tab content with enhanced book display
     setupEnhancedBookDisplay(bookDetails, product);
-    console.log('Enhanced book display setup complete');
-    
     // Hide sections since books don't need detailed specs/compatibility
     document.querySelector('.product-compatibility-section').style.display = 'none';
     document.querySelector('.product-specifications-section').style.display = 'none';
-    
   } catch (error) {
-    console.error('Error loading book markdown content:', error);
     setupFallbackBookContent(product);
   }
 }
-
 function parseBookMarkdownContent(mdContent, product, categoryFolder) {
   const lines = mdContent.split('\n');
   const bookDetails = {
@@ -1880,13 +1571,10 @@ function parseBookMarkdownContent(mdContent, product, categoryFolder) {
     description: '',
     fullContent: mdContent
   };
-  
   let descriptionStarted = false;
   let description = [];
-  
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
-    
     if (line.startsWith('Price:')) {
       bookDetails.price = line.replace('Price:', '').trim();
     } else if (line.startsWith('UPC:')) {
@@ -1904,29 +1592,24 @@ function parseBookMarkdownContent(mdContent, product, categoryFolder) {
       description.push(line);
     }
   }
-  
   bookDetails.description = description.join(' ').trim();
   return bookDetails;
 }
-
 function setupEnhancedBookDisplay(bookDetails, product) {
   // Hide the standard product description section for books to avoid duplication
   const standardDescriptionElement = document.querySelector('.js-product-description');
   if (standardDescriptionElement) {
     standardDescriptionElement.style.display = 'none';
   }
-  
   // Hide other standard sections that might create duplicates
   const compatibilitySection = document.querySelector('.product-compatibility-section');
   if (compatibilitySection) {
     compatibilitySection.style.display = 'none';
   }
-  
   const specificationsSection = document.querySelector('.product-specifications-section');
   if (specificationsSection) {
     specificationsSection.style.display = 'none';
   }
-  
   const enhancedBookHTML = `
     <div class="book-detail-container">
       <div class="book-additional-info">
@@ -1936,13 +1619,9 @@ function setupEnhancedBookDisplay(bookDetails, product) {
       </div>
     </div>
   `;
-  
   document.querySelector('.js-product-details-content').innerHTML = enhancedBookHTML;
 }
-
 function setupFallbackBookContent(product) {
-  console.log('Setting up fallback book content for:', product.name);
-  
   // Create simple fallback book display
   const enhancedBookHTML = `
     <div class="book-detail-container">
@@ -1953,21 +1632,17 @@ function setupFallbackBookContent(product) {
       </div>
     </div>
   `;
-  
   document.querySelector('.js-product-details-content').innerHTML = enhancedBookHTML;
-  
   // Hide sections since books don't need detailed specs/compatibility
   const compatibilitySection = document.querySelector('.product-compatibility-section');
   if (compatibilitySection) {
     compatibilitySection.style.display = 'none';
   }
-  
   const specificationsSection = document.querySelector('.product-specifications-section');
   if (specificationsSection) {
     specificationsSection.style.display = 'none';
   }
 }
-
 // Expose product data globally for search system
 window.inkjetPrinterProducts = inkjetPrinterProducts;
 window.printheadProducts = printheadProducts;
@@ -1978,55 +1653,44 @@ window.ledAndLcdProducts = ledAndLcdProducts;
 window.channelLetterBendingMechineProducts = channelLetterBendingMechineProducts;
 window.otherProducts = otherProducts;
 window.booksProducts = booksProducts;
-
 // Add to cart functionality - Temporarily commented out
 // All cart functionality is preserved for future reuse
 /*
 document.querySelector('.js-add-to-cart')
   .addEventListener('click', () => {
     if (!productId) return;
-
     const quantitySelect = document.querySelector('.js-quantity-selector');
     const quantity = Number(quantitySelect.value);
-
     addToCart(productId, quantity);
     updateCartQuantity();
-
     // Show the "Added" message
     const addedMessage = document.querySelector('.js-added-message');
     addedMessage.style.opacity = '1';
-
     // Hide the message after 2 seconds
     setTimeout(() => {
       addedMessage.style.opacity = '0';
     }, 2000);  });
 */
-
 /**
  * Setup mobile touch scrolling for thumbnail gallery
  */
 function setupMobileTouchScrolling(thumbnailsContainer) {
   if (!thumbnailsContainer) return;
-  
   let touchStartX = 0;
   let touchEndX = 0;
-  
   thumbnailsContainer.addEventListener('touchstart', function(e) {
     touchStartX = e.changedTouches[0].screenX;
   }, { passive: true });
-  
   thumbnailsContainer.addEventListener('touchend', function(e) {
     touchEndX = e.changedTouches[0].screenX;
     handleSwipe();
   }, { passive: true });
-  
   function handleSwipe() {
     const touchDiff = touchStartX - touchEndX;
     // Scroll the container by the swipe distance
     thumbnailsContainer.scrollLeft += touchDiff;
   }
 }
-
 /**
  * Setup mobile-friendly image sizing
  */
@@ -2034,7 +1698,6 @@ function setupMobileImageSizing() {
   function adjustImageHeight() {
     const imageContainer = document.querySelector('.product-main-image-container');
     const image = document.querySelector('.product-image');
-    
     if (imageContainer && image) {
       // For mobile phones in portrait mode
       if (window.innerWidth < 600 && window.innerHeight > window.innerWidth) {
@@ -2050,25 +1713,20 @@ function setupMobileImageSizing() {
       }
     }
   }
-  
   // Call once on load and on resize
   adjustImageHeight();
   window.addEventListener('resize', adjustImageHeight);
   window.addEventListener('orientationchange', adjustImageHeight);
 }
-
 /**
  * Setup mobile arrow scrolling for thumbnail navigation
  */
 function setupMobileArrowScrolling(leftArrow, rightArrow, thumbnailsContainer) {
   if (!leftArrow || !rightArrow || !thumbnailsContainer) return;
-  
   const scrollAmount = 90; // Approximate width of thumbnail + margin
-  
   // Remove existing mobile handlers to avoid duplicates
   leftArrow.removeEventListener('click', leftArrow._mobileHandler, true);
   rightArrow.removeEventListener('click', rightArrow._mobileHandler, true);
-  
   // Create new mobile handlers
   leftArrow._mobileHandler = function(e) {
     if (window.innerWidth <= 768) {
@@ -2077,7 +1735,6 @@ function setupMobileArrowScrolling(leftArrow, rightArrow, thumbnailsContainer) {
       thumbnailsContainer.scrollLeft -= scrollAmount;
     }
   };
-  
   rightArrow._mobileHandler = function(e) {
     if (window.innerWidth <= 768) {
       e.preventDefault();
@@ -2085,16 +1742,13 @@ function setupMobileArrowScrolling(leftArrow, rightArrow, thumbnailsContainer) {
       thumbnailsContainer.scrollLeft += scrollAmount;
     }
   };
-  
   // Add mobile handlers with high priority (capture phase)
   leftArrow.addEventListener('click', leftArrow._mobileHandler, true);
   rightArrow.addEventListener('click', rightArrow._mobileHandler, true);
-  
   // Setup mobile scroll behavior
   thumbnailsContainer.style.overflow = 'hidden auto';
   thumbnailsContainer.style.scrollBehavior = 'smooth';
 }
-
 // Function to extract and display document content directly for all printer products
 function updateBreadcrumbDetail(product, productType, productBrand) {
   let breadcrumbElement = document.querySelector('.breadcrumb-nav');
@@ -2124,7 +1778,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       // Check for printhead type in DTF printers
       let printheadType = '';
       let printheadLink = '';
-      
       if (product.name.toLowerCase().includes('i3200')) {
         printheadType = 'With I3200 Printhead';
         printheadLink = 'index.html#dtf-i3200-printers';
@@ -2135,7 +1788,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
         printheadType = 'With XP600 Printhead';
         printheadLink = 'index.html#dtf-xp600-printers';
       }
-      
       if (printheadType) {
         // 6-level breadcrumb with printhead specification
         breadcrumbElement.innerHTML = `
@@ -2169,7 +1821,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       // Check for printhead type in UV DTF printers
       let printheadType = '';
       let printheadLink = '';
-      
       if (product.name.toLowerCase().includes('i3200')) {
         printheadType = 'With I3200 Printhead';
         printheadLink = 'index.html#uv-dtf-i3200-printers';
@@ -2180,7 +1831,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
         printheadType = 'With XP600 Printhead';
         printheadLink = 'index.html#uv-dtf-xp600-printers';
       }
-      
       if (printheadType) {
         // 6-level breadcrumb with printhead specification
         breadcrumbElement.innerHTML = `
@@ -2215,7 +1865,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       let printheadType = '';
       let printheadLink = '';
       let sublimationCategory = 'Sublimation Printers';
-      
       if (product.name.toLowerCase().includes('i3200')) {
         printheadType = 'With I3200 Printhead';
         printheadLink = 'index.html#sublimation-i3200-printers';
@@ -2226,7 +1875,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
         printheadType = 'With XP600 Printhead';
         printheadLink = 'index.html#sublimation-xp600-printers';
       }
-      
       if (printheadType) {
         // 5-level breadcrumb with printhead specification
         breadcrumbElement.innerHTML = `
@@ -2256,7 +1904,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       // Determine specific printhead type for breadcrumb
       let printheadLink = 'index.html#solvent-inkjet-printers';
       let printheadText = 'Solvent Inkjet Printers';
-      
       if (product.name.toLowerCase().includes('512i') || product.name.toLowerCase().includes('km512i')) {
         printheadLink = 'index.html#solvent-km512i-printers';
         printheadText = 'With Konica KM512i Printhead';
@@ -2270,7 +1917,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
         printheadLink = 'index.html#solvent-ricoh-gen6-printers';
         printheadText = 'With Ricoh Gen6 Printhead';
       }
-      
       if (printheadText === 'Solvent Inkjet Printers') {
         breadcrumbElement.innerHTML = `
           <a href="index.html" class="breadcrumb-link">Home</a>
@@ -2519,7 +2165,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       // Check the printhead type from the product name to show correct breadcrumb
       let printheadType = '';
       let printheadLink = '';
-      
       if (product.name.toLowerCase().includes('xp600')) {
         printheadType = 'With XP600 Printhead';
         printheadLink = 'index.html#eco-solvent-xp600-printers';
@@ -2534,7 +2179,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
         printheadType = 'Economic Version Printers';
         printheadLink = 'index.html#economic-version-printers';
       }
-      
       if (printheadType === 'Economic Version Printers') {
         breadcrumbElement.innerHTML = `
           <a href="index.html" class="breadcrumb-link">Home</a>
@@ -2723,7 +2367,6 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       'womens_fiction': 'Women\'s Fiction',
       'young_adult': 'Young Adult'
     };
-
     // Define parent-child relationships for breadcrumb navigation
     const categoryHierarchy = {
       // Second-level categories under Fiction
@@ -2743,49 +2386,39 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       'suspense': 'Fiction',
       'thriller': 'Fiction',
       'womens_fiction': 'Fiction',
-      
       // Second-level categories under Children & Young Adult
       'childrens': 'Children & Young Adult',
       'young_adult': 'Children & Young Adult',
       'new_adult': 'Children & Young Adult',
-      
       // Second-level categories under Academic & Educational
       'academic': 'Academic & Educational',
-      
       // Second-level categories under Arts & Culture
       'art': 'Arts & Culture',
       'sequential_art': 'Arts & Culture',
       'music': 'Arts & Culture',
       'cultural': 'Arts & Culture',
-      
       // Second-level categories under Health & Self-Help
       'health': 'Health & Self-Help',
       'self_help': 'Health & Self-Help',
       'psychology': 'Health & Self-Help',
-      
       // Second-level categories under Religion & Spirituality
       'religion': 'Religion & Spirituality',
       'christian': 'Religion & Spirituality',
       'christian_fiction': 'Religion & Spirituality',
       'spirituality': 'Religion & Spirituality',
       'philosophy': 'Religion & Spirituality',
-      
       // Second-level categories under Business & Politics
       'business': 'Business & Politics',
       'politics': 'Business & Politics',
-      
       // Second-level categories under Science & Technology
       'science': 'Science & Technology',
-      
       // Second-level categories under Biography & History
       'biography': 'Biography & History',
       'autobiography': 'Biography & History',
       'history': 'Biography & History',
       'historical': 'Biography & History',
-      
       // Second-level categories under Poetry & Literature
       'poetry': 'Poetry & Literature',
-      
       // Second-level categories under Specialty Genres
       'humor': 'Specialty Genres',
       'sports_and_games': 'Specialty Genres',
@@ -2795,11 +2428,9 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       'default': 'Specialty Genres',
       'add_a_comment': 'Specialty Genres'
     };
-
     const currentCategory = product.category;
     const displayName = categoryDisplayMap[currentCategory] || currentCategory;
     const parentCategory = categoryHierarchy[currentCategory];
-
     if (parentCategory) {
       // Second-level category - show Home > Parent > Current
       breadcrumbElement.innerHTML = `
@@ -2836,63 +2467,50 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
     breadcrumbElement.innerHTML = html;
   }
 }
-
 /**
  * Setup image magnifier functionality for the main product image
  */
 function setupImageMagnifier() {
   const productImage = document.querySelector('.js-product-image');
   const imageContainer = document.querySelector('.product-main-image-container');
-  
   if (!productImage || !imageContainer) return;
-  
   // Remove existing magnifier elements
   cleanupMagnifier();
-  
   // Create magnifier container wrapper
   const magnifierContainer = document.createElement('div');
   magnifierContainer.className = 'image-magnifier-container';
-  
   // Wrap the image with the magnifier container
   productImage.parentNode.insertBefore(magnifierContainer, productImage);
   magnifierContainer.appendChild(productImage);
-  
   // Create lens element
   const lens = document.createElement('div');
   lens.className = 'magnifier-lens';
   magnifierContainer.appendChild(lens);
-  
   // Create result element (magnified view)
   const result = document.createElement('div');
   result.className = 'magnifier-result';
   document.body.appendChild(result);
-  
   // Setup hover-activated magnifier functionality
   magnifierContainer.addEventListener('mouseenter', () => {
     magnifierContainer.classList.add('magnifying');
   });
-  
   magnifierContainer.addEventListener('mouseleave', () => {
     magnifierContainer.classList.remove('magnifying');
     lens.style.display = 'none';
     result.style.display = 'none';
   });
-  
   magnifierContainer.addEventListener('mousemove', (e) => {
     const rect = productImage.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
     // Check if mouse is within image bounds
     if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
       lens.style.display = 'none';
       result.style.display = 'none';
       return;
     }
-    
     showMagnifiedView(x, y, rect);
   });
-  
   // Mobile touch support
   magnifierContainer.addEventListener('touchmove', (e) => {
     e.preventDefault();
@@ -2900,62 +2518,50 @@ function setupImageMagnifier() {
     const rect = productImage.getBoundingClientRect();
     const x = touch.clientX - rect.left;
     const y = touch.clientY - rect.top;
-    
     // Check if touch is within image bounds
     if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
       lens.style.display = 'none';
       result.style.display = 'none';
       return;
     }
-    
     showMagnifiedView(x, y, rect);
   });
-    
   magnifierContainer.addEventListener('touchend', () => {
     lens.style.display = 'none';
     result.style.display = 'none';
   });
-    
   function showMagnifiedView(x, y, imageRect) {
     // Calculate lens dimensions based on screen size - make larger for better visibility
     const isMobile = window.innerWidth <= 768;
     const lensWidth = isMobile ? 120 : 150;  // Larger rectangular lens
     const lensHeight = isMobile ? 120 : 150;
     const resultSize = isMobile ? 280 : 400;  // Much larger result window
-    
     // Position lens with boundary checking
     let lensX = x - lensWidth / 2;
     let lensY = y - lensHeight / 2;
-    
     // Keep lens within image bounds
     lensX = Math.max(0, Math.min(lensX, imageRect.width - lensWidth));
     lensY = Math.max(0, Math.min(lensY, imageRect.height - lensHeight));
-    
     lens.style.width = lensWidth + 'px';
     lens.style.height = lensHeight + 'px';
     lens.style.left = lensX + 'px';
     lens.style.top = lensY + 'px';
     lens.style.display = 'block';
-    
     // Position and size result window
     result.style.width = resultSize + 'px';
     result.style.height = resultSize + 'px';
-    
     // Position result window based on cursor/touch position
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     let resultX, resultY;
-    
     if (isMobile) {
       // Smart positioning for mobile - avoid covering the original image
       resultX = viewportWidth - resultSize - 15;
-      
       // Determine if we should place magnifier at top or bottom based on image position
       const imageTop = imageRect.top;
       const imageBottom = imageRect.bottom;
       const imageCenterY = imageTop + (imageRect.height / 2);
       const viewportCenter = viewportHeight / 2;
-      
       if (imageCenterY < viewportCenter) {
         // Image is in upper half - place magnifier at bottom
         resultY = viewportHeight - resultSize - 15;
@@ -2963,13 +2569,11 @@ function setupImageMagnifier() {
         // Image is in lower half - place magnifier at top
         resultY = 15; // Small margin from top
       }
-      
       // Ensure the magnifier doesn't overlap with the image vertically
       if (resultY < imageBottom && resultY + resultSize > imageTop) {
         // If there's overlap, prefer bottom placement if there's more space
         const spaceAbove = imageTop;
         const spaceBelow = viewportHeight - imageBottom;
-        
         if (spaceBelow >= resultSize + 30) {
           resultY = imageBottom + 15; // Place below image
         } else if (spaceAbove >= resultSize + 30) {
@@ -2985,7 +2589,6 @@ function setupImageMagnifier() {
       const imageLeftEdge = imageRect.left;
       const availableSpaceRight = viewportWidth - imageRightEdge;
       const availableSpaceLeft = imageLeftEdge;
-      
       if (availableSpaceRight >= resultSize + 20) {
         // Position to the right of the image
         resultX = imageRightEdge + 15;
@@ -2998,7 +2601,6 @@ function setupImageMagnifier() {
         // Not enough horizontal space, try vertical positioning
         const spaceAbove = imageRect.top;
         const spaceBelow = viewportHeight - imageRect.bottom;
-        
         if (spaceBelow >= resultSize + 20) {
           // Position below the image
           resultX = Math.max(10, Math.min(viewportWidth - resultSize - 10, imageRect.left + (imageRect.width / 2) - (resultSize / 2)));
@@ -3013,7 +2615,6 @@ function setupImageMagnifier() {
           resultY = imageRect.top + (y - resultSize / 2);
         }
       }
-      
       // Final boundary checks to ensure result window stays within viewport
       resultX = Math.max(10, Math.min(resultX, viewportWidth - resultSize - 10));
       resultY = Math.max(10, Math.min(resultY, viewportHeight - resultSize - 10));
@@ -3021,24 +2622,19 @@ function setupImageMagnifier() {
     result.style.left = resultX + 'px';
     result.style.top = resultY + 'px';
     result.style.display = 'block';
-    
     // Calculate magnified image position - improved calculation
     const magnifyFactor = 3.0; // Higher magnification level for better detail viewing
-    
     // Calculate the position of the lens relative to the actual mouse position
     const actualLensX = lensX + lensWidth / 2;
     const actualLensY = lensY + lensHeight / 2;
-    
     result.style.backgroundImage = `url('${productImage.src}')`;
     result.style.backgroundSize = (imageRect.width * magnifyFactor) + 'px ' + (imageRect.height * magnifyFactor) + 'px';
-    
     // Position the background to show the magnified area
     const bgX = -(actualLensX * magnifyFactor) + (resultSize / 2);
     const bgY = -(actualLensY * magnifyFactor) + (resultSize / 2);
       result.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
   }
 }
-
 /**
  * Clean up existing magnifier elements
  */
@@ -3048,20 +2644,16 @@ function cleanupMagnifier() {
   if (existingResult) {
     existingResult.remove();
   }
-  
   const existingContainer = document.querySelector('.image-magnifier-container');
   if (existingContainer) {
     const productImage = existingContainer.querySelector('.js-product-image');
     const imageContainer = document.querySelector('.product-main-image-container');
-    
     if (productImage && imageContainer) {
       imageContainer.appendChild(productImage);
       existingContainer.remove();
     }
   }
-  
   window.imageMagnifier = false;
 }
-
 // Clean up magnifier when page is unloaded
 window.addEventListener('beforeunload', cleanupMagnifier);
