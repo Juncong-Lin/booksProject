@@ -335,6 +335,15 @@ body.has-sidebar .main {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* Loading animation styles */
 .loading-container {
   display: flex;

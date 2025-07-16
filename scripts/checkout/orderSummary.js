@@ -1,28 +1,12 @@
 import {cart, removeFromCart, updateDeliveryOption} from '../../data/cart.js';   
 import {products} from '../../data/products.js';
-// Removed imports for deleted product files - using placeholder objects
-// import {printheadProducts} from '../../data/printhead-products.js';
-// import {inkjetPrinterProducts} from '../../data/inkjetPrinter-products.js';
-// import {getInkjetPrinterById} from '../index/qilitrading.js';
-// import {printSparePartProducts} from '../../data/printsparepart-products.js';
-// import {upgradingKitProducts} from '../../data/upgradingkit-products.js';
+import {booksProducts} from '../../data/books.js';
 import {formatCurrency, formatPriceRange} from '../shared/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deleveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
 import { updateCartQuantity } from '../shared/cart-quantity.js';
 import { updatePageTitle } from './checkout.js';
-
-// Create placeholder objects for deleted product files to prevent errors
-const printheadProducts = {};
-const inkjetPrinterProducts = {};
-const printSparePartProducts = {};
-const upgradingKitProducts = {};
-
-// Placeholder function for deleted functionality
-function getInkjetPrinterById(id) {
-  return null;
-}
 
 export function renderOrderSummary() {
 // Get unique items and total quantity for the heading
@@ -42,37 +26,12 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   });
-    // If not found in regular products, search in printhead products
-  if (!matchingProduct) {
-    for (const brand in printheadProducts) {
-      const brandProducts = printheadProducts[brand];
-      const found = brandProducts.find(product => product.id === productId);
-      if (found) {
-        matchingProduct = found;
-        break;
-      }
-    }  }
-  // If not found in printhead products, search in inkjet printer products
-  if (!matchingProduct) {
-    matchingProduct = getInkjetPrinterById(productId);
-  }
-    // If not found in inkjet printer products, search in print spare part products
-  if (!matchingProduct) {
-    for (const category in printSparePartProducts) {
-      const categoryProducts = printSparePartProducts[category];
-      const found = categoryProducts.find(product => product.id === productId);
-      if (found) {
-        matchingProduct = found;
-        break;
-      }
-    }
-  }
   
-  // If not found in print spare part products, search in upgrading kit products
+  // If not found in regular products, search in books
   if (!matchingProduct) {
-    for (const brand in upgradingKitProducts) {
-      const brandProducts = upgradingKitProducts[brand];
-      const found = brandProducts.find(product => product.id === productId);
+    for (const category in booksProducts) {
+      const categoryProducts = booksProducts[category];
+      const found = categoryProducts.find(product => product.id === productId);
       if (found) {
         matchingProduct = found;
         break;
@@ -263,8 +222,6 @@ function deleveryOptionsHTML(matchingProduct, cartItem) {
 }
 
 // Expose product data globally for search system
-window.inkjetPrinterProducts = inkjetPrinterProducts;
-window.printheadProducts = printheadProducts;
-window.printSparePartProducts = printSparePartProducts;
-window.upgradingKitProducts = upgradingKitProducts;
+window.products = products;
+window.booksProducts = booksProducts;
 

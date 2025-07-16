@@ -1,6 +1,8 @@
 // Books-focused product loading script
 import {booksProducts} from '../../data/books.js';
 import { formatCurrency, formatPriceRange } from '../shared/money.js';
+import { addToCart } from '../../data/cart.js';
+import { updateCartQuantity } from '../shared/cart-quantity.js';
 
 // Make booksProducts globally available for search system
 window.booksProducts = booksProducts;
@@ -175,11 +177,10 @@ window.renderProducts = function(productList, type = 'book') {
           </select>
         </div>
         <div class="product-spacer"></div>
-        <a href="detail.html?productId=${product.id}" class="add-to-cart-button button-primary">
-          View Details
-        </a>
+        <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
+          Add to Cart
+        </button>
         <div class="added-message">
-          <img src="images/icons/checkmark.png">
           Added
         </div>
       </div>
@@ -600,9 +601,32 @@ function updateBreadcrumb(categoryDisplayName, categoryDataKey) {
   }
 }
 
-// Function to attach add to cart event listeners (placeholder)
+// Function to attach add to cart event listeners
 function attachAddToCartListeners() {
-  // No-op function - cart functionality is disabled for now
+  document.querySelectorAll('.js-add-to-cart')
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        const productId = button.dataset.productId;
+        
+        // Get the quantity from the dropdown
+        const productContainer = button.closest('.product-container');
+        const quantitySelect = productContainer.querySelector('select');
+        const quantity = Number(quantitySelect.value);
+
+        // Call addToCart with the selected quantity
+        addToCart(productId, quantity);
+        updateCartQuantity();
+
+        // Show the 'Added' message
+        const addedMessage = productContainer.querySelector('.added-message');
+        if (addedMessage) {
+          addedMessage.style.display = 'block';
+          setTimeout(() => {
+            addedMessage.style.display = 'none';
+          }, 2000);
+        }
+      });
+    });
 }
 
 // Function to find any product by ID (books)

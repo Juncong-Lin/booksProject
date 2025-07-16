@@ -1,8 +1,7 @@
 import { products } from '../../data/products.js';
 import { booksProducts } from '../../data/books.js';
-// Temporarily commented out cart imports - preserved for future reuse
-// import { cart, addToCart } from '../../data/cart.js';
-// import { updateCartQuantity } from '../shared/cart-quantity.js';
+import { cart, addToCart } from '../../data/cart.js';
+import { updateCartQuantity } from '../shared/cart-quantity.js';
 import { parseMarkdown } from '../shared/markdown-parser.js';
 import { formatPriceRange, formatCurrency } from '../shared/money.js';
 // Helper function to encode image URLs properly
@@ -171,8 +170,8 @@ if (product) {
   setupImageGallery(product);
   // Set up product information tabs
   setupProductTabs();
-    // Initialize cart quantity display on page load - temporarily disabled
-  // updateCartQuantity();
+  // Initialize cart quantity display on page load
+  updateCartQuantity();
 } else {
   // Handle case when product is not found
   document.querySelector('.product-detail-grid').innerHTML = `
@@ -1432,18 +1431,10 @@ function populateProductInfoTable(product, bookDetails) {
   }
 }
 // Expose product data globally for search system
-window.inkjetPrinterProducts = inkjetPrinterProducts;
-window.printheadProducts = printheadProducts;
-window.printSparePartProducts = printSparePartProducts;
-window.upgradingKitProducts = upgradingKitProducts;
-window.materialProducts = materialProducts;
-window.ledAndLcdProducts = ledAndLcdProducts;
-window.channelLetterBendingMechineProducts = channelLetterBendingMechineProducts;
-window.otherProducts = otherProducts;
+window.products = products;
 window.booksProducts = booksProducts;
-// Add to cart functionality - Temporarily commented out
-// All cart functionality is preserved for future reuse
-/*
+
+// Add to cart functionality
 document.querySelector('.js-add-to-cart')
   .addEventListener('click', () => {
     if (!productId) return;
@@ -1457,8 +1448,8 @@ document.querySelector('.js-add-to-cart')
     // Hide the message after 2 seconds
     setTimeout(() => {
       addedMessage.style.opacity = '0';
-    }, 2000);  });
-*/
+    }, 2000);
+  });
 /**
  * Setup mobile touch scrolling for thumbnail gallery
  */

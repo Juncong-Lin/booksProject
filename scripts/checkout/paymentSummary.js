@@ -1,45 +1,21 @@
 import {cart, cleanInvalidItems} from '../../data/cart.js';
 import {formatCurrency, formatPriceRange} from '../shared/money.js';
 import {getProduct,products} from '../../data/products.js';
-// Removed imports for deleted product files - using placeholder objects
-// import {printheadProducts} from '../../data/printhead-products.js';
-// import {inkjetPrinterProducts} from '../../data/inkjetPrinter-products.js';
-// import {getInkjetPrinterById} from '../index/qilitrading.js';
-// import {printSparePartProducts} from '../../data/printsparepart-products.js';
-// import {upgradingKitProducts} from '../../data/upgradingkit-products.js';
+import {booksProducts} from '../../data/books.js';
 import {removeFromCart, updateDeliveryOption} from '../../data/cart.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deleveryOptions.js';
 
-// Create placeholder objects for deleted product files to prevent errors
-const printheadProducts = {};
-const inkjetPrinterProducts = {};
-const printSparePartProducts = {};
-const upgradingKitProducts = {};
 
-// Placeholder function for deleted functionality
-function getInkjetPrinterById(id) {
-  return null;
-}
-
-
-export function renderPaymentSummary() {  // First, clean invalid items from cart
+export function renderPaymentSummary() {
+  // First, clean invalid items from cart
   const allValidProductIds = [];
   
-  // Collect all valid product IDs
+  // Collect all valid product IDs from regular products
   products.forEach(p => allValidProductIds.push(p.id));
   
-  for (const brand in printheadProducts) {
-    printheadProducts[brand].forEach(p => allValidProductIds.push(p.id));  }
-  
-  for (const category in inkjetPrinterProducts) {
-    inkjetPrinterProducts[category].forEach(p => allValidProductIds.push(p.id));
-  }
-    for (const category in printSparePartProducts) {
-    printSparePartProducts[category].forEach(p => allValidProductIds.push(p.id));
-  }
-  
-  for (const brand in upgradingKitProducts) {
-    upgradingKitProducts[brand].forEach(p => allValidProductIds.push(p.id));
+  // Collect all valid product IDs from books
+  for (const category in booksProducts) {
+    booksProducts[category].forEach(p => allValidProductIds.push(p.id));
   }
   
   // Clean cart of invalid items
@@ -66,37 +42,11 @@ export function renderPaymentSummary() {  // First, clean invalid items from car
     // First search in regular products
     product = products.find((p) => p.id === cartItem.productId);
     
-    // If not found in regular products, search in printhead products
+    // If not found in regular products, search in books
     if (!product) {
-      for (const brand in printheadProducts) {
-        const brandProducts = printheadProducts[brand];
-        const found = brandProducts.find(p => p.id === cartItem.productId);
-        if (found) {
-          product = found;
-          break;
-        }      }
-    }
-      // If not found in printhead products, search in inkjet printer products
-    if (!product) {
-      product = getInkjetPrinterById(cartItem.productId);
-    }
-      // If not found in printer products, search in print spare part products
-    if (!product) {
-      for (const category in printSparePartProducts) {
-        const categoryProducts = printSparePartProducts[category];
+      for (const category in booksProducts) {
+        const categoryProducts = booksProducts[category];
         const found = categoryProducts.find(p => p.id === cartItem.productId);
-        if (found) {
-          product = found;
-          break;
-        }
-      }
-    }
-    
-    // If not found in print spare part products, search in upgrading kit products
-    if (!product) {
-      for (const brand in upgradingKitProducts) {
-        const brandProducts = upgradingKitProducts[brand];
-        const found = brandProducts.find(p => p.id === cartItem.productId);
         if (found) {
           product = found;
           break;
@@ -189,25 +139,10 @@ export function renderOrderSummary() {
     // First search in regular products
     matchingProduct = products.find((product) => product.id === cartItem.productId);
     
-    // If not found in regular products, search in printhead products
+    // If not found in regular products, search in books
     if (!matchingProduct) {
-      for (const brand in printheadProducts) {
-        const brandProducts = printheadProducts[brand];
-        const found = brandProducts.find(product => product.id === cartItem.productId);
-        if (found) {
-          matchingProduct = found;
-          break;
-        }
-      }
-    }      // If not found in printhead products, search in inkjet printer products
-    if (!matchingProduct) {
-      matchingProduct = getInkjetPrinterById(cartItem.productId);
-    }
-    
-    // If not found in inkjet printer products, search in print spare part products
-    if (!matchingProduct) {
-      for (const category in printSparePartProducts) {
-        const categoryProducts = printSparePartProducts[category];
+      for (const category in booksProducts) {
+        const categoryProducts = booksProducts[category];
         const found = categoryProducts.find(product => product.id === cartItem.productId);
         if (found) {
           matchingProduct = found;

@@ -1,5 +1,7 @@
 import { booksProducts } from '../../data/books.js';
 import { formatPriceRange } from './money.js';
+import { addToCart } from '../../data/cart.js';
+import { updateCartQuantity } from './cart-quantity.js';
 
 // Helper function to encode image URLs properly
 function encodeImagePath(imagePath) {
@@ -481,17 +483,47 @@ class SearchSystem {  constructor() {
             </select>
           </div>
           <div class="product-spacer"></div>
-          <a href="detail.html?productId=${product.id}" class="add-to-cart-button button-primary">
-            View Details
-          </a>
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
+            Add to Cart
+          </button>
           <div class="added-message">
-            <img src="images/icons/checkmark.png">
             Added
           </div>
         </div>`;
     });
 
-    container.innerHTML = html;  }
+    container.innerHTML = html;
+    
+    // Add event listeners for add-to-cart buttons
+    this.attachAddToCartListeners();
+  }
+
+  attachAddToCartListeners() {
+    document.querySelectorAll('.js-add-to-cart')
+      .forEach((button) => {
+        button.addEventListener('click', () => {
+          const productId = button.dataset.productId;
+          
+          // Get the quantity from the dropdown
+          const productContainer = button.closest('.product-container');
+          const quantitySelect = productContainer.querySelector('select');
+          const quantity = Number(quantitySelect.value);
+
+          // Call addToCart with the selected quantity
+          addToCart(productId, quantity);
+          updateCartQuantity();
+
+          // Show the 'Added' message
+          const addedMessage = productContainer.querySelector('.added-message');
+          if (addedMessage) {
+            addedMessage.style.display = 'block';
+            setTimeout(() => {
+              addedMessage.style.display = 'none';
+            }, 2000);
+          }
+        });
+      });
+  }
 
   updateSearchBreadcrumb(searchTerm) {
     let breadcrumbElement = document.querySelector('.breadcrumb-nav');
