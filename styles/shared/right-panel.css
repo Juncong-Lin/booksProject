@@ -291,7 +291,8 @@ display: none;
   
   .right-panel-fixed {
     right: 10px;
-    top: 45%;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .right-panel-btn,
@@ -359,7 +360,8 @@ display: none;
 @media (max-width: 480px) {
   .right-panel-fixed {
     right: 5px;
-    top: 40%;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .right-panel-btn,
