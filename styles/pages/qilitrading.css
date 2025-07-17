@@ -1,5 +1,5 @@
 body.has-sidebar .main {
-  margin-top: 140px; /* 60px (main header) + 60px (sub-header) + 20px spacing */
+  margin-top: 104px !important; /* 60px (main header) + 44px (sub-header) */
   padding: 20px 20px 20px 244px; /* Add left padding to offset sidebar width (220px + 24px gap) */
   width: 100%; /* Remove max-width for true fluid layout */
   margin-left: 0;
@@ -11,7 +11,7 @@ body.has-sidebar .main {
 
 /* Default main content styling for pages without sidebar */
 .main {
-  margin-top: 140px;
+  margin-top: 104px !important;
   padding: 20px;
   width: 100%;
   margin-left: auto;
@@ -43,7 +43,7 @@ body.has-sidebar .main {
 @media screen and (orientation: portrait) {
   .main {
     padding: 20px;
-    margin-top: 130px; /* Adjusted for collapsed sidebar */
+    margin-top: 104px !important; /* Adjusted for new sub-header height */
   }
 }
 
@@ -642,7 +642,7 @@ body.has-sidebar .main {
 @media (max-width: 768px) {
   .main,
   body.has-sidebar .main {
-    margin-top: 125px !important; /* 60px header + 60px sub-header + 5px gap */
+    margin-top: 104px !important; /* 60px header + 44px sub-header */
     padding-top: 20px !important;
   }
 }
@@ -650,7 +650,7 @@ body.has-sidebar .main {
 @media (max-width: 480px) {
   .main,
   body.has-sidebar .main {
-    margin-top: 97px !important;
+    margin-top: 104px !important; /* 60px header + 44px sub-header */
     padding-top: 15px !important;
     padding-left: 10px !important;
     padding-right: 10px !important;
@@ -660,7 +660,7 @@ body.has-sidebar .main {
 @media (max-width: 320px) {
   .main,
   body.has-sidebar .main {
-    margin-top: 120px !important; /* 55px header + 60px sub-header + 5px gap */
+    margin-top: 104px !important; /* 55px header + 44px sub-header + 5px gap */
     padding-top: 15px !important;
     padding-left: 8px !important;
     padding-right: 8px !important;
