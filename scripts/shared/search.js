@@ -549,7 +549,12 @@ class SearchSystem {  constructor() {
   }  handleURLSearchParams() {
     // Check if there's a search parameter in the URL
     const urlParams = new URLSearchParams(window.location.search);
-    const searchTerm = urlParams.get('search');
+    let searchTerm = urlParams.get('search');
+    
+    // If no search term in URL but we detected it early, use the stored term
+    if (!searchTerm && window.earlySearchTerm) {
+      searchTerm = window.earlySearchTerm;
+    }
     
     if (searchTerm) {
       // Set the search input value
@@ -870,6 +875,28 @@ class SearchSystem {  constructor() {
 
 // Initialize search system
 const searchSystem = new SearchSystem();
+
+// Early detection of search parameters to prevent other scripts from overriding
+const urlParams = new URLSearchParams(window.location.search);
+const hasSearchParam = urlParams.get('search');
+if (hasSearchParam) {
+  // Set a flag to indicate early search detection
+  window.isEarlySearchDetection = true;
+  
+  // Store the search term for later use
+  window.earlySearchTerm = hasSearchParam;
+  
+  // Set up a very early initialization that runs before other scripts
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize search immediately on DOM ready if search param detected
+      searchSystem.init();
+    });
+  } else {
+    // DOM already loaded, initialize immediately
+    searchSystem.init();
+  }
+}
 
 // Don't initialize automatically on DOMContentLoaded since header loads dynamically
 // The shared-header-loader.js will call searchSystem.init() when header is ready

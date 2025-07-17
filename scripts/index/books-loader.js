@@ -657,8 +657,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Fallback to loadAllBooks if navigation system not ready
         loadAllBooks();
       }
-    } else if (!urlParams.get('category')) {
-      // If no specific category is requested, load all books
+    } else if (!urlParams.get('category') && !urlParams.get('search')) {
+      // If no specific category or search is requested, load all books
+      // Don't load all books if there's a search parameter - let search system handle it
       loadAllBooks();
     }
   }, 200); // Wait for shared components to initialize
