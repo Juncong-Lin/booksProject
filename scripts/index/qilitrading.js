@@ -57,7 +57,7 @@ function renderProducts(productList, type = 'regular') {
             } else if (product.lower_price !== undefined || product.higher_price !== undefined) {
               return formatPriceRange(product.lower_price, product.higher_price);
             } else if (product.price) {
-              return 'USD:$' + formatCurrency(product.price);
+              return 'USD:' + formatCurrency(product.price);
             } else {
               return 'USD: #NA';
             }

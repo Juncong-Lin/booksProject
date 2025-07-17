@@ -98,27 +98,35 @@ export function renderPaymentSummary() {
 
     <div class="payment-summary-row">
       <div>Items (${cart.length}):</div>
-      <div class="payment-summary-money">USD:$${formatCurrency(productPriceCents)}~$${formatCurrency(higherProductPriceCents)}</div>
+      <div class="payment-summary-money">${productPriceCents === higherProductPriceCents ? 
+        `USD:${formatCurrency(productPriceCents)}` : 
+        `USD:${formatCurrency(productPriceCents)} - ${formatCurrency(higherProductPriceCents)}`}</div>
     </div>
 
     <div class="payment-summary-row">
       <div>Shipping &amp; handling:</div>
-      <div class="payment-summary-money">USD:$${formatCurrency(shippingPriceCents)}</div>
+      <div class="payment-summary-money">USD:${formatCurrency(shippingPriceCents)}</div>
     </div>
 
     <div class="payment-summary-row subtotal-row">
       <div>Total before tax:</div>
-      <div class="payment-summary-money">USD:$${formatCurrency(lowerTotalBeforeTax)}~$${formatCurrency(higherTotalBeforeTax)}</div>
+      <div class="payment-summary-money">${lowerTotalBeforeTax === higherTotalBeforeTax ? 
+        `USD:${formatCurrency(lowerTotalBeforeTax)}` : 
+        `USD:${formatCurrency(lowerTotalBeforeTax)} - ${formatCurrency(higherTotalBeforeTax)}`}</div>
     </div>
 
     <div class="payment-summary-row">
       <div>Estimated tax (10%):</div>
-      <div class="payment-summary-money">USD:$${formatCurrency(lowerTax)}~$${formatCurrency(higherTax)}</div>
+      <div class="payment-summary-money">${lowerTax === higherTax ? 
+        `USD:${formatCurrency(lowerTax)}` : 
+        `USD:${formatCurrency(lowerTax)} - ${formatCurrency(higherTax)}`}</div>
     </div>
 
     <div class="payment-summary-row total-row">
       <div>Order total:</div>
-      <div class="payment-summary-money">USD:$${formatCurrency(lowerTotal)}~$${formatCurrency(higherTotal)}</div>
+      <div class="payment-summary-money">${lowerTotal === higherTotal ? 
+        `USD:${formatCurrency(lowerTotal)}` : 
+        `USD:${formatCurrency(lowerTotal)} - ${formatCurrency(higherTotal)}`}</div>
     </div>
 
     <button class="place-order-button button-primary">
@@ -171,8 +179,9 @@ export function renderOrderSummary() {
               if (matchingProduct.getPrice) {
                 return matchingProduct.getPrice();
               } else if (matchingProduct.lower_price !== undefined || matchingProduct.higher_price !== undefined) {
-                return formatPriceRange(matchingProduct.lower_price, matchingProduct.higher_price);              } else if (matchingProduct.priceCents || matchingProduct.price) {
-                return '$' + formatCurrency(matchingProduct.priceCents || matchingProduct.price);
+                return formatPriceRange(matchingProduct.lower_price, matchingProduct.higher_price);
+              } else if (matchingProduct.priceCents || matchingProduct.price) {
+                return formatCurrency(matchingProduct.priceCents || matchingProduct.price);
               } else {
                 return 'USD: #NA';
               }

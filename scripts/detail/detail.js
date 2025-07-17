@@ -113,7 +113,7 @@ if (product) {
     // Products with new price range format (printhead, printer, print spare parts)
     priceText = formatPriceRange(product.lower_price, product.higher_price);  } else if (product.price) {
     // Fallback for products still using old price format
-    priceText = `USD:$${(product.price / 100).toFixed(0)}`;
+    priceText = `USD: $${(product.price / 100).toFixed(0)}`;
   } else {
     priceText = 'USD: #NA';
   }

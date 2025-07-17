@@ -453,16 +453,16 @@ class SearchSystem {  constructor() {
                 // Use the same price formatting as the main site
                 const formatPriceRange = window.formatPriceRange || ((lower, higher) => {
                   if (lower && higher) {
-                    return `USD:$${(lower/100).toFixed(0)} - $${(higher/100).toFixed(0)}`;
+                    return `USD: $${(lower/100).toFixed(0)} - $${(higher/100).toFixed(0)}`;
                   } else if (lower) {
-                    return `USD:$${(lower/100).toFixed(0)}`;
+                    return `USD: $${(lower/100).toFixed(0)}`;
                   } else {
                     return 'Contact for Price';
                   }
                 });
                 return formatPriceRange(product.lower_price, product.higher_price);
               } else if (product.price) {
-                return 'USD:$' + (product.price/100).toFixed(2);
+                return 'USD: $' + (product.price/100).toFixed(2);
               } else {
                 return 'Contact for Price';
               }

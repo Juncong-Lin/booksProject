@@ -82,7 +82,7 @@ cart.forEach((cartItem) => {
                   return matchingProduct.getPrice();
                 } else if (matchingProduct.lower_price !== undefined || matchingProduct.higher_price !== undefined) {
                   return formatPriceRange(matchingProduct.lower_price, matchingProduct.higher_price);                } else if (matchingProduct.priceCents || matchingProduct.price) {
-                  return 'USD:$' + formatCurrency(matchingProduct.priceCents || matchingProduct.price);
+                  return 'USD:' + formatCurrency(matchingProduct.priceCents || matchingProduct.price);
                 } else {
                   return 'USD: #NA';
                 }
@@ -200,7 +200,7 @@ function deleveryOptionsHTML(matchingProduct, cartItem) {
     const dateString = deliveryDate.format('dddd, MMMM D');
     const priceString = deliveryOption.priceCents === 0
       ? 'FREE'
-      : `$${formatCurrency(deliveryOption.priceCents)} - Shipping`;
+      : `${formatCurrency(deliveryOption.priceCents)} - Shipping`;
 
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;    html +=
     `

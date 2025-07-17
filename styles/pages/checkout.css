@@ -107,7 +107,7 @@
   padding-left: 30px;
   padding-right: 30px;
 
-  margin-top: 92px; /* 60px (checkout header) + 32px (sub-header) */
+  margin-top: 120px; /* 60px (checkout header) + 60px (sub-header) */
   margin-bottom: 100px;
 
   /* margin-left: auto;
@@ -127,7 +127,7 @@
   
   /* Make sticky relative to viewport */
   position: fixed;
-  top: 92px; /* Below header (60px) and subheader (32px) */
+  top: 120px; /* Below header (60px) and subheader (60px) */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -153,7 +153,7 @@
      in the grid from stretching vertically. */
   align-items: start;
     /* Add top margin to account for fixed elements */
-  margin-top: 338px; /* Increased: Space for fixed title (~52px) and payment summary (~200px) + buffer (~68px) */
+  margin-top: 366px; /* Increased: Space for fixed title (~52px) and payment summary (~200px) + buffer (~68px) */
   padding-top: 20px; /* Additional padding for first item */
 }
 
@@ -162,20 +162,20 @@
     max-width: 500px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 92px; /* Keep same as desktop */
+    margin-top: 120px; /* Keep same as desktop */
   }  .checkout-grid {
     grid-template-columns: 1fr;
-    margin-top: 290px; /* Increased: Adjusted for tablet sized payment summary */
+    margin-top: 318px; /* Increased: Adjusted for tablet sized payment summary */
     padding-top: 15px;
   }
     .page-title {
     font-size: 20px;
-    top: 92px; /* Header (60px) + subheader (32px) */
+    top: 120px; /* Header (60px) + subheader (60px) */
     padding: 12px 20px;
     max-width: 500px;
   }
     .payment-summary {
-    top: 138px; /* Below page title with no gap */
+    top: 166px; /* Below page title with no gap */
     padding-left: 20px;
     padding-right: 20px;
     max-width: 500px;
@@ -187,7 +187,7 @@
   .main {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 92px; /* Keep same as desktop */
+    margin-top: 120px; /* Keep same as desktop */
     width: 100%;
     box-sizing: border-box;
   }
@@ -196,7 +196,7 @@
     font-size: 18px;
     text-align: center;
     margin-bottom: 0px !important; /* Remove margin bottom */
-    top: 92px; /* Header (60px) + subheader (32px) */
+    top: 120px; /* Header (60px) + subheader (60px) */
     padding: 8px 15px !important; /* Reduce padding */
     max-width: 450px;
     border-bottom: none !important; /* Remove border for mobile */
@@ -204,7 +204,7 @@
   }
   
   .payment-summary {
-    top: 118px !important; /* Calculated: 92px + 26px = 118px */
+    top: 146px !important; /* Calculated: 120px + 26px = 146px */
     max-width: 450px;
     width: 100%;
     margin-left: auto;
@@ -219,7 +219,7 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 280px; /* Increased: 118px (payment-summary top) + ~162px (payment-summary height) = ~280px */
+    margin-top: 308px; /* Increased: 146px (payment-summary top) + ~162px (payment-summary height) = ~308px */
     padding-top: 15px;
   }
 }
@@ -228,13 +228,13 @@
   .main {
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: 92px; /* Keep same as desktop */
+    margin-top: 120px; /* Keep same as desktop */
   }
   
   .page-title {
     font-size: 16px;
     margin-bottom: 0px !important; /* Remove margin bottom */
-    top: 92px; /* Header (60px) + subheader (32px) */
+    top: 120px; /* Header (60px) + subheader (60px) */
     padding: 6px 10px !important; /* Reduce padding further */
     max-width: calc(100% - 20px);
     border-bottom: none !important; /* Remove border for mobile */
@@ -242,7 +242,7 @@
   }
   
   .payment-summary {
-    top: 100px !important; /* Calculated: 92px + 22px = 114px */
+    top: 142px !important; /* Calculated: 120px + 22px = 142px */
     max-width: calc(100% - 20px);
     width: 100%;
     margin-left: auto;
@@ -256,7 +256,7 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 310px; /* Increased: 114px (payment-summary top) + ~156px (payment-summary height) = ~270px */
+    margin-top: 298px; /* Increased: 142px (payment-summary top) + ~156px (payment-summary height) = ~298px */
     padding-top: 10px;
   }
 }
@@ -314,7 +314,7 @@
   
   /* Make sticky relative to viewport */
   position: fixed;
-  top: 144px; /* Directly below the page title with no gap */
+  top: 172px; /* Directly below the page title with no gap */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -725,7 +725,7 @@
 /* Extra specific mobile selectors to force gap elimination */
 @media (max-width: 767px) and (min-width: 481px) {
   body .main .page-title {
-    top: 92px !important;
+    top: 120px !important;
     padding: 8px 15px !important;
     margin-bottom: 0px !important;
     border-bottom: none !important;
@@ -741,7 +741,7 @@
 
 @media (max-width: 480px) {
   body .main .page-title {
-    top: 92px !important;
+    top: 120px !important;
     padding: 6px 10px !important;
     margin-bottom: 0px !important;
     border-bottom: none !important;
