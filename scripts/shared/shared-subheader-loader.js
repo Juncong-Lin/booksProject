@@ -45,13 +45,14 @@ window.handleNavigationClick = function(hash) {  // Check if we're on the index 
 };
 
 window.handleCategoryClick = function(categoryName) {
-  // Hide the dropdown menu for all inkjet printer subcategories
-  const inkjetCategories = [
-
-  ];
-  
-  if (inkjetCategories.includes(categoryName) && window.subHeaderNav && window.subHeaderNav.hideAllSubmenus) {
+  // Hide the submenu after clicking any category
+  if (window.subHeaderNav && window.subHeaderNav.hideAllSubmenus) {
     window.subHeaderNav.hideAllSubmenus();
+  } else {
+    // Fallback method to hide submenus if subHeaderNav is not available
+    document.querySelectorAll('.sub-header-submenu.active').forEach(submenu => {
+      submenu.classList.remove('active');
+    });
   }
 
   // Check if we're on the index page

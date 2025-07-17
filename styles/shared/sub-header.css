@@ -197,19 +197,19 @@
   }
   
   .sub-header {
-    height: 60px; /* Increase height more on mobile for better readability */
+    height: 44px; /* Keep consistent with desktop - no extra padding */
   }
   
   .main {
-    margin-top: 120px !important; /* 60px header + 60px sub-header */
+    margin-top: 104px !important; /* 60px header + 44px sub-header */
   }
   
   .checkout-header ~ .main {
-    margin-top: 120px !important;
+    margin-top: 104px !important;
   }
   
   .sub-header-submenu {
-    top: 120px; /* Adjust submenu position */
+    top: 104px; /* Adjust submenu position */
   }
 }
 
@@ -223,19 +223,19 @@
   }
   
   .sub-header {
-    height: 65px; /* Slightly more height */
+    height: 44px; /* Keep consistent with desktop - no extra padding */
   }
   
   .main {
-    margin-top: 125px !important; /* 60px header + 65px sub-header */
+    margin-top: 104px !important; /* 60px header + 44px sub-header */
   }
   
   .checkout-header ~ .main {
-    margin-top: 125px !important;
+    margin-top: 104px !important;
   }
   
   .sub-header-submenu {
-    top: 125px;
+    top: 104px;
   }
 }
 
@@ -414,7 +414,7 @@
 @media (max-width: 320px) {
   .sub-header {
     top: 55px !important; /* Position below reduced-height main header */
-    height: 70px !important; /* Even more height for very small screens */
+    height: 44px !important; /* Keep consistent with desktop - no extra padding */
   }
   
   .sub-header-link {
@@ -425,18 +425,18 @@
   }
   
   .main {
-    margin-top: 125px !important; /* 55px header + 70px sub-header */
+    margin-top: 99px !important; /* 55px header + 44px sub-header */
   }
   
   .checkout-header ~ .main {
-    margin-top: 125px !important;
+    margin-top: 99px !important;
   }
   
   .sub-header-submenu {
-    top: 125px !important;
+    top: 99px !important;
   }
   
   .all-products-link {
-    top: 125px !important;
+    top: 99px !important;
   }
 }
