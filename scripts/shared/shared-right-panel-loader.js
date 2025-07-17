@@ -61,17 +61,29 @@ function handleMobileLinkPrevention() {
   const wechatBtn = document.querySelector('.wechat-btn');
   const whatsappBtn = document.querySelector('.whatsapp-btn');
   
-  if (wechatBtn && whatsappBtn) {
+  if (wechatBtn) {
     // Remove any existing event listeners
     wechatBtn.removeEventListener('click', preventClick);
-    whatsappBtn.removeEventListener('click', preventClick);
     
     if (isMobile) {
-      // On mobile: prevent link navigation
+      // On mobile: modify WeChat link behavior to prevent app opening
+      wechatBtn.setAttribute('href', 'javascript:void(0)');
+      wechatBtn.setAttribute('target', '');
+      // Add click event listener to prevent default behavior
       wechatBtn.addEventListener('click', preventClick);
+    } else {
+      // On desktop: restore original WeChat link functionality
+      wechatBtn.setAttribute('href', 'weixin://dl/chat');
+      wechatBtn.setAttribute('target', '_blank');
+    }
+  }
+  
+  // Handle WhatsApp button if it exists (keeping existing functionality)
+  if (whatsappBtn) {
+    whatsappBtn.removeEventListener('click', preventClick);
+    if (isMobile) {
       whatsappBtn.addEventListener('click', preventClick);
     }
-    // On desktop: links work normally (no event listeners added)
   }
 }
 
@@ -90,8 +102,24 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial visibility check
   handleRightPanelVisibility();
   
-  // Set up mobile link prevention after a small delay to ensure DOM is loaded
-  setTimeout(handleMobileLinkPrevention, 100);
+  // Set up mobile link prevention after panel is loaded
+  setTimeout(function() {
+    handleMobileLinkPrevention();
+    // Add MutationObserver to detect when right panel is added to DOM
+    const observer = new MutationObserver(function(mutations) {
+      for (const mutation of mutations) {
+        if (mutation.addedNodes.length) {
+          if (document.querySelector('.wechat-btn')) {
+            handleMobileLinkPrevention();
+            observer.disconnect();
+            break;
+          }
+        }
+      }
+    });
+    
+    observer.observe(document.body, { childList: true, subtree: true });
+  }, 100);
   
   // Re-run on window resize in case device orientation changes
   window.addEventListener('resize', handleMobileLinkPrevention);

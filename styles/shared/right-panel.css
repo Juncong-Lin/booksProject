@@ -37,7 +37,7 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
   position: relative;
   overflow: visible;
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
 /* Ensure all specific buttons use the same size as .right-panel-btn */
@@ -283,8 +283,11 @@ display: none;
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  /* On mobile, allow hover but we'll prevent navigation with JavaScript */
-  .wechat-btn,
+  /* On mobile, allow hover to show QR code but prevent app opening with JavaScript */
+  .wechat-btn {
+    cursor: pointer; /* Keep cursor as pointer for better UX */
+  }
+  
   .whatsapp-btn {
     cursor: default;
   }
