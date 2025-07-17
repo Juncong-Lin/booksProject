@@ -6,7 +6,7 @@
   top: 60px; /* Position below main header */
   left: 0;
   right: 0;
-  height: 60px; /* Increased height for two-line layout */
+  height: 44px; /* Reduced height with no padding */
   z-index: 9000; /* High enough to be visible but below main header */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   display: flex !important;
@@ -39,7 +39,7 @@
   gap: 0;
   width: 100%;
   justify-content: flex-start;
-  padding: 8px 15px; /* Vertical padding for two-line layout */
+  padding: 0; /* Remove all padding */
   flex-wrap: nowrap; /* Keep items in a row but allow text to wrap within each item */
   visibility: visible !important;
 }
@@ -105,14 +105,14 @@
 
 /* Sidebar placeholder for All Products link */
 .all-products-sidebar-placeholder {
-  height: 60px; /* Same as new sub-header height */
+  height: 44px; /* Same as new sub-header height */
   position: relative;
 }
 
 /* Clone the sub-header All Products link visually into the sidebar */
 @media (min-width: 700px) {  .all-products-link {
     position: fixed;
-    top: 120px; /* 60px header + 60px sub-header */
+    top: 104px; /* 60px header + 44px sub-header */
     left: 0;
     width: 180px;
     height: 32px;
@@ -197,19 +197,19 @@
   }
   
   .sub-header {
-    height: 70px; /* Increase height more on mobile for better readability */
+    height: 60px; /* Increase height more on mobile for better readability */
   }
   
   .main {
-    margin-top: 130px !important; /* 60px header + 70px sub-header */
+    margin-top: 120px !important; /* 60px header + 60px sub-header */
   }
   
   .checkout-header ~ .main {
-    margin-top: 130px !important;
+    margin-top: 120px !important;
   }
   
   .sub-header-submenu {
-    top: 130px; /* Adjust submenu position */
+    top: 120px; /* Adjust submenu position */
   }
 }
 
@@ -223,30 +223,30 @@
   }
   
   .sub-header {
-    height: 75px; /* Slightly more height */
+    height: 65px; /* Slightly more height */
   }
   
   .main {
-    margin-top: 135px !important; /* 60px header + 75px sub-header */
+    margin-top: 125px !important; /* 60px header + 65px sub-header */
   }
   
   .checkout-header ~ .main {
-    margin-top: 135px !important;
+    margin-top: 125px !important;
   }
   
   .sub-header-submenu {
-    top: 135px;
+    top: 125px;
   }
 }
 
 /* Adjust main content to account for sub-header */
 .main {
-  margin-top: 120px !important; /* 60px (main header) + 60px (sub-header) */
+  margin-top: 104px !important; /* 60px (main header) + 44px (sub-header) */
 }
 
 /* Special handling for checkout page */
 .checkout-header ~ .main {
-  margin-top: 120px !important;
+  margin-top: 104px !important;
 }
 
 /* Loading animation for products */
@@ -283,7 +283,7 @@
 /* Sub-header dropdown submenu styles */
 .sub-header-submenu {
   position: fixed;
-  top: 120px; /* Below sub-header (60px header + 60px sub-header) */
+  top: 104px; /* Below sub-header (60px header + 44px sub-header) */
   left: 0;
   width: 100%;
   background-color: #232F3E;
@@ -414,7 +414,7 @@
 @media (max-width: 320px) {
   .sub-header {
     top: 55px !important; /* Position below reduced-height main header */
-    height: 80px !important; /* Even more height for very small screens */
+    height: 70px !important; /* Even more height for very small screens */
   }
   
   .sub-header-link {
@@ -425,18 +425,18 @@
   }
   
   .main {
-    margin-top: 135px !important; /* 55px header + 80px sub-header */
+    margin-top: 125px !important; /* 55px header + 70px sub-header */
   }
   
   .checkout-header ~ .main {
-    margin-top: 135px !important;
+    margin-top: 125px !important;
   }
   
   .sub-header-submenu {
-    top: 135px !important;
+    top: 125px !important;
   }
   
   .all-products-link {
-    top: 135px !important;
+    top: 125px !important;
   }
 }

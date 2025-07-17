@@ -107,7 +107,7 @@
   padding-left: 30px;
   padding-right: 30px;
 
-  margin-top: 120px; /* 60px (checkout header) + 60px (sub-header) */
+  margin-top: 104px; /* 60px (checkout header) + 44px (sub-header) */
   margin-bottom: 100px;
 
   /* margin-left: auto;
@@ -127,7 +127,7 @@
   
   /* Make sticky relative to viewport */
   position: fixed;
-  top: 120px; /* Below header (60px) and subheader (60px) */
+  top: 104px; /* Below header (60px) and subheader (44px) */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -153,8 +153,8 @@
      in the grid from stretching vertically. */
   align-items: start;
     /* Add top margin to account for fixed elements */
-  margin-top: 366px; /* Increased: Space for fixed title (~52px) and payment summary (~200px) + buffer (~68px) */
-  padding-top: 20px; /* Additional padding for first item */
+  margin-top: 356px; /* Space for fixed title (~52px) and payment summary (~200px) + positioning */
+  padding-top: 0; /* Remove extra padding to eliminate gap */
 }
 
 @media (max-width: 1000px) {
@@ -162,20 +162,20 @@
     max-width: 500px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 120px; /* Keep same as desktop */
+    margin-top: 104px; /* Keep same as desktop */
   }  .checkout-grid {
     grid-template-columns: 1fr;
-    margin-top: 318px; /* Increased: Adjusted for tablet sized payment summary */
-    padding-top: 15px;
+    margin-top: 312px; /* Payment summary ends at ~312px */
+    padding-top: 0; /* Remove gap */
   }
     .page-title {
     font-size: 20px;
-    top: 120px; /* Header (60px) + subheader (60px) */
+    top: 104px; /* Header (60px) + subheader (44px) */
     padding: 12px 20px;
     max-width: 500px;
   }
     .payment-summary {
-    top: 166px; /* Below page title with no gap */
+    top: 150px; /* Below page title with no gap */
     padding-left: 20px;
     padding-right: 20px;
     max-width: 500px;
@@ -187,7 +187,7 @@
   .main {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 120px; /* Keep same as desktop */
+    margin-top: 104px; /* Keep same as desktop */
     width: 100%;
     box-sizing: border-box;
   }
@@ -196,7 +196,7 @@
     font-size: 18px;
     text-align: center;
     margin-bottom: 0px !important; /* Remove margin bottom */
-    top: 120px; /* Header (60px) + subheader (60px) */
+    top: 104px; /* Header (60px) + subheader (44px) */
     padding: 8px 15px !important; /* Reduce padding */
     max-width: 450px;
     border-bottom: none !important; /* Remove border for mobile */
@@ -204,7 +204,7 @@
   }
   
   .payment-summary {
-    top: 146px !important; /* Calculated: 120px + 26px = 146px */
+    top: 150px !important; /* Calculated: 104px + 46px page title height = 150px */
     max-width: 450px;
     width: 100%;
     margin-left: auto;
@@ -219,8 +219,8 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 308px; /* Increased: 146px (payment-summary top) + ~162px (payment-summary height) = ~308px */
-    padding-top: 15px;
+    margin-top: 312px; /* Payment summary ends at ~312px */
+    padding-top: 0; /* Remove gap */
   }
 }
 
@@ -228,13 +228,13 @@
   .main {
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: 120px; /* Keep same as desktop */
+    margin-top: 104px; /* Keep same as desktop */
   }
   
   .page-title {
     font-size: 16px;
     margin-bottom: 0px !important; /* Remove margin bottom */
-    top: 120px; /* Header (60px) + subheader (60px) */
+    top: 104px; /* Header (60px) + subheader (44px) */
     padding: 6px 10px !important; /* Reduce padding further */
     max-width: calc(100% - 20px);
     border-bottom: none !important; /* Remove border for mobile */
@@ -242,7 +242,7 @@
   }
   
   .payment-summary {
-    top: 142px !important; /* Calculated: 120px + 22px = 142px */
+    top: 146px !important; /* Calculated: 104px + 42px page title height = 146px */
     max-width: calc(100% - 20px);
     width: 100%;
     margin-left: auto;
@@ -256,8 +256,8 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 298px; /* Increased: 142px (payment-summary top) + ~156px (payment-summary height) = ~298px */
-    padding-top: 10px;
+    margin-top: 302px; /* Payment summary ends at ~302px */
+    padding-top: 0; /* Remove gap */
   }
 }
 
@@ -314,7 +314,7 @@
   
   /* Make sticky relative to viewport */
   position: fixed;
-  top: 172px; /* Directly below the page title with no gap */
+  top: 156px; /* Directly below the page title (104px + ~52px title height) */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
