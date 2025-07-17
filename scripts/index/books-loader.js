@@ -175,14 +175,14 @@ window.renderProducts = function(productList, type = 'book') {
             <option value="9">9</option>
             <option value="10">10+</option>
           </select>
+          <div class="added-message">
+            Added
+          </div>
         </div>
         <div class="product-spacer"></div>
         <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
           Add to Cart
         </button>
-        <div class="added-message">
-          Added
-        </div>
       </div>
     `;
   });
