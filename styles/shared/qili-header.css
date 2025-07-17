@@ -139,14 +139,14 @@
   z-index: 10001; /* Higher than sub-header to create proper stacking context */
 }
 
-/* Mobile search centering - ensure search bar is truly centered */
+/* Mobile search centering - ensure search bar is properly constrained */
 @media (max-width: 768px) {
   .qili-header {
     display: grid;
     grid-template-columns: auto 1fr auto; /* Auto-size side columns based on content */
     align-items: center;
-    gap: 5px; /* Small gap between sections */
-    padding: 0 5px;
+    gap: 8px; /* Increased gap for better spacing */
+    padding: 0 8px; /* Increased padding */
   }
   
   .qili-header-left-section {
@@ -154,6 +154,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: 0; /* Remove margin for grid layout */
+    width: auto; /* Let it size based on content */
   }
   
   .qili-header-middle-section {
@@ -162,65 +163,73 @@
     align-items: center;
     margin: 0; /* Remove margin for grid layout */
     min-width: 0; /* Allow shrinking */
-    max-width: none; /* Remove max-width constraint */
+    max-width: 300px; /* Constrain maximum width on mobile */
   }
   
   .qili-header-right-section {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    width: auto; /* Let it size based on content */
   }
 }
 
 @media (max-width: 480px) {
   .qili-header {
-    padding: 0 3px;
-    grid-template-columns: 32px 1fr 32px; /* Smaller equal side columns */
+    padding: 0 5px;
+    gap: 6px;
+    grid-template-columns: 40px 1fr 50px; /* Fixed widths for better control */
   }
   
   .qili-header-left-section {
-    width: 32px;
-    min-width: 32px;
+    width: 40px;
+    min-width: 40px;
+  }
+  
+  .qili-header-middle-section {
+    max-width: none; /* Remove constraint to use available space */
   }
   
   .qili-header-right-section {
-    width: 32px;
-    min-width: 32px;
+    width: 50px;
+    min-width: 50px;
   }
 }
 
 @media (max-width: 360px) {
   .qili-header {
-    padding: 0 2px;
-    grid-template-columns: 28px 1fr 28px; /* Even smaller equal side columns */
+    padding: 0 4px;
+    gap: 4px;
+    grid-template-columns: 35px 1fr 45px; /* Slightly larger for cart */
   }
   
   .qili-header-left-section {
-    width: 28px;
-    min-width: 28px;
+    width: 35px;
+    min-width: 35px;
   }
   
   .qili-header-right-section {
-    width: 28px;
-    min-width: 28px;
+    width: 45px;
+    min-width: 45px;
   }
 }
 
 @media (max-width: 320px) {
   .qili-header {
-    padding: 0 1px;
+    padding: 0 3px;
     height: 55px;
-    grid-template-columns: 25px 1fr 25px; /* Ultra-small equal side columns */
+    gap: 3px;
+    grid-template-columns: 30px 1fr 40px; /* Maintain adequate cart space */
   }
   
   .qili-header-left-section {
-    width: 25px;
-    min-width: 25px;
+    width: 30px;
+    min-width: 30px;
   }
   
   .qili-header-right-section {
-    width: 25px;
-    min-width: 25px;
+    width: 40px;
+    min-width: 40px;
   }
   
   /* Hide orders link on ultra-small screens for more space */
@@ -266,7 +275,7 @@
     height: 36px;
     padding: 0 8px; /* Reduced padding */
     font-size: 14px;
-    /* Removed min-width to allow more flexibility */
+    max-width: 250px; /* Constrain width on mobile */
   }
 }
 
@@ -275,7 +284,7 @@
     height: 32px;
     padding: 0 6px; /* Reduced padding */
     font-size: 13px;
-    /* Removed min-width for more flexibility */
+    max-width: 200px; /* Further constrain on smaller screens */
   }
 }
 
@@ -283,8 +292,8 @@
   .search-bar {
     padding: 0 4px; /* Minimal padding */
     font-size: 12px;
-    /* Removed min-width for maximum flexibility */
     height: 28px; /* Smaller height for very small screens */
+    max-width: 150px; /* Smaller constraint for very small screens */
   }
 }
 
@@ -294,6 +303,7 @@
     height: 26px;
     padding: 0 3px;
     font-size: 11px;
+    max-width: 120px; /* Very small constraint for ultra-small screens */
   }
 }
 
@@ -601,13 +611,16 @@
   color: rgb(240, 136, 4);
   font-size: 16px;
   font-weight: 700;
-
   position: absolute;
   top: 4px;
   left: 22px;
-  
   width: 26px;
   text-align: center;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 18px;
 }
 
 /* Mobile cart icon sizing adjustments */
@@ -626,6 +639,7 @@
     width: 20px;
     left: 16px;
     top: 2px;
+    min-height: 16px;
   }
   
   .orders-text,
@@ -647,8 +661,9 @@
   .cart-quantity {
     font-size: 10px;
     width: 18px;
-    left: 14px;
-    top: 1px;
+    left: 10px;
+    top: 0px;
+    min-height: 14px;
   }
 }
 
@@ -665,8 +680,9 @@
   .cart-quantity {
     font-size: 9px;
     width: 16px;
-    left: 12px;
-    top: 1px;
+    left: 8px;
+    top: 0px;
+    min-height: 12px;
   }
 }
 
@@ -685,5 +701,6 @@
     width: 14px;
     left: 10px;
     top: 0;
+    min-height: 10px;
   }
 }
