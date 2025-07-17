@@ -1914,7 +1914,7 @@ window.loadSpecificCategory = function(categoryName) {
   });
 
   // Convert category for use in hash navigation
-  const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '');
+  const categorySlug = categoryName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-');
 
   // Update URL hash without triggering a navigation
   if (!window.preventHashUpdate) {

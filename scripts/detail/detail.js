@@ -2210,21 +2210,24 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
     const parentCategory = categoryHierarchy[currentCategory];
     if (parentCategory) {
       // Second-level category - show Home > Parent > Current
+      const parentSlug = parentCategory.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-');
+      const currentSlug = displayName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-');
       breadcrumbElement.innerHTML = `
         <a href="index.html" class="breadcrumb-link">Home</a>
         <span class="breadcrumb-separator"> > </span>
-        <a href="javascript:void(0)" onclick="loadSpecificCategory('${parentCategory}')" class="breadcrumb-link">${parentCategory}</a>
+        <a href="index.html#${parentSlug}" class="breadcrumb-link">${parentCategory}</a>
         <span class="breadcrumb-separator"> > </span>
-        <a href="javascript:void(0)" onclick="loadSpecificCategory('${displayName}')" class="breadcrumb-link">${displayName}</a>
+        <a href="index.html#${currentSlug}" class="breadcrumb-link">${displayName}</a>
         <span class="breadcrumb-separator"> > </span>
         <span class="breadcrumb-current">${product.name}</span>
       `;
     } else {
       // First-level category - show Home > Current
+      const currentSlug = displayName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-');
       breadcrumbElement.innerHTML = `
         <a href="index.html" class="breadcrumb-link">Home</a>
         <span class="breadcrumb-separator"> > </span>
-        <a href="javascript:void(0)" onclick="loadSpecificCategory('${displayName}')" class="breadcrumb-link">${displayName}</a>
+        <a href="index.html#${currentSlug}" class="breadcrumb-link">${displayName}</a>
         <span class="breadcrumb-separator"> > </span>
         <span class="breadcrumb-current">${product.name}</span>
       `;

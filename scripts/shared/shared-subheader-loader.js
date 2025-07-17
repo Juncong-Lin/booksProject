@@ -61,7 +61,7 @@ window.handleCategoryClick = function(categoryName) {
     // Map category names to their correct hash values for consistency
     let hashValue = '';
     // Default hash conversion for all categories
-    const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '').replace(/\//g, '-');
+    const categorySlug = categoryName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\//g, '-').replace(/\s+/g, '-');
     hashValue = '#' + categorySlug;
     
     // First update the hash to ensure correct browser history
@@ -76,7 +76,7 @@ window.handleCategoryClick = function(categoryName) {
   } else {
     // We're on a different page - navigate to index and handle the category loading
     // Default hash conversion for all categories
-    const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '').replace(/\//g, '-');
+    const categorySlug = categoryName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\//g, '-').replace(/\s+/g, '-');
     const hashValue = '#' + categorySlug;
     
     // Navigate to index page with the appropriate hash

@@ -277,7 +277,7 @@ setTimeout(() => {
   });
 
   // Convert category for use in hash navigation
-  const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '');
+  const categorySlug = categoryName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-');
 
   // Update URL hash without triggering a navigation
   if (!window.preventHashUpdate) {
@@ -308,7 +308,7 @@ setTimeout(() => {
       'Science & Technology': 'science',
       'Biography & History': ['biography', 'autobiography', 'history', 'historical'],
       'Poetry & Literature': 'poetry',
-      'Specialty Genres': ['humor', 'sports_and_games', 'food_and_drink', 'travel', 'adult_fiction', 'default'],
+      'Specialty Genres': ['humor', 'sports_and_games', 'food_and_drink', 'travel', 'adult_fiction', 'default', 'add_a_comment'],
       
       // Sub-categories
       'Classics': 'classics',
@@ -360,7 +360,8 @@ setTimeout(() => {
       'Food and Drink': 'food_and_drink',
       'Travel': 'travel',
       'Adult Fiction': 'adult_fiction',
-      'Default': 'default'
+      'Default': 'default',
+      'Add a comment': 'add_a_comment'
     };
 
     // Get the book category key(s)
@@ -402,7 +403,7 @@ setTimeout(() => {
       
       // Update breadcrumb navigation
       const categorySlugForBreadcrumb = Array.isArray(bookCategoryMapping) ? 
-        categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '').replace(/'/g, '') : 
+        categoryName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-') : 
         bookCategoryMapping;
       updateBreadcrumb(categoryName, bookCategoryMapping);
       
