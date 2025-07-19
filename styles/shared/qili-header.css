@@ -240,10 +240,7 @@
 
 /* Mobile-specific positioning fixes */
 @media (max-width: 768px) {
-  /* Ensure body has proper top padding for fixed header */
-  body {
-    padding-top: 60px !important;
-  }
+  /* Removed body padding-top as it conflicts with .main margin-top */
 }
 
 @media (max-width: 320px) {
@@ -251,10 +248,7 @@
     height: 55px !important; /* Reduced height for ultra-small screens */
   }
   
-  /* Adjust body padding for reduced header height */
-  body {
-    padding-top: 55px !important;
-  }
+  /* Removed body padding-top as it conflicts with .main margin-top */
 }
 
 .search-bar {

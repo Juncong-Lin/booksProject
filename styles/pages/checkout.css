@@ -165,7 +165,7 @@
     margin-top: 104px; /* Keep same as desktop */
   }  .checkout-grid {
     grid-template-columns: 1fr;
-    margin-top: 312px; /* Payment summary ends at ~312px */
+    margin-top: 360px; /* Added aesthetic gap between order summary and first product */
     padding-top: 0; /* Remove gap */
   }
     .page-title {
@@ -219,7 +219,7 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 312px; /* Payment summary ends at ~312px */
+    margin-top: 360px; /* Added aesthetic gap between order summary and first product */
     padding-top: 0; /* Remove gap */
   }
 }
@@ -256,7 +256,7 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 302px; /* Payment summary ends at ~302px */
+    margin-top: 350px; /* Added aesthetic gap between order summary and first product */
     padding-top: 0; /* Remove gap */
   }
 }
@@ -285,7 +285,7 @@
   }
   
   .checkout-grid {
-    margin-top: 280px !important; /* Reduced gap - payment summary + some spacing */
+    margin-top: 340px !important; /* Added aesthetic gap between order summary and first product */
     padding-top: 0 !important;
   }
 }
@@ -306,7 +306,7 @@
   }
   
   .checkout-grid {
-    margin-top: 270px !important; /* Reduced gap for small screens */
+    margin-top: 320px !important; /* Added aesthetic gap between order summary and first product */
   }
 }
 

@@ -660,7 +660,7 @@ body.has-sidebar .main {
 @media (max-width: 320px) {
   .main,
   body.has-sidebar .main {
-    margin-top: 104px !important; /* 55px header + 44px sub-header + 5px gap */
+    margin-top: 99px !important; /* 55px header + 44px sub-header */
     padding-top: 15px !important;
     padding-left: 8px !important;
     padding-right: 8px !important;
