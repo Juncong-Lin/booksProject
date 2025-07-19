@@ -2214,11 +2214,11 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       const currentSlug = displayName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-');
       breadcrumbElement.innerHTML = `
         <a href="index.html" class="breadcrumb-link">Home</a>
-        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-separator">&gt;</span>
         <a href="index.html#${parentSlug}" class="breadcrumb-link">${parentCategory}</a>
-        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-separator">&gt;</span>
         <a href="index.html#${currentSlug}" class="breadcrumb-link">${displayName}</a>
-        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-separator">&gt;</span>
         <span class="breadcrumb-current">${product.name}</span>
       `;
     } else {
@@ -2226,9 +2226,9 @@ function updateBreadcrumbDetail(product, productType, productBrand) {
       const currentSlug = displayName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-');
       breadcrumbElement.innerHTML = `
         <a href="index.html" class="breadcrumb-link">Home</a>
-        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-separator">&gt;</span>
         <a href="index.html#${currentSlug}" class="breadcrumb-link">${displayName}</a>
-        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-separator">&gt;</span>
         <span class="breadcrumb-current">${product.name}</span>
       `;
     }

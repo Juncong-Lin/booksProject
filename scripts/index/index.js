@@ -192,7 +192,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <span class="breadcrumb-current">Print Heads</span>
         `;
@@ -206,7 +206,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <span class="breadcrumb-current">Inkjet Printers</span>
         `;
@@ -220,7 +220,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <span class="breadcrumb-current">Print Spare Parts</span>
         `;
@@ -236,7 +236,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -256,7 +256,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -278,7 +278,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -300,7 +300,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -320,7 +320,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -340,7 +340,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -362,7 +362,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -382,7 +382,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -402,7 +402,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -424,7 +424,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -444,7 +444,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -464,7 +464,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -486,7 +486,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -508,7 +508,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -528,7 +528,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadAllPrintSpareParts()" class="breadcrumb-link">Print Spare Parts</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -544,7 +544,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadAllPrintSpareParts()" class="breadcrumb-link">Print Spare Parts</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -561,7 +561,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadAllPrintSpareParts()" class="breadcrumb-link">Print Spare Parts</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -578,7 +578,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadAllPrintSpareParts()" class="breadcrumb-link">Print Spare Parts</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -594,7 +594,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <span class="breadcrumb-current">Upgrading Kit</span>
         `;
@@ -611,7 +611,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadAllUpgradingKitProducts()" class="breadcrumb-link">Upgrading Kit</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -626,7 +626,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <span class="breadcrumb-current">Material</span>
         `;
@@ -644,7 +644,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadAllMaterialProducts()" class="breadcrumb-link">Material</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -663,7 +663,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadAllLedLcdProducts()" class="breadcrumb-link">LED & LCD</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -682,7 +682,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" class="breadcrumb-link" onclick="loadChannelLetterProducts('${channelLetterCategory}')">${channelLetterCategory.charAt(0).toUpperCase() + channelLetterCategory.slice(1)} Channel Letter</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -701,7 +701,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" class="breadcrumb-link" onclick="loadOtherProducts('${otherCategory}')">${otherCategory.charAt(0).toUpperCase() + otherCategory.slice(1)} Other Products</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -717,7 +717,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <span class="breadcrumb-current">Other</span>
         `;
@@ -731,7 +731,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <span class="breadcrumb-current">Channel Letter</span>
         `;
@@ -747,7 +747,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -767,7 +767,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -789,7 +789,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -811,7 +811,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -833,7 +833,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -855,7 +855,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -877,7 +877,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -899,7 +899,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -919,7 +919,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -939,7 +939,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -961,7 +961,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -981,7 +981,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -999,7 +999,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -1019,7 +1019,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadInkjetPrinters()" class="breadcrumb-link">Inkjet Printers</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -1037,7 +1037,7 @@ function updateBreadcrumb(brand) {
         `;
       } else {
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <span class="breadcrumb-current">LED & LCD</span>
         `;
@@ -1055,7 +1055,7 @@ function updateBreadcrumb(brand) {
       } else {
         // On index page, brand level is current/non-clickable
         breadcrumbElement.innerHTML = `
-          <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
+          <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
           <span class="breadcrumb-separator">&gt;</span>
           <a href="javascript:void(0)" onclick="loadAllPrintheadProducts()" class="breadcrumb-link">Print Heads</a>
           <span class="breadcrumb-separator">&gt;</span>
@@ -1357,618 +1357,7 @@ window.loadSpecificCategory = function(categoryName) {
   }, 200);
 };
 
-// Function to load Inkjet Printers
-window.loadInkjetPrinters = function() {
-  window.loadSpecificCategory('Inkjet Printers');
-};
-
-// Function to load Inkjet Printers
-window.loadInkjetPrinters = function() {
-  window.loadSpecificCategory('Inkjet Printers');
-};
-
-// Function to load Print Spare Parts  
-window.loadPrintSpareParts = function() {
-  window.loadSpecificCategory('Print Spare Parts');
-};
-
-// Function to load all print spare parts
-window.loadAllPrintSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Print Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {
-    // Get all print spare parts
-    let allPrintSpareParts = [];
-    for (const category in printSparePartProducts) {
-      allPrintSpareParts = allPrintSpareParts.concat(printSparePartProducts[category]);
-    }
-    
-    const productsHTML = renderProducts(allPrintSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();      // Update page title or add a header to show print spare parts category
-    updatePageHeader('Print Spare Parts', allPrintSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('printSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Epson Printer Spare Parts specifically
-window.loadEpsonPrinterSpareParts = function() {
-  // Hide the submenu after selection
-
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Epson Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {    // Get Epson printer spare parts
-    const epsonSpareParts = printSparePartProducts.epson || [];
-    
-    const productsHTML = renderProducts(epsonSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();      // Update page title or add a header to show Epson printer spare parts category
-    updatePageHeader('Epson Printer Spare Parts', epsonSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('epsonPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Roland Printer Spare Parts specifically
-window.loadRolandPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Roland Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {    // Get Roland printer spare parts
-    const rolandSpareParts = printSparePartProducts.roland || [];
-    
-    const productsHTML = renderProducts(rolandSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();      // Update page title or add a header to show Roland printer spare parts category
-    updatePageHeader('Roland Printer Spare Parts', rolandSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('rolandPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Canon Printer Spare Parts specifically
-window.loadCanonPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Canon Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {    // Get Canon printer spare parts
-    const canonSpareParts = printSparePartProducts.canon || [];
-    
-    const productsHTML = renderProducts(canonSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();      // Update page title or add a header to show Canon printer spare parts category
-    updatePageHeader('Canon Printer Spare Parts', canonSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('canonPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Ricoh Printer Spare Parts specifically
-window.loadRicohPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Ricoh Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {    // Get Ricoh printer spare parts
-    const ricohSpareParts = printSparePartProducts.ricoh || [];
-    
-    const productsHTML = renderProducts(ricohSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();      // Update page title or add a header to show Ricoh printer spare parts category
-    updatePageHeader('Ricoh Printer Spare Parts', ricohSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('ricohPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Infiniti/Challenger Printer Spare Parts specifically
-window.loadInfinitiChallengerPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Infiniti / Challenger Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {
-    // Get Infiniti/Challenger printer spare parts
-    const infinitiChallengerSpareParts = printSparePartProducts.infiniti_challenger || [];
-    
-    const productsHTML = renderProducts(infinitiChallengerSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();      // Update page title or add a header to show Infiniti/Challenger printer spare parts category
-    updatePageHeader('Infiniti / Challenger Printer Spare Parts', infinitiChallengerSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('infinitiChallengerPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Flora Printer Spare Parts specifically
-window.loadFloraPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Flora Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {
-    // Get Flora printer spare parts
-    const floraSpareParts = printSparePartProducts.flora || [];
-    
-    const productsHTML = renderProducts(floraSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();      // Update page title or add a header to show Flora printer spare parts category
-    updatePageHeader('Flora Printer Spare Parts', floraSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('floraPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Galaxy Printer Spare Parts specifically
-window.loadGalaxyPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Galaxy Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-
-  setTimeout(() => {
-    // Get Galaxy printer spare parts
-    const galaxySpareParts = printSparePartProducts.galaxy || [];
-    
-    const productsHTML = renderProducts(galaxySpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();      // Update page title or add a header to show Galaxy printer spare parts category
-    updatePageHeader('Galaxy Printer Spare Parts', galaxySpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('galaxyPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Mimaki Printer Spare Parts specifically
-window.loadMimakiPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Mimaki Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {
-    // Get Mimaki printer spare parts
-    const mimakiSpareParts = printSparePartProducts.mimaki || [];
-    
-    const productsHTML = renderProducts(mimakiSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();      // Update page title or add a header to show Mimaki printer spare parts category
-    updatePageHeader('Mimaki Printer Spare Parts', mimakiSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('mimakiPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Mutoh Printer Spare Parts specifically
-window.loadMutohPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Mutoh Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {
-    // Get Mutoh printer spare parts
-    const mutohSpareParts = printSparePartProducts.mutoh || [];
-    
-    const productsHTML = renderProducts(mutohSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-    
-    // Update page title or add a header to show Mutoh printer spare parts category
-    updatePageHeader('Mutoh Printer Spare Parts', mutohSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('mutohPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Wit-color Printer Spare Parts specifically
-window.loadWitColorPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Wit-color Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {
-    // Get Wit-color printer spare parts
-    const witcolorSpareParts = printSparePartProducts.witcolor || [];
-    
-    const productsHTML = renderProducts(witcolorSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-    
-    // Update page title or add a header to show Wit-color printer spare parts category
-    updatePageHeader('Wit-color Printer Spare Parts', witcolorSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('witColorPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Gongzheng Printer Spare Parts specifically
-window.loadGongzhengPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Gongzheng Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {
-    // Get Gongzheng printer spare parts
-    const gongzhengSpareParts = printSparePartProducts.gongzheng || [];
-    
-    const productsHTML = renderProducts(gongzhengSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-    
-    // Update page title or add a header to show Gongzheng printer spare parts category
-    updatePageHeader('Gongzheng Printer Spare Parts', gongzhengSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('gongzhengPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Function to load Human Printer Spare Parts specifically
-window.loadHumanPrinterSpareParts = function() {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  
-  // Highlight selected menu item in the navigation
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === 'Human Printer Spare Parts') {
-      link.classList.add('active');
-    }
-  });
-  
-  // Add loading animation
-  showLoadingState();
-  
-  // Small delay for smooth transition
-  setTimeout(() => {
-    // Get Human printer spare parts
-    const humanSpareParts = printSparePartProducts.human || [];
-    
-    const productsHTML = renderProducts(humanSpareParts, 'printsparepart');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
-    productsGrid.innerHTML = productsHTML;
-    productsGrid.classList.remove('showing-coming-soon');
-    
-    // Re-attach event listeners for the new add to cart buttons
-    attachAddToCartListeners();
-    
-    // Update page title or add a header to show Human printer spare parts category
-    updatePageHeader('Human Printer Spare Parts', humanSpareParts.length);
-    
-    // Update breadcrumb navigation
-    updateBreadcrumb('humanPrinterSpareParts');
-    
-    // Check if we need to skip scrolling
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const skipScroll = urlSearchParams.get('noscroll') === 'true';
-    
-    // Scroll to top of products only if not skipping
-    if (!skipScroll) {
-      scrollToProducts();
-    }
-  }, 200);
-};
-
-// Removed multiple printer spare parts functions - this is now a books website
-
-// Removed Xaar and Toshiba printer spare parts functions - this is now a books website
+// Removed all printer-related functions - this is now a books website
 
 // Expose utility functions globally for search system (books website)
 window.updatePageHeader = updatePageHeader;

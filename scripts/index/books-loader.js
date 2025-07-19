@@ -580,17 +580,17 @@ function updateBreadcrumb(categoryDisplayName, categoryDataKey) {
     if (parentCategory) {
       // Second-level category - show Home > Parent > Current
       breadcrumbElement.innerHTML = `
-        <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
-        <span class="breadcrumb-separator"> > </span>
+        <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
+        <span class="breadcrumb-separator">&gt;</span>
         <a href="javascript:void(0)" onclick="loadSpecificCategory('${parentCategory}')" class="breadcrumb-link">${parentCategory}</a>
-        <span class="breadcrumb-separator"> > </span>
+        <span class="breadcrumb-separator">&gt;</span>
         <span class="breadcrumb-current">${categoryDisplayName}</span>
       `;
     } else {
       // First-level category - show Home > Current
       breadcrumbElement.innerHTML = `
-        <a href="javascript:void(0)" onclick="loadAllProducts()" class="breadcrumb-link">Home</a>
-        <span class="breadcrumb-separator"> > </span>
+        <a href="index.html" class="breadcrumb-link" onclick="if(typeof loadAllProducts === 'function') { loadAllProducts(); return false; }">Home</a>
+        <span class="breadcrumb-separator">&gt;</span>
         <span class="breadcrumb-current">${categoryDisplayName}</span>
       `;
     }
