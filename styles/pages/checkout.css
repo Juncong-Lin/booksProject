@@ -261,6 +261,55 @@
   }
 }
 
+/* Core mobile positioning fix - remove gap between subheader and content */
+@media (max-width: 767px) {
+  /* Override all previous rules for consistent mobile experience */
+  .main {
+    margin-top: 104px !important; /* 60px header + 44px sub-header */
+  }
+  
+  .page-title {
+    top: 104px !important; /* Position directly after subheader */
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+    padding: 8px 15px !important;
+    border-bottom: none !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+  
+  .payment-summary {
+    top: 138px !important; /* 104px + ~34px page title height */
+    margin-top: 0 !important;
+    border-top: 1px solid #eee !important;
+  }
+  
+  .checkout-grid {
+    margin-top: 280px !important; /* Reduced gap - payment summary + some spacing */
+    padding-top: 0 !important;
+  }
+}
+
+/* Ultra-small screen adjustments (320px and below) where header is 55px */
+@media (max-width: 320px) {
+  .main {
+    margin-top: 99px !important; /* 55px header + 44px sub-header */
+  }
+  
+  .page-title {
+    top: 99px !important; /* Header (55px) + subheader (44px) */
+    padding: 6px 10px !important;
+  }
+  
+  .payment-summary {
+    top: 133px !important; /* 99px + ~34px page title height */
+  }
+  
+  .checkout-grid {
+    margin-top: 270px !important; /* Reduced gap for small screens */
+  }
+}
+
 .cart-item-container,
 .payment-summary {
   border: 1px solid rgb(222, 222, 222);
@@ -714,44 +763,6 @@
   .main {
     margin-top: 110px;
     margin-bottom: 60px;
-  }
-}
-
-/* ============================================ */
-/* MOBILE-SPECIFIC OVERRIDE SECTION */
-/* Force mobile gap elimination with highest specificity */
-/* ============================================ */
-
-/* Extra specific mobile selectors to force gap elimination */
-@media (max-width: 767px) and (min-width: 481px) {
-  body .main .page-title {
-    top: 120px !important;
-    padding: 8px 15px !important;
-    margin-bottom: 0px !important;
-    border-bottom: none !important;
-    height: auto !important;
-    min-height: 26px !important; /* Explicit minimum height */
-  }
-  
-  body .main .payment-summary {
-    top: 118px !important; /* Calculated: 92px + 26px = 118px */
-    border-top: 1px solid #eee !important;
-  }
-}
-
-@media (max-width: 480px) {
-  body .main .page-title {
-    top: 120px !important;
-    padding: 6px 10px !important;
-    margin-bottom: 0px !important;
-    border-bottom: none !important;
-    height: auto !important;
-    min-height: 22px !important; /* Explicit minimum height */
-  }
-  
-  body .main .payment-summary {
-    top: 114px !important; /* Calculated: 92px + 22px = 114px */
-    border-top: 1px solid #eee !important;
   }
 }
 
