@@ -297,7 +297,7 @@ setTimeout(() => {
     // Map category names to book category keys
     const categoryMap = {
       // Main categories
-      'Fiction': 'fiction',
+      'Fiction': ['fiction', 'adult_fiction', 'christian_fiction', 'historical_fiction', 'science_fiction', 'womens_fiction', 'classics', 'contemporary', 'crime', 'erotica', 'fantasy', 'horror', 'mystery', 'novels', 'paranormal', 'romance', 'short_stories', 'suspense', 'thriller'],
       'Non-Fiction': 'nonfiction',
       'Children & Young Adult': ['childrens', 'young_adult', 'new_adult'],
       'Academic & Educational': 'academic',
@@ -369,7 +369,26 @@ setTimeout(() => {
     
     let categoryBooks = [];
     
-    if (Array.isArray(bookCategoryMapping)) {
+    // Check if this is a Fiction subcategory that should filter from the main Fiction collection
+    const fictionSubcategories = ['Historical Fiction', 'Science Fiction', 'Womens Fiction', 'Women\'s Fiction', 'Christian Fiction', 'Adult Fiction', 'Classics', 'Contemporary', 'Crime', 'Erotica', 'Fantasy', 'Horror', 'Mystery', 'Novels', 'Paranormal', 'Romance', 'Short Stories', 'Suspense', 'Thriller'];
+    const isFictionSubcategory = fictionSubcategories.includes(categoryName);
+    
+    if (isFictionSubcategory) {
+      // For Fiction subcategories, get all fiction books and filter by the specific subcategory
+      const allFictionCategories = ['fiction', 'adult_fiction', 'christian_fiction', 'historical_fiction', 'science_fiction', 'womens_fiction', 'classics', 'contemporary', 'crime', 'erotica', 'fantasy', 'horror', 'mystery', 'novels', 'paranormal', 'romance', 'short_stories', 'suspense', 'thriller'];
+      let allFictionBooks = [];
+      allFictionCategories.forEach(categoryKey => {
+        if (booksProducts[categoryKey]) {
+          allFictionBooks = allFictionBooks.concat(booksProducts[categoryKey]);
+        }
+      });
+      
+      // Filter by the specific subcategory
+      const subcategoryKey = bookCategoryMapping;
+      if (subcategoryKey && booksProducts[subcategoryKey]) {
+        categoryBooks = booksProducts[subcategoryKey];
+      }
+    } else if (Array.isArray(bookCategoryMapping)) {
       // Handle main categories that map to multiple subcategories
       bookCategoryMapping.forEach(categoryKey => {
         if (booksProducts[categoryKey]) {
