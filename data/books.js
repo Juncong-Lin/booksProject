@@ -140,14 +140,6 @@ export const booksProducts = {
       higher_price: 5648
     },
     {
-      id: "A-People-s-History-of-the-United-States",
-      name: "A People's History of the United States",
-      image: "products/books/Add a comment/A People's History of the United States/image/A People's History of the United States.jpg",
-      star: 2,
-      lower_price: 4079,
-      higher_price: 4079
-    },
-    {
       id: "A-Brush-of-Wings-Angels-Walking-3",
       name: "A Brush of Wings (Angels Walking #3)",
       image: "products/books/Add a comment/A Brush of Wings (Angels Walking #3)/image/A Brush of Wings (Angels Walking #3).jpg",
@@ -322,14 +314,6 @@ export const booksProducts = {
       star: 1,
       lower_price: 2237,
       higher_price: 2237
-    },
-    {
-      id: "Evicted-Poverty-and-Profit-in-the-American-City",
-      name: "Evicted: Poverty and Profit in the American City",
-      image: "products/books/Add a comment/Evicted Poverty and Profit in the American City/image/Evicted Poverty and Profit in the American City.jpg",
-      star: 1,
-      lower_price: 4227,
-      higher_price: 4227
     },
     {
       id: "A-Game-of-Thrones-A-Song-of-Ice-and-Fire-1",
@@ -523,14 +507,7 @@ export const booksProducts = {
       lower_price: 1616,
       higher_price: 1616
     },
-    {
-      id: "The-Communist-Manifesto",
-      name: "The Communist Manifesto",
-      image: "products/books/Add a comment/The Communist Manifesto/image/The Communist Manifesto.jpg",
-      star: 3,
-      lower_price: 1476,
-      higher_price: 1476
-    },
+
     {
       id: "Lord-of-the-Flies",
       name: "Lord of the Flies",
@@ -541,14 +518,6 @@ export const booksProducts = {
     },
   ],
   adult_fiction: [
-    {
-      id: "Fifty-Shades-Freed-Fifty-Shades-3",
-      name: "Fifty Shades Freed (Fifty Shades #3)",
-      image: "products/books/Adult Fiction/Fifty Shades Freed (Fifty Shades #3)/image/Fifty Shades Freed (Fifty Shades #3).jpg",
-      star: 5,
-      lower_price: 1536,
-      higher_price: 1536
-    },
   ],
   art: [
     {
@@ -1197,14 +1166,7 @@ export const booksProducts = {
       lower_price: 5863,
       higher_price: 5863
     },
-    {
-      id: "Animal-Farm",
-      name: "Animal Farm",
-      image: "products/books/Classics/Animal Farm/image/Animal Farm.jpg",
-      star: 3,
-      lower_price: 5722,
-      higher_price: 5722
-    },
+
     {
       id: "Wuthering-Heights",
       name: "Wuthering Heights",
@@ -3323,14 +3285,7 @@ export const booksProducts = {
       lower_price: 5800,
       higher_price: 5800
     },
-    {
-      id: "Atlas-Shrugged",
-      name: "Atlas Shrugged",
-      image: "products/books/Fiction/Atlas Shrugged/image/Atlas Shrugged.jpg",
-      star: 5,
-      lower_price: 2658,
-      higher_price: 2658
-    },
+
     {
       id: "Three-Martini-Lunch",
       name: "Three-Martini Lunch",
@@ -4061,14 +4016,7 @@ export const booksProducts = {
       lower_price: 5240,
       higher_price: 5240
     },
-    {
-      id: "The-Rise-and-Fall-of-the-Third-Reich-A-History-of-Nazi-Germany",
-      name: "The Rise and Fall of the Third Reich: A History of Nazi Germany",
-      image: "products/books/History/The Rise and Fall of the Third Reich A History of Nazi Germany/image/The Rise and Fall of the Third Reich A History of Nazi Germany.jpg",
-      star: 2,
-      lower_price: 3967,
-      higher_price: 3967
-    },
+
     {
       id: "Catherine-the-Great-Portrait-of-a-Woman",
       name: "Catherine the Great: Portrait of a Woman",
@@ -5065,14 +5013,7 @@ export const booksProducts = {
       lower_price: 5637,
       higher_price: 5637
     },
-    {
-      id: "13-Hours-The-Inside-Account-of-What-Really-Happened-In-Benghazi",
-      name: "13 Hours: The Inside Account of What Really Happened In Benghazi",
-      image: "products/books/Nonfiction/13 Hours The Inside Account of What Really Happened In Benghazi/image/13 Hours The Inside Account of What Really Happened In Benghazi.jpg",
-      star: 1,
-      lower_price: 2706,
-      higher_price: 2706
-    },
+
     {
       id: "The-Lonely-City-Adventures-in-the-Art-of-Being-Alone",
       name: "The Lonely City: Adventures in the Art of Being Alone",
@@ -5137,14 +5078,7 @@ export const booksProducts = {
       lower_price: 2457,
       higher_price: 2457
     },
-    {
-      id: "Chernobyl-01-23-40-The-Incredible-True-Story-of-the-World-s-Worst-Nuclear-Disaster",
-      name: "Chernobyl 01:23:40: The Incredible True Story of the World's Worst Nuclear Disaster",
-      image: "products/books/Nonfiction/Chernobyl 012340 The Incredible True Story of the World's Worst Nuclear Disaster/image/Chernobyl 012340 The Incredible True Story of the World's Worst Nuclear Disaster.jpg",
-      star: 2,
-      lower_price: 3592,
-      higher_price: 3592
-    },
+
     {
       id: "Zero-to-One-Notes-on-Startups-or-How-to-Build-the-Future",
       name: "Zero to One: Notes on Startups, or How to Build the Future",
@@ -5233,14 +5167,7 @@ export const booksProducts = {
       lower_price: 1922,
       higher_price: 1922
     },
-    {
-      id: "Between-the-World-and-Me",
-      name: "Between the World and Me",
-      image: "products/books/Nonfiction/Between the World and Me/image/Between the World and Me.jpg",
-      star: 4,
-      lower_price: 5691,
-      higher_price: 5691
-    },
+
     {
       id: "Being-Mortal-Medicine-and-What-Matters-in-the-End",
       name: "Being Mortal: Medicine and What Matters in the End",
@@ -5553,14 +5480,7 @@ export const booksProducts = {
       lower_price: 2174,
       higher_price: 2174
     },
-    {
-      id: "Black-Flags-The-Rise-of-ISIS",
-      name: "Black Flags: The Rise of ISIS",
-      image: "products/books/Nonfiction/Black Flags The Rise of ISIS/image/Black Flags The Rise of ISIS.jpg",
-      star: 1,
-      lower_price: 4086,
-      higher_price: 4086
-    },
+
     {
       id: "Are-We-Smart-Enough-to-Know-How-Smart-Animals-Are",
       name: "Are We Smart Enough to Know How Smart Animals Are?",
@@ -5705,14 +5625,7 @@ export const booksProducts = {
       lower_price: 4713,
       higher_price: 4713
     },
-    {
-      id: "At-The-Existentialist-Café-Freedom-Being-and-apricot-cocktails-with-Jean-Paul-Sartre-Simone-de-Beauvoir-Albert-Camus-Martin-Heidegger-Edmund-Husserl-Karl-Jaspers-Maurice-Merleau-Ponty-and-others",
-      name: "At The Existentialist Café: Freedom, Being, and apricot cocktails with: Jean-Paul Sartre, Simone de Beauvoir, Albert Camus, Martin Heidegger, Edmund Husserl, Karl Jaspers, Maurice Merleau-Ponty and others",
-      image: "products/books/Philosophy/At The Existentialist Café Freedom, Being, and apricot cocktails with Jean-Paul Sartre, Simone de Beauvoir, Albert Camus, Martin Heidegger, Edmund Husserl, Karl Jaspers, Maurice Merleau-Ponty and others/image/At The Existentialist Café Freedom, Being, and apricot cocktails with Jean-Paul Sartre, Simone de Beauvoir, Albert Camus, Martin Heidegger, Edmund Husserl, Karl Jaspers, Maurice Merleau-Ponty and others.jpg",
-      star: 5,
-      lower_price: 2993,
-      higher_price: 2993
-    },
+
     {
       id: "Critique-of-Pure-Reason",
       name: "Critique of Pure Reason",
@@ -6025,14 +5938,7 @@ export const booksProducts = {
       lower_price: 2457,
       higher_price: 2457
     },
-    {
-      id: "A-History-of-God-The-4-000-Year-Quest-of-Judaism-Christianity-and-Islam",
-      name: "A History of God: The 4,000-Year Quest of Judaism, Christianity, and Islam",
-      image: "products/books/Religion/A History of God The 4,000-Year Quest of Judaism, Christianity, and Islam/image/A History of God The 4,000-Year Quest of Judaism, Christianity, and Islam.jpg",
-      star: 1,
-      lower_price: 2762,
-      higher_price: 2762
-    },
+
     {
       id: "The-Bhagavad-Gita",
       name: "The Bhagavad Gita",
@@ -6083,14 +5989,7 @@ export const booksProducts = {
       lower_price: 1597,
       higher_price: 1597
     },
-    {
-      id: "Fifty-Shades-Darker-Fifty-Shades-2",
-      name: "Fifty Shades Darker (Fifty Shades #2)",
-      image: "products/books/Romance/Fifty Shades Darker (Fifty Shades #2)/image/Fifty Shades Darker (Fifty Shades #2).jpg",
-      star: 1,
-      lower_price: 2196,
-      higher_price: 2196
-    },
+
     {
       id: "The-Wedding-Dress",
       name: "The Wedding Dress",
@@ -6956,28 +6855,12 @@ export const booksProducts = {
       higher_price: 2096
     },
     {
-      id: "Death-Note-Vol-6-Give-and-Take-Death-Note-6",
-      name: "Death Note, Vol. 6: Give-and-Take (Death Note #6)",
-      image: "products/books/Sequential Art/Death Note, Vol. 6 Give-and-Take (Death Note #6)/image/Death Note, Vol. 6 Give-and-Take (Death Note #6).jpg",
-      star: 3,
-      lower_price: 3639,
-      higher_price: 3639
-    },
-    {
       id: "Fruits-Basket-Vol-5-Fruits-Basket-5",
       name: "Fruits Basket, Vol. 5 (Fruits Basket #5)",
       image: "products/books/Sequential Art/Fruits Basket, Vol. 5 (Fruits Basket #5)/image/Fruits Basket, Vol. 5 (Fruits Basket #5).jpg",
       star: 1,
       lower_price: 1632,
       higher_price: 1632
-    },
-    {
-      id: "Death-Note-Vol-5-Whiteout-Death-Note-5",
-      name: "Death Note, Vol. 5: Whiteout (Death Note #5)",
-      image: "products/books/Sequential Art/Death Note, Vol. 5 Whiteout (Death Note #5)/image/Death Note, Vol. 5 Whiteout (Death Note #5).jpg",
-      star: 1,
-      lower_price: 5241,
-      higher_price: 5241
     },
     {
       id: "The-Demon-Prince-of-Momochi-House-Vol-4-The-Demon-Prince-of-Momochi-House-4",
@@ -7058,14 +6941,6 @@ export const booksProducts = {
       star: 2,
       lower_price: 4517,
       higher_price: 4517
-    },
-    {
-      id: "Black-Butler-Vol-1-Black-Butler-1",
-      name: "Black Butler, Vol. 1 (Black Butler #1)",
-      image: "products/books/Sequential Art/Black Butler, Vol. 1 (Black Butler #1)/image/Black Butler, Vol. 1 (Black Butler #1).jpg",
-      star: 1,
-      lower_price: 4931,
-      higher_price: 4931
     },
     {
       id: "Awkward",
@@ -7537,14 +7412,7 @@ export const booksProducts = {
       lower_price: 2046,
       higher_price: 2046
     },
-    {
-      id: "Grey-Fifty-Shades-4",
-      name: "Grey (Fifty Shades #4)",
-      image: "products/books/Womens Fiction/Grey (Fifty Shades #4)/image/Grey (Fifty Shades #4).jpg",
-      star: 4,
-      lower_price: 4849,
-      higher_price: 4849
-    },
+
     {
       id: "Meternity",
       name: "Meternity",
