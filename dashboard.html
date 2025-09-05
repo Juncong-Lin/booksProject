@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -24,154 +24,490 @@
 
     <!-- Chart.js for visualizations -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
-    <!-- Additional styles for management link -->
-    <style>
-      .management-link:hover {
-        background: linear-gradient(
-          135deg,
-          #5a2d91 0%,
-          #4c2171 100%
-        ) !important;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(111, 66, 193, 0.3);
-      }
-    </style>
+    <!-- Additional libraries for enhanced UI -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
   </head>
 
-  <body class="no-sidebar">
+  <body class="no-sidebar dashboard-theme">
     <!-- Header -->
     <div id="shared-header-placeholder"></div>
     <div id="shared-subheader-placeholder"></div>
 
+    <!-- Gradient Background -->
+    <div class="dashboard-background">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+    </div>
+
     <div class="main">
-      <div class="dashboard-container">
-        <div
-          style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-          "
-        >
-          <h1>Website Analytics Dashboard</h1>
-          <a
-            href="analytics-management.html"
-            class="management-link"
-            style="
-              background: linear-gradient(135deg, #6f42c1 0%, #5a2d91 100%);
-              color: white;
-              text-decoration: none;
-              padding: 10px 20px;
-              border-radius: 8px;
-              font-weight: 500;
-              transition: all 0.3s ease;
-              display: inline-flex;
-              align-items: center;
-              gap: 8px;
-            "
-          >
-            🛠️ Manage Data
-          </a>
+      <div class="dashboard-container animate__animated animate__fadeIn">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+          <div class="header-content">
+            <div class="title-section">
+              <div class="breadcrumb">
+                <span class="breadcrumb-item">Analytics</span>
+                <i
+                  data-feather="chevron-right"
+                  class="breadcrumb-separator"
+                ></i>
+                <span class="breadcrumb-item active">Dashboard</span>
+              </div>
+              <h1 class="dashboard-title">
+                <i data-feather="bar-chart-2" class="title-icon"></i>
+                Website Analytics Dashboard
+              </h1>
+              <p class="dashboard-subtitle">
+                Real-time insights and performance metrics
+              </p>
+            </div>
+            <div class="header-actions">
+              <button class="action-btn refresh-btn" id="refresh-data">
+                <i data-feather="refresh-cw"></i>
+                <span>Refresh</span>
+              </button>
+              <button class="action-btn export-btn">
+                <i data-feather="download"></i>
+                <span>Export</span>
+              </button>
+              <a
+                href="analytics-management.html"
+                class="action-btn management-btn primary"
+              >
+                <i data-feather="settings"></i>
+                <span>Manage Data</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Live Status Indicator -->
+          <div class="live-status">
+            <div class="status-indicator">
+              <div class="status-dot"></div>
+              <span>Live Data</span>
+            </div>
+            <div class="last-updated">
+              Last updated: <span id="last-updated-time">Just now</span>
+            </div>
+          </div>
         </div>
 
         <!-- Summary Cards -->
         <div class="summary-cards">
-          <div class="card">
-            <h3>Total Page Views</h3>
-            <div class="metric" id="total-pageviews">0</div>
+          <div
+            class="metric-card animate__animated animate__slideInUp"
+            style="animation-delay: 0.1s"
+          >
+            <div class="card-header">
+              <div class="card-icon page-views">
+                <i data-feather="eye"></i>
+              </div>
+              <div class="card-trend positive">
+                <i data-feather="trending-up"></i>
+                <span>+12.5%</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3>Total Page Views</h3>
+              <div class="metric-value" id="total-pageviews">0</div>
+              <p class="metric-description">Views in the last 30 days</p>
+            </div>
+            <div class="card-chart">
+              <canvas id="pageviews-mini-chart"></canvas>
+            </div>
           </div>
-          <div class="card">
-            <h3>Unique Sessions</h3>
-            <div class="metric" id="unique-sessions">0</div>
+
+          <div
+            class="metric-card animate__animated animate__slideInUp"
+            style="animation-delay: 0.2s"
+          >
+            <div class="card-header">
+              <div class="card-icon unique-sessions">
+                <i data-feather="users"></i>
+              </div>
+              <div class="card-trend positive">
+                <i data-feather="trending-up"></i>
+                <span>+8.3%</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3>Unique Sessions</h3>
+              <div class="metric-value" id="unique-sessions">0</div>
+              <p class="metric-description">Active user sessions</p>
+            </div>
+            <div class="card-chart">
+              <canvas id="sessions-mini-chart"></canvas>
+            </div>
           </div>
-          <div class="card">
-            <h3>Total Clicks</h3>
-            <div class="metric" id="total-clicks">0</div>
+
+          <div
+            class="metric-card animate__animated animate__slideInUp"
+            style="animation-delay: 0.3s"
+          >
+            <div class="card-header">
+              <div class="card-icon total-clicks">
+                <i data-feather="mouse-pointer"></i>
+              </div>
+              <div class="card-trend positive">
+                <i data-feather="trending-up"></i>
+                <span>+15.7%</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3>Total Clicks</h3>
+              <div class="metric-value" id="total-clicks">0</div>
+              <p class="metric-description">User interactions tracked</p>
+            </div>
+            <div class="card-chart">
+              <canvas id="clicks-mini-chart"></canvas>
+            </div>
           </div>
-          <div class="card">
-            <h3>Avg Scroll Depth</h3>
-            <div class="metric" id="avg-scroll">0%</div>
+
+          <div
+            class="metric-card animate__animated animate__slideInUp"
+            style="animation-delay: 0.4s"
+          >
+            <div class="card-header">
+              <div class="card-icon scroll-depth">
+                <i data-feather="activity"></i>
+              </div>
+              <div class="card-trend negative">
+                <i data-feather="trending-down"></i>
+                <span>-2.1%</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3>Avg Scroll Depth</h3>
+              <div class="metric-value" id="avg-scroll">0%</div>
+              <p class="metric-description">Page engagement level</p>
+            </div>
+            <div class="card-chart">
+              <canvas id="scroll-mini-chart"></canvas>
+            </div>
           </div>
         </div>
 
         <!-- Charts Section -->
-        <div class="charts-section">
-          <div class="chart-container">
-            <h3>Event Types Distribution</h3>
-            <canvas id="event-types-chart"></canvas>
+        <div class="charts-grid">
+          <div
+            class="chart-card large animate__animated animate__slideInUp"
+            style="animation-delay: 0.5s"
+          >
+            <div class="chart-header">
+              <div class="chart-title">
+                <h3>User Activity Timeline</h3>
+                <p>Real-time user interactions over the past 24 hours</p>
+              </div>
+              <div class="chart-actions">
+                <div class="time-filter">
+                  <button class="filter-btn active" data-period="24h">
+                    24H
+                  </button>
+                  <button class="filter-btn" data-period="7d">7D</button>
+                  <button class="filter-btn" data-period="30d">30D</button>
+                </div>
+              </div>
+            </div>
+            <div class="chart-content">
+              <canvas id="activity-timeline-chart"></canvas>
+            </div>
           </div>
 
-          <div class="chart-container">
-            <h3>User Activity Timeline</h3>
-            <canvas id="activity-timeline-chart"></canvas>
+          <div
+            class="chart-card animate__animated animate__slideInUp"
+            style="animation-delay: 0.6s"
+          >
+            <div class="chart-header">
+              <div class="chart-title">
+                <h3>Event Types Distribution</h3>
+                <p>Breakdown of user interactions</p>
+              </div>
+              <div class="chart-legend" id="event-legend"></div>
+            </div>
+            <div class="chart-content">
+              <canvas id="event-types-chart"></canvas>
+            </div>
           </div>
 
-          <div class="chart-container">
-            <h3>Page Performance</h3>
-            <canvas id="page-performance-chart"></canvas>
+          <div
+            class="chart-card animate__animated animate__slideInUp"
+            style="animation-delay: 0.7s"
+          >
+            <div class="chart-header">
+              <div class="chart-title">
+                <h3>Page Performance</h3>
+                <p>Load times and user engagement</p>
+              </div>
+            </div>
+            <div class="chart-content">
+              <canvas id="page-performance-chart"></canvas>
+            </div>
           </div>
         </div>
 
         <!-- Conversion Funnel -->
-        <div class="funnel-section">
-          <h3>User Journey Funnel</h3>
-          <div class="funnel-steps">
-            <div class="funnel-step">
-              <div class="step-name">Page Views</div>
-              <div class="step-count" id="funnel-views">0</div>
-              <div class="step-bar" id="funnel-views-bar"></div>
+        <div
+          class="funnel-section animate__animated animate__slideInUp"
+          style="animation-delay: 0.8s"
+        >
+          <div class="section-header">
+            <div class="section-title">
+              <h3>
+                <i data-feather="filter"></i>
+                User Journey Funnel
+              </h3>
+              <p>Track user conversion through your website</p>
             </div>
-            <div class="funnel-step">
-              <div class="step-name">Product Clicks</div>
-              <div class="step-count" id="funnel-clicks">0</div>
-              <div class="step-bar" id="funnel-clicks-bar"></div>
+            <div class="funnel-controls">
+              <div class="conversion-rate">
+                <span class="rate-label">Overall Conversion Rate:</span>
+                <span class="rate-value" id="overall-conversion">0%</span>
+              </div>
             </div>
-            <div class="funnel-step">
-              <div class="step-name">Add to Cart</div>
-              <div class="step-count" id="funnel-cart">0</div>
-              <div class="step-bar" id="funnel-cart-bar"></div>
+          </div>
+
+          <div class="funnel-visualization">
+            <div class="funnel-step" data-step="views">
+              <div class="step-header">
+                <div class="step-icon">
+                  <i data-feather="eye"></i>
+                </div>
+                <div class="step-info">
+                  <div class="step-name">Page Views</div>
+                  <div class="step-description">
+                    Visitors landing on your site
+                  </div>
+                </div>
+                <div class="step-metrics">
+                  <div class="step-count" id="funnel-views">0</div>
+                  <div class="step-percentage">100%</div>
+                </div>
+              </div>
+              <div class="step-bar-container">
+                <div class="step-bar views" id="funnel-views-bar"></div>
+              </div>
             </div>
-            <div class="funnel-step">
-              <div class="step-name">Checkout</div>
-              <div class="step-count" id="funnel-checkout">0</div>
-              <div class="step-bar" id="funnel-checkout-bar"></div>
+
+            <div class="funnel-arrow">
+              <i data-feather="chevron-down"></i>
+            </div>
+
+            <div class="funnel-step" data-step="clicks">
+              <div class="step-header">
+                <div class="step-icon">
+                  <i data-feather="mouse-pointer"></i>
+                </div>
+                <div class="step-info">
+                  <div class="step-name">Product Clicks</div>
+                  <div class="step-description">Users browsing products</div>
+                </div>
+                <div class="step-metrics">
+                  <div class="step-count" id="funnel-clicks">0</div>
+                  <div class="step-percentage" id="funnel-clicks-percent">
+                    0%
+                  </div>
+                </div>
+              </div>
+              <div class="step-bar-container">
+                <div class="step-bar clicks" id="funnel-clicks-bar"></div>
+              </div>
+            </div>
+
+            <div class="funnel-arrow">
+              <i data-feather="chevron-down"></i>
+            </div>
+
+            <div class="funnel-step" data-step="cart">
+              <div class="step-header">
+                <div class="step-icon">
+                  <i data-feather="shopping-cart"></i>
+                </div>
+                <div class="step-info">
+                  <div class="step-name">Add to Cart</div>
+                  <div class="step-description">Items added to cart</div>
+                </div>
+                <div class="step-metrics">
+                  <div class="step-count" id="funnel-cart">0</div>
+                  <div class="step-percentage" id="funnel-cart-percent">0%</div>
+                </div>
+              </div>
+              <div class="step-bar-container">
+                <div class="step-bar cart" id="funnel-cart-bar"></div>
+              </div>
+            </div>
+
+            <div class="funnel-arrow">
+              <i data-feather="chevron-down"></i>
+            </div>
+
+            <div class="funnel-step" data-step="checkout">
+              <div class="step-header">
+                <div class="step-icon">
+                  <i data-feather="credit-card"></i>
+                </div>
+                <div class="step-info">
+                  <div class="step-name">Checkout</div>
+                  <div class="step-description">Completed purchases</div>
+                </div>
+                <div class="step-metrics">
+                  <div class="step-count" id="funnel-checkout">0</div>
+                  <div class="step-percentage" id="funnel-checkout-percent">
+                    0%
+                  </div>
+                </div>
+              </div>
+              <div class="step-bar-container">
+                <div class="step-bar checkout" id="funnel-checkout-bar"></div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Real-time Events -->
-        <div class="realtime-section">
-          <h3>Recent User Activity</h3>
-          <div id="realtime-events" class="events-list">
-            <!-- Events will be populated here -->
-          </div>
-        </div>
-
-        <!-- A/B Testing Section -->
-        <div class="ab-testing-section">
-          <h3>A/B Testing Controls</h3>
-          <div class="test-controls">
-            <div class="test-group">
-              <label>Current Test: Homepage Layout</label>
-              <select id="ab-test-variant">
-                <option value="control">Control (Original)</option>
-                <option value="variant-a">Variant A (New Layout)</option>
-                <option value="variant-b">Variant B (Compact)</option>
-              </select>
+        <!-- Real-time Events & A/B Testing Grid -->
+        <div class="bottom-grid">
+          <!-- Real-time Events -->
+          <div
+            class="realtime-section animate__animated animate__slideInUp"
+            style="animation-delay: 0.9s"
+          >
+            <div class="section-header">
+              <div class="section-title">
+                <h3>
+                  <div class="live-indicator">
+                    <div class="live-dot"></div>
+                    Live User Activity
+                  </div>
+                </h3>
+                <p>Real-time user interactions on your website</p>
+              </div>
+              <div class="realtime-controls">
+                <button class="control-btn" id="pause-realtime">
+                  <i data-feather="pause"></i>
+                </button>
+                <button class="control-btn" id="clear-events">
+                  <i data-feather="trash-2"></i>
+                </button>
+              </div>
             </div>
-            <div class="test-results">
-              <div class="variant-result">
-                <span>Control: </span>
-                <span id="control-conversion">2.3% conversion</span>
+            <div class="events-container">
+              <div id="realtime-events" class="events-list">
+                <!-- Events will be populated here -->
               </div>
-              <div class="variant-result">
-                <span>Variant A: </span>
-                <span id="variant-a-conversion">2.8% conversion</span>
+            </div>
+          </div>
+
+          <!-- A/B Testing Section -->
+          <div
+            class="ab-testing-section animate__animated animate__slideInUp"
+            style="animation-delay: 1s"
+          >
+            <div class="section-header">
+              <div class="section-title">
+                <h3>
+                  <i data-feather="split"></i>
+                  A/B Testing Controls
+                </h3>
+                <p>Optimize your website with data-driven experiments</p>
               </div>
-              <div class="variant-result">
-                <span>Variant B: </span>
-                <span id="variant-b-conversion">2.1% conversion</span>
+              <div class="test-status">
+                <span class="status-badge active">Active Test</span>
+              </div>
+            </div>
+
+            <div class="test-overview">
+              <div class="test-info">
+                <div class="test-name">Homepage Layout Optimization</div>
+                <div class="test-duration">Running for 7 days</div>
+              </div>
+              <div class="test-actions">
+                <button class="test-btn secondary">
+                  <i data-feather="settings"></i>
+                  Configure
+                </button>
+                <button class="test-btn primary">
+                  <i data-feather="bar-chart"></i>
+                  View Results
+                </button>
+              </div>
+            </div>
+
+            <div class="test-variants">
+              <div class="variant-card control">
+                <div class="variant-header">
+                  <div class="variant-name">Control</div>
+                  <div class="variant-traffic">50% traffic</div>
+                </div>
+                <div class="variant-metrics">
+                  <div class="metric">
+                    <span class="metric-label">Conversion Rate</span>
+                    <span class="metric-value" id="control-conversion"
+                      >2.3%</span
+                    >
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Confidence</span>
+                    <span class="metric-value">95%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="variant-card variant-a winning">
+                <div class="variant-header">
+                  <div class="variant-name">
+                    Variant A
+                    <span class="winning-badge">+21% lift</span>
+                  </div>
+                  <div class="variant-traffic">25% traffic</div>
+                </div>
+                <div class="variant-metrics">
+                  <div class="metric">
+                    <span class="metric-label">Conversion Rate</span>
+                    <span class="metric-value" id="variant-a-conversion"
+                      >2.8%</span
+                    >
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Confidence</span>
+                    <span class="metric-value">98%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="variant-card variant-b">
+                <div class="variant-header">
+                  <div class="variant-name">Variant B</div>
+                  <div class="variant-traffic">25% traffic</div>
+                </div>
+                <div class="variant-metrics">
+                  <div class="metric">
+                    <span class="metric-label">Conversion Rate</span>
+                    <span class="metric-value" id="variant-b-conversion"
+                      >2.1%</span
+                    >
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Confidence</span>
+                    <span class="metric-value">89%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="test-controls">
+              <div class="control-group">
+                <label for="ab-test-variant">Switch to variant:</label>
+                <select id="ab-test-variant" class="variant-selector">
+                  <option value="control">Control (Original)</option>
+                  <option value="variant-a">Variant A (New Layout)</option>
+                  <option value="variant-b">Variant B (Compact)</option>
+                </select>
               </div>
             </div>
           </div>
@@ -190,5 +526,37 @@
     <script src="scripts/shared/shared-subheader-loader.js"></script>
     <script src="scripts/shared/shared-footer-loader.js"></script>
     <script src="scripts/shared/sub-header-nav.js"></script>
+
+    <!-- Initialize Feather Icons -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize Feather icons
+        feather.replace();
+
+        // Add some interactive behaviors
+        const refreshBtn = document.getElementById("refresh-data");
+        if (refreshBtn) {
+          refreshBtn.addEventListener("click", function () {
+            this.classList.add("spinning");
+            setTimeout(() => {
+              this.classList.remove("spinning");
+            }, 1000);
+          });
+        }
+
+        // Update last updated time
+        function updateTime() {
+          const now = new Date();
+          const timeString = now.toLocaleTimeString();
+          const lastUpdated = document.getElementById("last-updated-time");
+          if (lastUpdated) {
+            lastUpdated.textContent = timeString;
+          }
+        }
+
+        updateTime();
+        setInterval(updateTime, 30000); // Update every 30 seconds
+      });
+    </script>
   </body>
 </html>
