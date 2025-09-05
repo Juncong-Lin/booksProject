@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clear Analytics Data</title>
+  </head>
+  <body>
+    <h1>Analytics Data Management</h1>
+    <p>Use this page to clear and regenerate analytics data for testing.</p>
+
+    <button onclick="clearData()">Clear All Analytics Data</button>
+    <button onclick="generateSampleData()">Generate Sample Data</button>
+    <button onclick="showCurrentData()">Show Current Data</button>
+
+    <div
+      id="output"
+      style="margin-top: 20px; font-family: monospace; white-space: pre-wrap"
+    ></div>
+
+    <script type="module">
+      import { SimpleAnalytics } from "./scripts/shared/analytics.js";
+
+      window.clearData = function () {
+        localStorage.removeItem("analytics_data");
+        localStorage.removeItem("analytics_history");
+        document.getElementById("output").textContent =
+          "Analytics data cleared!";
+      };
+
+      window.generateSampleData = function () {
+        SimpleAnalytics.generateSampleData();
+        document.getElementById("output").textContent =
+          "Sample data generated!";
+      };
+
+      window.showCurrentData = function () {
+        const data = SimpleAnalytics.getAnalyticsData();
+        document.getElementById("output").textContent = JSON.stringify(
+          data.summary,
+          null,
+          2
+        );
+      };
+    </script>
+  </body>
+</html>

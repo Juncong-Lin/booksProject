@@ -118,7 +118,9 @@
   background: linear-gradient(90deg, #007185, #00a8cc);
   border-radius: 4px;
   min-width: 20px;
+  max-width: 100%;
   transition: width 0.3s ease;
+  overflow: hidden;
 }
 
 /* Real-time Section */

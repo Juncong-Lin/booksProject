@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>    
-    <title>Checkout</title>    <!-- This code is needed for responsive design to work.
+  <head>
+    <title>Checkout</title>
+    <!-- This code is needed for responsive design to work.
         (Responsive design = make the website look good on
         smaller screen sizes like a phone or a tablet). -->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
 
-      <!-- Load a font called Roboto from Google Fonts. -->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">    <!-- Here are the CSS files for this page. -->      <link rel="stylesheet" href="styles/shared/general.css">
-      <link rel="stylesheet" href="styles/shared/qili-header.css">
-      <link rel="stylesheet" href="styles/shared/sub-header.css">
-      <link rel="stylesheet" href="styles/pages/checkout.css">
-      <link rel="stylesheet" href="styles/shared/footer.css">
-      <link rel="stylesheet" href="styles/shared/right-panel.css">
+    <!-- Load a font called Roboto from Google Fonts. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Here are the CSS files for this page. -->
+    <link rel="stylesheet" href="styles/shared/general.css" />
+    <link rel="stylesheet" href="styles/shared/qili-header.css" />
+    <link rel="stylesheet" href="styles/shared/sub-header.css" />
+    <link rel="stylesheet" href="styles/pages/checkout.css" />
+    <link rel="stylesheet" href="styles/shared/footer.css" />
+    <link rel="stylesheet" href="styles/shared/right-panel.css" />
+  </head>
 
-  </head>  
-  
   <body class="no-sidebar">
     <!-- Checkout Header - Loaded dynamically from shared component -->
     <div id="shared-header-placeholder"></div>
-    
+
     <!-- Sub Header Navigation - Loaded dynamically from shared component -->
-    <div id="shared-subheader-placeholder"></div>    <div class="main">
+    <div id="shared-subheader-placeholder"></div>
+    <div class="main">
       <!-- Add empty cart message container -->
-      <div class="empty-cart-message js-empty-cart" style="display: none;">
+      <div class="empty-cart-message js-empty-cart" style="display: none">
         <h2>Your cart is empty</h2>
-        <p class="empty-cart-description">Looks like you haven't added anything to your cart yet.</p>
-        <a href="index.html" class="button-primary continue-shopping-button">Continue Shopping</a>
+        <p class="empty-cart-description">
+          Looks like you haven't added anything to your cart yet.
+        </p>
+        <a href="index.html" class="button-primary continue-shopping-button"
+          >Continue Shopping</a
+        >
       </div>
-        <!-- Page title will be inserted here by JavaScript -->
+      <!-- Page title will be inserted here by JavaScript -->
       <!-- Payment summary will be placed here -->
       <div class="payment-summary js-payment-summary"></div>
       <div class="checkout-grid">
-        <div class="order-summary js-order-summary">
-        </div>
+        <div class="order-summary js-order-summary"></div>
       </div>
     </div>
-    
+
     <!-- Shared Footer - Loaded dynamically from shared component -->
     <div id="shared-footer-placeholder"></div>
-    
+
     <!-- Shared Right Panel - Loaded dynamically from shared component -->
-    <div id="shared-right-panel-placeholder"></div>    <script type="module" src="scripts/shared/analytics.js"></script>
-    <script type="module" src="scripts/checkout/checkout.js"></script>    <script src="scripts/shared/url-utils.js"></script>
+    <div id="shared-right-panel-placeholder"></div>
+    <script type="module" src="scripts/shared/analytics.js"></script>
+    <script type="module" src="scripts/checkout/checkout.js"></script>
+    <script src="scripts/shared/url-utils.js"></script>
     <script type="module" src="scripts/shared/search.js"></script>
     <script src="scripts/shared/shared-header-loader.js"></script>
     <script src="scripts/shared/sub-header-nav.js"></script>

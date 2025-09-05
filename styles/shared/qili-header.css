@@ -1,5 +1,5 @@
 .qili-header {
-  background-color: #232F3E;
+  background-color: #232f3e;
   color: white;
   padding: 0 15px;
   display: flex;
@@ -28,13 +28,13 @@
     width: 80px; /* Further reduced for more search space */
     min-width: 60px;
   }
-  
+
   .qili-header-middle-section {
     margin: 0 10px;
     max-width: none; /* Remove constraint on tablets */
     min-width: 200px;
   }
-  
+
   .qili-header-right-section {
     width: 80px; /* Further reduced for more search space */
   }
@@ -48,8 +48,6 @@
   align-items: center;
   flex-shrink: 0;
 }
-
-
 
 .header-link {
   display: inline-block;
@@ -99,7 +97,7 @@
     width: 28px;
     margin-top: 1px;
   }
-  
+
   .header-link {
     padding: 2px;
   }
@@ -110,7 +108,7 @@
     width: 24px;
     margin-top: 1px;
   }
-  
+
   .header-link {
     padding: 1px;
   }
@@ -121,7 +119,7 @@
     width: 20px;
     margin-top: 0;
   }
-  
+
   .header-link {
     padding: 1px;
   }
@@ -148,7 +146,7 @@
     gap: 8px; /* Increased gap for better spacing */
     padding: 0 8px; /* Increased padding */
   }
-  
+
   .qili-header-left-section {
     display: flex;
     justify-content: flex-start;
@@ -156,7 +154,7 @@
     margin: 0; /* Remove margin for grid layout */
     width: auto; /* Let it size based on content */
   }
-  
+
   .qili-header-middle-section {
     display: flex;
     justify-content: center;
@@ -165,7 +163,7 @@
     min-width: 0; /* Allow shrinking */
     max-width: 300px; /* Constrain maximum width on mobile */
   }
-  
+
   .qili-header-right-section {
     display: flex;
     justify-content: flex-end;
@@ -180,16 +178,16 @@
     gap: 6px;
     grid-template-columns: 40px 1fr 50px; /* Fixed widths for better control */
   }
-  
+
   .qili-header-left-section {
     width: 40px;
     min-width: 40px;
   }
-  
+
   .qili-header-middle-section {
     max-width: none; /* Remove constraint to use available space */
   }
-  
+
   .qili-header-right-section {
     width: 50px;
     min-width: 50px;
@@ -202,12 +200,12 @@
     gap: 4px;
     grid-template-columns: 35px 1fr 45px; /* Slightly larger for cart */
   }
-  
+
   .qili-header-left-section {
     width: 35px;
     min-width: 35px;
   }
-  
+
   .qili-header-right-section {
     width: 45px;
     min-width: 45px;
@@ -221,17 +219,17 @@
     gap: 3px;
     grid-template-columns: 30px 1fr 40px; /* Maintain adequate cart space */
   }
-  
+
   .qili-header-left-section {
     width: 30px;
     min-width: 30px;
   }
-  
+
   .qili-header-right-section {
     width: 40px;
     min-width: 40px;
   }
-  
+
   /* Hide orders link on ultra-small screens for more space */
   .qili-header-right-section .orders-link {
     display: none;
@@ -247,7 +245,7 @@
   .qili-header {
     height: 55px !important; /* Reduced height for ultra-small screens */
   }
-  
+
   /* Removed body padding-top as it conflicts with .main margin-top */
 }
 
@@ -312,7 +310,8 @@
 
 .search-button {
   min-width: 45px;
-  height: 40px;  background-color: #1A252F;
+  height: 40px;
+  background-color: #1a252f;
   border: none;
   border-radius: 0 4px 4px 0;
   display: flex;
@@ -352,7 +351,7 @@
 }
 
 .search-button:hover {
-  background-color: #2C3A49;
+  background-color: #2c3a49;
 }
 
 .search-icon {
@@ -500,21 +499,21 @@
     right: 36px; /* Account for smaller search button */
     max-height: 200px;
   }
-  
+
   .search-history-item {
     padding: 8px 10px;
     font-size: 13px;
   }
-  
+
   .search-history-time {
     font-size: 10px;
   }
-  
+
   .search-history-header {
     padding: 6px 10px;
     font-size: 11px;
   }
-  
+
   .search-history-clear {
     padding: 8px 10px;
     font-size: 11px;
@@ -527,22 +526,22 @@
     max-height: 180px;
     left: 0; /* Ensure it starts from the left edge */
   }
-  
+
   .search-history-item {
     padding: 6px 8px;
     font-size: 12px;
   }
-  
+
   .search-history-header {
     padding: 5px 8px;
     font-size: 10px;
   }
-  
+
   .search-history-clear {
     padding: 6px 8px;
     font-size: 10px;
   }
-  
+
   .search-history-empty {
     padding: 15px 8px;
     font-size: 12px;
@@ -635,12 +634,12 @@
   .cart-icon {
     width: 32px;
   }
-  
+
   .cart-text {
     font-size: 12px;
     margin-top: 8px;
   }
-  
+
   .cart-quantity {
     font-size: 12px;
     width: 20px;
@@ -648,7 +647,7 @@
     top: 2px;
     min-height: 16px;
   }
-  
+
   .orders-text,
   .returns-text {
     font-size: 10px;
@@ -659,12 +658,12 @@
   .cart-icon {
     width: 28px;
   }
-  
+
   .cart-text {
     font-size: 10px;
     margin-top: 6px;
   }
-  
+
   .cart-quantity {
     font-size: 10px;
     width: 18px;
@@ -678,12 +677,12 @@
   .cart-icon {
     width: 24px;
   }
-  
+
   .cart-text {
     font-size: 9px;
     margin-top: 4px;
   }
-  
+
   .cart-quantity {
     font-size: 9px;
     width: 16px;
@@ -697,12 +696,12 @@
   .cart-icon {
     width: 20px;
   }
-  
+
   .cart-text {
     font-size: 8px;
     margin-top: 2px;
   }
-  
+
   .cart-quantity {
     font-size: 8px;
     width: 14px;

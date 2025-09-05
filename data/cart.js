@@ -1,14 +1,14 @@
-export let cart = JSON.parse(localStorage.getItem('cart'));
+export let cart = JSON.parse(localStorage.getItem("cart"));
 
 if (!cart) {
   cart = [];
-  localStorage.setItem('cart', JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 // Function to clear the cart (useful for testing)
 export function clearCart() {
   cart.length = 0; // Clear array contents instead of reassigning
-  localStorage.setItem('cart', JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 // Function to remove invalid items from cart
@@ -25,10 +25,10 @@ export function cleanInvalidItems(validProductIds) {
 }
 
 function saveToStorage() {
-  localStorage.setItem('cart', JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-export function addToCart (productId, quantity = 1) {
+export function addToCart(productId, quantity = 1) {
   let matchingItem;
   cart.forEach((cartItem) => {
     if (productId === cartItem.productId) {
@@ -38,23 +38,23 @@ export function addToCart (productId, quantity = 1) {
 
   if (matchingItem) {
     matchingItem.quantity += quantity;
-  } else {  
+  } else {
     cart.push({
-      productId : productId,    
-      quantity: quantity,
-      deliveryOptionId: '1'
-    })
-  }
-  
-  // Track cart addition for analytics
-  if (window.analytics) {
-    window.analytics.trackEvent('cart_add', {
       productId: productId,
       quantity: quantity,
-      cartSize: cart.length
+      deliveryOptionId: "1",
     });
   }
-  
+
+  // Track cart addition for analytics
+  if (window.analytics) {
+    window.analytics.trackEvent("cart_add", {
+      productId: productId,
+      quantity: quantity,
+      cartSize: cart.length,
+    });
+  }
+
   saveToStorage();
 }
 
@@ -65,15 +65,15 @@ export function removeFromCart(productId) {
       cart.splice(i, 1);
     }
   }
-  
+
   // Track cart removal for analytics
   if (window.analytics) {
-    window.analytics.trackEvent('cart_remove', {
+    window.analytics.trackEvent("cart_remove", {
       productId: productId,
-      cartSize: cart.length
+      cartSize: cart.length,
     });
   }
-  
+
   saveToStorage();
 }
 
