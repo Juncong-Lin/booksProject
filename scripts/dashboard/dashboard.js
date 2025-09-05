@@ -312,15 +312,38 @@ class Dashboard {
     const data = SimpleAnalytics.getAnalyticsData();
     const eventTypes = data.summary.eventTypes || {};
 
+    // Sort data by value for better visualization
+    const sortedEntries = Object.entries(eventTypes).sort(
+      (a, b) => b[1] - a[1]
+    );
+    const sortedLabels = sortedEntries.map((entry) => {
+      // Format labels for better display
+      return entry[0]
+        .replace(/_/g, " ")
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+    });
+    const sortedValues = sortedEntries.map((entry) => entry[1]);
+
     const ctx = document.getElementById("event-types-chart").getContext("2d");
     this.charts.eventTypes = new Chart(ctx, {
-      type: "doughnut",
+      type: "bar",
       data: {
-        labels: Object.keys(eventTypes),
+        labels: sortedLabels,
         datasets: [
           {
-            data: Object.values(eventTypes),
+            label: "Event Count",
+            data: sortedValues,
             backgroundColor: [
+              "rgba(239, 68, 68, 0.8)", // Red
+              "rgba(59, 130, 246, 0.8)", // Blue
+              "rgba(245, 158, 11, 0.8)", // Amber
+              "rgba(16, 185, 129, 0.8)", // Emerald
+              "rgba(139, 92, 246, 0.8)", // Violet
+              "rgba(236, 72, 153, 0.8)", // Pink
+            ],
+            borderColor: [
               "#ef4444",
               "#3b82f6",
               "#f59e0b",
@@ -328,9 +351,195 @@ class Dashboard {
               "#8b5cf6",
               "#ec4899",
             ],
-            borderWidth: 0,
-            hoverBorderWidth: 2,
-            hoverBorderColor: "#ffffff",
+            borderWidth: 1,
+            borderRadius: 6,
+            borderSkipped: false,
+            hoverBackgroundColor: [
+              "rgba(239, 68, 68, 1)",
+              "rgba(59, 130, 246, 1)",
+              "rgba(245, 158, 11, 1)",
+              "rgba(16, 185, 129, 1)",
+              "rgba(139, 92, 246, 1)",
+              "rgba(236, 72, 153, 1)",
+            ],
+          },
+        ],
+      },
+      options: {
+        indexAxis: "y", // This makes it horizontal
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
+            titleColor: "#ffffff",
+            bodyColor: "#ffffff",
+            borderColor: "rgba(255, 255, 255, 0.2)",
+            borderWidth: 1,
+            cornerRadius: 8,
+            displayColors: true,
+            callbacks: {
+              label: function (context) {
+                const total = sortedValues.reduce((a, b) => a + b, 0);
+                const percentage = ((context.parsed.x / total) * 100).toFixed(
+                  1
+                );
+                return `${context.parsed.x} events (${percentage}%)`;
+              },
+            },
+          },
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            grid: {
+              color: "rgba(255, 255, 255, 0.1)",
+              drawBorder: false,
+            },
+            ticks: {
+              color: "rgba(255, 255, 255, 0.7)",
+              font: {
+                size: 11,
+                family: "'Inter', sans-serif",
+              },
+              stepSize: 1,
+            },
+          },
+          y: {
+            grid: {
+              display: false,
+            },
+            ticks: {
+              color: "rgba(255, 255, 255, 0.9)",
+              font: {
+                size: 12,
+                family: "'Inter', sans-serif",
+                weight: "500",
+              },
+              padding: 8,
+            },
+          },
+        },
+        layout: {
+          padding: {
+            left: 5,
+            right: 5,
+            top: 5,
+            bottom: 5,
+          },
+        },
+        animation: {
+          duration: 1500,
+          easing: "easeOutQuart",
+        },
+        barThickness: "flex",
+        categoryPercentage: 0.9,
+        barPercentage: 0.8,
+      },
+    });
+
+    // Create custom legend for Event Types
+    // Create custom legend for Event Types
+    this.createEventTypesLegend(eventTypes);
+  }
+
+  createEventTypesLegend(eventTypes) {
+    const legend = document.getElementById("event-legend");
+
+    if (!legend) {
+      console.error("Event legend container not found");
+      return;
+    }
+
+    const colors = [
+      "#ef4444",
+      "#3b82f6",
+      "#f59e0b",
+      "#10b981",
+      "#8b5cf6",
+      "#ec4899",
+    ];
+
+    const total = Object.values(eventTypes).reduce(
+      (sum, count) => sum + count,
+      0
+    );
+
+    const sortedEntries = Object.entries(eventTypes).sort(
+      (a, b) => b[1] - a[1]
+    );
+
+    legend.innerHTML = sortedEntries
+      .map(([eventType, count], index) => {
+        const percentage = total > 0 ? ((count / total) * 100).toFixed(1) : 0;
+        const color = colors[index % colors.length];
+
+        // Format event type names for better display
+        const displayName = eventType
+          .replace(/_/g, " ")
+          .split(" ")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
+
+        return `
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: ${color}"></div>
+            <span class="legend-label">${displayName}</span>
+            <span class="legend-value">${percentage}%</span>
+          </div>
+        `;
+      })
+      .join("");
+  }
+
+  // Alternative: Polar Area Chart version (comment out horizontal bar version and uncomment this)
+  /*
+  createEventTypesChart() {
+    const data = SimpleAnalytics.getAnalyticsData();
+    const eventTypes = data.summary.eventTypes || {};
+
+    // Sort data by value for better visualization
+    const sortedEntries = Object.entries(eventTypes).sort((a, b) => b[1] - a[1]);
+    const sortedLabels = sortedEntries.map(entry => entry[0]);
+    const sortedValues = sortedEntries.map(entry => entry[1]);
+
+    const ctx = document.getElementById("event-types-chart").getContext("2d");
+    this.charts.eventTypes = new Chart(ctx, {
+      type: "polarArea",
+      data: {
+        labels: sortedLabels,
+        datasets: [
+          {
+            label: "Event Count",
+            data: sortedValues,
+            backgroundColor: [
+              "rgba(239, 68, 68, 0.7)",   // Red
+              "rgba(59, 130, 246, 0.7)",  // Blue  
+              "rgba(245, 158, 11, 0.7)",  // Amber
+              "rgba(16, 185, 129, 0.7)",  // Emerald
+              "rgba(139, 92, 246, 0.7)",  // Violet
+              "rgba(236, 72, 153, 0.7)",  // Pink
+            ],
+            borderColor: [
+              "#ef4444",
+              "#3b82f6", 
+              "#f59e0b",
+              "#10b981",
+              "#8b5cf6",
+              "#ec4899",
+            ],
+            borderWidth: 2,
+            hoverBackgroundColor: [
+              "rgba(239, 68, 68, 0.9)",
+              "rgba(59, 130, 246, 0.9)",
+              "rgba(245, 158, 11, 0.9)",
+              "rgba(16, 185, 129, 0.9)",
+              "rgba(139, 92, 246, 0.9)",
+              "rgba(236, 72, 153, 0.9)",
+            ],
           },
         ],
       },
@@ -342,17 +551,172 @@ class Dashboard {
             display: false,
           },
           tooltip: {
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
             titleColor: "#ffffff",
             bodyColor: "#ffffff",
-            borderColor: "rgba(255, 255, 255, 0.1)",
+            borderColor: "rgba(255, 255, 255, 0.2)",
             borderWidth: 1,
+            cornerRadius: 8,
+            displayColors: true,
+            callbacks: {
+              label: function(context) {
+                const total = sortedValues.reduce((a, b) => a + b, 0);
+                const percentage = ((context.parsed.r / total) * 100).toFixed(1);
+                return `${context.parsed.r} events (${percentage}%)`;
+              }
+            }
           },
         },
-        cutout: "60%",
+        scales: {
+          r: {
+            beginAtZero: true,
+            grid: {
+              color: "rgba(255, 255, 255, 0.1)",
+            },
+            pointLabels: {
+              color: "rgba(255, 255, 255, 0.9)",
+              font: {
+                size: 12,
+                family: "'Inter', sans-serif",
+                weight: '500',
+              },
+            },
+            ticks: {
+              color: "rgba(255, 255, 255, 0.7)",
+              font: {
+                size: 10,
+                family: "'Inter', sans-serif",
+              },
+              backdropColor: "rgba(0, 0, 0, 0.5)",
+            },
+          },
+        },
+        animation: {
+          duration: 2000,
+          easing: 'easeOutElastic',
+        },
       },
     });
+
+    // Create custom legend for Event Types
+    this.createEventTypesLegend(eventTypes);
   }
+  */
+
+  // Alternative 2: Stacked Bar Chart with Time Progression (comment out others and uncomment this)
+  /*
+  createEventTypesChart() {
+    const data = SimpleAnalytics.getAnalyticsData();
+    const events = data.historical || [];
+    
+    // Group events by hour of day and type
+    const hourlyData = {};
+    const eventTypes = {};
+    
+    events.forEach(event => {
+      const hour = new Date(event.timestamp).getHours();
+      const type = event.type;
+      
+      if (!hourlyData[hour]) hourlyData[hour] = {};
+      if (!hourlyData[hour][type]) hourlyData[hour][type] = 0;
+      hourlyData[hour][type]++;
+      
+      if (!eventTypes[type]) eventTypes[type] = 0;
+      eventTypes[type]++;
+    });
+
+    // Create labels for last 12 hours
+    const now = new Date();
+    const labels = [];
+    for (let i = 11; i >= 0; i--) {
+      const hour = new Date(now.getTime() - i * 60 * 60 * 1000).getHours();
+      labels.push(`${hour}:00`);
+    }
+
+    const colors = [
+      "#ef4444", "#3b82f6", "#f59e0b", "#10b981", "#8b5cf6", "#ec4899"
+    ];
+
+    const datasets = Object.keys(eventTypes).map((type, index) => ({
+      label: type.replace(/_/g, ' ').split(' ').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+      data: labels.map((_, i) => {
+        const hour = new Date(now.getTime() - (11-i) * 60 * 60 * 1000).getHours();
+        return hourlyData[hour] ? (hourlyData[hour][type] || 0) : 0;
+      }),
+      backgroundColor: colors[index % colors.length] + '80', // 50% opacity
+      borderColor: colors[index % colors.length],
+      borderWidth: 1,
+      borderRadius: 4,
+    }));
+
+    const ctx = document.getElementById("event-types-chart").getContext("2d");
+    this.charts.eventTypes = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: datasets,
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
+            titleColor: "#ffffff",
+            bodyColor: "#ffffff",
+            borderColor: "rgba(255, 255, 255, 0.2)",
+            borderWidth: 1,
+            cornerRadius: 8,
+            mode: 'index',
+            intersect: false,
+          },
+        },
+        scales: {
+          x: {
+            stacked: true,
+            grid: {
+              color: "rgba(255, 255, 255, 0.1)",
+              drawBorder: false,
+            },
+            ticks: {
+              color: "rgba(255, 255, 255, 0.7)",
+              font: {
+                size: 11,
+                family: "'Inter', sans-serif",
+              },
+            },
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+            grid: {
+              color: "rgba(255, 255, 255, 0.1)",
+              drawBorder: false,
+            },
+            ticks: {
+              color: "rgba(255, 255, 255, 0.7)",
+              font: {
+                size: 11,
+                family: "'Inter', sans-serif",
+              },
+            },
+          },
+        },
+        animation: {
+          duration: 2000,
+          easing: 'easeOutCubic',
+        },
+      },
+    });
+
+    // Create custom legend for Event Types
+    this.createEventTypesLegend(eventTypes);
+  }
+  */
 
   createActivityTimelineChart(period = "24h") {
     const data = SimpleAnalytics.getAnalyticsData();

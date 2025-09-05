@@ -551,6 +551,37 @@
   height: 100% !important;
 }
 
+/* Event Types Chart specific styling for horizontal bar chart */
+.chart-card:has(#event-types-chart) .chart-content {
+  min-height: 180px;
+  max-height: 220px;
+}
+
+.chart-card:has(#event-types-chart) {
+  min-height: 240px;
+  max-height: 280px;
+}
+
+.chart-card:has(#event-types-chart) .chart-content-with-legend {
+  gap: 20px;
+}
+
+.chart-card:has(#event-types-chart) .chart-legend {
+  min-width: 140px;
+  max-width: 160px;
+}
+
+/* User Activity Timeline Chart - match Event Types chart height */
+.chart-card:has(#activity-timeline-chart) {
+  min-height: 240px;
+  max-height: 280px;
+}
+
+.chart-card:has(#activity-timeline-chart) .chart-content {
+  min-height: 180px;
+  max-height: 220px;
+}
+
 /* Funnel Section */
 .funnel-section {
   background: rgba(255, 255, 255, 0.02);
@@ -1072,22 +1103,72 @@
   }
 }
 
-@media (max-width: 1200px) {
+/* Medium screens - keep 2x2 layout but adjust spacing */
+@media (max-width: 1100px) and (min-width: 901px) {
   .charts-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
-    min-height: auto;
-    max-height: none;
+    gap: 20px;
+    min-height: 480px;
+    max-height: 540px;
   }
 
   .chart-card {
-    min-height: 280px;
-    max-height: 320px;
+    min-height: 220px;
+    max-height: 250px;
+    padding: 18px;
+  }
+
+  .chart-content {
+    min-height: 160px;
+    max-height: 180px;
+  }
+
+  .chart-title h3 {
+    font-size: 18px;
+  }
+
+  .chart-card:has(#event-types-chart) {
+    min-height: 240px;
+    max-height: 270px;
+  }
+
+  .chart-card:has(#event-types-chart) .chart-content {
+    min-height: 170px;
+    max-height: 200px;
+  }
+
+  .chart-card:has(#activity-timeline-chart) {
+    min-height: 220px;
+    max-height: 250px;
+  }
+
+  .chart-card:has(#activity-timeline-chart) .chart-content {
+    min-height: 160px;
+    max-height: 180px;
+  }
+}
+
+@media (max-width: 900px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    min-height: auto;
+    max-height: none;
+    gap: 20px;
+  }
+
+  .chart-card {
+    min-height: 300px;
+    max-height: 400px;
+  }
+
+  .chart-content {
+    min-height: 200px;
+    max-height: 280px;
   }
 
   .chart-content-with-legend {
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
   }
 
   .chart-legend {
@@ -1096,36 +1177,167 @@
     max-width: none;
     min-width: auto;
     padding: 0;
+    justify-content: center;
   }
 
   .legend-item {
     min-width: 120px;
+    margin: 4px;
+  }
+
+  /* Override specific chart heights for tablet */
+  .chart-card:has(#event-types-chart) {
+    min-height: 320px;
+    max-height: 420px;
+  }
+
+  .chart-card:has(#event-types-chart) .chart-content {
+    min-height: 220px;
+    max-height: 300px;
+  }
+
+  .chart-card:has(#activity-timeline-chart) {
+    min-height: 300px;
+    max-height: 380px;
+  }
+
+  .chart-card:has(#activity-timeline-chart) .chart-content {
+    min-height: 200px;
+    max-height: 260px;
   }
 }
 
 @media (max-width: 768px) {
   .dashboard-container {
-    padding: 100px 16px 40px;
+    padding: 80px 8px 30px;
   }
 
   .header-content {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
   }
 
   .header-actions {
     width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .dashboard-title {
+    font-size: 22px;
   }
 
   .summary-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .metric-card {
+    min-height: 120px;
+    padding: 14px;
+  }
+
+  .metric-value {
+    font-size: 22px;
+  }
+
+  .charts-grid {
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .chart-card {
+    min-height: 320px;
+    max-height: 400px;
+    padding: 16px;
+  }
+
+  .chart-content {
+    min-height: 220px;
+    max-height: 280px;
+  }
+
+  .chart-header {
+    margin-bottom: 16px;
+  }
+
+  .chart-title h3 {
+    font-size: 18px;
+  }
+
+  .chart-title p {
+    font-size: 13px;
+  }
+
+  /* Event Types Chart mobile adjustments */
+  .chart-card:has(#event-types-chart) {
+    min-height: 380px;
+    max-height: 460px;
+  }
+
+  .chart-card:has(#event-types-chart) .chart-content {
+    min-height: 240px;
+    max-height: 300px;
+  }
+
+  .chart-card:has(#event-types-chart) .chart-content-with-legend {
+    flex-direction: column;
+    gap: 16px;
+    min-height: 300px;
+    max-height: 380px;
+  }
+
+  /* Use default legend styling on mobile - same as Popular Book Categories */
+  .chart-card:has(#event-types-chart) .chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: auto;
+    max-width: none;
+    padding: 8px 0;
+    justify-content: flex-start;
+    background: none;
+    border-radius: 0;
+    min-height: auto;
+  }
+
+  .chart-card:has(#event-types-chart) .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    flex: none;
+    min-width: auto;
+    margin: 0;
+  }
+
+  /* Timeline Chart mobile adjustments */
+  .chart-card:has(#activity-timeline-chart) {
+    min-height: 320px;
+    max-height: 380px;
+  }
+
+  .chart-card:has(#activity-timeline-chart) .chart-content {
+    min-height: 220px;
+    max-height: 260px;
+  }
+
+  .time-filter {
+    transform: scale(0.9);
+  }
+
+  .filter-btn {
+    padding: 4px 8px;
+    font-size: 11px;
   }
 
   .bottom-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
   }
 
   .step-header {
@@ -1148,15 +1360,167 @@
   .metric-value {
     font-size: 24px;
   }
+
+  /* Ensure no overlapping on mobile */
+  .chart-card {
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chart-content,
+  .chart-content-with-legend {
+    position: relative;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 480px) {
+  .dashboard-container {
+    padding: 70px 6px 20px;
+  }
+
   .action-btn span {
     display: none;
   }
 
   .breadcrumb {
     flex-wrap: wrap;
+  }
+
+  .dashboard-title {
+    font-size: 18px;
+  }
+
+  .dashboard-subtitle {
+    font-size: 14px;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .metric-card {
+    min-height: 100px;
+    padding: 12px;
+  }
+
+  .metric-value {
+    font-size: 20px;
+  }
+
+  .charts-grid {
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .chart-card {
+    min-height: 280px;
+    max-height: 360px;
+    padding: 12px;
+  }
+
+  .chart-content {
+    min-height: 180px;
+    max-height: 220px;
+  }
+
+  .chart-header {
+    margin-bottom: 12px;
+  }
+
+  .chart-title h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .chart-title p {
+    font-size: 12px;
+  }
+
+  /* Event Types Chart very small screen */
+  .chart-card:has(#event-types-chart) {
+    min-height: 380px;
+    max-height: 460px;
+  }
+
+  .chart-card:has(#event-types-chart) .chart-content {
+    min-height: 220px;
+    max-height: 280px;
+  }
+
+  .chart-card:has(#event-types-chart) .chart-content-with-legend {
+    flex-direction: column;
+    gap: 12px;
+    min-height: 320px;
+    max-height: 400px;
+  }
+
+  /* Use default legend styling on very small screens - same as Popular Book Categories */
+  .chart-card:has(#event-types-chart) .chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: auto;
+    max-width: none;
+    padding: 8px 0;
+    justify-content: flex-start;
+    background: none;
+    border-radius: 0;
+    min-height: auto;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    flex: none;
+    min-width: auto;
+    margin: 0;
+  }
+
+  .legend-label {
+    font-size: 11px;
+  }
+
+  .legend-value {
+    font-size: 11px;
+  }
+
+  /* Timeline Chart very small screen */
+  .chart-card:has(#activity-timeline-chart) {
+    min-height: 280px;
+    max-height: 340px;
+  }
+
+  .chart-card:has(#activity-timeline-chart) .chart-content {
+    min-height: 180px;
+    max-height: 200px;
+  }
+
+  .time-filter {
+    transform: scale(0.8);
+  }
+
+  .filter-btn {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+
+  /* Bottom sections */
+  .funnel-section {
+    padding: 20px 12px;
+    margin-bottom: 20px;
+  }
+
+  .bottom-grid {
+    gap: 16px;
+    margin-bottom: 20px;
   }
 
   .test-overview {
@@ -1168,5 +1532,92 @@
   .variant-metrics {
     flex-direction: column;
     gap: 8px;
+  }
+}
+
+/* Portrait orientation specific fixes */
+@media (orientation: portrait) and (max-height: 900px) {
+  .dashboard-container {
+    padding: 80px 12px 30px;
+  }
+
+  .charts-grid {
+    gap: 12px;
+  }
+
+  .chart-card {
+    min-height: 220px;
+    max-height: 280px;
+  }
+
+  .chart-content {
+    min-height: 140px;
+    max-height: 180px;
+  }
+
+  .chart-card:has(#event-types-chart) {
+    min-height: 240px;
+    max-height: 300px;
+  }
+
+  .chart-card:has(#event-types-chart) .chart-content {
+    min-height: 160px;
+    max-height: 200px;
+  }
+
+  .chart-card:has(#activity-timeline-chart) {
+    min-height: 220px;
+    max-height: 260px;
+  }
+
+  .chart-card:has(#activity-timeline-chart) .chart-content {
+    min-height: 140px;
+    max-height: 160px;
+  }
+}
+
+/* Landscape mobile specific */
+@media (orientation: landscape) and (max-height: 500px) {
+  .dashboard-container {
+    padding: 60px 16px 20px;
+  }
+
+  .summary-cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .metric-card {
+    min-height: 80px;
+    padding: 8px;
+  }
+
+  .metric-value {
+    font-size: 18px;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .chart-card {
+    min-height: 160px;
+    max-height: 200px;
+    padding: 8px;
+  }
+
+  .chart-content {
+    min-height: 100px;
+    max-height: 120px;
+  }
+
+  .chart-title h3 {
+    font-size: 14px;
+  }
+
+  .chart-title p {
+    font-size: 11px;
   }
 }
