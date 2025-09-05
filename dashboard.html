@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Dashboard - Juncongmall.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    
+    <!-- Load fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS files -->
+    <link rel="stylesheet" href="styles/shared/general.css">
+    <link rel="stylesheet" href="styles/shared/qili-header.css">
+    <link rel="stylesheet" href="styles/shared/sub-header.css">
+    <link rel="stylesheet" href="styles/pages/dashboard.css">
+    <link rel="stylesheet" href="styles/shared/footer.css">
+    
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="no-sidebar">
+    <!-- Header -->
+    <div id="shared-header-placeholder"></div>
+    <div id="shared-subheader-placeholder"></div>
+    
+    <div class="main">
+        <div class="dashboard-container">
+            <h1>Website Analytics Dashboard</h1>
+            
+            <!-- Summary Cards -->
+            <div class="summary-cards">
+                <div class="card">
+                    <h3>Total Page Views</h3>
+                    <div class="metric" id="total-pageviews">0</div>
+                </div>
+                <div class="card">
+                    <h3>Unique Sessions</h3>
+                    <div class="metric" id="unique-sessions">0</div>
+                </div>
+                <div class="card">
+                    <h3>Total Clicks</h3>
+                    <div class="metric" id="total-clicks">0</div>
+                </div>
+                <div class="card">
+                    <h3>Avg Scroll Depth</h3>
+                    <div class="metric" id="avg-scroll">0%</div>
+                </div>
+            </div>
+            
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-container">
+                    <h3>Event Types Distribution</h3>
+                    <canvas id="event-types-chart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>User Activity Timeline</h3>
+                    <canvas id="activity-timeline-chart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Page Performance</h3>
+                    <canvas id="page-performance-chart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Conversion Funnel -->
+            <div class="funnel-section">
+                <h3>User Journey Funnel</h3>
+                <div class="funnel-steps">
+                    <div class="funnel-step">
+                        <div class="step-name">Page Views</div>
+                        <div class="step-count" id="funnel-views">0</div>
+                        <div class="step-bar" id="funnel-views-bar"></div>
+                    </div>
+                    <div class="funnel-step">
+                        <div class="step-name">Product Clicks</div>
+                        <div class="step-count" id="funnel-clicks">0</div>
+                        <div class="step-bar" id="funnel-clicks-bar"></div>
+                    </div>
+                    <div class="funnel-step">
+                        <div class="step-name">Add to Cart</div>
+                        <div class="step-count" id="funnel-cart">0</div>
+                        <div class="step-bar" id="funnel-cart-bar"></div>
+                    </div>
+                    <div class="funnel-step">
+                        <div class="step-name">Checkout</div>
+                        <div class="step-count" id="funnel-checkout">0</div>
+                        <div class="step-bar" id="funnel-checkout-bar"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Real-time Events -->
+            <div class="realtime-section">
+                <h3>Recent User Activity</h3>
+                <div id="realtime-events" class="events-list">
+                    <!-- Events will be populated here -->
+                </div>
+            </div>
+            
+            <!-- A/B Testing Section -->
+            <div class="ab-testing-section">
+                <h3>A/B Testing Controls</h3>
+                <div class="test-controls">
+                    <div class="test-group">
+                        <label>Current Test: Homepage Layout</label>
+                        <select id="ab-test-variant">
+                            <option value="control">Control (Original)</option>
+                            <option value="variant-a">Variant A (New Layout)</option>
+                            <option value="variant-b">Variant B (Compact)</option>
+                        </select>
+                    </div>
+                    <div class="test-results">
+                        <div class="variant-result">
+                            <span>Control: </span>
+                            <span id="control-conversion">2.3% conversion</span>
+                        </div>
+                        <div class="variant-result">
+                            <span>Variant A: </span>
+                            <span id="variant-a-conversion">2.8% conversion</span>
+                        </div>
+                        <div class="variant-result">
+                            <span>Variant B: </span>
+                            <span id="variant-b-conversion">2.1% conversion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="shared-footer-placeholder"></div>
+    
+    <!-- Scripts -->
+    <script type="module" src="scripts/shared/analytics.js"></script>
+    <script type="module" src="scripts/dashboard/dashboard.js"></script>
+    <script src="scripts/shared/shared-header-loader.js"></script>
+    <script src="scripts/shared/shared-subheader-loader.js"></script>
+    <script src="scripts/shared/shared-footer-loader.js"></script>
+</body>
+</html>

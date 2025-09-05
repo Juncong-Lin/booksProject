@@ -151,9 +151,46 @@ input, select {
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  height: 4.5em; /* Fixed height for exactly 3 lines * 1.5em line-height */
-  line-height: 1.5;
-  text-align: left;
+  min-height: 60px; /* Ensures consistent height for 3 lines */
+}
+
+/* A/B Testing Button Variants */
+.button-blue {
+  background-color: #007185;
+}
+
+.button-blue:hover {
+  background-color: #005a6b;
+}
+
+.button-green {
+  background-color: #28a745;
+}
+
+.button-green:hover {
+  background-color: #218838;
+}
+
+.button-orange {
+  background-color: #ff9500;
+}
+
+.button-orange:hover {
+  background-color: #e6850e;
+}
+
+/* A/B Testing Layout Variants */
+.layout-variant-a .products-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.layout-variant-b .products-grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.layout-variant-b .product-container {
+  padding: 15px;
 }
 
 .link-primary {

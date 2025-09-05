@@ -45,6 +45,16 @@ export function addToCart (productId, quantity = 1) {
       deliveryOptionId: '1'
     })
   }
+  
+  // Track cart addition for analytics
+  if (window.analytics) {
+    window.analytics.trackEvent('cart_add', {
+      productId: productId,
+      quantity: quantity,
+      cartSize: cart.length
+    });
+  }
+  
   saveToStorage();
 }
 
@@ -55,6 +65,15 @@ export function removeFromCart(productId) {
       cart.splice(i, 1);
     }
   }
+  
+  // Track cart removal for analytics
+  if (window.analytics) {
+    window.analytics.trackEvent('cart_remove', {
+      productId: productId,
+      cartSize: cart.length
+    });
+  }
+  
   saveToStorage();
 }
 

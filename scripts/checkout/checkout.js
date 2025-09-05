@@ -19,6 +19,14 @@ export function updatePageTitle() {
 
 // Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', function() {
+  // Track checkout page view
+  if (window.analytics) {
+    window.analytics.trackEvent('checkout_start', {
+      cartSize: cart.length,
+      cartValue: cart.reduce((sum, item) => sum + (item.quantity || 1), 0)
+    });
+  }
+  
   // Update cart quantity in header
   updateCartQuantity();
   
