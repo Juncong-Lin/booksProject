@@ -229,6 +229,7 @@ class Dashboard {
     this.createEventTypesChart();
     this.createActivityTimelineChart();
     this.createPagePerformanceChart();
+    this.createBookCategoriesChart();
   }
 
   createMiniCharts() {
@@ -579,6 +580,102 @@ class Dashboard {
         },
       },
     });
+  }
+
+  createBookCategoriesChart() {
+    // Generate realistic book category data for a bookstore
+    const bookCategories = [
+      { name: "Fiction", sales: 1247, color: "#3b82f6" },
+      { name: "Non-Fiction", sales: 892, color: "#10b981" },
+      { name: "Science Fiction", sales: 634, color: "#8b5cf6" },
+      { name: "Romance", sales: 578, color: "#f59e0b" },
+      { name: "Mystery", sales: 423, color: "#ef4444" },
+      { name: "Biography", sales: 387, color: "#06b6d4" },
+      { name: "Children's", sales: 356, color: "#84cc16" },
+      { name: "Academic", sales: 298, color: "#f97316" },
+      { name: "Self-Help", sales: 245, color: "#ec4899" },
+      { name: "History", sales: 198, color: "#6366f1" },
+      { name: "Art", sales: 167, color: "#14b8a6" },
+      { name: "Cooking", sales: 134, color: "#eab308" },
+    ];
+
+    const ctx = document
+      .getElementById("book-categories-chart")
+      .getContext("2d");
+
+    this.charts.bookCategories = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: bookCategories.map((cat) => cat.name),
+        datasets: [
+          {
+            data: bookCategories.map((cat) => cat.sales),
+            backgroundColor: bookCategories.map((cat) => cat.color),
+            borderColor: bookCategories.map((cat) => cat.color),
+            borderWidth: 2,
+            hoverBorderWidth: 3,
+            hoverOffset: 8,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: "60%",
+        plugins: {
+          legend: {
+            display: false, // We'll create a custom legend
+          },
+          tooltip: {
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            titleColor: "#ffffff",
+            bodyColor: "#ffffff",
+            borderColor: "rgba(255, 255, 255, 0.1)",
+            borderWidth: 1,
+            callbacks: {
+              label: function (context) {
+                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((context.parsed / total) * 100).toFixed(1);
+                return `${context.label}: ${context.parsed} sales (${percentage}%)`;
+              },
+            },
+          },
+        },
+        onHover: (event, activeElements) => {
+          event.native.target.style.cursor =
+            activeElements.length > 0 ? "pointer" : "default";
+        },
+      },
+    });
+
+    // Create custom legend
+    this.createBookCategoriesLegend(bookCategories);
+  }
+
+  createBookCategoriesLegend(categories) {
+    const legend = document.getElementById("book-categories-legend");
+
+    if (!legend) {
+      console.error("Legend container not found");
+      return;
+    }
+
+    // Calculate total sales for percentages
+    const totalSales = categories.reduce((sum, cat) => sum + cat.sales, 0);
+
+    legend.innerHTML = categories
+      .slice(0, 6)
+      .map((cat) => {
+        const percentage = ((cat.sales / totalSales) * 100).toFixed(1);
+        return `
+        <div class="legend-item">
+          <div class="legend-color" style="background-color: ${cat.color}"></div>
+          <span class="legend-label">${cat.name}</span>
+          <span class="legend-value">${percentage}%</span>
+        </div>
+      `;
+      })
+      .join("");
   }
 
   startRealTimeUpdates() {
