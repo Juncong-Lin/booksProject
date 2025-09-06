@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Analytics Dashboard - Juncongmall.com</title>
+    <title>Product Discovery Analytics Dashboard - Juncongmall.com</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
@@ -53,11 +53,12 @@
           <div class="header-content">
             <div class="title-section">
               <h1 class="dashboard-title">
-                <i data-feather="bar-chart-2" class="title-icon"></i>
-                Website Analytics Dashboard
+                <i data-feather="shopping-bag" class="title-icon"></i>
+                Product Discovery & Engagement Analytics
               </h1>
               <p class="dashboard-subtitle">
-                Real-time insights and performance metrics
+                Optimize product discovery and measure customer engagement on
+                the homepage
               </p>
             </div>
             <div class="header-actions">
@@ -99,20 +100,20 @@
           >
             <div class="card-header">
               <div class="card-icon page-views">
-                <i data-feather="eye"></i>
+                <i data-feather="grid"></i>
               </div>
               <div class="card-trend positive">
                 <i data-feather="trending-up"></i>
-                <span>+12.5%</span>
+                <span id="category-clicks-trend">+18.2%</span>
               </div>
             </div>
             <div class="card-content">
-              <h3>Total Page Views</h3>
-              <div class="metric-value" id="total-pageviews">0</div>
-              <p class="metric-description">Views in the last 30 days</p>
+              <h3>Category Navigation Clicks</h3>
+              <div class="metric-value" id="category-clicks">0</div>
+              <p class="metric-description">Book category interactions today</p>
             </div>
             <div class="card-chart">
-              <canvas id="pageviews-mini-chart"></canvas>
+              <canvas id="category-clicks-mini-chart"></canvas>
             </div>
           </div>
 
@@ -122,20 +123,20 @@
           >
             <div class="card-header">
               <div class="card-icon unique-sessions">
-                <i data-feather="users"></i>
+                <i data-feather="book-open"></i>
               </div>
               <div class="card-trend positive">
                 <i data-feather="trending-up"></i>
-                <span>+8.3%</span>
+                <span id="product-clicks-trend">+12.7%</span>
               </div>
             </div>
             <div class="card-content">
-              <h3>Unique Sessions</h3>
-              <div class="metric-value" id="unique-sessions">0</div>
-              <p class="metric-description">Active user sessions</p>
+              <h3>Product Card Clicks</h3>
+              <div class="metric-value" id="product-clicks">0</div>
+              <p class="metric-description">Individual product interest</p>
             </div>
             <div class="card-chart">
-              <canvas id="sessions-mini-chart"></canvas>
+              <canvas id="product-clicks-mini-chart"></canvas>
             </div>
           </div>
 
@@ -145,20 +146,20 @@
           >
             <div class="card-header">
               <div class="card-icon total-clicks">
-                <i data-feather="mouse-pointer"></i>
+                <i data-feather="search"></i>
               </div>
               <div class="card-trend positive">
                 <i data-feather="trending-up"></i>
-                <span>+15.7%</span>
+                <span id="search-queries-trend">+24.1%</span>
               </div>
             </div>
             <div class="card-content">
-              <h3>Total Clicks</h3>
-              <div class="metric-value" id="total-clicks">0</div>
-              <p class="metric-description">User interactions tracked</p>
+              <h3>Search Queries</h3>
+              <div class="metric-value" id="search-queries">0</div>
+              <p class="metric-description">User search behavior patterns</p>
             </div>
             <div class="card-chart">
-              <canvas id="clicks-mini-chart"></canvas>
+              <canvas id="search-mini-chart"></canvas>
             </div>
           </div>
 
@@ -168,20 +169,20 @@
           >
             <div class="card-header">
               <div class="card-icon scroll-depth">
-                <i data-feather="activity"></i>
+                <i data-feather="shopping-cart"></i>
               </div>
-              <div class="card-trend negative">
-                <i data-feather="trending-down"></i>
-                <span>-2.1%</span>
+              <div class="card-trend positive">
+                <i data-feather="trending-up"></i>
+                <span id="add-to-cart-trend">+9.8%</span>
               </div>
             </div>
             <div class="card-content">
-              <h3>Avg Scroll Depth</h3>
-              <div class="metric-value" id="avg-scroll">0%</div>
-              <p class="metric-description">Page engagement level</p>
+              <h3>Add to Cart Rate</h3>
+              <div class="metric-value" id="add-to-cart-rate">0%</div>
+              <p class="metric-description">Purchase intent conversion</p>
             </div>
             <div class="card-chart">
-              <canvas id="scroll-mini-chart"></canvas>
+              <canvas id="cart-rate-mini-chart"></canvas>
             </div>
           </div>
         </div>
@@ -194,8 +195,8 @@
           >
             <div class="chart-header">
               <div class="chart-title">
-                <h3>User Activity Timeline</h3>
-                <p>Real-time user interactions over the past 24 hours</p>
+                <h3>Category Click Patterns</h3>
+                <p>Track which book categories are most popular over time</p>
               </div>
               <div class="chart-actions">
                 <div class="time-filter">
@@ -208,7 +209,7 @@
               </div>
             </div>
             <div class="chart-content">
-              <canvas id="activity-timeline-chart"></canvas>
+              <canvas id="category-clicks-chart"></canvas>
             </div>
           </div>
 
@@ -218,15 +219,15 @@
           >
             <div class="chart-header">
               <div class="chart-title">
-                <h3>Event Types Distribution</h3>
-                <p>Breakdown of user interactions</p>
+                <h3>Search to Click Conversion</h3>
+                <p>Query optimization and search success rates</p>
               </div>
             </div>
             <div class="chart-content-with-legend">
               <div class="chart-content">
-                <canvas id="event-types-chart"></canvas>
+                <canvas id="search-conversion-chart"></canvas>
               </div>
-              <div class="chart-legend" id="event-legend"></div>
+              <div class="chart-legend" id="search-legend"></div>
             </div>
           </div>
 
@@ -237,7 +238,7 @@
             <div class="chart-header">
               <div class="chart-title">
                 <h3>Popular Book Categories</h3>
-                <p>Sales distribution by book genres</p>
+                <p>Click distribution by book genres and subcategories</p>
               </div>
               <div class="chart-actions">
                 <div class="category-summary">
@@ -259,12 +260,12 @@
           >
             <div class="chart-header">
               <div class="chart-title">
-                <h3>Page Performance</h3>
-                <p>Load times and user engagement</p>
+                <h3>Product Discovery Heatmap</h3>
+                <p>Click positioning and engagement optimization</p>
               </div>
             </div>
             <div class="chart-content">
-              <canvas id="page-performance-chart"></canvas>
+              <canvas id="discovery-heatmap-chart"></canvas>
             </div>
           </div>
         </div>
@@ -277,38 +278,40 @@
           <div class="section-header">
             <div class="section-title">
               <h3>
-                <i data-feather="filter"></i>
-                User Journey Funnel
+                <i data-feather="trending-up"></i>
+                Homepage to Purchase Journey
               </h3>
-              <p>Track user conversion through your website</p>
+              <p>
+                Track user conversion from homepage discovery to cart addition
+              </p>
             </div>
             <div class="funnel-controls">
               <div class="conversion-rate">
-                <span class="rate-label">Overall Conversion Rate:</span>
-                <span class="rate-value" id="overall-conversion">0%</span>
+                <span class="rate-label">Homepage Conversion Rate:</span>
+                <span class="rate-value" id="homepage-conversion">0%</span>
               </div>
             </div>
           </div>
 
           <div class="funnel-visualization">
-            <div class="funnel-step" data-step="views">
+            <div class="funnel-step" data-step="homepage-visits">
               <div class="step-header">
                 <div class="step-icon">
-                  <i data-feather="eye"></i>
+                  <i data-feather="home"></i>
                 </div>
                 <div class="step-info">
-                  <div class="step-name">Page Views</div>
+                  <div class="step-name">Homepage Visits</div>
                   <div class="step-description">
-                    Visitors landing on your site
+                    Visitors landing on homepage
                   </div>
                 </div>
                 <div class="step-metrics">
-                  <div class="step-count" id="funnel-views">0</div>
+                  <div class="step-count" id="funnel-homepage">0</div>
                   <div class="step-percentage">100%</div>
                 </div>
               </div>
               <div class="step-bar-container">
-                <div class="step-bar views" id="funnel-views-bar"></div>
+                <div class="step-bar homepage" id="funnel-homepage-bar"></div>
               </div>
             </div>
 
@@ -316,24 +319,27 @@
               <i data-feather="chevron-down"></i>
             </div>
 
-            <div class="funnel-step" data-step="clicks">
+            <div class="funnel-step" data-step="category-clicks">
               <div class="step-header">
                 <div class="step-icon">
-                  <i data-feather="mouse-pointer"></i>
+                  <i data-feather="grid"></i>
                 </div>
                 <div class="step-info">
-                  <div class="step-name">Product Clicks</div>
-                  <div class="step-description">Users browsing products</div>
+                  <div class="step-name">Category Navigation</div>
+                  <div class="step-description">Users exploring categories</div>
                 </div>
                 <div class="step-metrics">
-                  <div class="step-count" id="funnel-clicks">0</div>
-                  <div class="step-percentage" id="funnel-clicks-percent">
+                  <div class="step-count" id="funnel-categories">0</div>
+                  <div class="step-percentage" id="funnel-categories-percent">
                     0%
                   </div>
                 </div>
               </div>
               <div class="step-bar-container">
-                <div class="step-bar clicks" id="funnel-clicks-bar"></div>
+                <div
+                  class="step-bar categories"
+                  id="funnel-categories-bar"
+                ></div>
               </div>
             </div>
 
@@ -341,53 +347,55 @@
               <i data-feather="chevron-down"></i>
             </div>
 
-            <div class="funnel-step" data-step="cart">
+            <div class="funnel-step" data-step="product-views">
+              <div class="step-header">
+                <div class="step-icon">
+                  <i data-feather="book-open"></i>
+                </div>
+                <div class="step-info">
+                  <div class="step-name">Product Views</div>
+                  <div class="step-description">Individual product clicks</div>
+                </div>
+                <div class="step-metrics">
+                  <div class="step-count" id="funnel-products">0</div>
+                  <div class="step-percentage" id="funnel-products-percent">
+                    0%
+                  </div>
+                </div>
+              </div>
+              <div class="step-bar-container">
+                <div class="step-bar products" id="funnel-products-bar"></div>
+              </div>
+            </div>
+
+            <div class="funnel-arrow">
+              <i data-feather="chevron-down"></i>
+            </div>
+
+            <div class="funnel-step" data-step="add-to-cart">
               <div class="step-header">
                 <div class="step-icon">
                   <i data-feather="shopping-cart"></i>
                 </div>
                 <div class="step-info">
                   <div class="step-name">Add to Cart</div>
-                  <div class="step-description">Items added to cart</div>
+                  <div class="step-description">Purchase intent actions</div>
                 </div>
                 <div class="step-metrics">
-                  <div class="step-count" id="funnel-cart">0</div>
-                  <div class="step-percentage" id="funnel-cart-percent">0%</div>
-                </div>
-              </div>
-              <div class="step-bar-container">
-                <div class="step-bar cart" id="funnel-cart-bar"></div>
-              </div>
-            </div>
-
-            <div class="funnel-arrow">
-              <i data-feather="chevron-down"></i>
-            </div>
-
-            <div class="funnel-step" data-step="checkout">
-              <div class="step-header">
-                <div class="step-icon">
-                  <i data-feather="credit-card"></i>
-                </div>
-                <div class="step-info">
-                  <div class="step-name">Checkout</div>
-                  <div class="step-description">Completed purchases</div>
-                </div>
-                <div class="step-metrics">
-                  <div class="step-count" id="funnel-checkout">0</div>
-                  <div class="step-percentage" id="funnel-checkout-percent">
+                  <div class="step-count" id="funnel-cart-adds">0</div>
+                  <div class="step-percentage" id="funnel-cart-adds-percent">
                     0%
                   </div>
                 </div>
               </div>
               <div class="step-bar-container">
-                <div class="step-bar checkout" id="funnel-checkout-bar"></div>
+                <div class="step-bar cart-adds" id="funnel-cart-adds-bar"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Real-time Events & A/B Testing Grid -->
+        <!-- Real-time Events & Category Analysis Grid -->
         <div class="bottom-grid">
           <!-- Real-time Events -->
           <div
@@ -399,10 +407,12 @@
                 <h3>
                   <div class="live-indicator">
                     <div class="live-dot"></div>
-                    Live User Activity
+                    Live Product Discovery Events
                   </div>
                 </h3>
-                <p>Real-time user interactions on your website</p>
+                <p>
+                  Real-time user interactions on homepage and product discovery
+                </p>
               </div>
               <div class="realtime-controls">
                 <button class="control-btn" id="pause-realtime">
@@ -420,111 +430,79 @@
             </div>
           </div>
 
-          <!-- A/B Testing Section -->
+          <!-- Category Performance Analysis -->
           <div
-            class="ab-testing-section animate__animated animate__slideInUp"
+            class="category-analysis-section animate__animated animate__slideInUp"
             style="animation-delay: 1.1s"
           >
             <div class="section-header">
               <div class="section-title">
                 <h3>
-                  <i data-feather="split"></i>
-                  A/B Testing Controls
+                  <i data-feather="bar-chart-2"></i>
+                  Category Performance Analysis
                 </h3>
-                <p>Optimize your website with data-driven experiments</p>
+                <p>
+                  Deep dive into book category click patterns and conversion
+                </p>
               </div>
-              <div class="test-status">
-                <span class="status-badge active">Active Test</span>
-              </div>
-            </div>
-
-            <div class="test-overview">
-              <div class="test-info">
-                <div class="test-name">Homepage Layout Optimization</div>
-                <div class="test-duration">Running for 7 days</div>
-              </div>
-              <div class="test-actions">
-                <button class="test-btn secondary">
-                  <i data-feather="settings"></i>
-                  Configure
-                </button>
-                <button class="test-btn primary">
-                  <i data-feather="bar-chart"></i>
-                  View Results
-                </button>
+              <div class="analysis-status">
+                <span class="status-badge active">Live Analysis</span>
               </div>
             </div>
 
-            <div class="test-variants">
-              <div class="variant-card control">
-                <div class="variant-header">
-                  <div class="variant-name">Control</div>
-                  <div class="variant-traffic">50% traffic</div>
-                </div>
-                <div class="variant-metrics">
-                  <div class="metric">
-                    <span class="metric-label">Conversion Rate</span>
-                    <span class="metric-value" id="control-conversion"
-                      >2.3%</span
-                    >
-                  </div>
-                  <div class="metric">
-                    <span class="metric-label">Confidence</span>
-                    <span class="metric-value">95%</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="variant-card variant-a winning">
-                <div class="variant-header">
-                  <div class="variant-name">
-                    Variant A
-                    <span class="winning-badge">+21% lift</span>
-                  </div>
-                  <div class="variant-traffic">25% traffic</div>
-                </div>
-                <div class="variant-metrics">
-                  <div class="metric">
-                    <span class="metric-label">Conversion Rate</span>
-                    <span class="metric-value" id="variant-a-conversion"
-                      >2.8%</span
-                    >
-                  </div>
-                  <div class="metric">
-                    <span class="metric-label">Confidence</span>
-                    <span class="metric-value">98%</span>
+            <div class="category-overview">
+              <div class="top-categories">
+                <div class="category-rank">
+                  <h4>Top Performing Categories</h4>
+                  <div class="rank-list" id="top-categories-list">
+                    <div class="rank-item">
+                      <span class="rank-number">1</span>
+                      <span class="category-name">Fiction</span>
+                      <span class="click-count">1,247 clicks</span>
+                    </div>
+                    <div class="rank-item">
+                      <span class="rank-number">2</span>
+                      <span class="category-name">Romance</span>
+                      <span class="click-count">892 clicks</span>
+                    </div>
+                    <div class="rank-item">
+                      <span class="rank-number">3</span>
+                      <span class="category-name">Mystery</span>
+                      <span class="click-count">756 clicks</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="variant-card variant-b">
-                <div class="variant-header">
-                  <div class="variant-name">Variant B</div>
-                  <div class="variant-traffic">25% traffic</div>
-                </div>
-                <div class="variant-metrics">
+              <div class="conversion-metrics">
+                <div class="metric-group">
                   <div class="metric">
-                    <span class="metric-label">Conversion Rate</span>
-                    <span class="metric-value" id="variant-b-conversion"
-                      >2.1%</span
+                    <span class="metric-label">Category → Product CTR</span>
+                    <span class="metric-value" id="category-product-ctr"
+                      >67.8%</span
                     >
                   </div>
                   <div class="metric">
-                    <span class="metric-label">Confidence</span>
-                    <span class="metric-value">89%</span>
+                    <span class="metric-label">Sidebar vs Header Usage</span>
+                    <span class="metric-value" id="sidebar-header-usage"
+                      >42% / 58%</span
+                    >
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="test-controls">
-              <div class="control-group">
-                <label for="ab-test-variant">Switch to variant:</label>
-                <select id="ab-test-variant" class="variant-selector">
-                  <option value="control">Control (Original)</option>
-                  <option value="variant-a">Variant A (New Layout)</option>
-                  <option value="variant-b">Variant B (Compact)</option>
-                </select>
+                <div class="metric-group">
+                  <div class="metric">
+                    <span class="metric-label">Search → Click Success</span>
+                    <span class="metric-value" id="search-click-success"
+                      >74.2%</span
+                    >
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Avg Time to Click</span>
+                    <span class="metric-value" id="avg-time-to-click"
+                      >14.3s</span
+                    >
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Analytics Data Management - Juncongmall.com</title>
+    <title>Product Discovery Data Management - Juncongmall.com</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
@@ -50,12 +50,12 @@
           <div class="header-content">
             <div class="title-section">
               <h1 class="management-title">
-                <i data-feather="database" class="title-icon"></i>
-                Analytics Data Management
+                <i data-feather="settings" class="title-icon"></i>
+                Product Discovery Data Management
               </h1>
               <p class="management-subtitle">
-                Manage and monitor your website analytics data with advanced
-                controls
+                Manage and monitor your product discovery analytics data with
+                advanced controls for homepage engagement tracking
               </p>
             </div>
             <div class="header-actions">
@@ -64,7 +64,7 @@
                 <span>Refresh</span>
               </button>
               <a href="dashboard.html" class="action-btn primary">
-                <i data-feather="bar-chart-2"></i>
+                <i data-feather="shopping-bag"></i>
                 <span>View Dashboard</span>
               </a>
             </div>
@@ -76,32 +76,37 @@
               <div class="status-dot"></div>
               <span>System Online</span>
             </div>
+            <div class="connection-status">
+              <span id="dashboard-connection-status"
+                >Dashboard: Not Connected</span
+              >
+            </div>
             <div class="last-updated">
               Last action: <span id="last-action-time">System initialized</span>
             </div>
           </div>
         </div>
 
-        <!-- Data Statistics Cards -->
+        <!-- Product Discovery Data Statistics Cards -->
         <div
           class="data-stats animate__animated animate__slideInUp"
           style="animation-delay: 0.1s"
         >
           <div class="stat-card">
-            <div class="stat-value" id="total-events">0</div>
-            <div class="stat-label">Total Events</div>
+            <div class="stat-value" id="category-clicks-stat">0</div>
+            <div class="stat-label">Category Clicks</div>
           </div>
           <div class="stat-card">
-            <div class="stat-value" id="unique-sessions-stat">0</div>
-            <div class="stat-label">Unique Sessions</div>
+            <div class="stat-value" id="product-clicks-stat">0</div>
+            <div class="stat-label">Product Clicks</div>
           </div>
           <div class="stat-card">
-            <div class="stat-value" id="storage-size">0 KB</div>
-            <div class="stat-label">Storage Used</div>
+            <div class="stat-value" id="search-queries-stat">0</div>
+            <div class="stat-label">Search Queries</div>
           </div>
           <div class="stat-card">
-            <div class="stat-value" id="last-event">Never</div>
-            <div class="stat-label">Last Event</div>
+            <div class="stat-value" id="cart-additions-stat">0</div>
+            <div class="stat-label">Cart Additions</div>
           </div>
         </div>
 
@@ -115,14 +120,15 @@
                 <i data-feather="trash-2"></i>
               </div>
             </div>
-            <h3>Clear Analytics Data</h3>
+            <h3>Clear Product Discovery Data</h3>
             <p>
-              Remove all stored analytics data from local storage. This action
-              will reset all metrics and cannot be undone.
+              Remove all stored product discovery analytics data including
+              category clicks, product views, and search queries. This action
+              cannot be undone.
             </p>
-            <button class="action-btn danger" onclick="clearData()">
+            <button class="action-btn danger" onclick="clearProductData()">
               <i data-feather="trash-2"></i>
-              Clear All Data
+              Clear Discovery Data
             </button>
           </div>
 
@@ -135,15 +141,18 @@
                 <i data-feather="shuffle"></i>
               </div>
             </div>
-            <h3>Generate Sample Data</h3>
+            <h3>Generate Product Discovery Data</h3>
             <p>
-              Create realistic sample analytics data for testing and
-              demonstration purposes. Includes user journeys and conversion
-              events.
+              Create realistic sample product discovery data including category
+              navigation, product clicks, search queries, and cart additions for
+              testing.
             </p>
-            <button class="action-btn success" onclick="generateSampleData()">
+            <button
+              class="action-btn success"
+              onclick="generateProductDiscoveryData()"
+            >
               <i data-feather="shuffle"></i>
-              Generate Sample Data
+              Generate Discovery Data
             </button>
           </div>
 
@@ -156,14 +165,14 @@
                 <i data-feather="eye"></i>
               </div>
             </div>
-            <h3>View Current Data</h3>
+            <h3>View Current Discovery Data</h3>
             <p>
-              Display a summary of current analytics data including page views,
-              sessions, and conversion metrics.
+              Display a summary of current product discovery analytics including
+              category performance, search patterns, and conversion metrics.
             </p>
-            <button class="action-btn" onclick="showCurrentData()">
+            <button class="action-btn" onclick="showCurrentDiscoveryData()">
               <i data-feather="eye"></i>
-              Show Data Summary
+              Show Discovery Summary
             </button>
           </div>
 
@@ -176,14 +185,15 @@
                 <i data-feather="download"></i>
               </div>
             </div>
-            <h3>Export Analytics Data</h3>
+            <h3>Export Product Discovery Data</h3>
             <p>
-              Download all analytics data as a JSON file for backup or external
-              analysis. Includes complete event history and metadata.
+              Download all product discovery analytics data as a JSON file for
+              backup or external analysis. Includes category performance and
+              user journey data.
             </p>
-            <button class="action-btn warning" onclick="exportData()">
+            <button class="action-btn warning" onclick="exportDiscoveryData()">
               <i data-feather="download"></i>
-              Export Data
+              Export Discovery Data
             </button>
           </div>
         </div>
@@ -193,18 +203,18 @@
           style="animation-delay: 0.6s"
         >
           <a href="dashboard.html" class="quick-btn">
-            <i data-feather="bar-chart-2"></i>
+            <i data-feather="shopping-bag"></i>
             View Dashboard
           </a>
-          <button class="quick-btn" onclick="refreshAnalytics()">
+          <button class="quick-btn" onclick="refreshProductAnalytics()">
             <i data-feather="refresh-cw"></i>
             Refresh Analytics
           </button>
-          <button class="quick-btn" onclick="simulateActivity()">
+          <button class="quick-btn" onclick="simulateProductActivity()">
             <i data-feather="activity"></i>
             Simulate Activity
           </button>
-          <button class="quick-btn" onclick="validateData()">
+          <button class="quick-btn" onclick="validateProductData()">
             <i data-feather="check-circle"></i>
             Validate Data
           </button>
@@ -256,35 +266,54 @@
         }
       }
 
-      // Helper function to update statistics
+      // Helper function to update product discovery statistics
       function updateStats() {
         try {
-          const data = SimpleAnalytics.getAnalyticsData();
+          // Get data from localStorage that matches dashboard structure
+          const productDiscoveryData = getProductDiscoveryData();
 
-          document.getElementById("total-events").textContent =
-            data.historical.length;
-          document.getElementById("unique-sessions-stat").textContent =
-            data.summary.uniqueSessions;
-
-          // Calculate storage size
-          const storageSize = JSON.stringify(data).length;
-          const sizeInKB = (storageSize / 1024).toFixed(1);
-          document.getElementById(
-            "storage-size"
-          ).textContent = `${sizeInKB} KB`;
-
-          // Last event time
-          if (data.historical.length > 0) {
-            const lastEvent = data.historical[data.historical.length - 1];
-            const lastEventTime = new Date(
-              lastEvent.timestamp
-            ).toLocaleTimeString();
-            document.getElementById("last-event").textContent = lastEventTime;
-          } else {
-            document.getElementById("last-event").textContent = "Never";
-          }
+          document.getElementById("category-clicks-stat").textContent =
+            productDiscoveryData.categoryClicks || 0;
+          document.getElementById("product-clicks-stat").textContent =
+            productDiscoveryData.productClicks || 0;
+          document.getElementById("search-queries-stat").textContent =
+            productDiscoveryData.searchQueries || 0;
+          document.getElementById("cart-additions-stat").textContent =
+            productDiscoveryData.cartAdditions || 0;
         } catch (error) {
-          console.error("Error updating stats:", error);
+          console.error("Error updating product discovery stats:", error);
+        }
+      }
+
+      // Helper function to get product discovery data that matches dashboard
+      function getProductDiscoveryData() {
+        const stored = localStorage.getItem("product_discovery_data");
+        if (stored) {
+          return JSON.parse(stored);
+        }
+
+        // Return empty data structure if none exists (don't auto-generate)
+        return {
+          categoryClicks: 0,
+          productClicks: 0,
+          searchQueries: 0,
+          cartAdditions: 0,
+          homepageVisits: 0,
+          categoryPerformance: {},
+          dailyDiscoveryActions: [],
+          lastUpdated: Date.now(),
+        };
+      }
+
+      // Helper function to sync data with dashboard
+      function syncWithDashboard(data) {
+        localStorage.setItem("product_discovery_data", JSON.stringify(data));
+        // Also trigger dashboard update if it's open
+        if (window.opener && !window.opener.closed) {
+          window.opener.postMessage(
+            { type: "productDiscoveryUpdate", data: data },
+            "*"
+          );
         }
       }
 
@@ -311,15 +340,15 @@
         updateStats();
       }
 
-      // Enhanced functions with better interactivity
-      window.clearData = function () {
+      // Enhanced functions for product discovery data management
+      window.clearProductData = function () {
         const button = event.target.closest(".action-btn");
         const card = button.closest(".action-card");
 
         // Show confirmation dialog
         if (
           !confirm(
-            "Are you sure you want to clear all analytics data? This action cannot be undone."
+            "Are you sure you want to clear all product discovery data? This action cannot be undone."
           )
         ) {
           return;
@@ -329,254 +358,400 @@
         showProgressIndicator();
 
         setTimeout(() => {
-          localStorage.removeItem("analytics_data");
-          localStorage.removeItem("analytics_history");
-          addOutput("Analytics data cleared successfully!", "success");
+          localStorage.removeItem("product_discovery_data");
+          localStorage.removeItem("category_performance_data");
+          localStorage.removeItem("search_analytics_data");
+          addOutput("Product discovery data cleared successfully!", "success");
           addOutput(
-            "All historical events have been removed from local storage.",
+            "All category clicks, product views, and search queries have been removed.",
             "info"
           );
-          addOutput("System ready for new data collection.", "system");
-          updateLastActionTime("Data cleared");
+          addOutput("Dashboard will reset to initial state.", "system");
+          updateLastActionTime("Product data cleared");
           hideLoading(button);
           hideProgressIndicator();
           addFeedbackToCard(card, "success");
           showNotification(
-            "All analytics data cleared successfully!",
+            "All product discovery data cleared successfully!",
             "success"
           );
-        }, 1000);
+
+          // Sync with dashboard immediately with empty data structure
+          const emptyData = {
+            categoryClicks: 0,
+            productClicks: 0,
+            searchQueries: 0,
+            cartAdditions: 0,
+            homepageVisits: 0,
+            dailyDiscoveryActions: [],
+            categoryPerformance: [],
+          };
+          syncWithDashboard(emptyData);
+        }, 500);
       };
 
-      window.generateSampleData = function () {
+      window.generateProductDiscoveryData = function () {
         const button = event.target.closest(".action-btn");
         const card = button.closest(".action-card");
         showLoading(button);
         showProgressIndicator();
 
         setTimeout(() => {
-          SimpleAnalytics.generateSampleData();
-          const data = SimpleAnalytics.getAnalyticsData();
-          addOutput("Sample data generated successfully!", "success");
+          const productData = {
+            categoryClicks: Math.floor(Math.random() * 3000) + 2000,
+            productClicks: Math.floor(Math.random() * 2500) + 1500,
+            searchQueries: Math.floor(Math.random() * 800) + 600,
+            cartAdditions: Math.floor(Math.random() * 600) + 300,
+            homepageVisits: Math.floor(Math.random() * 6000) + 4000,
+            categoryPerformance: {
+              Fiction: Math.floor(Math.random() * 500) + 1000,
+              Romance: Math.floor(Math.random() * 400) + 700,
+              Mystery: Math.floor(Math.random() * 300) + 600,
+              "Science Fiction": Math.floor(Math.random() * 250) + 500,
+              "Young Adult": Math.floor(Math.random() * 200) + 450,
+            },
+            searchPatterns: [
+              {
+                query: "fiction books",
+                count: Math.floor(Math.random() * 50) + 20,
+              },
+              {
+                query: "bestsellers",
+                count: Math.floor(Math.random() * 40) + 15,
+              },
+              {
+                query: "romance novels",
+                count: Math.floor(Math.random() * 35) + 12,
+              },
+              {
+                query: "mystery books",
+                count: Math.floor(Math.random() * 30) + 10,
+              },
+              {
+                query: "sci-fi series",
+                count: Math.floor(Math.random() * 25) + 8,
+              },
+            ],
+            lastUpdated: Date.now(),
+          };
+
+          syncWithDashboard(productData);
+
           addOutput(
-            `Generated ${data.historical.length} events across ${data.summary.uniqueSessions} sessions.`,
+            "Product discovery data generated successfully!",
+            "success"
+          );
+          addOutput(
+            `Generated ${productData.categoryClicks} category clicks and ${productData.productClicks} product views.`,
             "info"
           );
           addOutput(
-            `Page views: ${data.summary.pageViews}, Clicks: ${data.summary.totalClicks}`,
+            `Search queries: ${productData.searchQueries}, Cart additions: ${productData.cartAdditions}`,
             "info"
           );
           addOutput(
-            "Sample data includes realistic user journeys and conversion events.",
+            "Data includes realistic category performance and search patterns.",
             "system"
           );
-          updateLastActionTime("Sample data generated");
+          updateLastActionTime("Product discovery data generated");
           hideLoading(button);
           hideProgressIndicator();
           addFeedbackToCard(card, "success");
           showNotification(
-            `Generated ${data.historical.length} sample events!`,
+            `Generated comprehensive product discovery data!`,
             "success"
           );
         }, 1500);
       };
 
-      window.showCurrentData = function () {
+      window.showCurrentDiscoveryData = function () {
         const button = event.target.closest(".action-btn");
         const card = button.closest(".action-card");
         showLoading(button);
         showProgressIndicator();
 
         setTimeout(() => {
-          const data = SimpleAnalytics.getAnalyticsData();
-          addOutput("Current analytics data summary:", "info");
-          addOutput(JSON.stringify(data.summary, null, 2), "system");
-          addOutput(
-            `Total events in history: ${data.historical.length}`,
-            "info"
-          );
+          const data = getProductDiscoveryData();
+          addOutput("Current product discovery data summary:", "info");
+          addOutput(`Category Clicks: ${data.categoryClicks}`, "system");
+          addOutput(`Product Clicks: ${data.productClicks}`, "system");
+          addOutput(`Search Queries: ${data.searchQueries}`, "system");
+          addOutput(`Cart Additions: ${data.cartAdditions}`, "system");
 
-          if (data.historical.length > 0) {
-            const recentEvents = data.historical.slice(-5);
-            addOutput("Recent events:", "info");
-            recentEvents.forEach((event) => {
+          if (data.categoryPerformance) {
+            addOutput("Category Performance:", "info");
+            Object.entries(data.categoryPerformance).forEach(
+              ([category, clicks]) => {
+                addOutput(`  ${category}: ${clicks} clicks`, "system");
+              }
+            );
+          }
+
+          if (data.searchPatterns) {
+            addOutput("Top Search Patterns:", "info");
+            data.searchPatterns.slice(0, 3).forEach((pattern) => {
               addOutput(
-                `${event.type}: ${event.element || event.page} at ${new Date(
-                  event.timestamp
-                ).toLocaleTimeString()}`,
+                `  "${pattern.query}": ${pattern.count} searches`,
                 "system"
               );
             });
           }
 
-          updateLastActionTime("Data viewed");
+          updateLastActionTime("Discovery data viewed");
           hideLoading(button);
           hideProgressIndicator();
           addFeedbackToCard(card, "success");
-          showNotification("Data summary displayed in output", "info");
+          showNotification(
+            "Discovery data summary displayed in output",
+            "info"
+          );
         }, 800);
       };
 
-      window.exportData = function () {
+      window.exportDiscoveryData = function () {
         const button = event.target.closest(".action-btn");
         const card = button.closest(".action-card");
         showLoading(button);
         showProgressIndicator();
 
         setTimeout(() => {
-          const data = SimpleAnalytics.getAnalyticsData();
-          const dataStr = JSON.stringify(data, null, 2);
+          const data = getProductDiscoveryData();
+          const exportData = {
+            productDiscovery: data,
+            exportTimestamp: new Date().toISOString(),
+            dashboardCompatible: true,
+            version: "1.0",
+          };
+
+          const dataStr = JSON.stringify(exportData, null, 2);
           const dataBlob = new Blob([dataStr], { type: "application/json" });
           const url = URL.createObjectURL(dataBlob);
           const link = document.createElement("a");
           link.href = url;
-          const filename = `analytics-data-${
+          const filename = `product-discovery-data-${
             new Date().toISOString().split("T")[0]
           }.json`;
           link.download = filename;
           link.click();
           URL.revokeObjectURL(url);
 
-          addOutput("Analytics data exported successfully!", "success");
+          addOutput("Product discovery data exported successfully!", "success");
           addOutput(`File: ${filename}`, "info");
           addOutput(
-            `Exported ${data.historical.length} events and summary data.`,
+            `Exported ${data.categoryClicks} category clicks and related metrics.`,
             "system"
           );
-          updateLastActionTime("Data exported");
+          updateLastActionTime("Discovery data exported");
           hideLoading(button);
           hideProgressIndicator();
           addFeedbackToCard(card, "success");
-          showNotification(`Data exported as ${filename}`, "success");
+          showNotification(`Discovery data exported as ${filename}`, "success");
         }, 1000);
       };
 
-      window.refreshAnalytics = function () {
+      window.refreshProductAnalytics = function () {
         const button = event.target.closest(".quick-btn");
         showLoading(button);
         showProgressIndicator();
 
         setTimeout(() => {
-          // Force refresh analytics by creating a new instance
-          window.analytics = new SimpleAnalytics();
-          addOutput("Analytics system refreshed!", "success");
-          addOutput("New session started and tracking initialized.", "info");
-          addOutput("All event listeners re-attached.", "system");
-          updateLastActionTime("System refreshed");
+          // Refresh product discovery data
+          const data = getProductDiscoveryData();
+          data.lastUpdated = Date.now();
+          syncWithDashboard(data);
+
+          addOutput("Product discovery analytics refreshed!", "success");
+          addOutput("Category performance data updated.", "info");
+          addOutput(
+            "Search patterns and conversion metrics refreshed.",
+            "system"
+          );
+          updateLastActionTime("Product analytics refreshed");
           hideLoading(button);
           hideProgressIndicator();
-          showNotification("Analytics system refreshed!", "success");
+          showNotification("Product discovery analytics refreshed!", "success");
         }, 1200);
       };
 
-      // New interactive functions
-      window.simulateActivity = function () {
+      // New interactive functions for product discovery
+      window.simulateProductActivity = function () {
         const button = event.target.closest(".quick-btn");
         showLoading(button);
         showProgressIndicator();
 
         setTimeout(() => {
-          // Simulate some user activity
+          const data = getProductDiscoveryData();
+
+          // Simulate product discovery activities
           const activities = [
             {
-              type: "pageview",
-              page: "/products/books",
-              element: "navigation",
-            },
-            { type: "click", page: "/products/books", element: "book-card-1" },
-            {
-              type: "scroll",
-              page: "/products/books",
-              element: "content-area",
+              type: "category_click",
+              category: "Fiction",
+              increment: Math.floor(Math.random() * 20) + 10,
             },
             {
-              type: "click",
-              page: "/products/books",
-              element: "add-to-cart-btn",
+              type: "product_click",
+              product: "The Silent Patient",
+              increment: Math.floor(Math.random() * 15) + 5,
+            },
+            {
+              type: "search_query",
+              query: "bestsellers 2024",
+              increment: Math.floor(Math.random() * 10) + 3,
+            },
+            {
+              type: "cart_addition",
+              product: "Dune Series",
+              increment: Math.floor(Math.random() * 8) + 2,
             },
           ];
 
           activities.forEach((activity, index) => {
             setTimeout(() => {
-              SimpleAnalytics.trackEvent(
-                activity.type,
-                activity.page,
-                activity.element
-              );
-              addOutput(
-                `Simulated ${activity.type} event on ${activity.page}`,
-                "system"
-              );
+              switch (activity.type) {
+                case "category_click":
+                  data.categoryClicks += activity.increment;
+                  if (
+                    data.categoryPerformance &&
+                    data.categoryPerformance[activity.category]
+                  ) {
+                    data.categoryPerformance[activity.category] +=
+                      activity.increment;
+                  }
+                  addOutput(
+                    `Simulated ${activity.increment} clicks on ${activity.category} category`,
+                    "system"
+                  );
+                  break;
+                case "product_click":
+                  data.productClicks += activity.increment;
+                  addOutput(
+                    `Simulated ${activity.increment} clicks on ${activity.product}`,
+                    "system"
+                  );
+                  break;
+                case "search_query":
+                  data.searchQueries += activity.increment;
+                  addOutput(
+                    `Simulated ${activity.increment} searches for "${activity.query}"`,
+                    "system"
+                  );
+                  break;
+                case "cart_addition":
+                  data.cartAdditions += activity.increment;
+                  addOutput(
+                    `Simulated ${activity.increment} cart additions for ${activity.product}`,
+                    "system"
+                  );
+                  break;
+              }
             }, index * 300);
           });
 
           setTimeout(() => {
-            addOutput("Activity simulation completed!", "success");
-            addOutput("4 synthetic events added to analytics data.", "info");
-            updateLastActionTime("Activity simulated");
+            syncWithDashboard(data);
+            addOutput(
+              "Product discovery activity simulation completed!",
+              "success"
+            );
+            addOutput(
+              "Dashboard metrics have been updated with new activity.",
+              "info"
+            );
+            updateLastActionTime("Product activity simulated");
             hideLoading(button);
             hideProgressIndicator();
             showNotification(
-              "Successfully simulated 4 user activities!",
+              "Successfully simulated product discovery activities!",
               "success"
             );
           }, 1500);
         }, 500);
       };
 
-      window.validateData = function () {
+      window.validateProductData = function () {
         const button = event.target.closest(".quick-btn");
         showLoading(button);
         showProgressIndicator();
 
         setTimeout(() => {
-          const data = SimpleAnalytics.getAnalyticsData();
+          const data = getProductDiscoveryData();
           let issues = 0;
 
-          addOutput("Starting data validation...", "info");
+          addOutput("Starting product discovery data validation...", "info");
 
           // Check for data integrity
-          if (!data.summary) {
-            addOutput("⚠️ Missing summary data", "warning");
+          if (!data.categoryClicks && data.categoryClicks !== 0) {
+            addOutput("⚠️ Missing category clicks data", "warning");
             issues++;
           }
 
-          if (!Array.isArray(data.historical)) {
-            addOutput("⚠️ Historical data is not an array", "warning");
+          if (!data.productClicks && data.productClicks !== 0) {
+            addOutput("⚠️ Missing product clicks data", "warning");
             issues++;
           }
 
-          // Check for duplicate events
-          const eventIds = new Set();
-          data.historical.forEach((event) => {
-            if (eventIds.has(event.id)) {
-              addOutput(`⚠️ Duplicate event ID found: ${event.id}`, "warning");
-              issues++;
-            }
-            eventIds.add(event.id);
-          });
+          if (!data.searchQueries && data.searchQueries !== 0) {
+            addOutput("⚠️ Missing search queries data", "warning");
+            issues++;
+          }
+
+          if (!data.cartAdditions && data.cartAdditions !== 0) {
+            addOutput("⚠️ Missing cart additions data", "warning");
+            issues++;
+          }
 
           // Check data consistency
-          const summaryEvents =
-            data.summary.pageViews + data.summary.totalClicks;
-          if (summaryEvents !== data.historical.length) {
+          if (data.cartAdditions > data.productClicks) {
             addOutput(
-              "⚠️ Summary totals don't match historical event count",
+              "⚠️ Cart additions exceed product clicks (impossible scenario)",
               "warning"
             );
             issues++;
           }
 
+          if (data.productClicks > data.categoryClicks) {
+            addOutput(
+              "⚠️ Product clicks exceed category clicks (unusual pattern)",
+              "warning"
+            );
+            issues++;
+          }
+
+          // Check category performance consistency
+          if (data.categoryPerformance) {
+            const totalCategoryClicks = Object.values(
+              data.categoryPerformance
+            ).reduce((a, b) => a + b, 0);
+            if (
+              Math.abs(totalCategoryClicks - data.categoryClicks) >
+              data.categoryClicks * 0.1
+            ) {
+              addOutput(
+                "⚠️ Category performance doesn't match total category clicks",
+                "warning"
+              );
+              issues++;
+            }
+          }
+
           if (issues === 0) {
-            addOutput("✅ Data validation completed successfully!", "success");
-            addOutput("No issues found in analytics data.", "info");
+            addOutput(
+              "✅ Product discovery data validation completed successfully!",
+              "success"
+            );
+            addOutput(
+              "No issues found in product discovery analytics.",
+              "info"
+            );
+            addOutput("Dashboard data integrity confirmed.", "system");
             showNotification(
               "Data validation passed! No issues found.",
               "success"
             );
           } else {
             addOutput(
-              `Data validation completed with ${issues} issues found.`,
+              `Product discovery data validation completed with ${issues} issues found.`,
               "warning"
             );
             showNotification(
@@ -585,7 +760,7 @@
             );
           }
 
-          updateLastActionTime("Data validated");
+          updateLastActionTime("Product data validated");
           hideLoading(button);
           hideProgressIndicator();
         }, 1500);
@@ -604,9 +779,35 @@
         // Update initial stats
         updateStats();
 
-        addOutput("Analytics Data Management system initialized.", "success");
-        addOutput("Ready to manage your analytics data.", "info");
-        addOutput("All systems operational.", "system");
+        addOutput(
+          "Product Discovery Data Management system initialized.",
+          "success"
+        );
+        addOutput(
+          "Ready to manage your product discovery analytics data.",
+          "info"
+        );
+        addOutput(
+          "Connected to dashboard for real-time data synchronization.",
+          "system"
+        );
+
+        // Listen for dashboard updates
+        window.addEventListener("message", (event) => {
+          if (event.data.type === "dashboardMetricsUpdate") {
+            addOutput("Received metrics update from dashboard", "info");
+            updateStats();
+          }
+        });
+
+        // Send initial data to dashboard if it exists
+        const initialData = getProductDiscoveryData();
+        if (window.opener && !window.opener.closed) {
+          window.opener.postMessage(
+            { type: "productDiscoveryUpdate", data: initialData },
+            "*"
+          );
+        }
 
         // Add refresh button functionality
         const refreshBtn = document.getElementById("refresh-system");
@@ -628,25 +829,25 @@
           updateStats();
         }, 30000);
 
-        // Add keyboard shortcuts
+        // Add keyboard shortcuts for product discovery functions
         document.addEventListener("keydown", (e) => {
           if (e.ctrlKey || e.metaKey) {
             switch (e.key) {
               case "r":
                 e.preventDefault();
-                refreshAnalytics();
+                refreshProductAnalytics();
                 break;
               case "e":
                 e.preventDefault();
-                exportData();
+                exportDiscoveryData();
                 break;
               case "s":
                 e.preventDefault();
-                simulateActivity();
+                simulateProductActivity();
                 break;
               case "v":
                 e.preventDefault();
-                validateData();
+                validateProductData();
                 break;
             }
           }
@@ -711,10 +912,16 @@
 
       function addKeyboardShortcutTooltips() {
         const shortcuts = [
-          { selector: '[onclick="refreshAnalytics()"]', shortcut: "Ctrl+R" },
-          { selector: '[onclick="exportData()"]', shortcut: "Ctrl+E" },
-          { selector: '[onclick="simulateActivity()"]', shortcut: "Ctrl+S" },
-          { selector: '[onclick="validateData()"]', shortcut: "Ctrl+V" },
+          {
+            selector: '[onclick="refreshProductAnalytics()"]',
+            shortcut: "Ctrl+R",
+          },
+          { selector: '[onclick="exportDiscoveryData()"]', shortcut: "Ctrl+E" },
+          {
+            selector: '[onclick="simulateProductActivity()"]',
+            shortcut: "Ctrl+S",
+          },
+          { selector: '[onclick="validateProductData()"]', shortcut: "Ctrl+V" },
         ];
 
         shortcuts.forEach(({ selector, shortcut }) => {

@@ -376,7 +376,9 @@
   font-size: 32px;
   font-weight: 800;
   margin: 0 0 4px 0;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
 .metric-description {
@@ -521,7 +523,8 @@
 .legend-value {
   color: #9ca3af;
   font-weight: 500;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-variant-numeric: tabular-nums;
   flex-shrink: 0;
 }
 
@@ -636,7 +639,8 @@
   color: #10b981;
   font-size: 24px;
   font-weight: 700;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-variant-numeric: tabular-nums;
 }
 
 .funnel-visualization {
@@ -709,7 +713,8 @@
   color: #ffffff;
   font-size: 20px;
   font-weight: 700;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-variant-numeric: tabular-nums;
 }
 
 .step-percentage {
@@ -994,7 +999,8 @@
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-variant-numeric: tabular-nums;
 }
 
 .test-controls {
@@ -1060,7 +1066,8 @@
 
 .event-time {
   color: #6b7280;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-variant-numeric: tabular-nums;
   min-width: 60px;
 }
 
@@ -1619,5 +1626,133 @@
 
   .chart-title p {
     font-size: 11px;
+  }
+}
+
+/* Category Analysis Section Styles */
+.category-analysis-section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.category-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 20px 0;
+}
+
+.top-categories h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.rank-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+}
+
+.rank-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.category-name {
+  flex: 1;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.click-count {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.conversion-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metric-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid #6366f1;
+}
+
+.metric-label {
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.metric-value {
+  font-weight: 600;
+  color: #10b981;
+  font-size: 16px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Responsive adjustments for category analysis */
+@media (max-width: 1024px) {
+  .category-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .category-analysis-section {
+    padding: 16px;
+  }
+
+  .rank-item {
+    padding: 8px;
+  }
+
+  .metric {
+    padding: 8px 12px;
   }
 }

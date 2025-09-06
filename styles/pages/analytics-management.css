@@ -980,3 +980,99 @@
     border-color: #ffffff;
   }
 }
+
+/* Product Discovery Specific Styling */
+.management-title .title-icon {
+  color: #10b981;
+}
+
+.stat-card:nth-child(1) .stat-value {
+  color: #3b82f6;
+}
+
+.stat-card:nth-child(2) .stat-value {
+  color: #10b981;
+}
+
+.stat-card:nth-child(3) .stat-value {
+  color: #f59e0b;
+}
+
+.stat-card:nth-child(4) .stat-value {
+  color: #8b5cf6;
+}
+
+/* Enhanced action card icons for product discovery */
+.card-icon.clear-data {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.card-icon.generate-data {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.card-icon.view-data {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.card-icon.export-data {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* Product discovery data validation styles */
+.output-content {
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Connection status indicator */
+.live-status::after {
+  content: "🔗 Connected to Dashboard";
+  display: block;
+  font-size: 12px;
+  color: #10b981;
+  margin-top: 4px;
+}
+
+/* Success animations for data operations */
+@keyframes productDiscoveryPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.feedback-success {
+  animation: productDiscoveryPulse 0.6s ease-out;
+}
+
+/* Connection status tracking */
+.connection-status {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 5px;
+}
+
+.connection-status span {
+  font-weight: 500;
+}
+
+.connection-status .connected {
+  color: #10b981;
+}
+
+.connection-status .disconnected {
+  color: #ef4444;
+}
+
+.connection-status::before {
+  content: "🔌 ";
+  margin-right: 4px;
+}
