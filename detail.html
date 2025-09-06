@@ -1,29 +1,40 @@
 <!DOCTYPE html>
-<html>  
+<html>
   <head>
     <title>Product Detail - Qilitrading.com</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="styles/shared/general.css">
-    <link rel="stylesheet" href="styles/shared/qili-header.css">
-    <link rel="stylesheet" href="styles/shared/sub-header.css">    
-    <link rel="stylesheet" href="styles/shared/sidebar.css">    
-    <link rel="stylesheet" href="styles/pages/detail.css">    
-    <link rel="stylesheet" href="styles/shared/footer.css">
-    <link rel="stylesheet" href="styles/shared/right-panel.css">
-    <link rel="stylesheet" href="styles/shared/document-viewer.css">
-    <link rel="stylesheet" href="styles/shared/document-viewer-hide-elements.css">
-    <link rel="stylesheet" href="styles/shared/image-magnifier.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/shared/general.css" />
+    <link rel="stylesheet" href="styles/shared/qili-header.css" />
+    <link rel="stylesheet" href="styles/shared/sub-header.css" />
+    <link rel="stylesheet" href="styles/shared/sidebar.css" />
+    <link rel="stylesheet" href="styles/pages/detail.css" />
+    <link rel="stylesheet" href="styles/shared/footer.css" />
+    <link rel="stylesheet" href="styles/shared/right-panel.css" />
+    <link rel="stylesheet" href="styles/shared/document-viewer.css" />
+    <link
+      rel="stylesheet"
+      href="styles/shared/document-viewer-hide-elements.css"
+    />
+    <link rel="stylesheet" href="styles/shared/image-magnifier.css" />
+  </head>
 
-  </head>  
-  
   <body class="no-sidebar">
     <!-- Main Header - Loaded dynamically from shared component -->
-    <div id="shared-header-placeholder"></div><!-- Sub Header Navigation - Loaded dynamically from shared component -->
-    <div id="shared-subheader-placeholder"></div>    <div class="main">
+    <div id="shared-header-placeholder"></div>
+    <!-- Sub Header Navigation - Loaded dynamically from shared component -->
+    <div id="shared-subheader-placeholder"></div>
+    <div class="main">
       <!-- Unified Breadcrumb navigation -->
       <div class="breadcrumb-nav"></div>
 
@@ -36,16 +47,23 @@
         <div class="product-image-section">
           <!-- Main product image -->
           <div class="product-main-image-container">
-            <img class="product-image js-product-image">
-          </div>          <!-- Product image thumbnails with scroll arrows -->
+            <img class="product-image js-product-image" data-original-src="" />
+          </div>
+          <!-- Product image thumbnails with scroll arrows -->
           <div class="product-thumbnails-wrapper">
-            <button class="thumbnail-arrow left js-thumbnail-arrow-left" aria-label="Scroll left">
+            <button
+              class="thumbnail-arrow left js-thumbnail-arrow-left"
+              aria-label="Scroll left"
+            >
               <span>‹</span>
             </button>
             <div class="product-thumbnails js-product-thumbnails">
               <!-- Thumbnails will be inserted by JavaScript -->
             </div>
-            <button class="thumbnail-arrow right js-thumbnail-arrow-right" aria-label="Scroll right">
+            <button
+              class="thumbnail-arrow right js-thumbnail-arrow-right"
+              aria-label="Scroll right"
+            >
               <span>›</span>
             </button>
           </div>
@@ -57,10 +75,10 @@
             <div class="product-price js-product-price"></div>
             <div class="product-original-price js-product-original-price"></div>
           </div>
-          
+
           <!-- Product rating -->
           <div class="product-rating-container">
-            <img class="product-rating-stars js-product-rating">
+            <img class="product-rating-stars js-product-rating" />
             <div class="product-rating-count js-product-rating-count"></div>
           </div>
 
@@ -87,7 +105,7 @@
             </div>
 
             <div class="added-to-cart js-added-message">
-              <img src="images/icons/checkmark.png">
+              <img src="images/icons/checkmark.png" />
               Added
             </div>
 
@@ -96,25 +114,38 @@
             </button>
           </div>
         </div>
-      </div>      <!-- Product details tabs -->
+      </div>
+      <!-- Product details tabs -->
       <div class="product-info-tabs">
         <div class="tab-headers">
-          <div class="tab-header active" data-tab="product-details">Product Details</div>
+          <div class="tab-header active" data-tab="product-details">
+            Product Details
+          </div>
         </div>
-        
+
         <div class="tab-content">
           <div class="tab-panel active" id="product-details">
             <div class="product-description js-product-description"></div>
-            <div class="product-details-content js-product-details-content"></div>
-            
+            <div
+              class="product-details-content js-product-details-content"
+            ></div>
+
             <!-- Product Description section directly below product details -->
-            <div class="product-compatibility-section" data-tab="compatibility" style="display: block;">
+            <div
+              class="product-compatibility-section"
+              data-tab="compatibility"
+              style="display: block"
+            >
               <h2>Product Description</h2>
               <div class="product-compatibility js-product-compatibility"></div>
             </div>
-            
+
             <!-- Product Information section directly below product description -->
-            <div class="product-specifications-section" data-tab="specifications" style="display: block;">
+            <div
+              class="product-specifications-section"
+              data-tab="specifications"
+              style="display: block"
+            >
               <h2>Product Information</h2>
               <div class="product-specifications js-product-specifications">
                 <table class="product-info-table">
@@ -151,13 +182,14 @@
             </div>
           </div>
         </div>
-      </div>    </div>
-      <!-- Shared Footer - Loaded dynamically from shared component -->
+      </div>
+    </div>
+    <!-- Shared Footer - Loaded dynamically from shared component -->
     <div id="shared-footer-placeholder"></div>
-    
+
     <!-- Shared Right Panel - Loaded dynamically from shared component -->
     <div id="shared-right-panel-placeholder"></div>
-    
+
     <!-- Libraries for document parsing -->
     <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.8.162/pdf.min.js"></script>
@@ -165,15 +197,17 @@
     <script>
       // Initialize PDF.js worker
       if (window.pdfjsLib) {
-        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.8.162/pdf.worker.min.js';
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+          "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.8.162/pdf.worker.min.js";
       }
     </script>
-      <script type="module" src="scripts/detail/detail.js"></script>    
-      <script type="module" src="scripts/index/index.js"></script>    
-      <script src="scripts/shared/url-utils.js"></script>
+    <script type="module" src="scripts/shared/image-loader.js"></script>
+    <script type="module" src="scripts/detail/detail.js"></script>
+    <script type="module" src="scripts/index/index.js"></script>
+    <script src="scripts/shared/url-utils.js"></script>
     <script type="module" src="scripts/shared/search.js"></script>
     <script src="scripts/shared/shared-header-loader.js"></script>
-    <script src="scripts/shared/sub-header-nav.js"></script>    
+    <script src="scripts/shared/sub-header-nav.js"></script>
     <script src="scripts/shared/shared-subheader-loader.js"></script>
     <script src="scripts/shared/shared-footer-loader.js"></script>
     <script src="scripts/shared/shared-right-panel-loader.js"></script>

@@ -4727,8 +4727,8 @@ export const booksProducts = {
     },
     {
       id: "HigherSelfie-Wake-Up-Your-Life-Free-Your-Soul-Find-Your-Tribe",
-      name: "#HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe.",
-      image: "products/books/Nonfiction/#HigherSelfie Wake Up Your Life. Free Your Soul. Find Your Tribe./image/#HigherSelfie Wake Up Your Life. Free Your Soul. Find Your Tribe..jpg",
+      name: "HigherSelfie: Wake Up Your Life. Free Your Soul. Find Your Tribe",
+      image: "products/books/Nonfiction/HigherSelfie Wake Up Your Life. Free Your Soul. Find Your Tribe/image/HigherSelfie Wake Up Your Life. Free Your Soul. Find Your Tribe.jpg",
       star: 5,
       lower_price: 2311,
       higher_price: 2311

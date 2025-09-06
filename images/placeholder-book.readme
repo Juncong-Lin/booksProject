@@ -1,0 +1,25 @@
+# Placeholder Book Image Documentation
+
+## 📚 Purpose
+This directory contains placeholder images used as fallbacks when book cover images fail to load.
+
+## 🎯 Current Implementation
+- **File**: `placeholder-book.svg` 
+- **Usage**: Fallback image in `scripts/shared/image-loader.js`
+- **Dimensions**: 200x300 pixels (standard book cover ratio)
+- **Format**: SVG (scalable, lightweight)
+
+## 🛠️ Implementation Details
+The placeholder is automatically used by the ImageLoader utility when:
+1. Primary book cover image fails to load
+2. Image URL is invalid or broken
+3. Network issues prevent image loading
+
+## 🎨 Visual Design
+- Clean, minimalist book icon
+- Neutral gray color scheme
+- "Book Cover Not Available" text
+- Professional appearance that matches site design
+
+## ✅ Status: IMPLEMENTED
+The placeholder system is now fully functional and integrated into the website's image loading system.

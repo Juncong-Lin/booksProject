@@ -25,7 +25,7 @@ class Dashboard {
   }
 
   initEventHandlers() {
-    // Refresh button
+    // Refresh button with improved feedback
     const refreshBtn = document.getElementById("refresh-data");
     if (refreshBtn) {
       refreshBtn.addEventListener("click", () => {
@@ -47,6 +47,111 @@ class Dashboard {
       clearBtn.addEventListener("click", () => {
         this.clearEvents();
       });
+    }
+
+    // Export button functionality
+    const exportBtn = document.querySelector(".export-btn");
+    if (exportBtn) {
+      exportBtn.addEventListener("click", () => {
+        this.exportData();
+      });
+    }
+
+    // Auto-refresh every 30 seconds
+    this.startAutoRefresh();
+  }
+
+  refreshData() {
+    const refreshBtn = document.getElementById("refresh-data");
+
+    try {
+      // Add loading state to refresh button
+      if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.classList.add("spinning");
+        const icon = refreshBtn.querySelector("i");
+        if (icon) {
+          icon.style.animation = "spin 1s linear infinite";
+        }
+      }
+
+      // Update all metrics
+      this.updateMetrics();
+
+      // Update charts
+      this.updateAllCharts();
+
+      // Show success message
+      this.showUpdateStatus("success", "Dashboard refreshed");
+    } catch (error) {
+      console.error("Error refreshing dashboard:", error);
+      this.showUpdateStatus("error", "Failed to refresh dashboard");
+    } finally {
+      // Remove loading state
+      if (refreshBtn) {
+        refreshBtn.disabled = false;
+        refreshBtn.classList.remove("spinning");
+        const icon = refreshBtn.querySelector("i");
+        if (icon) {
+          icon.style.animation = "";
+        }
+      }
+    }
+  }
+
+  exportData() {
+    try {
+      const data = SimpleAnalytics.getAnalyticsData();
+      const exportData = {
+        timestamp: new Date().toISOString(),
+        summary: data.summary,
+        events: data.historical,
+        exportedBy: "BooksProject Dashboard",
+      };
+
+      // Create downloadable file
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+        type: "application/json",
+      });
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `analytics-export-${
+        new Date().toISOString().split("T")[0]
+      }.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      this.showUpdateStatus("success", "Data exported successfully");
+    } catch (error) {
+      console.error("Error exporting data:", error);
+      this.showUpdateStatus("error", "Failed to export data");
+    }
+  }
+
+  startAutoRefresh() {
+    // Auto-refresh every 30 seconds
+    this.autoRefreshInterval = setInterval(() => {
+      if (!this.isPaused) {
+        this.updateMetrics();
+      }
+    }, 30000);
+  }
+
+  updateAllCharts() {
+    try {
+      // Update all chart data
+      Object.keys(this.charts).forEach((chartKey) => {
+        const chart = this.charts[chartKey];
+        if (chart && typeof chart.update === "function") {
+          chart.update();
+        }
+      });
+    } catch (error) {
+      console.error("Error updating charts:", error);
     }
   }
 
@@ -79,23 +184,97 @@ class Dashboard {
   }
 
   updateMetrics() {
-    const data = SimpleAnalytics.getAnalyticsData();
-    const summary = data.summary;
+    try {
+      const data = SimpleAnalytics.getAnalyticsData();
+      const summary = data.summary;
 
-    console.log("Analytics data:", data);
-    console.log("Summary:", summary);
+      console.log("Analytics data:", data);
+      console.log("Summary:", summary);
 
-    // Update summary cards with animations
-    this.updateMetricValue("total-pageviews", summary.pageViews || 0);
-    this.updateMetricValue("unique-sessions", summary.uniqueSessions || 0);
-    this.updateMetricValue("total-clicks", summary.totalClicks || 0);
-    this.updateMetricValue("avg-scroll", `${summary.avgScrollDepth || 0}%`);
+      // Update summary cards with animations and validation
+      this.updateMetricValue("total-pageviews", summary.pageViews || 0);
+      this.updateMetricValue("unique-sessions", summary.uniqueSessions || 0);
+      this.updateMetricValue("total-clicks", summary.totalClicks || 0);
+      this.updateMetricValue("avg-scroll", `${summary.avgScrollDepth || 0}%`);
 
-    // Update conversion funnel
-    this.updateFunnel(data.historical, data.current, summary);
+      // Update conversion funnel with error handling
+      this.updateFunnel(data.historical, data.current, summary);
+
+      // Update overall conversion rate
+      this.updateOverallConversionRate(data.historical, summary);
+
+      // Update last refreshed time
+      this.updateLastRefreshTime();
+
+      // Show success indicator
+      this.showUpdateStatus("success", "Data updated successfully");
+    } catch (error) {
+      console.error("Error updating metrics:", error);
+      this.showUpdateStatus("error", "Failed to update metrics");
+
+      // Show fallback data
+      this.showFallbackData();
+    }
+  }
+
+  showUpdateStatus(type, message) {
+    // Remove existing status
+    const existingStatus = document.querySelector(".dashboard-status");
+    if (existingStatus) {
+      existingStatus.remove();
+    }
+
+    // Create status indicator
+    const statusDiv = document.createElement("div");
+    statusDiv.className = `dashboard-status dashboard-status-${type}`;
+    statusDiv.style.cssText = `
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 12px;
+      z-index: 10001;
+      ${
+        type === "error"
+          ? "background: #f44336; color: white;"
+          : "background: #4CAF50; color: white;"
+      }
+    `;
+    statusDiv.textContent = message;
+
+    document.body.appendChild(statusDiv);
+
+    // Auto-remove after 3 seconds
+    setTimeout(() => {
+      if (statusDiv && statusDiv.parentNode) {
+        statusDiv.remove();
+      }
+    }, 3000);
+  }
+
+  showFallbackData() {
+    // Show reasonable fallback values
+    this.updateMetricValue("total-pageviews", "No data");
+    this.updateMetricValue("unique-sessions", "No data");
+    this.updateMetricValue("total-clicks", "No data");
+    this.updateMetricValue("avg-scroll", "No data");
 
     // Update overall conversion rate
-    this.updateOverallConversionRate(data.historical, summary);
+    const conversionElement = document.getElementById("overall-conversion");
+    if (conversionElement) {
+      conversionElement.textContent = "N/A";
+    }
+  }
+
+  updateLastRefreshTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    const lastUpdated = document.getElementById("last-updated-time");
+    if (lastUpdated) {
+      lastUpdated.textContent = timeString;
+    }
   }
 
   updateMetricValue(elementId, newValue) {

@@ -1,8 +1,8 @@
 // Books-focused product loading script
-import {booksProducts} from '../../data/books.js';
-import { formatCurrency, formatPriceRange } from '../shared/money.js';
-import { addToCart } from '../../data/cart.js';
-import { updateCartQuantity } from '../shared/cart-quantity.js';
+import { booksProducts } from "../../data/books.js";
+import { formatCurrency, formatPriceRange } from "../shared/money.js";
+import { addToCart } from "../../data/cart.js";
+import { updateCartQuantity } from "../shared/cart-quantity.js";
 
 // Make booksProducts globally available for search system
 window.booksProducts = booksProducts;
@@ -15,15 +15,22 @@ let currentProducts = [];
 
 // Helper function to encode image URLs properly
 function encodeImagePath(imagePath) {
-  return imagePath.split('/').map(part => 
-    part.includes('(') || part.includes(')') || part.includes('#') ? encodeURIComponent(part) : part
-  ).join('/');
+  return imagePath
+    .split("/")
+    .map((part) => {
+      // Encode all parts that contain special characters
+      if (part.match(/[()#:&?,\s]/)) {
+        return encodeURIComponent(part);
+      }
+      return part;
+    })
+    .join("/");
 }
 
 // Function to create pagination HTML
 function createPaginationHTML(currentPage, totalPages, totalItems) {
-  if (totalPages <= 1) return '';
-  
+  if (totalPages <= 1) return "";
+
   let paginationHTML = `
     <div class="pagination-container">
       <div class="pagination-info">
@@ -31,56 +38,60 @@ function createPaginationHTML(currentPage, totalPages, totalItems) {
       </div>
       <div class="pagination-controls">
   `;
-  
+
   // Previous button
   if (currentPage > 1) {
-    paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage - 1})">Previous</button>`;
+    paginationHTML += `<button class="pagination-btn" onclick="changePage(${
+      currentPage - 1
+    })">Previous</button>`;
   }
-  
+
   // Page numbers
   const startPage = Math.max(1, currentPage - 2);
   const endPage = Math.min(totalPages, currentPage + 2);
-  
+
   if (startPage > 1) {
     paginationHTML += `<button class="pagination-btn" onclick="changePage(1)">1</button>`;
     if (startPage > 2) {
       paginationHTML += `<span class="pagination-ellipsis">...</span>`;
     }
   }
-  
+
   for (let i = startPage; i <= endPage; i++) {
-    const activeClass = i === currentPage ? 'active' : '';
+    const activeClass = i === currentPage ? "active" : "";
     paginationHTML += `<button class="pagination-btn ${activeClass}" onclick="changePage(${i})">${i}</button>`;
   }
-  
+
   if (endPage < totalPages) {
     if (endPage < totalPages - 1) {
       paginationHTML += `<span class="pagination-ellipsis">...</span>`;
     }
     paginationHTML += `<button class="pagination-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
   }
-  
+
   // Next button
   if (currentPage < totalPages) {
-    paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage + 1})">Next</button>`;
+    paginationHTML += `<button class="pagination-btn" onclick="changePage(${
+      currentPage + 1
+    })">Next</button>`;
   }
-  
+
   // Last button
   if (currentPage < totalPages) {
     paginationHTML += `<button class="pagination-btn" onclick="changePage(${totalPages})">Last</button>`;
   }
-  
+
   paginationHTML += `
       </div>
     </div>
   `;
-  
+
   return paginationHTML;
 }
 
 // Function to clear pagination display
 function clearPaginationDisplay() {
-  const paginationElement = document.querySelector('.pagination-wrapper');
+  const paginationElement = document.querySelector(".pagination-wrapper");
   if (paginationElement) {
     paginationElement.remove();
   }
@@ -89,21 +100,25 @@ function clearPaginationDisplay() {
 // Function to update pagination display
 function updatePaginationDisplay(currentPage, totalPages, totalItems) {
   // Remove existing pagination if it exists
-  let paginationElement = document.querySelector('.pagination-wrapper');
+  let paginationElement = document.querySelector(".pagination-wrapper");
   if (paginationElement) {
     paginationElement.remove();
   }
-  
+
   // Only create pagination if we have more than one page
   if (totalPages > 1) {
     // Create new pagination element
-    paginationElement = document.createElement('div');
-    paginationElement.className = 'pagination-wrapper';
-    paginationElement.innerHTML = createPaginationHTML(currentPage, totalPages, totalItems);
-    
+    paginationElement = document.createElement("div");
+    paginationElement.className = "pagination-wrapper";
+    paginationElement.innerHTML = createPaginationHTML(
+      currentPage,
+      totalPages,
+      totalItems
+    );
+
     // Insert pagination after the products grid
-    const mainElement = document.querySelector('.main');
-    const productsGrid = document.querySelector('.js-prodcts-grid');
+    const mainElement = document.querySelector(".main");
+    const productsGrid = document.querySelector(".js-prodcts-grid");
     mainElement.insertBefore(paginationElement, productsGrid.nextSibling);
   }
 }
@@ -116,39 +131,48 @@ function getPaginatedProducts(products, page = 1) {
 }
 
 // Global function to change page
-window.changePage = function(page) {
+window.changePage = function (page) {
   currentPage = page;
   const paginatedProducts = getPaginatedProducts(currentProducts, currentPage);
-  const productsHTML = renderProducts(paginatedProducts, 'book');
+  const productsHTML = renderProducts(paginatedProducts, "book");
   const totalPages = Math.ceil(currentProducts.length / ITEMS_PER_PAGE);
-  
+
   // Update products grid
-  const productsGrid = document.querySelector('.js-prodcts-grid');
+  const productsGrid = document.querySelector(".js-prodcts-grid");
   productsGrid.innerHTML = productsHTML;
-  
+
   // Update pagination separately
   updatePaginationDisplay(currentPage, totalPages, currentProducts.length);
-  
+
   // Re-attach event listeners
   attachAddToCartListeners();
-  
+
+  // Enhance product images with fallback handling
+  if (window.ImageLoader) {
+    window.ImageLoader.enhanceProductImages();
+  }
+
   // Scroll to top of products
   scrollToProducts();
 };
 
 // Unified product rendering function for books
 // Make renderProducts available globally for search system
-window.renderProducts = function(productList, type = 'book') {
-  let productsHTML = '';
+window.renderProducts = function (productList, type = "book") {
+  let productsHTML = "";
   productList.forEach((product) => {
     // Make sure we have a rating or default to 0
     const rating = product.star || 0;
-    
+
     productsHTML += `
       <div class="product-container">        
         <div class="product-image-container">
-          <a href="detail.html?productId=${product.id}" class="product-image-link">
-            <img class="product-image" src="${encodeImagePath(product.image)}">
+          <a href="detail.html?productId=${
+            product.id
+          }" class="product-image-link">
+            <img class="product-image" src="${encodeImagePath(
+              product.image
+            )}" data-original-src="${product.image}">
           </a>
         </div>
         <div class="product-name limit-text-to-3-lines">
@@ -157,7 +181,9 @@ window.renderProducts = function(productList, type = 'book') {
           </a>
         </div>
         <div class="product-rating-container">
-          <img class="product-rating-stars" src="images/ratings/rating-${rating * 10}.png" alt="${rating} stars">
+          <img class="product-rating-stars" src="images/ratings/rating-${
+            rating * 10
+          }.png" alt="${rating} stars">
         </div>
         <div class="product-price">
           ${formatPriceRange(product.lower_price, product.higher_price)}
@@ -180,39 +206,41 @@ window.renderProducts = function(productList, type = 'book') {
           </div>
         </div>
         <div class="product-spacer"></div>
-        <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
+        <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${
+          product.id
+        }">
           Add to Cart
         </button>
       </div>
     `;
   });
   return productsHTML;
-}
+};
 
 // Function to load all books with pagination
-window.loadAllBooks = function() {
-  // Hide the submenu after selection  
+window.loadAllBooks = function () {
+  // Hide the submenu after selection
   hideActiveSubmenus();
-  
+
   // Add loading animation
   showLoadingState();
 
   // Reset active nav items
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
+  document.querySelectorAll(".sub-header-link").forEach((link) => {
+    link.classList.remove("active");
   });
-  
+
   // Set the "Browse All Books" link as active
-  const allBooksLink = document.querySelector('.all-products-link');
+  const allBooksLink = document.querySelector(".all-products-link");
   if (allBooksLink) {
-    allBooksLink.classList.add('active');
+    allBooksLink.classList.add("active");
   }
 
   // Clear URL hash
   if (history.pushState) {
     history.pushState(null, null, window.location.pathname);
   } else {
-    location.hash = '';
+    location.hash = "";
   }
 
   setTimeout(() => {
@@ -221,36 +249,41 @@ window.loadAllBooks = function() {
     for (const category in booksProducts) {
       allBooks = allBooks.concat(booksProducts[category]);
     }
-    
+
     if (allBooks.length > 0) {
       currentProducts = allBooks;
       currentPage = 1;
       totalItems = allBooks.length;
-      
+
       // Get paginated products for first page
       const paginatedProducts = getPaginatedProducts(allBooks, currentPage);
-      const productsHTML = renderProducts(paginatedProducts, 'book');
+      const productsHTML = renderProducts(paginatedProducts, "book");
       const totalPages = Math.ceil(allBooks.length / ITEMS_PER_PAGE);
-      
-      const productsGrid = document.querySelector('.js-prodcts-grid');
+
+      const productsGrid = document.querySelector(".js-prodcts-grid");
       productsGrid.innerHTML = productsHTML;
-      productsGrid.classList.remove('showing-coming-soon');
-      
+      productsGrid.classList.remove("showing-coming-soon");
+
       // Update pagination separately
       updatePaginationDisplay(currentPage, totalPages, allBooks.length);
-      
+
       // Re-attach event listeners
       attachAddToCartListeners();
-      
+
+      // Enhance product images with fallback handling
+      if (window.ImageLoader) {
+        window.ImageLoader.enhanceProductImages();
+      }
+
       // Update page header
-      updatePageHeader('All Books', allBooks.length);
-      
+      updatePageHeader("All Books", allBooks.length);
+
       // Remove breadcrumb for all books view
-      const breadcrumbElement = document.querySelector('.breadcrumb-nav');
+      const breadcrumbElement = document.querySelector(".breadcrumb-nav");
       if (breadcrumbElement) {
         breadcrumbElement.remove();
       }
-      
+
       // Scroll to products
       scrollToProducts();
     }
@@ -261,243 +294,349 @@ window.loadAllBooks = function() {
 // Make sure this overwrites any other loadSpecificCategory functions
 // Use setTimeout to ensure this runs after other scripts load
 setTimeout(() => {
-  window.loadSpecificCategory = function(categoryName) {
-  // Hide the submenu after selection
-  hideActiveSubmenus();
-  
-  // Add loading animation
-  showLoadingState();
+  window.loadSpecificCategory = function (categoryName) {
+    // Hide the submenu after selection
+    hideActiveSubmenus();
 
-  // --- Highlight the corresponding nav item ---
-  document.querySelectorAll('.sub-header-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.textContent.trim() === categoryName) {
-      link.classList.add('active');
-    }
-  });
+    // Add loading animation
+    showLoadingState();
 
-  // Convert category for use in hash navigation
-  const categorySlug = categoryName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-');
-
-  // Update URL hash without triggering a navigation
-  if (!window.preventHashUpdate) {
-    window.updatingHashFromCategory = true;
-    if (history.pushState) {
-      history.pushState(null, null, `#${categorySlug}`);
-    } else {
-      location.hash = `#${categorySlug}`;
-    }
-    setTimeout(() => {
-      window.updatingHashFromCategory = false;
-    }, 100);
-  }
-
-  // Small delay for smooth transition
-  setTimeout(() => {
-    // Map category names to book category keys
-    const categoryMap = {
-      // Main categories
-      'Fiction': ['fiction', 'adult_fiction', 'christian_fiction', 'historical_fiction', 'science_fiction', 'womens_fiction', 'classics', 'contemporary', 'crime', 'erotica', 'fantasy', 'horror', 'mystery', 'novels', 'paranormal', 'romance', 'short_stories', 'suspense', 'thriller'],
-      'Non-Fiction': 'nonfiction',
-      'Children & Young Adult': ['childrens', 'young_adult', 'new_adult'],
-      'Academic & Educational': 'academic',
-      'Arts & Culture': ['art', 'sequential_art', 'music', 'cultural'],
-      'Health & Self-Help': ['health', 'self_help', 'psychology', 'parenting'],
-      'Religion & Spirituality': ['religion', 'christian', 'christian_fiction', 'spirituality', 'philosophy'],
-      'Business & Politics': ['business', 'politics'],
-      'Science & Technology': 'science',
-      'Biography & History': ['biography', 'autobiography', 'history', 'historical'],
-      'Poetry & Literature': 'poetry',
-      'Specialty Genres': ['humor', 'sports_and_games', 'food_and_drink', 'travel', 'adult_fiction', 'default', 'add_a_comment'],
-      
-      // Sub-categories
-      'Classics': 'classics',
-      'Contemporary': 'contemporary',
-      'Crime': 'crime', 
-      'Erotica': 'erotica',
-      'Fantasy': 'fantasy',
-      'Historical Fiction': 'historical_fiction',
-      'Horror': 'horror',
-      'Mystery': 'mystery',
-      'Novels': 'novels',
-      'Paranormal': 'paranormal',
-      'Romance': 'romance',
-      'Science Fiction': 'science_fiction',
-      'Short Stories': 'short_stories',
-      'Suspense': 'suspense',
-      'Thriller': 'thriller',
-      'Womens Fiction': 'womens_fiction',
-      'Women\'s Fiction': 'womens_fiction',
-      'Nonfiction': 'nonfiction',
-      'Childrens': 'childrens',
-      'Children\'s': 'childrens',
-      'Young Adult': 'young_adult',
-      'New Adult': 'new_adult',
-      'Academic': 'academic',
-      'Art': 'art',
-      'Sequential Art': 'sequential_art',
-      'Music': 'music',
-      'Cultural': 'cultural',
-      'Health': 'health',
-      'Self Help': 'self_help',
-      'Psychology': 'psychology',
-      'Parenting': 'parenting',
-      'Religion': 'religion',
-      'Christian': 'christian',
-      'Christian Fiction': 'christian_fiction',
-      'Spirituality': 'spirituality',
-      'Philosophy': 'philosophy',
-      'Business': 'business',
-      'Politics': 'politics',
-      'Science': 'science',
-      'Biography': 'biography',
-      'Autobiography': 'autobiography',
-      'History': 'history',
-      'Historical': 'historical',
-      'Poetry': 'poetry',
-      'Humor': 'humor',
-      'Sports and Games': 'sports_and_games',
-      'Food and Drink': 'food_and_drink',
-      'Travel': 'travel',
-      'Adult Fiction': 'adult_fiction',
-      'Default': 'default',
-      'Add a comment': 'add_a_comment'
-    };
-
-    // Get the book category key(s)
-    const bookCategoryMapping = categoryMap[categoryName];
-    
-    let categoryBooks = [];
-    
-    // Check if this is a Fiction subcategory that should filter from the main Fiction collection
-    const fictionSubcategories = ['Historical Fiction', 'Science Fiction', 'Womens Fiction', 'Women\'s Fiction', 'Christian Fiction', 'Adult Fiction', 'Classics', 'Contemporary', 'Crime', 'Erotica', 'Fantasy', 'Horror', 'Mystery', 'Novels', 'Paranormal', 'Romance', 'Short Stories', 'Suspense', 'Thriller'];
-    const isFictionSubcategory = fictionSubcategories.includes(categoryName);
-    
-    if (isFictionSubcategory) {
-      // For Fiction subcategories, get all fiction books and filter by the specific subcategory
-      const allFictionCategories = ['fiction', 'adult_fiction', 'christian_fiction', 'historical_fiction', 'science_fiction', 'womens_fiction', 'classics', 'contemporary', 'crime', 'erotica', 'fantasy', 'horror', 'mystery', 'novels', 'paranormal', 'romance', 'short_stories', 'suspense', 'thriller'];
-      let allFictionBooks = [];
-      allFictionCategories.forEach(categoryKey => {
-        if (booksProducts[categoryKey]) {
-          allFictionBooks = allFictionBooks.concat(booksProducts[categoryKey]);
-        }
-      });
-      
-      // Filter by the specific subcategory
-      const subcategoryKey = bookCategoryMapping;
-      if (subcategoryKey && booksProducts[subcategoryKey]) {
-        categoryBooks = booksProducts[subcategoryKey];
+    // --- Highlight the corresponding nav item ---
+    document.querySelectorAll(".sub-header-link").forEach((link) => {
+      link.classList.remove("active");
+      if (link.textContent.trim() === categoryName) {
+        link.classList.add("active");
       }
-    } else if (Array.isArray(bookCategoryMapping)) {
-      // Handle main categories that map to multiple subcategories
-      bookCategoryMapping.forEach(categoryKey => {
-        if (booksProducts[categoryKey]) {
-          categoryBooks = categoryBooks.concat(booksProducts[categoryKey]);
-        }
-      });
-    } else if (bookCategoryMapping && booksProducts[bookCategoryMapping]) {
-      // Handle single category mapping
-      categoryBooks = booksProducts[bookCategoryMapping];
+    });
+
+    // Convert category for use in hash navigation
+    const categorySlug = categoryName
+      .toLowerCase()
+      .replace(/&/g, "")
+      .replace(/'/g, "")
+      .replace(/\s+/g, "-");
+
+    // Update URL hash without triggering a navigation
+    if (!window.preventHashUpdate) {
+      window.updatingHashFromCategory = true;
+      if (history.pushState) {
+        history.pushState(null, null, `#${categorySlug}`);
+      } else {
+        location.hash = `#${categorySlug}`;
+      }
+      setTimeout(() => {
+        window.updatingHashFromCategory = false;
+      }, 100);
     }
-    
-    if (categoryBooks.length > 0) {
-      // Load books from the category(ies)
-      currentProducts = categoryBooks; // Store current products for pagination
-      const paginatedProducts = getPaginatedProducts(currentProducts, currentPage);
-      const productsHTML = renderProducts(paginatedProducts, 'book');
-      const totalPages = Math.ceil(currentProducts.length / ITEMS_PER_PAGE);
-      
-      const productsGrid = document.querySelector('.js-prodcts-grid');
-      productsGrid.innerHTML = productsHTML;
-      productsGrid.classList.remove('showing-coming-soon');
-      
-      // Update pagination separately
-      updatePaginationDisplay(currentPage, totalPages, currentProducts.length);
-      
-      // Re-attach event listeners
-      attachAddToCartListeners();
-      
-      // Update page header
-      updatePageHeader(categoryName, categoryBooks.length);
-      
-      // Update breadcrumb navigation
-      const categorySlugForBreadcrumb = Array.isArray(bookCategoryMapping) ? 
-        categoryName.toLowerCase().replace(/&/g, '').replace(/'/g, '').replace(/\s+/g, '-') : 
-        bookCategoryMapping;
-      updateBreadcrumb(categoryName, bookCategoryMapping);
-      
-      // Scroll to products
-      scrollToProducts();
-    } else {
-      // Fallback for unknown categories
-      const productsGrid = document.querySelector('.js-prodcts-grid');
-      productsGrid.innerHTML = `
+
+    // Small delay for smooth transition
+    setTimeout(() => {
+      // Map category names to book category keys
+      const categoryMap = {
+        // Main categories
+        Fiction: [
+          "fiction",
+          "adult_fiction",
+          "christian_fiction",
+          "historical_fiction",
+          "science_fiction",
+          "womens_fiction",
+          "classics",
+          "contemporary",
+          "crime",
+          "erotica",
+          "fantasy",
+          "horror",
+          "mystery",
+          "novels",
+          "paranormal",
+          "romance",
+          "short_stories",
+          "suspense",
+          "thriller",
+        ],
+        "Non-Fiction": "nonfiction",
+        "Children & Young Adult": ["childrens", "young_adult", "new_adult"],
+        "Academic & Educational": "academic",
+        "Arts & Culture": ["art", "sequential_art", "music", "cultural"],
+        "Health & Self-Help": [
+          "health",
+          "self_help",
+          "psychology",
+          "parenting",
+        ],
+        "Religion & Spirituality": [
+          "religion",
+          "christian",
+          "christian_fiction",
+          "spirituality",
+          "philosophy",
+        ],
+        "Business & Politics": ["business", "politics"],
+        "Science & Technology": "science",
+        "Biography & History": [
+          "biography",
+          "autobiography",
+          "history",
+          "historical",
+        ],
+        "Poetry & Literature": "poetry",
+        "Specialty Genres": [
+          "humor",
+          "sports_and_games",
+          "food_and_drink",
+          "travel",
+          "adult_fiction",
+          "default",
+          "add_a_comment",
+        ],
+
+        // Sub-categories
+        Classics: "classics",
+        Contemporary: "contemporary",
+        Crime: "crime",
+        Erotica: "erotica",
+        Fantasy: "fantasy",
+        "Historical Fiction": "historical_fiction",
+        Horror: "horror",
+        Mystery: "mystery",
+        Novels: "novels",
+        Paranormal: "paranormal",
+        Romance: "romance",
+        "Science Fiction": "science_fiction",
+        "Short Stories": "short_stories",
+        Suspense: "suspense",
+        Thriller: "thriller",
+        "Womens Fiction": "womens_fiction",
+        "Women's Fiction": "womens_fiction",
+        Nonfiction: "nonfiction",
+        Childrens: "childrens",
+        "Children's": "childrens",
+        "Young Adult": "young_adult",
+        "New Adult": "new_adult",
+        Academic: "academic",
+        Art: "art",
+        "Sequential Art": "sequential_art",
+        Music: "music",
+        Cultural: "cultural",
+        Health: "health",
+        "Self Help": "self_help",
+        Psychology: "psychology",
+        Parenting: "parenting",
+        Religion: "religion",
+        Christian: "christian",
+        "Christian Fiction": "christian_fiction",
+        Spirituality: "spirituality",
+        Philosophy: "philosophy",
+        Business: "business",
+        Politics: "politics",
+        Science: "science",
+        Biography: "biography",
+        Autobiography: "autobiography",
+        History: "history",
+        Historical: "historical",
+        Poetry: "poetry",
+        Humor: "humor",
+        "Sports and Games": "sports_and_games",
+        "Food and Drink": "food_and_drink",
+        Travel: "travel",
+        "Adult Fiction": "adult_fiction",
+        Default: "default",
+        "Add a comment": "add_a_comment",
+      };
+
+      // Get the book category key(s)
+      const bookCategoryMapping = categoryMap[categoryName];
+
+      let categoryBooks = [];
+
+      // Check if this is a Fiction subcategory that should filter from the main Fiction collection
+      const fictionSubcategories = [
+        "Historical Fiction",
+        "Science Fiction",
+        "Womens Fiction",
+        "Women's Fiction",
+        "Christian Fiction",
+        "Adult Fiction",
+        "Classics",
+        "Contemporary",
+        "Crime",
+        "Erotica",
+        "Fantasy",
+        "Horror",
+        "Mystery",
+        "Novels",
+        "Paranormal",
+        "Romance",
+        "Short Stories",
+        "Suspense",
+        "Thriller",
+      ];
+      const isFictionSubcategory = fictionSubcategories.includes(categoryName);
+
+      if (isFictionSubcategory) {
+        // For Fiction subcategories, get all fiction books and filter by the specific subcategory
+        const allFictionCategories = [
+          "fiction",
+          "adult_fiction",
+          "christian_fiction",
+          "historical_fiction",
+          "science_fiction",
+          "womens_fiction",
+          "classics",
+          "contemporary",
+          "crime",
+          "erotica",
+          "fantasy",
+          "horror",
+          "mystery",
+          "novels",
+          "paranormal",
+          "romance",
+          "short_stories",
+          "suspense",
+          "thriller",
+        ];
+        let allFictionBooks = [];
+        allFictionCategories.forEach((categoryKey) => {
+          if (booksProducts[categoryKey]) {
+            allFictionBooks = allFictionBooks.concat(
+              booksProducts[categoryKey]
+            );
+          }
+        });
+
+        // Filter by the specific subcategory
+        const subcategoryKey = bookCategoryMapping;
+        if (subcategoryKey && booksProducts[subcategoryKey]) {
+          categoryBooks = booksProducts[subcategoryKey];
+        }
+      } else if (Array.isArray(bookCategoryMapping)) {
+        // Handle main categories that map to multiple subcategories
+        bookCategoryMapping.forEach((categoryKey) => {
+          if (booksProducts[categoryKey]) {
+            categoryBooks = categoryBooks.concat(booksProducts[categoryKey]);
+          }
+        });
+      } else if (bookCategoryMapping && booksProducts[bookCategoryMapping]) {
+        // Handle single category mapping
+        categoryBooks = booksProducts[bookCategoryMapping];
+      }
+
+      if (categoryBooks.length > 0) {
+        // Load books from the category(ies)
+        currentProducts = categoryBooks; // Store current products for pagination
+        const paginatedProducts = getPaginatedProducts(
+          currentProducts,
+          currentPage
+        );
+        const productsHTML = renderProducts(paginatedProducts, "book");
+        const totalPages = Math.ceil(currentProducts.length / ITEMS_PER_PAGE);
+
+        const productsGrid = document.querySelector(".js-prodcts-grid");
+        productsGrid.innerHTML = productsHTML;
+        productsGrid.classList.remove("showing-coming-soon");
+
+        // Update pagination separately
+        updatePaginationDisplay(
+          currentPage,
+          totalPages,
+          currentProducts.length
+        );
+
+        // Re-attach event listeners
+        attachAddToCartListeners();
+
+        // Enhance product images with fallback handling
+        if (window.ImageLoader) {
+          window.ImageLoader.enhanceProductImages();
+        }
+
+        // Update page header
+        updatePageHeader(categoryName, categoryBooks.length);
+
+        // Update breadcrumb navigation
+        const categorySlugForBreadcrumb = Array.isArray(bookCategoryMapping)
+          ? categoryName
+              .toLowerCase()
+              .replace(/&/g, "")
+              .replace(/'/g, "")
+              .replace(/\s+/g, "-")
+          : bookCategoryMapping;
+        updateBreadcrumb(categoryName, bookCategoryMapping);
+
+        // Scroll to products
+        scrollToProducts();
+      } else {
+        // Fallback for unknown categories
+        const productsGrid = document.querySelector(".js-prodcts-grid");
+        productsGrid.innerHTML = `
         <div class="coming-soon">
           <h2>Category Not Found</h2>
           <p>The category "${categoryName}" was not found. Please check the navigation menu.</p>
         </div>
       `;
-      productsGrid.classList.add('showing-coming-soon');
-      
-      // Clear pagination for error state
-      clearPaginationDisplay();
-    }
-  }, 200);
-};
+        productsGrid.classList.add("showing-coming-soon");
+
+        // Clear pagination for error state
+        clearPaginationDisplay();
+      }
+    }, 200);
+  };
 }, 10); // Close the setTimeout that wraps loadSpecificCategory
 
 // Function to hide all active submenus
 function hideActiveSubmenus() {
-  document.querySelectorAll('.submenu.active').forEach(submenu => {
-    submenu.classList.remove('active');
+  document.querySelectorAll(".submenu.active").forEach((submenu) => {
+    submenu.classList.remove("active");
   });
-  document.querySelectorAll('.expandable.active').forEach(link => {
-    link.classList.remove('active');
+  document.querySelectorAll(".expandable.active").forEach((link) => {
+    link.classList.remove("active");
   });
 }
 
 // Function to show loading state
 function showLoadingState() {
-  const productsGrid = document.querySelector('.js-prodcts-grid');
+  const productsGrid = document.querySelector(".js-prodcts-grid");
   productsGrid.innerHTML = `
     <div class="loading-container">
       <div class="loading-spinner"></div>
       <p>Loading books...</p>
     </div>
   `;
-  productsGrid.classList.remove('showing-coming-soon');
+  productsGrid.classList.remove("showing-coming-soon");
 }
 
 // Function to scroll to products section
 function scrollToProducts() {
   // Get the main container to scroll to
-  const mainElement = document.querySelector('.main');
-  
+  const mainElement = document.querySelector(".main");
+
   if (mainElement) {
     // Scroll to the main section with a slight offset to show the header
     window.scrollTo({
       top: mainElement.offsetTop - 120,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }
 }
 
 // Function to update page header with optional product count
 function updatePageHeader(title, productCount = null) {
-  let headerElement = document.querySelector('.page-header');
+  let headerElement = document.querySelector(".page-header");
   if (!headerElement) {
     // Create header if it doesn't exist
-    headerElement = document.createElement('h2');
-    headerElement.className = 'page-header';
-    headerElement.style.margin = '20px 0';
-    headerElement.style.textAlign = 'center';
-    headerElement.style.fontSize = '24px';
-    headerElement.style.fontWeight = 'bold';
-    
-    const mainElement = document.querySelector('.main');
+    headerElement = document.createElement("h2");
+    headerElement.className = "page-header";
+    headerElement.style.margin = "20px 0";
+    headerElement.style.textAlign = "center";
+    headerElement.style.fontSize = "24px";
+    headerElement.style.fontWeight = "bold";
+
+    const mainElement = document.querySelector(".main");
     mainElement.insertBefore(headerElement, mainElement.firstChild);
   }
-  
+
   // Format title with product count if provided
   if (productCount !== null && productCount !== undefined) {
     headerElement.textContent = `${title} (${productCount} books)`;
@@ -508,94 +647,100 @@ function updatePageHeader(title, productCount = null) {
 
 // Function to update breadcrumb navigation
 function updateBreadcrumb(categoryDisplayName, categoryDataKey) {
-  let breadcrumbElement = document.querySelector('.breadcrumb-nav');
+  let breadcrumbElement = document.querySelector(".breadcrumb-nav");
   if (!breadcrumbElement) {
     // Create breadcrumb if it doesn't exist
-    breadcrumbElement = document.createElement('div');
-    breadcrumbElement.className = 'breadcrumb-nav';
-    
-    const mainElement = document.querySelector('.main');
+    breadcrumbElement = document.createElement("div");
+    breadcrumbElement.className = "breadcrumb-nav";
+
+    const mainElement = document.querySelector(".main");
     mainElement.insertBefore(breadcrumbElement, mainElement.firstChild);
   }
-  
-  if (categoryDisplayName && categoryDisplayName !== 'all') {
+
+  if (categoryDisplayName && categoryDisplayName !== "all") {
     // Define parent-child relationships for breadcrumb navigation
     const categoryHierarchy = {
       // Second-level categories under Fiction
-      'classics': 'Fiction',
-      'contemporary': 'Fiction',
-      'crime': 'Fiction', 
-      'erotica': 'Fiction',
-      'fantasy': 'Fiction',
-      'historical_fiction': 'Fiction',
-      'horror': 'Fiction',
-      'mystery': 'Fiction',
-      'novels': 'Fiction',
-      'paranormal': 'Fiction',
-      'romance': 'Fiction',
-      'science_fiction': 'Fiction',
-      'short_stories': 'Fiction',
-      'suspense': 'Fiction',
-      'thriller': 'Fiction',
-      'womens_fiction': 'Fiction',
-      
+      classics: "Fiction",
+      contemporary: "Fiction",
+      crime: "Fiction",
+      erotica: "Fiction",
+      fantasy: "Fiction",
+      historical_fiction: "Fiction",
+      horror: "Fiction",
+      mystery: "Fiction",
+      novels: "Fiction",
+      paranormal: "Fiction",
+      romance: "Fiction",
+      science_fiction: "Fiction",
+      short_stories: "Fiction",
+      suspense: "Fiction",
+      thriller: "Fiction",
+      womens_fiction: "Fiction",
+
       // Second-level categories under Children & Young Adult
-      'childrens': 'Children & Young Adult',
-      'young_adult': 'Children & Young Adult',
-      'new_adult': 'Children & Young Adult',
-      
+      childrens: "Children & Young Adult",
+      young_adult: "Children & Young Adult",
+      new_adult: "Children & Young Adult",
+
       // Second-level categories under Academic & Educational
-      'academic': 'Academic & Educational',
-      
+      academic: "Academic & Educational",
+
       // Second-level categories under Arts & Culture
-      'art': 'Arts & Culture',
-      'sequential_art': 'Arts & Culture',
-      'music': 'Arts & Culture',
-      'cultural': 'Arts & Culture',
-      
+      art: "Arts & Culture",
+      sequential_art: "Arts & Culture",
+      music: "Arts & Culture",
+      cultural: "Arts & Culture",
+
       // Second-level categories under Health & Self-Help
-      'health': 'Health & Self-Help',
-      'self_help': 'Health & Self-Help',
-      'psychology': 'Health & Self-Help',
-      
+      health: "Health & Self-Help",
+      self_help: "Health & Self-Help",
+      psychology: "Health & Self-Help",
+
       // Second-level categories under Religion & Spirituality
-      'religion': 'Religion & Spirituality',
-      'christian': 'Religion & Spirituality',
-      'christian_fiction': 'Religion & Spirituality',
-      'spirituality': 'Religion & Spirituality',
-      'philosophy': 'Religion & Spirituality',
-      
+      religion: "Religion & Spirituality",
+      christian: "Religion & Spirituality",
+      christian_fiction: "Religion & Spirituality",
+      spirituality: "Religion & Spirituality",
+      philosophy: "Religion & Spirituality",
+
       // Second-level categories under Business & Politics
-      'business': 'Business & Politics',
-      'politics': 'Business & Politics',
-      
+      business: "Business & Politics",
+      politics: "Business & Politics",
+
       // Second-level categories under Science & Technology
-      'science': 'Science & Technology',
-      
+      science: "Science & Technology",
+
       // Second-level categories under Biography & History
-      'biography': 'Biography & History',
-      'autobiography': 'Biography & History',
-      'history': 'Biography & History',
-      'historical': 'Biography & History',
-      
+      biography: "Biography & History",
+      autobiography: "Biography & History",
+      history: "Biography & History",
+      historical: "Biography & History",
+
       // Second-level categories under Poetry & Literature
-      'poetry': 'Poetry & Literature',
-      
+      poetry: "Poetry & Literature",
+
       // Second-level categories under Specialty Genres
-      'humor': 'Specialty Genres',
-      'sports_and_games': 'Specialty Genres',
-      'food_and_drink': 'Specialty Genres',
-      'travel': 'Specialty Genres',
-      'adult_fiction': 'Specialty Genres',
-      'default': 'Specialty Genres',
-      'add_a_comment': 'Specialty Genres'
+      humor: "Specialty Genres",
+      sports_and_games: "Specialty Genres",
+      food_and_drink: "Specialty Genres",
+      travel: "Specialty Genres",
+      adult_fiction: "Specialty Genres",
+      default: "Specialty Genres",
+      add_a_comment: "Specialty Genres",
     };
-    
+
     // Check if this category has a parent (is a second-level category)
     // Use the data key for hierarchy lookup
-    const dataKey = categoryDataKey || categoryDisplayName.toLowerCase().replace(/\s+/g, '_').replace(/&/g, '').replace(/'/g, '');
+    const dataKey =
+      categoryDataKey ||
+      categoryDisplayName
+        .toLowerCase()
+        .replace(/\s+/g, "_")
+        .replace(/&/g, "")
+        .replace(/'/g, "");
     const parentCategory = categoryHierarchy[dataKey];
-    
+
     if (parentCategory) {
       // Second-level category - show Home > Parent > Current
       breadcrumbElement.innerHTML = `
@@ -623,30 +768,29 @@ function updateBreadcrumb(categoryDisplayName, categoryDataKey) {
 
 // Function to attach add to cart event listeners
 function attachAddToCartListeners() {
-  document.querySelectorAll('.js-add-to-cart')
-    .forEach((button) => {
-      button.addEventListener('click', () => {
-        const productId = button.dataset.productId;
-        
-        // Get the quantity from the dropdown
-        const productContainer = button.closest('.product-container');
-        const quantitySelect = productContainer.querySelector('select');
-        const quantity = Number(quantitySelect.value);
+  document.querySelectorAll(".js-add-to-cart").forEach((button) => {
+    button.addEventListener("click", () => {
+      const productId = button.dataset.productId;
 
-        // Call addToCart with the selected quantity
-        addToCart(productId, quantity);
-        updateCartQuantity();
+      // Get the quantity from the dropdown
+      const productContainer = button.closest(".product-container");
+      const quantitySelect = productContainer.querySelector("select");
+      const quantity = Number(quantitySelect.value);
 
-        // Show the 'Added' message
-        const addedMessage = productContainer.querySelector('.added-message');
-        if (addedMessage) {
-          addedMessage.style.display = 'block';
-          setTimeout(() => {
-            addedMessage.style.display = 'none';
-          }, 2000);
-        }
-      });
+      // Call addToCart with the selected quantity
+      addToCart(productId, quantity);
+      updateCartQuantity();
+
+      // Show the 'Added' message
+      const addedMessage = productContainer.querySelector(".added-message");
+      if (addedMessage) {
+        addedMessage.style.display = "block";
+        setTimeout(() => {
+          addedMessage.style.display = "none";
+        }, 2000);
+      }
     });
+  });
 }
 
 // Function to find any product by ID (books)
@@ -654,7 +798,7 @@ export function findProductById(productId) {
   // Search through all book categories
   for (const category in booksProducts) {
     const categoryBooks = booksProducts[category];
-    const product = categoryBooks.find(p => p.id === productId);
+    const product = categoryBooks.find((p) => p.id === productId);
     if (product) {
       return product;
     }
@@ -663,11 +807,11 @@ export function findProductById(productId) {
 }
 
 // Initialize page when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Check if this is the home page (no hash or specific parameters)
   const urlParams = new URLSearchParams(window.location.search);
   const hash = window.location.hash.substring(1); // Remove the # symbol
-  
+
   // Wait for shared components to load before handling initialization
   setTimeout(() => {
     if (hash) {
@@ -677,7 +821,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Fallback to loadAllBooks if navigation system not ready
         loadAllBooks();
       }
-    } else if (!urlParams.get('category') && !urlParams.get('search')) {
+    } else if (!urlParams.get("category") && !urlParams.get("search")) {
       // If no specific category or search is requested, load all books
       // Don't load all books if there's a search parameter - let search system handle it
       loadAllBooks();
