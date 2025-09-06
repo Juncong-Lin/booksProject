@@ -1043,12 +1043,12 @@ class Dashboard {
   }
 
   startRealTimeUpdates() {
-    // Update real-time events every 3 seconds
+    // Update real-time events every 15 seconds
     this.realTimeUpdateInterval = setInterval(() => {
       if (!this.isPaused) {
         this.updateRealTimeEvents();
       }
-    }, 3000);
+    }, 15000);
 
     // Update metrics every 30 seconds
     this.metricsUpdateInterval = setInterval(() => {

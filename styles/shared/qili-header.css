@@ -581,6 +581,18 @@
   font-weight: 500;
 }
 
+.data-management-link {
+  color: white;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.data-management-text {
+  font-size: 13px;
+  font-weight: 500;
+}
+
 .orders-link {
   color: white;
 }

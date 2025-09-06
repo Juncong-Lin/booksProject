@@ -4,7 +4,7 @@
 .management-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 120px 24px 40px;
+  padding: 40px 24px 40px;
   position: relative;
   z-index: 1;
 }
@@ -51,18 +51,22 @@
 
 .management-title {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffffff;
   margin: 0 0 8px 0;
   display: flex;
   align-items: center;
   gap: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .title-icon {
-  width: 40px;
-  height: 40px;
-  color: #6366f1;
+  width: 32px;
+  height: 32px;
+  color: #60a5fa;
 }
 
 .management-subtitle {
