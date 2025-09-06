@@ -320,11 +320,156 @@ class SimpleAnalytics {
 
     localStorage.setItem("analytics_history", JSON.stringify(sampleEvents));
   }
+
+  // Product Discovery Tracking Methods
+  trackCategoryClick(categoryName) {
+    this.trackEvent("category_click", {
+      category: categoryName,
+      action: "navigation",
+    });
+    this.updateProductDiscoveryData("categoryClicks", 1);
+    console.log(`Tracked category click: ${categoryName}`);
+  }
+
+  trackProductClick(productName, category = null) {
+    this.trackEvent("product_click", {
+      product: productName,
+      category: category,
+      action: "view_product",
+    });
+    this.updateProductDiscoveryData("productClicks", 1);
+    if (category) {
+      this.updateCategoryPerformance(category, 1);
+    }
+    console.log(`Tracked product click: ${productName}`);
+  }
+
+  trackSearchQuery(query) {
+    this.trackEvent("search_query", {
+      query: query,
+      action: "search",
+    });
+    this.updateProductDiscoveryData("searchQueries", 1);
+    console.log(`Tracked search query: ${query}`);
+  }
+
+  trackAddToCart(productName, category = null) {
+    this.trackEvent("add_to_cart", {
+      product: productName,
+      category: category,
+      action: "add_to_cart",
+    });
+    this.updateProductDiscoveryData("cartAdditions", 1);
+    console.log(`Tracked add to cart: ${productName}`);
+  }
+
+  trackSidebarExpand(section) {
+    this.trackEvent("sidebar_expand", {
+      section: section,
+      action: "navigation",
+    });
+    console.log(`Tracked sidebar expand: ${section}`);
+  }
+
+  updateProductDiscoveryData(metric, increment = 1) {
+    let data = JSON.parse(
+      localStorage.getItem("product_discovery_data") || "{}"
+    );
+
+    // Initialize data structure if empty
+    if (Object.keys(data).length === 0) {
+      data = {
+        categoryClicks: 0,
+        productClicks: 0,
+        searchQueries: 0,
+        cartAdditions: 0,
+        homepageVisits: 0,
+        categoryPerformance: {},
+        dailyDiscoveryActions: [],
+        lastUpdated: Date.now(),
+      };
+    }
+
+    // Update the specific metric
+    data[metric] = (data[metric] || 0) + increment;
+    data.lastUpdated = Date.now();
+
+    // Save updated data
+    localStorage.setItem("product_discovery_data", JSON.stringify(data));
+
+    // Notify dashboard if open
+    this.notifyDashboard(data);
+  }
+
+  updateCategoryPerformance(category, increment = 1) {
+    let data = JSON.parse(
+      localStorage.getItem("product_discovery_data") || "{}"
+    );
+
+    if (!data.categoryPerformance) {
+      data.categoryPerformance = {};
+    }
+
+    data.categoryPerformance[category] =
+      (data.categoryPerformance[category] || 0) + increment;
+    data.lastUpdated = Date.now();
+
+    localStorage.setItem("product_discovery_data", JSON.stringify(data));
+    this.notifyDashboard(data);
+  }
+
+  notifyDashboard(data) {
+    // Try to notify dashboard windows
+    try {
+      // Post message to parent window (if dashboard is opener)
+      if (window.opener && !window.opener.closed) {
+        window.opener.postMessage(
+          {
+            type: "productDiscoveryUpdate",
+            data: data,
+          },
+          "*"
+        );
+      }
+
+      // Post message to any child windows
+      const dashboardWindows = window.dashboardWindows || [];
+      dashboardWindows.forEach((win) => {
+        if (win && !win.closed) {
+          win.postMessage(
+            {
+              type: "productDiscoveryUpdate",
+              data: data,
+            },
+            "*"
+          );
+        }
+      });
+    } catch (error) {
+      console.log("Could not notify dashboard:", error);
+    }
+  }
+
+  // Get current product discovery data
+  getProductDiscoveryData() {
+    return JSON.parse(localStorage.getItem("product_discovery_data") || "{}");
+  }
 }
 
 // Initialize analytics when page loads
 document.addEventListener("DOMContentLoaded", () => {
   window.analytics = new SimpleAnalytics();
+
+  // Track homepage visits for product discovery analytics
+  if (
+    window.location.pathname === "/" ||
+    window.location.pathname.includes("index.html") ||
+    window.location.pathname === ""
+  ) {
+    if (window.analytics) {
+      window.analytics.updateProductDiscoveryData("homepageVisits", 1);
+    }
+  }
 });
 
 export { SimpleAnalytics };

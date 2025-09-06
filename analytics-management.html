@@ -776,6 +776,20 @@
         // Initialize Feather icons
         feather.replace();
 
+        // Initialize search system
+        if (window.searchSystem) {
+          window.searchSystem.init();
+        } else {
+          // Try to import and initialize if not available globally
+          import('./scripts/shared/search.js').then(module => {
+            if (module.searchSystem) {
+              module.searchSystem.init();
+            }
+          }).catch(error => {
+            console.log('Search system initialization failed:', error);
+          });
+        }
+
         // Update initial stats
         updateStats();
 
@@ -948,6 +962,7 @@
     <script src="scripts/shared/shared-subheader-loader.js"></script>
     <script src="scripts/shared/shared-footer-loader.js"></script>
     <script src="scripts/shared/sub-header-nav.js"></script>
+    <script type="module" src="scripts/shared/search.js"></script>
 
     <!-- Initialize additional features -->
     <script>

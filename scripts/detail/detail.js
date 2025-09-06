@@ -4,6 +4,7 @@ import { cart, addToCart } from "../../data/cart.js";
 import { updateCartQuantity } from "../shared/cart-quantity.js";
 import { parseMarkdown } from "../shared/markdown-parser.js";
 import { formatPriceRange, formatCurrency } from "../shared/money.js";
+import { analytics } from "../shared/analytics.js";
 // Helper function to encode image URLs properly
 function encodeImagePath(imagePath) {
   return imagePath
@@ -79,6 +80,14 @@ if (!product && !urlProductType) {
   }
 }
 if (product) {
+  // Track product view
+  if (window.analytics) {
+    window.analytics.trackProductClick(
+      product.name,
+      productBrand || productType
+    );
+  }
+
   // Unified breadcrumb rendering
   updateBreadcrumbDetail(product, productType, productBrand);
   // Update the product details on the page
@@ -1683,6 +1692,15 @@ document.querySelector(".js-add-to-cart").addEventListener("click", () => {
   const quantitySelect = document.querySelector(".js-quantity-selector");
   const quantity = Number(quantitySelect.value);
   addToCart(productId, quantity);
+
+  // Track add to cart analytics
+  const product = [...products, ...booksProducts].find(
+    (p) => p.id === productId
+  );
+  if (product) {
+    analytics.trackAddToCart(product.name, product.category, quantity);
+  }
+
   updateCartQuantity();
   // Show the "Added" message
   const addedMessage = document.querySelector(".js-added-message");

@@ -303,6 +303,11 @@ class SearchSystem {
     this.showSearchLoading(true);
 
     try {
+      // Track search query
+      if (window.analytics) {
+        window.analytics.trackSearchQuery(searchTerm);
+      }
+
       // Add to search history
       this.addToSearchHistory(searchTerm);
 
@@ -600,24 +605,50 @@ class SearchSystem {
 
   attachAddToCartListeners() {
     document.querySelectorAll(".js-add-to-cart").forEach((button) => {
-      button.addEventListener("click", () => {
-        const productId = button.dataset.productId;
+      button.addEventListener("click", async () => {
+        try {
+          const productId = button.dataset.productId;
 
-        // Get the quantity from the dropdown
-        const productContainer = button.closest(".product-container");
-        const quantitySelect = productContainer.querySelector("select");
-        const quantity = Number(quantitySelect.value);
+          // Get the quantity from the dropdown
+          const productContainer = button.closest(".product-container");
+          const quantitySelect = productContainer.querySelector("select");
+          const quantity = Number(quantitySelect.value) || 1;
 
-        // Call addToCart with the selected quantity
-        addToCart(productId, quantity);
-        updateCartQuantity();
+          // Import and call addToCart with the selected quantity
+          const { addToCart } = await import("../../data/cart.js");
+          const { updateCartQuantity } = await import("./cart-quantity.js");
+          
+          const success = addToCart(productId, quantity);
+          
+          if (success !== false) {
+            updateCartQuantity();
 
-        // Show the 'Added' message
-        const addedMessage = productContainer.querySelector(".added-message");
-        if (addedMessage) {
-          addedMessage.style.display = "block";
+            // Show the 'Added' message
+            const addedMessage = productContainer.querySelector(".added-message");
+            if (addedMessage) {
+              addedMessage.style.display = "block";
+              setTimeout(() => {
+                addedMessage.style.display = "none";
+              }, 2000);
+            }
+
+            // Add visual feedback to button
+            button.textContent = "Added!";
+            button.disabled = true;
+            setTimeout(() => {
+              button.textContent = "Add to Cart";
+              button.disabled = false;
+            }, 2000);
+          }
+        } catch (error) {
+          console.error("Error adding to cart:", error);
+          // Show error feedback
+          const originalText = button.textContent;
+          button.textContent = "Error!";
+          button.style.backgroundColor = "#ff4444";
           setTimeout(() => {
-            addedMessage.style.display = "none";
+            button.textContent = originalText;
+            button.style.backgroundColor = "";
           }, 2000);
         }
       });
@@ -785,21 +816,36 @@ class SearchSystem {
 
     // Always use renderProducts function now that it's globally available
     // This ensures search results match the normal product display
-    if (window.renderProducts) {
-      const productsHTML = window.renderProducts(pageResults, "book");
-      productsGrid.innerHTML = productsHTML;
+    if (window.renderProducts && typeof window.renderProducts === 'function') {
+      try {
+        const productsHTML = window.renderProducts(pageResults, "book");
+        productsGrid.innerHTML = productsHTML;
 
-      // Re-attach event listeners
-      if (window.attachAddToCartListeners) {
-        window.attachAddToCartListeners();
-      }
+        // Re-attach event listeners
+        if (window.attachAddToCartListeners && typeof window.attachAddToCartListeners === 'function') {
+          window.attachAddToCartListeners();
+        } else {
+          // Fallback to our own add to cart listeners
+          this.attachAddToCartListeners();
+        }
 
-      // Enhance product images with fallback handling
-      if (window.ImageLoader) {
-        window.ImageLoader.enhanceProductImages();
+        // Attach product click tracking for search results
+        if (window.attachProductClickTracking && typeof window.attachProductClickTracking === 'function') {
+          window.attachProductClickTracking();
+        }
+
+        // Enhance product images with fallback handling
+        if (window.ImageLoader && window.ImageLoader.enhanceProductImages) {
+          window.ImageLoader.enhanceProductImages();
+        }
+      } catch (error) {
+        console.warn("Error using global renderProducts, falling back to search renderResults:", error);
+        // Fallback rendering
+        this.renderSearchResults(pageResults, productsGrid);
       }
     } else {
       // Fallback rendering
+      console.log("Global renderProducts not available, using search renderResults");
       this.renderSearchResults(pageResults, productsGrid);
     }
   }
@@ -899,6 +945,14 @@ class SearchSystem {
 
     // Validate page number
     if (page < 1 || page > totalPages) return;
+
+    // Track search pagination navigation
+    if (window.analytics) {
+      window.analytics.trackCategoryClick(
+        "Search Pagination",
+        `Page ${page} - "${this.currentSearchTerm}"`
+      );
+    }
 
     // Update URL with new page
     const newUrl = new URL(window.location);
@@ -1111,8 +1165,25 @@ if (hasSearchParam) {
   }
 }
 
-// Don't initialize automatically on DOMContentLoaded since header loads dynamically
-// The shared-header-loader.js will call searchSystem.init() when header is ready
-
-// Make search system globally available
+// Make search system globally available immediately
 window.searchSystem = searchSystem;
+
+// Also initialize search when header is loaded
+window.addEventListener("headerLoaded", () => {
+  if (!searchSystem.isInitialized) {
+    searchSystem.init();
+  }
+});
+
+// Initialize on DOMContentLoaded as fallback
+document.addEventListener("DOMContentLoaded", () => {
+  if (!searchSystem.isInitialized) {
+    // Try to initialize search system after a short delay to allow header to load
+    setTimeout(() => {
+      searchSystem.init();
+    }, 500);
+  }
+});
+
+// Export for module usage
+export { SearchSystem, searchSystem };

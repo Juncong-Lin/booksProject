@@ -137,6 +137,11 @@ window.changePage = function (page) {
   const productsHTML = renderProducts(paginatedProducts, "book");
   const totalPages = Math.ceil(currentProducts.length / ITEMS_PER_PAGE);
 
+  // Track pagination navigation
+  if (window.analytics) {
+    window.analytics.trackCategoryClick("Pagination", `Page ${page}`);
+  }
+
   // Update products grid
   const productsGrid = document.querySelector(".js-prodcts-grid");
   productsGrid.innerHTML = productsHTML;
@@ -146,6 +151,7 @@ window.changePage = function (page) {
 
   // Re-attach event listeners
   attachAddToCartListeners();
+  attachProductClickTracking();
 
   // Enhance product images with fallback handling
   if (window.ImageLoader) {
@@ -269,6 +275,7 @@ window.loadAllBooks = function () {
 
       // Re-attach event listeners
       attachAddToCartListeners();
+      attachProductClickTracking();
 
       // Enhance product images with fallback handling
       if (window.ImageLoader) {
@@ -524,6 +531,14 @@ setTimeout(() => {
       }
 
       if (categoryBooks.length > 0) {
+        // Track category selection in analytics
+        if (window.analytics) {
+          window.analytics.trackCategoryClick(
+            categoryName,
+            `${categoryBooks.length} products`
+          );
+        }
+
         // Load books from the category(ies)
         currentProducts = categoryBooks; // Store current products for pagination
         const paginatedProducts = getPaginatedProducts(
@@ -546,6 +561,7 @@ setTimeout(() => {
 
         // Re-attach event listeners
         attachAddToCartListeners();
+        attachProductClickTracking();
 
         // Enhance product images with fallback handling
         if (window.ImageLoader) {
@@ -777,6 +793,24 @@ function attachAddToCartListeners() {
       const quantitySelect = productContainer.querySelector("select");
       const quantity = Number(quantitySelect.value);
 
+      // Track add to cart action
+      if (window.analytics) {
+        const productName = productContainer
+          .querySelector(".product-name a")
+          ?.textContent.trim();
+        let category = null;
+
+        // Try to determine category from current context
+        const activeNavLink = document.querySelector(".sub-header-link.active");
+        if (activeNavLink) {
+          category = activeNavLink.textContent.trim();
+        }
+
+        if (productName) {
+          window.analytics.trackAddToCart(productName, category);
+        }
+      }
+
       // Call addToCart with the selected quantity
       addToCart(productId, quantity);
       updateCartQuantity();
@@ -805,6 +839,37 @@ export function findProductById(productId) {
   }
   return null;
 }
+
+// Function to attach product click tracking
+window.attachProductClickTracking = function () {
+  // Track product image and name clicks
+  document
+    .querySelectorAll(".product-image-link, .product-link")
+    .forEach((link) => {
+      link.addEventListener("click", function (e) {
+        const productContainer = this.closest(".product-container");
+        if (productContainer && window.analytics) {
+          const productName = productContainer
+            .querySelector(".product-name a")
+            ?.textContent.trim();
+          const productId = this.href.split("productId=")[1];
+
+          if (productName) {
+            // Try to determine category from current context
+            let category = null;
+            const activeNavLink = document.querySelector(
+              ".sub-header-link.active"
+            );
+            if (activeNavLink) {
+              category = activeNavLink.textContent.trim();
+            }
+
+            window.analytics.trackProductClick(productName, category);
+          }
+        }
+      });
+    });
+};
 
 // Initialize page when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
