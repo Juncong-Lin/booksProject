@@ -617,14 +617,15 @@ class SearchSystem {
           // Import and call addToCart with the selected quantity
           const { addToCart } = await import("../../data/cart.js");
           const { updateCartQuantity } = await import("./cart-quantity.js");
-          
+
           const success = addToCart(productId, quantity);
-          
+
           if (success !== false) {
             updateCartQuantity();
 
             // Show the 'Added' message
-            const addedMessage = productContainer.querySelector(".added-message");
+            const addedMessage =
+              productContainer.querySelector(".added-message");
             if (addedMessage) {
               addedMessage.style.display = "block";
               setTimeout(() => {
@@ -816,13 +817,16 @@ class SearchSystem {
 
     // Always use renderProducts function now that it's globally available
     // This ensures search results match the normal product display
-    if (window.renderProducts && typeof window.renderProducts === 'function') {
+    if (window.renderProducts && typeof window.renderProducts === "function") {
       try {
         const productsHTML = window.renderProducts(pageResults, "book");
         productsGrid.innerHTML = productsHTML;
 
         // Re-attach event listeners
-        if (window.attachAddToCartListeners && typeof window.attachAddToCartListeners === 'function') {
+        if (
+          window.attachAddToCartListeners &&
+          typeof window.attachAddToCartListeners === "function"
+        ) {
           window.attachAddToCartListeners();
         } else {
           // Fallback to our own add to cart listeners
@@ -830,7 +834,10 @@ class SearchSystem {
         }
 
         // Attach product click tracking for search results
-        if (window.attachProductClickTracking && typeof window.attachProductClickTracking === 'function') {
+        if (
+          window.attachProductClickTracking &&
+          typeof window.attachProductClickTracking === "function"
+        ) {
           window.attachProductClickTracking();
         }
 
@@ -839,13 +846,18 @@ class SearchSystem {
           window.ImageLoader.enhanceProductImages();
         }
       } catch (error) {
-        console.warn("Error using global renderProducts, falling back to search renderResults:", error);
+        console.warn(
+          "Error using global renderProducts, falling back to search renderResults:",
+          error
+        );
         // Fallback rendering
         this.renderSearchResults(pageResults, productsGrid);
       }
     } else {
       // Fallback rendering
-      console.log("Global renderProducts not available, using search renderResults");
+      console.log(
+        "Global renderProducts not available, using search renderResults"
+      );
       this.renderSearchResults(pageResults, productsGrid);
     }
   }

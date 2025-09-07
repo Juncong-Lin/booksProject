@@ -483,9 +483,9 @@
                     >
                   </div>
                   <div class="metric">
-                    <span class="metric-label">Sidebar vs Header Usage</span>
+                    <span class="metric-label">Header vs Sidebar Usage</span>
                     <span class="metric-value" id="sidebar-header-usage"
-                      >42% / 58%</span
+                      >0% / 0%</span
                     >
                   </div>
                 </div>
@@ -534,13 +534,15 @@
           window.searchSystem.init();
         } else {
           // Try to import and initialize if not available globally
-          import('./scripts/shared/search.js').then(module => {
-            if (module.searchSystem) {
-              module.searchSystem.init();
-            }
-          }).catch(error => {
-            console.log('Search system initialization failed:', error);
-          });
+          import("./scripts/shared/search.js")
+            .then((module) => {
+              if (module.searchSystem) {
+                module.searchSystem.init();
+              }
+            })
+            .catch((error) => {
+              console.log("Search system initialization failed:", error);
+            });
         }
 
         // Add some interactive behaviors

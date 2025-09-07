@@ -368,7 +368,17 @@ class SimpleAnalytics {
       section: section,
       action: "navigation",
     });
+    this.updateProductDiscoveryData("sidebarClicks", 1);
     console.log(`Tracked sidebar expand: ${section}`);
+  }
+
+  trackHeaderClick(item) {
+    this.trackEvent("header_click", {
+      item: item,
+      action: "navigation",
+    });
+    this.updateProductDiscoveryData("headerClicks", 1);
+    console.log(`Tracked header click: ${item}`);
   }
 
   updateProductDiscoveryData(metric, increment = 1) {
@@ -384,6 +394,8 @@ class SimpleAnalytics {
         searchQueries: 0,
         cartAdditions: 0,
         homepageVisits: 0,
+        sidebarClicks: 0,
+        headerClicks: 0,
         categoryPerformance: {},
         dailyDiscoveryActions: [],
         lastUpdated: Date.now(),

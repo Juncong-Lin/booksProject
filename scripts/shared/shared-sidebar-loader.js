@@ -121,7 +121,6 @@ function initializeSidebar() {
       const categoryText = link.textContent.trim();
       if (window.analytics) {
         window.analytics.trackSidebarExpand(categoryText);
-        window.analytics.trackCategoryClick(categoryText);
       }
 
       if (window.innerWidth <= 800) {
@@ -148,7 +147,7 @@ function initializeSidebar() {
     const submenuLink = e.target.closest(".submenu a");
     if (submenuLink && window.analytics) {
       const categoryText = submenuLink.textContent.trim();
-      window.analytics.trackCategoryClick(categoryText);
+      window.analytics.trackSidebarExpand(categoryText);
     }
   });
 

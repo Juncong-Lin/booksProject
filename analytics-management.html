@@ -781,13 +781,15 @@
           window.searchSystem.init();
         } else {
           // Try to import and initialize if not available globally
-          import('./scripts/shared/search.js').then(module => {
-            if (module.searchSystem) {
-              module.searchSystem.init();
-            }
-          }).catch(error => {
-            console.log('Search system initialization failed:', error);
-          });
+          import("./scripts/shared/search.js")
+            .then((module) => {
+              if (module.searchSystem) {
+                module.searchSystem.init();
+              }
+            })
+            .catch((error) => {
+              console.log("Search system initialization failed:", error);
+            });
         }
 
         // Update initial stats

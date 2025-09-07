@@ -27,9 +27,9 @@ class SubHeaderNavigation {
         const submenuId = link.getAttribute("data-submenu");
         const linkText = link.textContent.trim();
 
-        // Track category click
+        // Track header click
         if (window.analytics) {
-          window.analytics.trackCategoryClick(linkText);
+          window.analytics.trackHeaderClick(linkText);
         }
 
         // Check if submenu is currently active and hide it if clicked again
@@ -229,7 +229,7 @@ class SubHeaderNavigation {
       const submenuItem = event.target.closest(".sub-header-submenu a");
       if (submenuItem && window.analytics) {
         const categoryText = submenuItem.textContent.trim();
-        window.analytics.trackCategoryClick(categoryText);
+        window.analytics.trackHeaderClick(categoryText);
       }
     });
     // Handle "See All Departments" link separately
@@ -241,7 +241,7 @@ class SubHeaderNavigation {
 
         // Track category click
         if (window.analytics) {
-          window.analytics.trackCategoryClick("Browse All Books");
+          window.analytics.trackHeaderClick("Browse All Books");
         }
 
         // Check if we're on the index page

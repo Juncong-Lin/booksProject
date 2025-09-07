@@ -66,6 +66,8 @@ class ProductDiscoveryDashboard {
         searchQueries: 0,
         cartAdditions: 0,
         homepageVisits: 0,
+        sidebarClicks: 0,
+        headerClicks: 0,
         dailyDiscoveryActions: [],
         categoryPerformance: [],
       };
@@ -1119,16 +1121,19 @@ class ProductDiscoveryDashboard {
           ? ((data.productClicks / data.searchQueries) * 100).toFixed(1)
           : "0.0";
 
-      // Calculate sidebar vs header usage based on category clicks
+      // Calculate sidebar vs header usage based on actual clicks
+      const sidebarClicks = parseInt(data.sidebarClicks) || 0;
+      const headerClicks = parseInt(data.headerClicks) || 0;
+      const totalNavClicks = sidebarClicks + headerClicks;
+
       const sidebarUsage =
-        data.categoryClicks > 0
-          ? Math.round(
-              (data.categoryClicks /
-                (data.categoryClicks + data.searchQueries + 1)) *
-                100
-            )
+        totalNavClicks > 0
+          ? Math.round((sidebarClicks / totalNavClicks) * 100)
           : 0;
-      const headerUsage = 100 - sidebarUsage;
+      const headerUsage =
+        totalNavClicks > 0
+          ? Math.round((headerClicks / totalNavClicks) * 100)
+          : 0;
 
       // Calculate average time to click based on interaction volume
       const avgTime =
@@ -1140,7 +1145,7 @@ class ProductDiscoveryDashboard {
       this.updateMetricValue("search-click-success", `${searchClickSuccess}%`);
       this.updateMetricValue(
         "sidebar-header-usage",
-        `${sidebarUsage}% / ${headerUsage}%`
+        `${headerUsage}% / ${sidebarUsage}%`
       );
       this.updateMetricValue("avg-time-to-click", `${avgTime}s`);
     }
