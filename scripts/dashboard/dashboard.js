@@ -1,5 +1,13 @@
 import { SimpleAnalytics } from "../shared/analytics.js";
 
+// Disable Chart.js animations globally to reduce CPU usage
+if (window.Chart) {
+  Chart.defaults.animation = false;
+  Chart.defaults.animations.colors = false;
+  Chart.defaults.animations.x = false;
+  Chart.defaults.animations.y = false;
+}
+
 class ProductDiscoveryDashboard {
   constructor() {
     this.charts = {};
@@ -9,12 +17,19 @@ class ProductDiscoveryDashboard {
     this.categoryData = {};
     this.searchData = {};
     this.currentTimePeriod = "24h"; // Track current time period
+    this.chartUpdatePending = false; // Throttle chart updates
+    this.chartsCreated = false; // Lazy load charts
+    this.performanceMode = true; // Enable performance mode by default
 
     this.initDashboard();
-    this.updateMetrics();
-    this.createCharts();
-    this.createMiniCharts();
-    this.startRealTimeUpdates();
+    // Delay heavy operations to reduce initial CPU spike
+    setTimeout(() => {
+      this.updateMetrics();
+      if (!this.performanceMode) {
+        this.createChartsLazy();
+      }
+      this.startRealTimeUpdates();
+    }, 100);
     this.initEventHandlers();
     this.loadCategoryAnalytics();
   }
@@ -882,25 +897,42 @@ class ProductDiscoveryDashboard {
   }
 
   startAutoRefresh() {
-    // Auto-refresh every 30 seconds
+    // Auto-refresh every 5 minutes instead of 2 minutes to minimize CPU load
     this.autoRefreshInterval = setInterval(() => {
       if (!this.isPaused) {
         this.updateMetrics();
       }
-    }, 30000);
+    }, 300000);
   }
 
   updateAllCharts() {
     try {
-      // Update all chart data
-      Object.keys(this.charts).forEach((chartKey) => {
-        const chart = this.charts[chartKey];
-        if (chart && typeof chart.update === "function") {
-          chart.update();
-        }
+      // Skip chart updates in performance mode
+      if (this.performanceMode) {
+        return;
+      }
+
+      // Throttle chart updates to prevent excessive CPU usage
+      if (this.chartUpdatePending) {
+        return;
+      }
+
+      this.chartUpdatePending = true;
+
+      // Use requestAnimationFrame for smoother updates
+      requestAnimationFrame(() => {
+        Object.keys(this.charts).forEach((chartKey) => {
+          const chart = this.charts[chartKey];
+          if (chart && typeof chart.update === "function") {
+            // Use 'none' animation mode to reduce CPU usage
+            chart.update("none");
+          }
+        });
+        this.chartUpdatePending = false;
       });
     } catch (error) {
       console.error("Error updating charts:", error);
+      this.chartUpdatePending = false;
     }
   }
 
@@ -1384,6 +1416,20 @@ class ProductDiscoveryDashboard {
     this.createDiscoveryHeatmapChart();
   }
 
+  createChartsLazy() {
+    // Create charts with delay to prevent initial CPU spike
+    if (this.chartsCreated) return;
+
+    setTimeout(() => {
+      this.createCharts();
+      this.chartsCreated = true;
+    }, 200);
+
+    setTimeout(() => {
+      this.createMiniCharts();
+    }, 400);
+  }
+
   createMiniCharts() {
     // Create mini sparkline charts for each product discovery metric card
     this.createMiniChart(
@@ -1587,8 +1633,7 @@ class ProductDiscoveryDashboard {
           },
         },
         animation: {
-          duration: 1500,
-          easing: "easeOutQuart",
+          duration: 0, // Disable animation to reduce CPU usage
         },
         barThickness: "flex",
         categoryPercentage: 0.9,
@@ -1747,8 +1792,7 @@ class ProductDiscoveryDashboard {
           },
         },
         animation: {
-          duration: 2000,
-          easing: 'easeOutElastic',
+          duration: 0,  // Disable animation to reduce CPU usage
         },
       },
     });
@@ -1862,8 +1906,7 @@ class ProductDiscoveryDashboard {
           },
         },
         animation: {
-          duration: 2000,
-          easing: 'easeOutCubic',
+          duration: 0,  // Disable animation to reduce CPU usage
         },
       },
     });
@@ -2521,17 +2564,24 @@ class ProductDiscoveryDashboard {
   }
 
   startRealTimeUpdates() {
-    // Update real-time events every 15 seconds
+    // In performance mode, don't start any intervals
+    if (this.performanceMode) {
+      console.log("Performance mode enabled - real-time updates disabled");
+      return;
+    }
+
+    // Use much longer intervals to minimize CPU usage
+    // Update real-time events every 5 minutes instead of 60 seconds
     this.realTimeUpdateInterval = setInterval(() => {
       if (!this.isPaused) {
         this.updateRealTimeEvents();
       }
-    }, 15000);
+    }, 300000);
 
-    // Update metrics every 30 seconds
+    // Update metrics every 5 minutes instead of 2 minutes
     this.metricsUpdateInterval = setInterval(() => {
       this.updateMetrics();
-    }, 30000);
+    }, 300000);
 
     // Initial update
     this.updateRealTimeEvents();
@@ -2762,11 +2812,64 @@ class ProductDiscoveryDashboard {
       }
     });
   }
+
+  // Add cleanup method to prevent memory leaks
+  destroy() {
+    // Clear all intervals
+    if (this.realTimeUpdateInterval) {
+      clearInterval(this.realTimeUpdateInterval);
+      this.realTimeUpdateInterval = null;
+    }
+    if (this.metricsUpdateInterval) {
+      clearInterval(this.metricsUpdateInterval);
+      this.metricsUpdateInterval = null;
+    }
+    if (this.autoRefreshInterval) {
+      clearInterval(this.autoRefreshInterval);
+      this.autoRefreshInterval = null;
+    }
+
+    // Destroy charts to free memory
+    Object.keys(this.charts).forEach((chartKey) => {
+      if (
+        this.charts[chartKey] &&
+        typeof this.charts[chartKey].destroy === "function"
+      ) {
+        this.charts[chartKey].destroy();
+      }
+    });
+    this.charts = {};
+
+    // Remove event listeners
+    window.removeEventListener("message", this.handleDataUpdate.bind(this));
+    window.removeEventListener("beforeunload", this.destroy.bind(this));
+  }
 }
 
 // Initialize dashboard when page loads
 document.addEventListener("DOMContentLoaded", () => {
-  new ProductDiscoveryDashboard();
+  const dashboard = new ProductDiscoveryDashboard();
+
+  // Store global reference for performance toggle
+  window.dashboardInstance = dashboard;
+
+  // Cleanup when page unloads to prevent memory leaks
+  window.addEventListener("beforeunload", () => {
+    if (dashboard && typeof dashboard.destroy === "function") {
+      dashboard.destroy();
+    }
+  });
+
+  // Pause updates when page is hidden to save CPU
+  document.addEventListener("visibilitychange", () => {
+    if (dashboard) {
+      if (document.hidden) {
+        dashboard.isPaused = true;
+      } else {
+        dashboard.isPaused = false;
+      }
+    }
+  });
 });
 
 export { ProductDiscoveryDashboard };

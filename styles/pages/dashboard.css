@@ -21,12 +21,20 @@
   z-index: -1;
 }
 
+/* Pause animations when page is hidden to save CPU */
+.dashboard-background.paused .gradient-orb {
+  animation-play-state: paused;
+}
+
 .gradient-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
   opacity: 0.1;
-  animation: float 20s ease-in-out infinite;
+  /* Use transform3d for hardware acceleration and slower animation */
+  animation: float 60s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
 }
 
 .orb-1 {
@@ -59,16 +67,16 @@
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px) translateX(0px);
+    transform: translate3d(0px, 0px, 0px);
   }
   25% {
-    transform: translateY(-20px) translateX(10px);
+    transform: translate3d(10px, -20px, 0px);
   }
   50% {
-    transform: translateY(10px) translateX(-10px);
+    transform: translate3d(-10px, 10px, 0px);
   }
   75% {
-    transform: translateY(-10px) translateX(20px);
+    transform: translate3d(20px, -10px, 0px);
   }
 }
 
@@ -85,7 +93,7 @@
 .dashboard-header {
   margin-bottom: 40px;
   background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
+  /* /* backdrop-filter disabled for performance */ Disabled to reduce GPU usage */
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px;
@@ -263,7 +271,7 @@
 
 .metric-card {
   background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
+  /* /* backdrop-filter disabled for performance */ Disabled to reduce GPU usage */
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px;
@@ -410,7 +418,7 @@
 
 .chart-card {
   background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
+  /* backdrop-filter disabled for performance */
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 20px;
@@ -588,7 +596,7 @@
 /* Funnel Section */
 .funnel-section {
   background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
+  /* backdrop-filter disabled for performance */
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 32px;
@@ -774,7 +782,7 @@
 /* Real-time Events */
 .realtime-section {
   background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
+  /* backdrop-filter disabled for performance */
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px;
@@ -838,7 +846,7 @@
 /* A/B Testing Section */
 .ab-testing-section {
   background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
+  /* backdrop-filter disabled for performance */
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px;
@@ -1635,7 +1643,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px;
-  backdrop-filter: blur(10px);
+  /* backdrop-filter disabled for performance */
 }
 
 .category-overview {

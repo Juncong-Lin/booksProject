@@ -1,5 +1,10 @@
 /* Analytics Management Page - Enhanced Styling */
 
+/* Pause animations when page is hidden to save CPU */
+.dashboard-background.paused .gradient-orb {
+  animation-play-state: paused;
+}
+
 /* Main container and layout */
 .management-container {
   max-width: 1400px;

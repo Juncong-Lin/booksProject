@@ -4,7 +4,6 @@ import { cart, addToCart } from "../../data/cart.js";
 import { updateCartQuantity } from "../shared/cart-quantity.js";
 import { parseMarkdown } from "../shared/markdown-parser.js";
 import { formatPriceRange, formatCurrency } from "../shared/money.js";
-import { analytics } from "../shared/analytics.js";
 // Helper function to encode image URLs properly
 function encodeImagePath(imagePath) {
   return imagePath
@@ -1697,8 +1696,8 @@ document.querySelector(".js-add-to-cart").addEventListener("click", () => {
   const product = [...products, ...booksProducts].find(
     (p) => p.id === productId
   );
-  if (product) {
-    analytics.trackAddToCart(product.name, product.category, quantity);
+  if (product && window.analytics) {
+    window.analytics.trackAddToCart(product.name, product.category, quantity);
   }
 
   updateCartQuantity();

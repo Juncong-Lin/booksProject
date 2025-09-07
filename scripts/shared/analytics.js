@@ -19,16 +19,22 @@ class SimpleAnalytics {
   }
 
   initTracking() {
-    // Track clicks
+    // Throttle click tracking to reduce CPU usage
+    let clickTimeout = null;
     document.addEventListener("click", (e) => {
-      this.trackEvent("click", {
-        element: e.target.tagName,
-        className: e.target.className,
-        text: e.target.textContent?.substring(0, 50),
-        x: e.clientX,
-        y: e.clientY,
-        timestamp: Date.now(),
-      });
+      if (clickTimeout) return; // Skip if already processing a click
+
+      clickTimeout = setTimeout(() => {
+        this.trackEvent("click", {
+          element: e.target.tagName,
+          className: e.target.className,
+          text: e.target.textContent?.substring(0, 50),
+          x: e.clientX,
+          y: e.clientY,
+          timestamp: Date.now(),
+        });
+        clickTimeout = null;
+      }, 100); // Throttle clicks to maximum once per 100ms
     });
 
     // Track page visibility changes
@@ -40,20 +46,26 @@ class SimpleAnalytics {
       }
     });
 
-    // Track scroll depth
+    // Throttle scroll depth tracking to reduce CPU usage
     let maxScroll = 0;
+    let scrollTimeout = null;
     window.addEventListener("scroll", () => {
-      const scrollPercent = Math.round(
-        (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
-          100
-      );
-      if (scrollPercent > maxScroll) {
-        maxScroll = scrollPercent;
-        this.trackEvent("scroll_depth", {
-          depth: scrollPercent,
-          timestamp: Date.now(),
-        });
-      }
+      if (scrollTimeout) return; // Skip if already processing scroll
+
+      scrollTimeout = setTimeout(() => {
+        const scrollPercent = Math.round(
+          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+            100
+        );
+        if (scrollPercent > maxScroll) {
+          maxScroll = scrollPercent;
+          this.trackEvent("scroll_depth", {
+            depth: scrollPercent,
+            timestamp: Date.now(),
+          });
+        }
+        scrollTimeout = null;
+      }, 250); // Throttle scroll events to maximum once per 250ms
     });
 
     // Track before page unload

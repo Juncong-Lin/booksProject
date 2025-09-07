@@ -29,6 +29,21 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <!-- Performance optimization script -->
+    <script>
+      // Pause CSS animations when page is hidden to save CPU
+      document.addEventListener("visibilitychange", () => {
+        const background = document.querySelector(".dashboard-background");
+        if (background) {
+          if (document.hidden) {
+            background.classList.add("paused");
+          } else {
+            background.classList.remove("paused");
+          }
+        }
+      });
+    </script>
   </head>
 
   <body class="no-sidebar dashboard-theme">
@@ -840,10 +855,10 @@
           });
         }
 
-        // Auto-update stats every 30 seconds
+        // Auto-update stats every 2 minutes instead of 30 seconds to reduce CPU usage
         setInterval(() => {
           updateStats();
-        }, 30000);
+        }, 120000);
 
         // Add keyboard shortcuts for product discovery functions
         document.addEventListener("keydown", (e) => {
