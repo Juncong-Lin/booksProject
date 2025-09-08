@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mobile Header Test</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="styles/shared/general.css" />
+    <link rel="stylesheet" href="styles/shared/qili-header.css" />
+    <style>
+      .test-content {
+        margin-top: 80px;
+        padding: 20px;
+        text-align: center;
+      }
+      .viewport-info {
+        background: #f0f0f0;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Include the header -->
+    <div class="qili-header">
+      <div class="qili-header-left-section">
+        <a href="index.html" class="header-link">
+          <img class="book-logo" src="images/bookstack-logo.svg" width="50" />
+          <img
+            class="book-mobile-logo"
+            src="images/bookstack-logo.svg"
+            width="40"
+          />
+        </a>
+        <a
+          class="data-management-link header-link"
+          href="analytics-management.html"
+        >
+          <span class="data-management-text">Data Management</span>
+        </a>
+      </div>
+
+      <div class="qili-header-middle-section">
+        <input class="search-bar" type="text" placeholder="Search" />
+        <button class="search-button">
+          <img class="search-icon" src="images/icons/search-icon.png" />
+        </button>
+      </div>
+
+      <div class="qili-header-right-section">
+        <a class="dashboard-link header-link" href="dashboard.html">
+          <span class="dashboard-text">Dashboard</span>
+        </a>
+        <a class="cart-link header-link" href="checkout.html">
+          <img class="cart-icon" src="images/icons/cart-icon.png" />
+          <div class="cart-quantity js-cart-quantity">2</div>
+          <div class="cart-text">Cart</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="test-content">
+      <h1>Mobile Header Layout Test</h1>
+      <div class="viewport-info">
+        <strong>Instructions:</strong><br />
+        1. Resize your browser window to test desktop vs mobile layouts<br />
+        2. Check that the book logo displays appropriately at all sizes<br />
+        3. Verify Dashboard and Data Management buttons have matching font
+        sizes<br />
+        4. Ensure Cart icon and text are both visible<br />
+        5. Confirm search system remains centered on mobile
+      </div>
+
+      <div class="viewport-info">
+        <strong>Test Scenarios (Updated Layout):</strong><br />
+        • 768px width: Normal mobile layout<br />
+        • 480px width: Right section 120px, search max-width: 140px<br />
+        • 360px width: Right section 100px, search max-width: 100px<br />
+        • 320px width: Right section 80px, search max-width: 80px (icons +
+        compact cart)
+      </div>
+    </div>
+
+    <script>
+      // Display current viewport width
+      function updateViewportInfo() {
+        const width = window.innerWidth;
+        const info = document.querySelector(".viewport-info");
+        if (info) {
+          info.innerHTML += `<br><strong>Current viewport width: ${width}px</strong>`;
+        }
+      }
+
+      window.addEventListener("resize", updateViewportInfo);
+      window.addEventListener("load", updateViewportInfo);
+    </script>
+  </body>
+</html>

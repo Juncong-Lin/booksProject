@@ -8,7 +8,7 @@
   height: 60px;
   padding-left: 30px;
   padding-right: 30px;
-  background-color: #232F3E;
+  background-color: #232f3e;
   color: white;
 
   display: flex;
@@ -33,7 +33,7 @@
   width: 150px;
 }
 
-/* Note: .qili-logo and .qili-mobile-logo styles are already defined in qili-header.css */
+/* Note: .book-logo and .book-mobile-logo styles are already defined in qili-header.css */
 
 @media (max-width: 575px) {
   .checkout-header-left-section {
@@ -76,12 +76,12 @@
     margin-right: 5px;
     font-size: 16px;
   }
-  
+
   .checkout-header {
     padding-left: 10px;
     padding-right: 10px;
   }
-  
+
   .return-to-home-link {
     font-size: 16px;
   }
@@ -124,7 +124,7 @@
   margin-bottom: 20px;
   margin-top: 0;
   text-align: center;
-  
+
   /* Make sticky relative to viewport */
   position: fixed;
   top: 104px; /* Below header (60px) and subheader (44px) */
@@ -136,7 +136,7 @@
   z-index: 100;
   padding: 15px 30px;
   border-bottom: 1px solid #eee;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
 
@@ -152,7 +152,7 @@
   /* Use align-items: start; to prevent the elements
      in the grid from stretching vertically. */
   align-items: start;
-    /* Add top margin to account for fixed elements */
+  /* Add top margin to account for fixed elements */
   margin-top: 356px; /* Space for fixed title (~52px) and payment summary (~200px) + positioning */
   padding-top: 0; /* Remove extra padding to eliminate gap */
 }
@@ -163,18 +163,19 @@
     padding-left: 20px;
     padding-right: 20px;
     margin-top: 104px; /* Keep same as desktop */
-  }  .checkout-grid {
+  }
+  .checkout-grid {
     grid-template-columns: 1fr;
     margin-top: 360px; /* Added aesthetic gap between order summary and first product */
     padding-top: 0; /* Remove gap */
   }
-    .page-title {
+  .page-title {
     font-size: 20px;
     top: 104px; /* Header (60px) + subheader (44px) */
     padding: 12px 20px;
     max-width: 500px;
   }
-    .payment-summary {
+  .payment-summary {
     top: 150px; /* Below page title with no gap */
     padding-left: 20px;
     padding-right: 20px;
@@ -191,7 +192,7 @@
     width: 100%;
     box-sizing: border-box;
   }
-  
+
   .page-title {
     font-size: 18px;
     text-align: center;
@@ -202,7 +203,7 @@
     border-bottom: none !important; /* Remove border for mobile */
     min-height: 26px !important; /* Explicit minimum height */
   }
-  
+
   .payment-summary {
     top: 150px !important; /* Calculated: 104px + 46px page title height = 150px */
     max-width: 450px;
@@ -213,7 +214,7 @@
     padding-right: 15px;
     border-top: 1px solid #eee !important;
   }
-  
+
   .checkout-grid {
     max-width: 450px;
     width: 100%;
@@ -230,7 +231,7 @@
     padding-right: 10px;
     margin-top: 104px; /* Keep same as desktop */
   }
-  
+
   .page-title {
     font-size: 16px;
     margin-bottom: 0px !important; /* Remove margin bottom */
@@ -240,7 +241,7 @@
     border-bottom: none !important; /* Remove border for mobile */
     min-height: 22px !important; /* Explicit minimum height */
   }
-  
+
   .payment-summary {
     top: 146px !important; /* Calculated: 104px + 42px page title height = 146px */
     max-width: calc(100% - 20px);
@@ -251,7 +252,7 @@
     padding-right: 10px;
     border-top: 1px solid #eee !important;
   }
-    .checkout-grid {
+  .checkout-grid {
     max-width: 100%;
     width: 100%;
     margin-left: auto;
@@ -267,7 +268,7 @@
   .main {
     margin-top: 104px !important; /* 60px header + 44px sub-header */
   }
-  
+
   .page-title {
     top: 104px !important; /* Position directly after subheader */
     margin-bottom: 0px !important;
@@ -277,13 +278,13 @@
     min-height: auto !important;
     height: auto !important;
   }
-  
+
   .payment-summary {
     top: 138px !important; /* 104px + ~34px page title height */
     margin-top: 0 !important;
     border-top: 1px solid #eee !important;
   }
-  
+
   .checkout-grid {
     margin-top: 340px !important; /* Added aesthetic gap between order summary and first product */
     padding-top: 0 !important;
@@ -295,16 +296,16 @@
   .main {
     margin-top: 99px !important; /* 55px header + 44px sub-header */
   }
-  
+
   .page-title {
     top: 99px !important; /* Header (55px) + subheader (44px) */
     padding: 6px 10px !important;
   }
-  
+
   .payment-summary {
     top: 133px !important; /* 99px + ~34px page title height */
   }
-  
+
   .checkout-grid {
     margin-top: 320px !important; /* Added aesthetic gap between order summary and first product */
   }
@@ -348,7 +349,7 @@
     padding: 10px;
     border-radius: 8px;
   }
-  
+
   .cart-item-container {
     margin-bottom: 10px;
   }
@@ -360,7 +361,7 @@
   margin-top: 0;
   margin-bottom: 20px;
   box-sizing: border-box; /* Include padding and border in the width calculation */
-  
+
   /* Make sticky relative to viewport */
   position: fixed;
   top: 156px; /* Directly below the page title (104px + ~52px title height) */
@@ -370,7 +371,7 @@
   max-width: 800px; /* Match product container width */
   background-color: white;
   z-index: 99;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -450,12 +451,12 @@
     column-gap: 10px;
     row-gap: 8px;
   }
-  
+
   .product-name {
     font-size: 14px;
     margin-bottom: 4px;
   }
-  
+
   .product-price {
     font-size: 14px;
     margin-bottom: 2px;
@@ -476,28 +477,28 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  
+
   .return-to-home-link {
     font-size: 14px;
   }
-  
+
   .cart-item-details-grid {
     grid-template-columns: 60px 1fr;
     column-gap: 8px;
   }
-  
+
   .product-image {
     max-height: 60px;
   }
-  
+
   .product-name {
     font-size: 13px;
   }
-  
+
   .product-price {
     font-size: 13px;
   }
-  
+
   .delivery-option-date,
   .delivery-option-price {
     font-size: 12px;
@@ -523,13 +524,13 @@
     overflow-x: hidden;
     word-break: break-word;
   }
-  
+
   /* Mobile optimization for product info */
-  .product-quantity, 
+  .product-quantity,
   .product-price {
     margin-bottom: 6px;
   }
-  
+
   /* Force proper sizing for product image */
   .product-image {
     max-width: 100%;
@@ -572,7 +573,7 @@
   .delivery-options {
     margin-top: 0px;
   }
-  
+
   .delivery-options-title {
     font-size: 15px;
     text-align: center;
@@ -611,19 +612,19 @@
     padding: 4px 0;
     margin-bottom: 8px;
   }
-  
+
   .delivery-option-input {
     width: 18px;
     height: 18px;
   }
-  
+
   .delivery-option-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
   }
-  
+
   /* Footer mobile optimization */
   .footer {
     padding-bottom: 20px;
@@ -636,11 +637,11 @@
     padding: 0;
     margin-bottom: 1px;
   }
-  
+
   .delivery-option-date {
     font-size: 13px;
   }
-  
+
   .delivery-option-price {
     font-size: 12px;
   }
@@ -722,7 +723,7 @@
   margin-top: 11px;
   margin-bottom: 15px;
 
-  background-color: #232F3E;
+  background-color: #232f3e;
   color: #fff;
   border: none;
   font-weight: 700;
@@ -740,7 +741,7 @@
 }
 
 .place-order-button:hover {
-  background-color: #1A252F;
+  background-color: #1a252f;
 }
 
 .continue-shopping-button {

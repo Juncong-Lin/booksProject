@@ -63,15 +63,15 @@
 }
 
 /* Desktop Logo Styles */
-.qili-logo {
+.book-logo {
   margin-top: 5px;
-  width: 332px;
+  width: 50px; /* Appropriate size for the new book logo */
   height: auto;
   display: block;
 }
 
 /* Mobile Logo Styles */
-.qili-mobile-logo {
+.book-mobile-logo {
   display: none;
   width: 40px;
   height: auto;
@@ -79,11 +79,11 @@
 
 /* Logo Display Toggle */
 @media (max-width: 575px) {
-  .qili-logo {
+  .book-logo {
     display: none;
   }
 
-  .qili-mobile-logo {
+  .book-mobile-logo {
     display: block;
     width: 35px;
     height: auto;
@@ -93,7 +93,7 @@
 
 /* Mobile Responsive Adjustments */
 @media (max-width: 480px) {
-  .qili-mobile-logo {
+  .book-mobile-logo {
     width: 28px;
     margin-top: 1px;
   }
@@ -104,7 +104,7 @@
 }
 
 @media (max-width: 360px) {
-  .qili-mobile-logo {
+  .book-mobile-logo {
     width: 24px;
     margin-top: 1px;
   }
@@ -115,7 +115,7 @@
 }
 
 @media (max-width: 320px) {
-  .qili-mobile-logo {
+  .book-mobile-logo {
     width: 20px;
     margin-top: 0;
   }
@@ -175,40 +175,45 @@
 @media (max-width: 480px) {
   .qili-header {
     padding: 0 5px;
-    gap: 6px;
-    grid-template-columns: 40px 1fr 50px; /* Fixed widths for better control */
+    gap: 4px; /* Reduced gap to save space */
+    grid-template-columns: 80px 1fr 120px; /* Balanced left and right sections for better centering */
   }
 
   .qili-header-left-section {
-    width: 40px;
-    min-width: 40px;
+    width: 80px;
+    min-width: 80px;
   }
 
   .qili-header-middle-section {
     max-width: none; /* Remove constraint to use available space */
+    justify-content: center; /* Ensure search is centered */
   }
 
   .qili-header-right-section {
-    width: 50px;
-    min-width: 50px;
+    width: 120px; /* Increased to accommodate both dashboard and cart */
+    min-width: 120px;
   }
 }
 
 @media (max-width: 360px) {
   .qili-header {
     padding: 0 4px;
-    gap: 4px;
-    grid-template-columns: 35px 1fr 45px; /* Slightly larger for cart */
+    gap: 3px; /* Reduced gap to save space */
+    grid-template-columns: 70px 1fr 100px; /* More balanced left and right sections */
   }
 
   .qili-header-left-section {
-    width: 35px;
-    min-width: 35px;
+    width: 70px;
+    min-width: 70px;
+  }
+
+  .qili-header-middle-section {
+    justify-content: center; /* Ensure search is centered */
   }
 
   .qili-header-right-section {
-    width: 45px;
-    min-width: 45px;
+    width: 100px; /* Increased to accommodate both dashboard and cart */
+    min-width: 100px;
   }
 }
 
@@ -216,18 +221,22 @@
   .qili-header {
     padding: 0 3px;
     height: 55px;
-    gap: 3px;
-    grid-template-columns: 30px 1fr 40px; /* Maintain adequate cart space */
+    gap: 2px; /* Minimal gap to save space */
+    grid-template-columns: 60px 1fr 80px; /* More balanced sections for better centering */
   }
 
   .qili-header-left-section {
-    width: 30px;
-    min-width: 30px;
+    width: 60px;
+    min-width: 60px;
+  }
+
+  .qili-header-middle-section {
+    justify-content: center; /* Ensure search is centered */
   }
 
   .qili-header-right-section {
-    width: 40px;
-    min-width: 40px;
+    width: 80px; /* Increased to accommodate both dashboard and cart icons */
+    min-width: 80px;
   }
 
   /* Hide orders link on ultra-small screens for more space */
@@ -276,7 +285,7 @@
     height: 32px;
     padding: 0 6px; /* Reduced padding */
     font-size: 13px;
-    max-width: 200px; /* Further constrain on smaller screens */
+    max-width: 160px; /* Increased slightly for better balance */
   }
 }
 
@@ -285,7 +294,7 @@
     padding: 0 4px; /* Minimal padding */
     font-size: 12px;
     height: 28px; /* Smaller height for very small screens */
-    max-width: 150px; /* Smaller constraint for very small screens */
+    max-width: 120px; /* Increased for better balance */
   }
 }
 
@@ -295,7 +304,7 @@
     height: 26px;
     padding: 0 3px;
     font-size: 11px;
-    max-width: 120px; /* Very small constraint for ultra-small screens */
+    max-width: 100px; /* Increased for better balance */
   }
 }
 
@@ -569,6 +578,34 @@
   gap: 10px;
 }
 
+/* Mobile right section optimizations */
+@media (max-width: 768px) {
+  .qili-header-right-section {
+    gap: 6px; /* Reduced gap for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .qili-header-right-section {
+    gap: 2px; /* Minimal gap for tight space */
+    justify-content: space-between; /* Better distribution */
+  }
+}
+
+@media (max-width: 360px) {
+  .qili-header-right-section {
+    gap: 1px; /* Minimal gap */
+    justify-content: space-between; /* Distribute evenly */
+  }
+}
+
+@media (max-width: 320px) {
+  .qili-header-right-section {
+    gap: 1px; /* Minimal gap for ultra-small screens */
+    justify-content: space-between; /* Distribute icons evenly */
+  }
+}
+
 .dashboard-link {
   color: white;
   display: flex;
@@ -581,6 +618,43 @@
   font-weight: 500;
 }
 
+/* Mobile dashboard button optimizations */
+@media (max-width: 768px) {
+  .dashboard-text {
+    font-size: 10px; /* Smaller font for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-text {
+    font-size: 9px; /* Even smaller for small phones */
+  }
+}
+
+@media (max-width: 360px) {
+  .dashboard-text {
+    font-size: 8px; /* Very small for compact screens */
+  }
+}
+
+@media (max-width: 320px) {
+  .dashboard-text {
+    display: none; /* Hide text on ultra-small screens */
+  }
+
+  .dashboard-link {
+    min-width: 30px;
+    justify-content: center;
+  }
+
+  /* Add a dashboard icon for ultra-small screens */
+  .dashboard-link::after {
+    content: "📊";
+    font-size: 14px;
+    display: block;
+  }
+}
+
 .data-management-link {
   color: white;
   display: flex;
@@ -591,6 +665,43 @@
 .data-management-text {
   font-size: 13px;
   font-weight: 500;
+}
+
+/* Mobile data management button optimizations - match dashboard sizing */
+@media (max-width: 768px) {
+  .data-management-text {
+    font-size: 10px; /* Same as dashboard */
+  }
+}
+
+@media (max-width: 480px) {
+  .data-management-text {
+    font-size: 9px; /* Same as dashboard */
+  }
+}
+
+@media (max-width: 360px) {
+  .data-management-text {
+    font-size: 8px; /* Same as dashboard */
+  }
+}
+
+@media (max-width: 320px) {
+  .data-management-text {
+    display: none; /* Hide text like dashboard */
+  }
+
+  .data-management-link {
+    min-width: 30px;
+    justify-content: center;
+  }
+
+  /* Add a data management icon for ultra-small screens */
+  .data-management-link::after {
+    content: "📊";
+    font-size: 14px;
+    display: block;
+  }
 }
 
 .orders-link {
@@ -617,6 +728,7 @@
 
 .cart-icon {
   width: 50px;
+  display: block; /* Ensure cart icon is always visible */
 }
 
 .cart-text {
@@ -645,11 +757,13 @@
 @media (max-width: 768px) {
   .cart-icon {
     width: 32px;
+    display: block; /* Ensure visibility */
   }
 
   .cart-text {
     font-size: 12px;
     margin-top: 8px;
+    display: block; /* Ensure visibility */
   }
 
   .cart-quantity {
@@ -668,31 +782,14 @@
 
 @media (max-width: 480px) {
   .cart-icon {
-    width: 28px;
+    width: 24px; /* Smaller for compact layout */
+    display: block; /* Ensure visibility */
   }
 
   .cart-text {
-    font-size: 10px;
-    margin-top: 6px;
-  }
-
-  .cart-quantity {
-    font-size: 10px;
-    width: 18px;
-    left: 10px;
-    top: 0px;
-    min-height: 14px;
-  }
-}
-
-@media (max-width: 360px) {
-  .cart-icon {
-    width: 24px;
-  }
-
-  .cart-text {
-    font-size: 9px;
+    font-size: 9px; /* Smaller text */
     margin-top: 4px;
+    display: block; /* Ensure visibility */
   }
 
   .cart-quantity {
@@ -704,21 +801,44 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 360px) {
   .cart-icon {
-    width: 20px;
+    width: 20px; /* Smaller for very compact layout */
+    display: block; /* Ensure visibility */
   }
 
   .cart-text {
-    font-size: 8px;
+    font-size: 8px; /* Smaller text */
     margin-top: 2px;
+    display: block; /* Ensure visibility */
   }
 
   .cart-quantity {
     font-size: 8px;
     width: 14px;
-    left: 10px;
-    top: 0;
+    left: 6px;
+    top: 0px;
     min-height: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .cart-icon {
+    width: 18px; /* Very small for ultra-compact layout */
+    display: block; /* Ensure visibility */
+  }
+
+  .cart-text {
+    font-size: 7px; /* Very small text */
+    margin-top: 1px;
+    display: block; /* Ensure cart text is always visible */
+  }
+
+  .cart-quantity {
+    font-size: 7px;
+    width: 12px;
+    left: 6px;
+    top: 0;
+    min-height: 8px;
   }
 }
