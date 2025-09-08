@@ -21,11 +21,6 @@
   z-index: -1;
 }
 
-/* Pause animations when page is hidden to save CPU */
-.dashboard-background.paused .gradient-orb {
-  animation-play-state: paused;
-}
-
 .gradient-orb {
   position: absolute;
   border-radius: 50%;

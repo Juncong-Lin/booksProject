@@ -32,21 +32,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-
-    <!-- Performance optimization script -->
-    <script>
-      // Pause CSS animations when page is hidden to save CPU
-      document.addEventListener("visibilitychange", () => {
-        const background = document.querySelector(".dashboard-background");
-        if (background) {
-          if (document.hidden) {
-            background.classList.add("paused");
-          } else {
-            background.classList.remove("paused");
-          }
-        }
-      });
-    </script>
   </head>
 
   <body class="no-sidebar dashboard-theme">
@@ -77,14 +62,6 @@
               </p>
             </div>
             <div class="header-actions">
-              <button
-                class="action-btn performance-btn"
-                id="toggle-performance"
-                title="Toggle Performance Mode"
-              >
-                <i data-feather="zap"></i>
-                <span>Performance Mode: ON</span>
-              </button>
               <button class="action-btn refresh-btn" id="refresh-data">
                 <i data-feather="refresh-cw"></i>
                 <span>Refresh</span>
@@ -578,31 +555,6 @@
             setTimeout(() => {
               this.classList.remove("spinning");
             }, 1000);
-          });
-        }
-
-        // Add performance mode toggle
-        const performanceBtn = document.getElementById("toggle-performance");
-        if (performanceBtn) {
-          performanceBtn.addEventListener("click", function () {
-            // Get dashboard instance and toggle performance mode
-            if (window.dashboardInstance) {
-              window.dashboardInstance.performanceMode =
-                !window.dashboardInstance.performanceMode;
-              const span = this.querySelector("span");
-              if (window.dashboardInstance.performanceMode) {
-                span.textContent = "Performance Mode: ON";
-                this.style.background = "#10b981";
-                // Stop intervals if switching to performance mode
-                window.dashboardInstance.destroy();
-              } else {
-                span.textContent = "Performance Mode: OFF";
-                this.style.background = "#ef4444";
-                // Start intervals if disabling performance mode
-                window.dashboardInstance.createChartsLazy();
-                window.dashboardInstance.startRealTimeUpdates();
-              }
-            }
           });
         }
 

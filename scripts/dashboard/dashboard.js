@@ -19,15 +19,13 @@ class ProductDiscoveryDashboard {
     this.currentTimePeriod = "24h"; // Track current time period
     this.chartUpdatePending = false; // Throttle chart updates
     this.chartsCreated = false; // Lazy load charts
-    this.performanceMode = true; // Enable performance mode by default
+    this.performanceMode = false; // Disable performance mode by default since button is removed
 
     this.initDashboard();
     // Delay heavy operations to reduce initial CPU spike
     setTimeout(() => {
       this.updateMetrics();
-      if (!this.performanceMode) {
-        this.createChartsLazy();
-      }
+      this.createChartsLazy();
       this.startRealTimeUpdates();
     }, 100);
     this.initEventHandlers();
@@ -907,11 +905,6 @@ class ProductDiscoveryDashboard {
 
   updateAllCharts() {
     try {
-      // Skip chart updates in performance mode
-      if (this.performanceMode) {
-        return;
-      }
-
       // Throttle chart updates to prevent excessive CPU usage
       if (this.chartUpdatePending) {
         return;
@@ -2564,10 +2557,9 @@ class ProductDiscoveryDashboard {
   }
 
   startRealTimeUpdates() {
-    // In performance mode, don't start any intervals
-    if (this.performanceMode) {
-      console.log("Performance mode enabled - real-time updates disabled");
-      return;
+    // Clear any existing intervals first
+    if (this.realTimeUpdateInterval) {
+      clearInterval(this.realTimeUpdateInterval);
     }
 
     // Use much longer intervals to minimize CPU usage
