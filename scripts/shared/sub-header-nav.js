@@ -27,10 +27,8 @@ class SubHeaderNavigation {
         const submenuId = link.getAttribute("data-submenu");
         const linkText = link.textContent.trim();
 
-        // Track header click
-        if (window.analytics) {
-          window.analytics.trackHeaderClick(linkText);
-        }
+        // Remove analytics tracking here to prevent double counting
+        // All analytics tracking is handled by onclick handlers in HTML
 
         // Check if submenu is currently active and hide it if clicked again
         if (submenuId) {
@@ -227,9 +225,10 @@ class SubHeaderNavigation {
     // Add tracking for submenu item clicks
     document.addEventListener("click", (event) => {
       const submenuItem = event.target.closest(".sub-header-submenu a");
-      if (submenuItem && window.analytics) {
+      if (submenuItem) {
+        // Analytics tracking removed - handled by HTML onclick handlers
         const categoryText = submenuItem.textContent.trim();
-        window.analytics.trackHeaderClick(categoryText);
+        console.log(`Submenu item clicked: ${categoryText}`);
       }
     });
     // Handle "See All Departments" link separately
@@ -239,10 +238,8 @@ class SubHeaderNavigation {
         event.preventDefault();
         this.hideAllSubmenus();
 
-        // Track category click
-        if (window.analytics) {
-          window.analytics.trackHeaderClick("Browse All Books");
-        }
+        // Analytics tracking removed - handled by HTML onclick handlers
+        console.log("Browse All Books clicked");
 
         // Check if we're on the index page
         const isIndexPage =

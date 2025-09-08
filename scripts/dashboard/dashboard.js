@@ -22,9 +22,10 @@ class ProductDiscoveryDashboard {
     this.performanceMode = false; // Disable performance mode by default since button is removed
 
     this.initDashboard();
-    // Delay heavy operations to reduce initial CPU spike
+    // Load stored data first, then delay heavy operations to reduce initial CPU spike
+    this.loadStoredData();
     setTimeout(() => {
-      this.updateMetrics();
+      this.updateMetricsFromRealData();
       this.createChartsLazy();
       this.startRealTimeUpdates();
     }, 100);
@@ -63,7 +64,12 @@ class ProductDiscoveryDashboard {
         this.handleDataUpdate(data);
       } catch (error) {
         console.error("Error loading stored data:", error);
+        // Initialize with empty data if parsing fails
+        this.handleDataUpdate({});
       }
+    } else {
+      // No stored data, initialize with empty data
+      this.handleDataUpdate({});
     }
   }
 
@@ -130,38 +136,6 @@ class ProductDiscoveryDashboard {
     this.updateMetricValue("product-clicks", data.productClicks || 0);
     this.updateMetricValue("search-queries", data.searchQueries || 0);
 
-    // Update trend percentages
-    if (!hasData) {
-      // Set all trends to 0% when no data
-      this.updateMetricValue("category-clicks-trend", "0.0%");
-      this.updateMetricValue("product-clicks-trend", "0.0%");
-      this.updateMetricValue("search-queries-trend", "0.0%");
-      this.updateMetricValue("add-to-cart-trend", "0.0%");
-    } else {
-      // Calculate realistic trend percentages based on data
-      const categoryTrend = Math.min(
-        Math.max(data.categoryClicks / 100, 5),
-        25
-      ).toFixed(1);
-      const productTrend = Math.min(
-        Math.max(data.productClicks / 100, 3),
-        20
-      ).toFixed(1);
-      const searchTrend = Math.min(
-        Math.max(data.searchQueries / 50, 8),
-        30
-      ).toFixed(1);
-      const cartTrend = Math.min(
-        Math.max((data.cartAdditions || 0) / 50, 2),
-        15
-      ).toFixed(1);
-
-      this.updateMetricValue("category-clicks-trend", `+${categoryTrend}%`);
-      this.updateMetricValue("product-clicks-trend", `+${productTrend}%`);
-      this.updateMetricValue("search-queries-trend", `+${searchTrend}%`);
-      this.updateMetricValue("add-to-cart-trend", `+${cartTrend}%`);
-    }
-
     // Calculate add to cart rate
     const cartRate =
       data.productClicks > 0
@@ -220,10 +194,32 @@ class ProductDiscoveryDashboard {
     this.updateFunnelBar("funnel-cart-adds-bar", parseFloat(cartPercent));
   }
 
+  getPreviousData() {
+    // Get previous period data for trend calculation
+    // For now, we'll simulate by using a percentage of current data as "previous"
+    // In a real implementation, this would fetch actual historical data
+    const currentData = this.productDiscoveryData || {};
+
+    // For small numbers (like 1), simulate that previous was 0 to show meaningful trends
+    // For larger numbers, use percentage-based previous values
+    const getPreviousValue = (current) => {
+      if (current <= 1) return 0; // Show as new activity
+      if (current <= 5) return Math.max(0, current - 1); // Show recent growth
+      return Math.max(0, Math.floor(current * 0.8)); // Show percentage growth
+    };
+
+    return {
+      categoryClicks: getPreviousValue(currentData.categoryClicks || 0),
+      productClicks: getPreviousValue(currentData.productClicks || 0),
+      searchQueries: getPreviousValue(currentData.searchQueries || 0),
+      cartAdditions: getPreviousValue(currentData.cartAdditions || 0),
+    };
+  }
+
   generateCategoryList(data) {
     if (data && data.categoryPerformance) {
       return Object.entries(data.categoryPerformance)
-        .map(([name, clicks]) => ({ name, clicks, trend: "+15%" }))
+        .map(([name, clicks]) => ({ name, clicks }))
         .sort((a, b) => b.clicks - a.clicks);
     }
 
@@ -240,17 +236,14 @@ class ProductDiscoveryDashboard {
         {
           name: "Fiction",
           clicks: 0,
-          trend: "0%",
         },
         {
           name: "Romance",
           clicks: 0,
-          trend: "0%",
         },
         {
           name: "Mystery",
           clicks: 0,
-          trend: "0%",
         },
       ];
     }
@@ -261,17 +254,14 @@ class ProductDiscoveryDashboard {
       {
         name: "Fiction",
         clicks: Math.round(totalClicks * 0.4),
-        trend: "+18%",
       },
       {
         name: "Romance",
         clicks: Math.round(totalClicks * 0.35),
-        trend: "+12%",
       },
       {
         name: "Mystery",
         clicks: Math.round(totalClicks * 0.25),
-        trend: "+8%",
       },
     ];
   }
@@ -564,87 +554,7 @@ class ProductDiscoveryDashboard {
       this.updateDiscoveryHeatmapChart();
     }
 
-    // Update mini charts as well
-    this.updateMiniCharts();
-  }
-
-  updateMiniCharts() {
-    const data = this.productDiscoveryData;
-    const hasData =
-      data &&
-      (data.categoryClicks > 0 ||
-        data.productClicks > 0 ||
-        data.searchQueries > 0);
-
-    if (!hasData) {
-      // Clear mini chart data
-      this.clearMiniChartsData();
-    } else {
-      // Update mini charts with real trend data
-      this.updateMiniChartsWithRealData(data);
-    }
-  }
-
-  clearMiniChartsData() {
-    const miniChartIds = [
-      "category-clicks-mini-chart",
-      "product-clicks-mini-chart",
-      "search-mini-chart",
-      "cart-rate-mini-chart",
-    ];
-
-    miniChartIds.forEach((chartId) => {
-      const canvas = document.getElementById(chartId);
-      if (canvas && canvas.chart) {
-        canvas.chart.data.datasets[0].data = Array(12).fill(0);
-        canvas.chart.update();
-      }
-    });
-  }
-
-  updateMiniChartsWithRealData(data) {
-    // Update mini charts with realistic data based on current metrics
-    this.updateSingleMiniChart(
-      "category-clicks-mini-chart",
-      data.categoryClicks || 0
-    );
-    this.updateSingleMiniChart(
-      "product-clicks-mini-chart",
-      data.productClicks || 0
-    );
-    this.updateSingleMiniChart("search-mini-chart", data.searchQueries || 0);
-
-    const cartRate =
-      data.productClicks > 0
-        ? ((data.cartAdditions || 0) / data.productClicks) * 100
-        : 0;
-    this.updateSingleMiniChart("cart-rate-mini-chart", cartRate);
-  }
-
-  updateSingleMiniChart(chartId, value) {
-    const canvas = document.getElementById(chartId);
-    if (canvas && canvas.chart) {
-      if (value === 0) {
-        canvas.chart.data.datasets[0].data = Array(12).fill(0);
-      } else {
-        canvas.chart.data.datasets[0].data = this.generateMiniTrendData(value);
-      }
-      canvas.chart.update();
-    }
-  }
-
-  generateMiniTrendData(baseValue) {
-    // Generate 12 data points with realistic variation
-    const data = [];
-    let currentValue = Math.max(1, baseValue * 0.8);
-
-    for (let i = 0; i < 12; i++) {
-      const variation = (Math.random() - 0.5) * baseValue * 0.3;
-      currentValue = Math.max(0, currentValue + variation);
-      data.push(Math.round(currentValue));
-    }
-
-    return data;
+    // Mini charts removed - no longer needed
   }
 
   updateSearchConversionChart() {
@@ -1418,88 +1328,7 @@ class ProductDiscoveryDashboard {
       this.chartsCreated = true;
     }, 200);
 
-    setTimeout(() => {
-      this.createMiniCharts();
-    }, 400);
-  }
-
-  createMiniCharts() {
-    // Create mini sparkline charts for each product discovery metric card
-    this.createMiniChart(
-      "category-clicks-mini-chart",
-      this.generateMiniData(),
-      "#3b82f6"
-    );
-    this.createMiniChart(
-      "product-clicks-mini-chart",
-      this.generateMiniData(),
-      "#10b981"
-    );
-    this.createMiniChart(
-      "search-mini-chart",
-      this.generateMiniData(),
-      "#f59e0b"
-    );
-    this.createMiniChart(
-      "cart-rate-mini-chart",
-      this.generateMiniData(),
-      "#8b5cf6"
-    );
-  }
-
-  createMiniChart(canvasId, data, color) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    const chart = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: Array.from({ length: data.length }, (_, i) => i),
-        datasets: [
-          {
-            data: data,
-            borderColor: color,
-            backgroundColor: color + "20",
-            borderWidth: 2,
-            fill: true,
-            tension: 0.4,
-            pointRadius: 0,
-            pointHoverRadius: 0,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: { enabled: false },
-        },
-        scales: {
-          x: { display: false },
-          y: { display: false },
-        },
-        elements: {
-          line: { borderWidth: 2 },
-        },
-      },
-    });
-
-    // Store chart reference on canvas for later updates
-    canvas.chart = chart;
-  }
-
-  generateMiniData() {
-    // Generate realistic trending data for sparklines
-    const data = [];
-    let value = 50 + Math.random() * 50;
-    for (let i = 0; i < 12; i++) {
-      value += (Math.random() - 0.5) * 20;
-      value = Math.max(10, Math.min(100, value));
-      data.push(Math.round(value));
-    }
-    return data;
+    // Mini charts removed - no longer needed
   }
 
   createEventTypesChart() {

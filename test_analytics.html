@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Analytics Test</title>
+  </head>
+  <body>
+    <h1>Analytics Test Page</h1>
+    <button id="test-fiction" onclick="testFictionClick()">
+      Test Fiction Click
+    </button>
+    <button id="check-data" onclick="checkData()">Check Stored Data</button>
+    <button id="clear-data" onclick="clearData()">Clear Data</button>
+
+    <div
+      id="output"
+      style="margin-top: 20px; padding: 10px; border: 1px solid #ccc"
+    ></div>
+
+    <script type="module" src="scripts/shared/analytics.js"></script>
+    <script src="scripts/shared/url-utils.js"></script>
+    <script src="scripts/shared/shared-subheader-loader.js"></script>
+
+    <script>
+      function testFictionClick() {
+        console.log("Testing fiction click...");
+        if (window.analytics) {
+          window.analytics.trackCategoryClick("Fiction");
+          document.getElementById("output").innerHTML +=
+            "<p>Fiction click tracked!</p>";
+        } else {
+          document.getElementById("output").innerHTML +=
+            "<p>Analytics not available</p>";
+        }
+      }
+
+      function checkData() {
+        const data = localStorage.getItem("product_discovery_data");
+        if (data) {
+          const parsed = JSON.parse(data);
+          document.getElementById("output").innerHTML =
+            "<pre>" + JSON.stringify(parsed, null, 2) + "</pre>";
+        } else {
+          document.getElementById("output").innerHTML =
+            "<p>No data found in localStorage</p>";
+        }
+      }
+
+      function clearData() {
+        localStorage.removeItem("product_discovery_data");
+        document.getElementById("output").innerHTML = "<p>Data cleared!</p>";
+      }
+
+      // Wait for analytics to load
+      setTimeout(() => {
+        if (window.analytics) {
+          document.getElementById("output").innerHTML =
+            "<p>Analytics loaded successfully!</p>";
+        } else {
+          document.getElementById("output").innerHTML =
+            "<p>Analytics failed to load</p>";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
