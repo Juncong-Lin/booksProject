@@ -31,37 +31,8 @@ async function loadSharedSubheader() {
 
 // Global navigation handler functions for the shared subheader
 window.handleNavigationClick = function (hash) {
-  // Track category navigation click for analytics
-  if (hash && window.analytics) {
-    // Extract category name from hash for tracking
-    let categoryName = "";
-    if (hash === "#fiction") categoryName = "Fiction";
-    else if (hash === "#non-fiction") categoryName = "Non-Fiction";
-    else if (hash === "#children-young-adult")
-      categoryName = "Children & Young Adult";
-    else if (hash === "#academic-educational")
-      categoryName = "Academic & Educational";
-    else if (hash === "#arts-culture") categoryName = "Arts & Culture";
-    else if (hash === "#health-self-help") categoryName = "Health & Self-Help";
-    else if (hash === "#religion-spirituality")
-      categoryName = "Religion & Spirituality";
-    else if (hash === "#business-politics")
-      categoryName = "Business & Politics";
-    else if (hash === "#science-technology")
-      categoryName = "Science & Technology";
-    else if (hash === "#biography-history")
-      categoryName = "Biography & History";
-    else if (hash === "#poetry-literature")
-      categoryName = "Poetry & Literature";
-    else if (hash === "#specialty-genres") categoryName = "Specialty Genres";
-
-    if (categoryName) {
-      window.analytics.trackCategoryClick(categoryName);
-    }
-  } else if (!hash && window.analytics) {
-    // Track "Browse All Books" click
-    window.analytics.trackCategoryClick("Browse All Books");
-  }
+  // Analytics tracking is handled by the loadSpecificCategory function
+  // to avoid double counting and provide more detailed tracking
 
   // Check if we're on the index page
   if (UrlUtils.isIndexPage()) {
@@ -69,13 +40,18 @@ window.handleNavigationClick = function (hash) {
     if (hash) {
       window.location.hash = hash;
     } else {
+      // For "Browse All Books", track here since it doesn't go through loadSpecificCategory
+      if (window.analytics) {
+        window.analytics.trackCategoryClick("Browse All Books");
+      }
       // For "Browse All Books", load all books with pagination
       if (window.loadAllBooks && typeof window.loadAllBooks === "function") {
         window.loadAllBooks();
       }
     }
   } else {
-    // We're on a different page - navigate to index with hash
+    // For all other pages (dashboard, analytics, checkout, etc.),
+    // always navigate to index with the category filter for product browsing
     UrlUtils.navigateToIndex(hash || "");
   }
 };
@@ -127,8 +103,8 @@ window.handleCategoryClick = function (categoryName) {
     // For all categories, use the generic loader
     window.loadSpecificCategory(categoryName);
   } else {
-    // We're on a different page - navigate to index and handle the category loading
-    // Default hash conversion for all categories
+    // For all other pages (dashboard, analytics, checkout, etc.),
+    // always navigate to index page with the category filter for product browsing
     const categorySlug = categoryName
       .toLowerCase()
       .replace(/&/g, "")

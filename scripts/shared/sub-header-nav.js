@@ -24,14 +24,20 @@ class SubHeaderNavigation {
         this.hideSubmenuWithDelay();
       }); // Click event for both submenu toggle and navigation
       link.addEventListener("click", (event) => {
-        // CRITICAL FIX: Prevent double tracking by skipping if onclick handler exists
+        // CRITICAL FIX: If onclick handler exists, let it handle everything
         // The onclick handlers in HTML already handle all navigation and analytics
         if (link.hasAttribute("onclick")) {
-          // COMPLETELY prevent this event from doing anything
+          // Prevent the event listener from interfering with onclick handlers
           event.preventDefault();
           event.stopPropagation();
-          event.stopImmediatePropagation();
-          return false;
+
+          // Just handle submenu display if needed
+          const submenuId = link.getAttribute("data-submenu");
+          if (submenuId) {
+            // Show submenu for this link if it has one
+            this.showSubmenu(event.target);
+          }
+          return; // Let onclick handler do the navigation
         }
 
         const submenuId = link.getAttribute("data-submenu");
@@ -50,7 +56,7 @@ class SubHeaderNavigation {
         }
 
         // Check if we're on the index page by looking for product grid or if load functions exist
-        const isIndexPage = window.loadSpecificCategory;
+        const isIndexPage = UrlUtils.isIndexPage();
 
         // Handle navigation based on the category
         let hash = "";
@@ -80,7 +86,7 @@ class SubHeaderNavigation {
           hash = "#specialty-genres";
         }
 
-        if (isIndexPage) {
+        if (isIndexPage && window.loadSpecificCategory) {
           // We're on index page - use existing category loading functions
           if (linkText === "Fiction" && window.loadSpecificCategory) {
             window.loadSpecificCategory("Fiction");
@@ -244,6 +250,14 @@ class SubHeaderNavigation {
     const allProductsLink = document.querySelector(".all-products-link");
     if (allProductsLink) {
       allProductsLink.addEventListener("click", (event) => {
+        // If onclick handler exists, let it handle everything
+        if (allProductsLink.hasAttribute("onclick")) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.hideAllSubmenus();
+          return; // Let onclick handler do the navigation
+        }
+
         event.preventDefault();
         this.hideAllSubmenus();
 
@@ -902,9 +916,28 @@ class SubHeaderNavigation {
     };
 
     const categoryName = categoryMap[hash];
-    if (categoryName && window.loadSpecificCategory) {
-      window.loadSpecificCategory(categoryName);
-      this.setActiveCategory(categoryName);
+    if (categoryName) {
+      // Check if loadSpecificCategory is available
+      if (window.loadSpecificCategory) {
+        window.loadSpecificCategory(categoryName);
+        this.setActiveCategory(categoryName);
+      } else {
+        // If loadSpecificCategory is not yet available, wait for it
+        const waitForLoader = (retries = 0) => {
+          if (window.loadSpecificCategory) {
+            window.loadSpecificCategory(categoryName);
+            this.setActiveCategory(categoryName);
+          } else if (retries < 50) {
+            // Wait up to 5 seconds (50 * 100ms)
+            setTimeout(() => waitForLoader(retries + 1), 100);
+          } else {
+            // Fallback: manually set hash to trigger other handlers
+            console.warn("loadSpecificCategory not available, using fallback");
+            window.location.hash = hash;
+          }
+        };
+        waitForLoader();
+      }
 
       // Expand appropriate sidebar menu
       if (
