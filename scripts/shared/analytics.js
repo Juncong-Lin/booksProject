@@ -1,4 +1,5 @@
 // Simple client-side analytics tracking
+// Simple client-side analytics tracking
 class SimpleAnalytics {
   constructor() {
     this.sessionId = this.generateSessionId();
@@ -346,6 +347,8 @@ class SimpleAnalytics {
       action: "navigation",
     });
     this.updateProductDiscoveryData("categoryClicks", 1);
+    // Also update the specific category performance
+    this.updateCategoryPerformance(categoryName, 1);
   }
 
   trackProductClick(productName, category = null) {

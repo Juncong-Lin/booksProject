@@ -530,15 +530,15 @@ setTimeout(() => {
         categoryBooks = booksProducts[bookCategoryMapping];
       }
 
-      if (categoryBooks.length > 0) {
-        // Track category selection in analytics
-        if (window.analytics) {
-          window.analytics.trackCategoryClick(
-            categoryName,
-            `${categoryBooks.length} products`
-          );
-        }
+      // Track category selection in analytics (regardless of whether books are found)
+      if (window.analytics) {
+        window.analytics.trackCategoryClick(
+          categoryName,
+          `${categoryBooks.length} products`
+        );
+      }
 
+      if (categoryBooks.length > 0) {
         // Load books from the category(ies)
         currentProducts = categoryBooks; // Store current products for pagination
         const paginatedProducts = getPaginatedProducts(

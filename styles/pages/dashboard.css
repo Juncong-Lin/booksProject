@@ -1745,8 +1745,40 @@
 }
 
 /* Make sure empty states work in legend containers */
-#book-categories-legend .empty-state {
+#book-categories-legend .empty-state,
+#book-categories-legend-left .empty-state,
+#book-categories-legend-right .empty-state {
   padding: 1rem;
+}
+
+/* Book Categories Chart - Three Column Layout */
+.chart-card:has(#book-categories-chart) .chart-content-with-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chart-card:has(#book-categories-chart) .chart-legend-left,
+.chart-card:has(#book-categories-chart) .chart-legend-right {
+  flex: 0 0 160px;
+  min-width: 160px;
+}
+
+.chart-card:has(#book-categories-chart) .chart-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 180px;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.chart-card:has(#book-categories-chart) .chart-content canvas {
+  max-width: 160px !important;
+  max-height: 160px !important;
+  width: 160px !important;
+  height: 160px !important;
 }
 
 #top-categories-list .empty-state {

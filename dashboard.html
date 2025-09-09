@@ -219,10 +219,17 @@
               </div>
             </div>
             <div class="chart-content-with-legend">
+              <div
+                class="chart-legend chart-legend-left"
+                id="book-categories-legend-left"
+              ></div>
               <div class="chart-content">
                 <canvas id="book-categories-chart"></canvas>
               </div>
-              <div class="chart-legend" id="book-categories-legend"></div>
+              <div
+                class="chart-legend chart-legend-right"
+                id="book-categories-legend-right"
+              ></div>
             </div>
           </div>
 
@@ -279,7 +286,9 @@
                 </div>
                 <div class="step-metrics">
                   <div class="step-count" id="funnel-homepage">0</div>
-                  <div class="step-percentage">0.0%</div>
+                  <div class="step-percentage" id="funnel-homepage-percent">
+                    0.0%
+                  </div>
                 </div>
               </div>
               <div class="step-bar-container">
