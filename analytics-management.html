@@ -225,9 +225,9 @@
             <i data-feather="refresh-cw"></i>
             Refresh Analytics
           </button>
-          <button class="quick-btn" onclick="simulateProductActivity()">
-            <i data-feather="activity"></i>
-            Simulate Activity
+          <button class="quick-btn" onclick="validateProductData()">
+            <i data-feather="check-circle"></i>
+            Validate Data
           </button>
           <button class="quick-btn" onclick="validateProductData()">
             <i data-feather="check-circle"></i>
@@ -376,6 +376,8 @@
           localStorage.removeItem("product_discovery_data");
           localStorage.removeItem("category_performance_data");
           localStorage.removeItem("search_analytics_data");
+          localStorage.removeItem("analytics_data");
+          localStorage.removeItem("analytics_history");
           addOutput("Product discovery data cleared successfully!", "success");
           addOutput(
             "All category clicks, product views, and search queries have been removed.",
@@ -399,7 +401,7 @@
             cartAdditions: 0,
             homepageVisits: 0,
             dailyDiscoveryActions: [],
-            categoryPerformance: [],
+            categoryPerformance: {},
           };
           syncWithDashboard(emptyData);
         }, 500);

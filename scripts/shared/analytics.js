@@ -176,20 +176,7 @@ class SimpleAnalytics {
       localStorage.getItem("analytics_history") || "[]"
     );
 
-    // If no historical data exists, generate some sample data
-    if (historicalData.length === 0) {
-      this.generateSampleData();
-      // Reload the data after generating samples
-      const newHistoricalData = JSON.parse(
-        localStorage.getItem("analytics_history") || "[]"
-      );
-      return {
-        current: currentData,
-        historical: newHistoricalData,
-        summary: this.generateSummary(newHistoricalData, currentData),
-      };
-    }
-
+    // Return empty data structure when no historical data exists
     return {
       current: currentData,
       historical: historicalData,

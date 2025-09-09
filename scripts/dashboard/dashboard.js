@@ -152,6 +152,10 @@ class ProductDiscoveryDashboard {
 
     // Update funnel with real data
     this.updateHomepageFunnelWithRealData(data);
+
+    // Update category performance metrics
+    const productMetrics = this.generateProductDiscoveryMetrics();
+    this.updateCategoryPerformance(productMetrics);
   }
 
   updateHomepageFunnelWithRealData(data) {
@@ -162,7 +166,7 @@ class ProductDiscoveryDashboard {
         data.productClicks > 0 ||
         data.searchQueries > 0);
 
-    const homepageVisits = hasRealData ? data.homepageVisits || 4000 : 0;
+    const homepageVisits = hasRealData ? data.homepageVisits || 0 : 0;
     const categoryNavigation = data.categoryClicks || 0;
     const productViews = data.productClicks || 0;
     const cartAdditions = data.cartAdditions || 0;
@@ -175,20 +179,26 @@ class ProductDiscoveryDashboard {
     this.updateMetricValue("funnel-products", productViews.toLocaleString());
     this.updateMetricValue("funnel-cart-adds", cartAdditions.toLocaleString());
 
-    // Calculate conversion percentages
-    const categoryPercent = (
-      (categoryNavigation / homepageVisits) *
-      100
-    ).toFixed(1);
-    const productPercent = ((productViews / homepageVisits) * 100).toFixed(1);
-    const cartPercent = ((cartAdditions / homepageVisits) * 100).toFixed(1);
+    // Calculate conversion percentages - handle division by zero
+    const categoryPercent =
+      homepageVisits > 0
+        ? ((categoryNavigation / homepageVisits) * 100).toFixed(1)
+        : "0.0";
+    const productPercent =
+      homepageVisits > 0
+        ? ((productViews / homepageVisits) * 100).toFixed(1)
+        : "0.0";
+    const cartPercent =
+      homepageVisits > 0
+        ? ((cartAdditions / homepageVisits) * 100).toFixed(1)
+        : "0.0";
 
     this.updateMetricValue("funnel-categories-percent", `${categoryPercent}%`);
     this.updateMetricValue("funnel-products-percent", `${productPercent}%`);
     this.updateMetricValue("funnel-cart-adds-percent", `${cartPercent}%`);
 
     // Update visual funnel bars
-    this.updateFunnelBar("funnel-homepage-bar", 100);
+    this.updateFunnelBar("funnel-homepage-bar", homepageVisits > 0 ? 100 : 0);
     this.updateFunnelBar("funnel-categories-bar", parseFloat(categoryPercent));
     this.updateFunnelBar("funnel-products-bar", parseFloat(productPercent));
     this.updateFunnelBar("funnel-cart-adds-bar", parseFloat(cartPercent));
@@ -245,6 +255,14 @@ class ProductDiscoveryDashboard {
           name: "Mystery",
           clicks: 0,
         },
+        {
+          name: "Sci-Fi",
+          clicks: 0,
+        },
+        {
+          name: "Non-Fiction",
+          clicks: 0,
+        },
       ];
     }
 
@@ -261,7 +279,15 @@ class ProductDiscoveryDashboard {
       },
       {
         name: "Mystery",
-        clicks: Math.round(totalClicks * 0.25),
+        clicks: Math.round(totalClicks * 0.15),
+      },
+      {
+        name: "Sci-Fi",
+        clicks: Math.round(totalClicks * 0.07),
+      },
+      {
+        name: "Non-Fiction",
+        clicks: Math.round(totalClicks * 0.03),
       },
     ];
   }
@@ -279,23 +305,25 @@ class ProductDiscoveryDashboard {
     if (!hasData) {
       // Clear chart data when no data exists
       this.clearChartData(this.charts.categoryClicks);
+      this.updateCategoryClicksEmptyState(true);
     } else {
       // Update with real data if available
       this.updateChartWithRealData(this.charts.categoryClicks, data);
+      this.updateCategoryClicksEmptyState(false);
     }
   }
 
   clearChartData(chart) {
-    // Set all data points to 0
-    chart.data.datasets.forEach((dataset) => {
-      dataset.data = dataset.data.map(() => 0);
-    });
+    // Completely clear datasets when no data exists
+    chart.data.datasets = [];
+    chart.data.labels = [];
     chart.update();
   }
 
   updateChartWithRealData(chart, data) {
     // Update chart with real category performance data
-    if (data.categoryPerformance) {
+    if (chart === this.charts.categoryClicks) {
+      // Handle category clicks chart specifically
       const categories = [
         "Fiction",
         "Romance",
@@ -303,38 +331,107 @@ class ProductDiscoveryDashboard {
         "Sci-Fi",
         "Non-Fiction",
       ];
-      chart.data.datasets.forEach((dataset, index) => {
-        const categoryName = categories[index];
-        let categoryValue = 0;
+      const colors = ["#3b82f6", "#ef4444", "#8b5cf6", "#10b981", "#f59e0b"];
 
-        // Use actual category performance data if available
-        if (categoryName === "Sci-Fi") {
-          categoryValue = data.categoryPerformance["Science Fiction"] || 0;
-        } else if (categoryName === "Non-Fiction") {
-          categoryValue = data.categoryPerformance["Young Adult"] || 0;
-        } else {
-          categoryValue = data.categoryPerformance[categoryName] || 0;
-        }
-
-        // Generate unique realistic trend data for each category using current time period
-        dataset.data = this.generateCategorySpecificTrendData(
-          categoryValue,
-          index,
-          this.currentTimePeriod
+      // Recreate datasets if they don't exist (after clearing)
+      if (chart.data.datasets.length === 0) {
+        const timeInfo = this.getTimeInfoForPeriod(this.currentTimePeriod);
+        const labels = this.generateTimeLabels(
+          timeInfo.points,
+          timeInfo.format
         );
-      });
+
+        chart.data.labels = labels;
+        chart.data.datasets = categories.map((category, index) => ({
+          label: category,
+          data: Array(timeInfo.points).fill(0),
+          borderColor: colors[index],
+          backgroundColor: colors[index] + "20",
+          tension: 0.4,
+          fill: false,
+        }));
+      }
+
+      // Update with real data
+      if (data.categoryPerformance) {
+        chart.data.datasets.forEach((dataset, index) => {
+          const categoryName = categories[index];
+          let categoryValue = 0;
+
+          // Use actual category performance data if available
+          if (categoryName === "Sci-Fi") {
+            categoryValue = data.categoryPerformance["Science Fiction"] || 0;
+          } else if (categoryName === "Non-Fiction") {
+            categoryValue = data.categoryPerformance["Young Adult"] || 0;
+          } else {
+            categoryValue = data.categoryPerformance[categoryName] || 0;
+          }
+
+          // Generate unique realistic trend data for each category using current time period
+          dataset.data = this.generateCategorySpecificTrendData(
+            categoryValue,
+            index,
+            this.currentTimePeriod
+          );
+        });
+      } else {
+        // No specific category data, use overall metrics with category-specific patterns
+        chart.data.datasets.forEach((dataset, index) => {
+          const categoryValue =
+            data.categoryClicks / chart.data.datasets.length;
+          dataset.data = this.generateCategorySpecificTrendData(
+            categoryValue,
+            index,
+            this.currentTimePeriod
+          );
+        });
+      }
+      chart.update();
     } else {
-      // No specific category data, use overall metrics with category-specific patterns
-      chart.data.datasets.forEach((dataset, index) => {
-        const categoryValue = data.categoryClicks / chart.data.datasets.length;
-        dataset.data = this.generateCategorySpecificTrendData(
-          categoryValue,
-          index,
-          this.currentTimePeriod
-        );
-      });
+      // Handle other charts (existing logic)
+      const categories = [
+        "Fiction",
+        "Romance",
+        "Mystery",
+        "Sci-Fi",
+        "Non-Fiction",
+      ];
+
+      if (data.categoryPerformance) {
+        chart.data.datasets.forEach((dataset, index) => {
+          const categoryName = categories[index];
+          let categoryValue = 0;
+
+          // Use actual category performance data if available
+          if (categoryName === "Sci-Fi") {
+            categoryValue = data.categoryPerformance["Science Fiction"] || 0;
+          } else if (categoryName === "Non-Fiction") {
+            categoryValue = data.categoryPerformance["Young Adult"] || 0;
+          } else {
+            categoryValue = data.categoryPerformance[categoryName] || 0;
+          }
+
+          // Generate unique realistic trend data for each category using current time period
+          dataset.data = this.generateCategorySpecificTrendData(
+            categoryValue,
+            index,
+            this.currentTimePeriod
+          );
+        });
+      } else {
+        // No specific category data, use overall metrics with category-specific patterns
+        chart.data.datasets.forEach((dataset, index) => {
+          const categoryValue =
+            data.categoryClicks / chart.data.datasets.length;
+          dataset.data = this.generateCategorySpecificTrendData(
+            categoryValue,
+            index,
+            this.currentTimePeriod
+          );
+        });
+      }
+      chart.update();
     }
-    chart.update();
   }
 
   generateRealisticTrendData(totalValue) {
@@ -632,6 +729,11 @@ class ProductDiscoveryDashboard {
       dataset.data = dataset.data.map(() => 0);
     });
     chart.update();
+
+    // Also clear the custom legend
+    if (chart === this.charts.bookCategories) {
+      this.createBookCategoriesLegend([]);
+    }
   }
 
   clearScatterChartData(chart) {
@@ -657,22 +759,40 @@ class ProductDiscoveryDashboard {
   }
 
   updateBookCategoriesWithRealData(chart, data) {
+    // Create updated category data for chart
+    const bookCategories = [
+      { name: "Fiction", sales: 0, color: "#3b82f6" },
+      { name: "Non-Fiction", sales: 0, color: "#10b981" },
+      { name: "Science Fiction", sales: 0, color: "#8b5cf6" },
+      { name: "Romance", sales: 0, color: "#f59e0b" },
+      { name: "Mystery", sales: 0, color: "#ef4444" },
+      { name: "Biography", sales: 0, color: "#06b6d4" },
+    ];
+
     if (data.categoryPerformance) {
-      const categories = Object.keys(data.categoryPerformance);
-      const values = Object.values(data.categoryPerformance);
-      chart.data.datasets[0].data = values;
+      // Use actual category performance data
+      bookCategories.forEach((category) => {
+        if (data.categoryPerformance[category.name]) {
+          category.sales = data.categoryPerformance[category.name];
+        }
+      });
+      chart.data.datasets[0].data = bookCategories.map((cat) => cat.sales);
     } else {
       // Distribute total category clicks among categories
       const totalClicks = data.categoryClicks || 0;
-      chart.data.datasets[0].data = [
-        Math.round(totalClicks * 0.3), // Fiction
-        Math.round(totalClicks * 0.25), // Romance
-        Math.round(totalClicks * 0.2), // Mystery
-        Math.round(totalClicks * 0.15), // Sci-Fi
-        Math.round(totalClicks * 0.1), // Non-Fiction
-      ];
+      bookCategories[0].sales = Math.round(totalClicks * 0.3); // Fiction
+      bookCategories[1].sales = Math.round(totalClicks * 0.25); // Non-Fiction
+      bookCategories[2].sales = Math.round(totalClicks * 0.2); // Science Fiction
+      bookCategories[3].sales = Math.round(totalClicks * 0.15); // Romance
+      bookCategories[4].sales = Math.round(totalClicks * 0.1); // Mystery
+
+      chart.data.datasets[0].data = bookCategories.map((cat) => cat.sales);
     }
+
     chart.update();
+
+    // Update the legend with new data
+    this.createBookCategoriesLegend(bookCategories);
   }
 
   updateDiscoveryHeatmapWithRealData(chart, data) {
@@ -929,12 +1049,8 @@ class ProductDiscoveryDashboard {
       // Calculate homepage visits intelligently based on other metrics
       let homepageVisits = this.productDiscoveryData.homepageVisits || 0;
       if (hasAnyData && homepageVisits === 0) {
-        // Estimate homepage visits based on total interactions
-        const totalInteractions =
-          (this.productDiscoveryData.categoryClicks || 0) +
-          (this.productDiscoveryData.productClicks || 0) +
-          (this.productDiscoveryData.searchQueries || 0);
-        homepageVisits = Math.max(totalInteractions * 2, 1000); // Assume 2x traffic than interactions
+        // Only use actual data - no estimation when data is cleared
+        homepageVisits = 0;
       }
 
       return {
@@ -997,26 +1113,29 @@ class ProductDiscoveryDashboard {
       metrics.cartAdditions.toLocaleString()
     );
 
-    // Calculate conversion percentages
-    const categoryPercent = (
-      (metrics.categoryNavigation / metrics.homepageVisits) *
-      100
-    ).toFixed(1);
-    const productPercent = (
-      (metrics.productViews / metrics.homepageVisits) *
-      100
-    ).toFixed(1);
-    const cartPercent = (
-      (metrics.cartAdditions / metrics.homepageVisits) *
-      100
-    ).toFixed(1);
+    // Calculate conversion percentages - handle division by zero
+    const homepageVisits = metrics.homepageVisits;
+    const categoryPercent =
+      homepageVisits > 0
+        ? ((metrics.categoryNavigation / metrics.homepageVisits) * 100).toFixed(
+            1
+          )
+        : "0.0";
+    const productPercent =
+      homepageVisits > 0
+        ? ((metrics.productViews / metrics.homepageVisits) * 100).toFixed(1)
+        : "0.0";
+    const cartPercent =
+      homepageVisits > 0
+        ? ((metrics.cartAdditions / metrics.homepageVisits) * 100).toFixed(1)
+        : "0.0";
 
     this.updateMetricValue("funnel-categories-percent", `${categoryPercent}%`);
     this.updateMetricValue("funnel-products-percent", `${productPercent}%`);
     this.updateMetricValue("funnel-cart-adds-percent", `${cartPercent}%`);
 
     // Update visual funnel bars
-    this.updateFunnelBar("funnel-homepage-bar", 100);
+    this.updateFunnelBar("funnel-homepage-bar", homepageVisits > 0 ? 100 : 0);
     this.updateFunnelBar("funnel-categories-bar", parseFloat(categoryPercent));
     this.updateFunnelBar("funnel-products-bar", parseFloat(productPercent));
     this.updateFunnelBar("funnel-cart-adds-bar", parseFloat(cartPercent));
@@ -1033,16 +1152,16 @@ class ProductDiscoveryDashboard {
   updateCategoryPerformance(metrics) {
     // Update category-specific performance metrics using real data
     const hasRealData =
-      this.productDiscoveryData &&
-      (this.productDiscoveryData.categoryClicks > 0 ||
-        this.productDiscoveryData.productClicks > 0 ||
-        this.productDiscoveryData.searchQueries > 0);
+      metrics &&
+      (metrics.categoryClicks > 0 ||
+        metrics.productClicks > 0 ||
+        metrics.searchQueries > 0);
 
     if (!hasRealData) {
       // Use zero values when no real data
       this.updateMetricValue("category-product-ctr", "0.0%");
       this.updateMetricValue("search-click-success", "0.0%");
-      this.updateMetricValue("sidebar-header-usage", "0% / 0%");
+      this.updateMetricValue("sidebar-header-usage", "0.0% / 0.0%");
       this.updateMetricValue("avg-time-to-click", "0.0s");
     } else {
       // Calculate real CTR based on actual data
@@ -1098,18 +1217,34 @@ class ProductDiscoveryDashboard {
   updateTopCategoriesList(categories) {
     const container = document.getElementById("top-categories-list");
     if (container) {
-      container.innerHTML = categories
-        .slice(0, 3)
-        .map(
-          (category, index) => `
-        <div class="rank-item">
-          <span class="rank-number">${index + 1}</span>
-          <span class="category-name">${category.name}</span>
-          <span class="click-count">${category.clicks.toLocaleString()} clicks</span>
-        </div>
-      `
-        )
-        .join("");
+      // Check if we have any real data
+      const hasRealData =
+        categories && categories.some((cat) => cat.clicks > 0);
+
+      if (!hasRealData) {
+        // Show empty state when no real data exists
+        container.innerHTML = `
+          <div class="empty-state">
+            <p class="empty-message">No category data available</p>
+            <p class="empty-subtitle">Start browsing categories to see analytics</p>
+          </div>
+        `;
+      } else {
+        // Show actual data
+        container.innerHTML = categories
+          .filter((category) => category.clicks > 0) // Only show categories with clicks
+          .slice(0, 3)
+          .map(
+            (category, index) => `
+          <div class="rank-item">
+            <span class="rank-number">${index + 1}</span>
+            <span class="category-name">${category.name}</span>
+            <span class="click-count">${category.clicks.toLocaleString()} clicks</span>
+          </div>
+        `
+          )
+          .join("");
+      }
     }
   }
 
@@ -2084,10 +2219,22 @@ class ProductDiscoveryDashboard {
     // Calculate total sales for percentages
     const totalSales = categories.reduce((sum, cat) => sum + cat.sales, 0);
 
+    if (totalSales === 0) {
+      // Show empty state when no data
+      legend.innerHTML = `
+        <div class="empty-state">
+          <p class="empty-message">No category data available</p>
+        </div>
+      `;
+      return;
+    }
+
     legend.innerHTML = categories
+      .filter((cat) => cat.sales > 0) // Only show categories with sales
       .slice(0, 6)
       .map((cat) => {
-        const percentage = ((cat.sales / totalSales) * 100).toFixed(1);
+        const percentage =
+          totalSales > 0 ? ((cat.sales / totalSales) * 100).toFixed(1) : "0.0";
         return `
         <div class="legend-item">
           <div class="legend-color" style="background-color: ${cat.color}"></div>
@@ -2110,33 +2257,41 @@ class ProductDiscoveryDashboard {
       this.charts.categoryClicks.destroy();
     }
 
-    // Generate category click data over time based on period
+    // Check if we have any real data
+    const hasRealData =
+      this.productDiscoveryData &&
+      (this.productDiscoveryData.categoryClicks > 0 ||
+        this.productDiscoveryData.productClicks > 0 ||
+        this.productDiscoveryData.searchQueries > 0);
+
+    // Generate time info and labels
     const timeInfo = this.getTimeInfoForPeriod(period);
     const labels = this.generateTimeLabels(timeInfo.points, timeInfo.format);
-    const categories = [
-      "Fiction",
-      "Romance",
-      "Mystery",
-      "Sci-Fi",
-      "Non-Fiction",
-    ];
-    const colors = ["#3b82f6", "#ef4444", "#8b5cf6", "#10b981", "#f59e0b"];
 
-    // Start with zero data, update with real data if available
-    const datasets = categories.map((category, index) => ({
-      label: category,
-      data: Array(timeInfo.points).fill(0), // Start with zeros
-      borderColor: colors[index],
-      backgroundColor: colors[index] + "20",
-      tension: 0.4,
-      fill: false,
-    }));
+    let datasets = [];
 
-    // If we have real data, update the datasets
-    if (
-      this.productDiscoveryData &&
-      this.productDiscoveryData.categoryClicks > 0
-    ) {
+    if (hasRealData) {
+      // Only create datasets if we have real data
+      const categories = [
+        "Fiction",
+        "Romance",
+        "Mystery",
+        "Sci-Fi",
+        "Non-Fiction",
+      ];
+      const colors = ["#3b82f6", "#ef4444", "#8b5cf6", "#10b981", "#f59e0b"];
+
+      // Start with zero data, update with real data if available
+      datasets = categories.map((category, index) => ({
+        label: category,
+        data: Array(timeInfo.points).fill(0), // Start with zeros
+        borderColor: colors[index],
+        backgroundColor: colors[index] + "20",
+        tension: 0.4,
+        fill: false,
+      }));
+
+      // If we have real data, update the datasets
       datasets.forEach((dataset, index) => {
         const categoryName = categories[index];
         let categoryValue = 0;
@@ -2183,6 +2338,7 @@ class ProductDiscoveryDashboard {
           legend: {
             position: "top",
             labels: { color: "#ffffff", usePointStyle: true },
+            display: datasets.length > 0, // Only show legend if we have datasets
           },
           tooltip: {
             backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -2202,6 +2358,35 @@ class ProductDiscoveryDashboard {
         },
       },
     });
+
+    // Add empty state overlay if no data
+    this.updateCategoryClicksEmptyState(!hasRealData);
+  }
+
+  updateCategoryClicksEmptyState(isEmpty) {
+    const chartContainer = document.getElementById(
+      "category-clicks-chart"
+    ).parentElement;
+
+    // Remove existing empty state
+    const existingEmptyState =
+      chartContainer.querySelector(".chart-empty-state");
+    if (existingEmptyState) {
+      existingEmptyState.remove();
+    }
+
+    if (isEmpty) {
+      // Add empty state overlay
+      const emptyStateDiv = document.createElement("div");
+      emptyStateDiv.className = "chart-empty-state";
+      emptyStateDiv.innerHTML = `
+        <div class="empty-state">
+          <p class="empty-message">No category data available</p>
+          <p class="empty-subtitle">Start browsing categories to see click patterns</p>
+        </div>
+      `;
+      chartContainer.appendChild(emptyStateDiv);
+    }
   }
 
   createSearchConversionChart() {

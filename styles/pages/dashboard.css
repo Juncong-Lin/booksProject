@@ -1719,3 +1719,61 @@
     padding: 8px 12px;
   }
 }
+
+/* Empty State Styles */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.empty-message {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+  color: #9ca3af;
+}
+
+.empty-subtitle {
+  font-size: 0.875rem;
+  margin: 0;
+  color: #6b7280;
+}
+
+/* Make sure empty states work in legend containers */
+#book-categories-legend .empty-state {
+  padding: 1rem;
+}
+
+#top-categories-list .empty-state {
+  padding: 1.5rem;
+}
+
+/* Chart Empty State Overlay */
+.chart-content {
+  position: relative; /* Ensure overlay positioning works */
+}
+
+.chart-empty-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.chart-empty-state .empty-state {
+  background: rgba(17, 24, 39, 0.9);
+  border-radius: 8px;
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
