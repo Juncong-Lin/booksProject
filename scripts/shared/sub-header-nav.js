@@ -24,6 +24,16 @@ class SubHeaderNavigation {
         this.hideSubmenuWithDelay();
       }); // Click event for both submenu toggle and navigation
       link.addEventListener("click", (event) => {
+        // CRITICAL FIX: Prevent double tracking by skipping if onclick handler exists
+        // The onclick handlers in HTML already handle all navigation and analytics
+        if (link.hasAttribute("onclick")) {
+          // COMPLETELY prevent this event from doing anything
+          event.preventDefault();
+          event.stopPropagation();
+          event.stopImmediatePropagation();
+          return false;
+        }
+
         const submenuId = link.getAttribute("data-submenu");
         const linkText = link.textContent.trim();
 
@@ -228,7 +238,6 @@ class SubHeaderNavigation {
       if (submenuItem) {
         // Analytics tracking removed - handled by HTML onclick handlers
         const categoryText = submenuItem.textContent.trim();
-        console.log(`Submenu item clicked: ${categoryText}`);
       }
     });
     // Handle "See All Departments" link separately
@@ -239,7 +248,6 @@ class SubHeaderNavigation {
         this.hideAllSubmenus();
 
         // Analytics tracking removed - handled by HTML onclick handlers
-        console.log("Browse All Books clicked");
 
         // Check if we're on the index page
         const isIndexPage =
@@ -936,7 +944,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!hasSharedSubheader) {
     window.subHeaderNav = new SubHeaderNavigation();
 
-    // Handle URL hash navigation on initial page load
+    // Handle URL hash navigation on initial page load for non-shared subheader
     let hash = window.location.hash.substring(1);
 
     // Check if the hash contains parameters to prevent scrolling
@@ -971,7 +979,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Always listen for hash changes while on the page
+  // Always listen for hash changes while on the page (for both shared and non-shared)
   window.addEventListener("hashchange", function () {
     // Check if hash is being updated by category loading to prevent conflicts
     if (window.updatingHashFromCategory) {

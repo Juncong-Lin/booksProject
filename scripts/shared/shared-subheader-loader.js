@@ -443,45 +443,53 @@ window.handleOtherClick = function (otherCategory) {
 function initializeSubHeaderAfterLoad() {
   // Wait a bit to ensure DOM is fully updated
   setTimeout(() => {
-    // Create a new instance of SubHeaderNavigation if the class exists
+    // Always ensure we have a SubHeaderNavigation instance for shared subheader pages
     if (typeof SubHeaderNavigation !== "undefined") {
-      window.subHeaderNav = new SubHeaderNavigation();
-
-      // Fix for Print Spare Parts submenu items clicking issue
-      fixPrintSparePartsSubmenuItems();
-
-      // Handle URL hash navigation on initial page load if there's a hash
-      let hash = window.location.hash.substring(1);
-
-      // Check if the hash contains parameters to prevent scrolling
-      const shouldSkipScroll =
-        window.location.search.includes("noscroll=true") ||
-        hash.includes("noscroll=true");
-
-      // Clean up the hash by removing any parameters
-      if (hash.includes("?")) {
-        hash = hash.split("?")[0];
+      if (!window.subHeaderNav) {
+        window.subHeaderNav = new SubHeaderNavigation();
       }
+    } else {
+      console.error("❌ SubHeaderNavigation class not found");
+    }
 
-      if (hash && window.subHeaderNav.handleHashNavigation) {
-        // If we should skip scrolling, temporarily disable the scroll function
-        if (shouldSkipScroll && window.scrollToProducts) {
-          const originalScrollToProducts = window.scrollToProducts;
-          window.scrollToProducts = function () {
-            /* do nothing */
-          };
+    // Fix for Print Spare Parts submenu items clicking issue
+    fixPrintSparePartsSubmenuItems();
 
-          // Process the hash navigation
-          window.subHeaderNav.handleHashNavigation(hash);
+    // Handle URL hash navigation on initial page load if there's a hash
+    let hash = window.location.hash.substring(1);
 
-          // Restore the original function after a delay
-          setTimeout(() => {
-            window.scrollToProducts = originalScrollToProducts;
-          }, 1000);
-        } else {
-          // Normal hash navigation
-          window.subHeaderNav.handleHashNavigation(hash);
-        }
+    // Check if the hash contains parameters to prevent scrolling
+    const shouldSkipScroll =
+      window.location.search.includes("noscroll=true") ||
+      hash.includes("noscroll=true");
+
+    // Clean up the hash by removing any parameters
+    if (hash.includes("?")) {
+      hash = hash.split("?")[0];
+    }
+
+    if (
+      hash &&
+      window.subHeaderNav &&
+      window.subHeaderNav.handleHashNavigation
+    ) {
+      // If we should skip scrolling, temporarily disable the scroll function
+      if (shouldSkipScroll && window.scrollToProducts) {
+        const originalScrollToProducts = window.scrollToProducts;
+        window.scrollToProducts = function () {
+          /* do nothing */
+        };
+
+        // Process the hash navigation
+        window.subHeaderNav.handleHashNavigation(hash);
+
+        // Restore the original function after a delay
+        setTimeout(() => {
+          window.scrollToProducts = originalScrollToProducts;
+        }, 1000);
+      } else {
+        // Normal hash navigation
+        window.subHeaderNav.handleHashNavigation(hash);
       }
     }
   }, 50); // Small delay to ensure DOM is updated

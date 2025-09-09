@@ -21,6 +21,9 @@ async function loadSharedHeader() {
       // Initialize search functionality after header is loaded
       initializeSearchAfterHeaderLoad();
 
+      // Add analytics tracking for dashboard clicks
+      initializeDashboardAnalytics();
+
       // Dispatch event that header is loaded
       window.dispatchEvent(new CustomEvent("headerLoaded"));
     } else {
@@ -114,6 +117,23 @@ async function initializeCartQuantityAfterHeaderLoad() {
         fallbackError
       );
     }
+  }
+}
+
+// Initialize dashboard analytics tracking
+function initializeDashboardAnalytics() {
+  // Add click tracking for dashboard link without counting as category click
+  const dashboardLink = document.querySelector(".dashboard-link");
+  if (dashboardLink) {
+    dashboardLink.addEventListener("click", () => {
+      // Track as a navigation event, not a category click
+      if (window.analytics) {
+        window.analytics.trackEvent("dashboard_navigation", {
+          action: "navigate_to_dashboard",
+          timestamp: Date.now(),
+        });
+      }
+    });
   }
 }
 

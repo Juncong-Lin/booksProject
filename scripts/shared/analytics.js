@@ -25,6 +25,25 @@ class SimpleAnalytics {
       if (clickTimeout) return; // Skip if already processing a click
 
       clickTimeout = setTimeout(() => {
+        // Skip tracking for dashboard, analytics management, and other navigation links
+        // to prevent them from being counted as category clicks
+        const isDashboardLink =
+          e.target.closest(".dashboard-link") ||
+          e.target.closest('a[href*="dashboard.html"]');
+        const isAnalyticsLink =
+          e.target.closest(".data-management-link") ||
+          e.target.closest('a[href*="analytics-management.html"]');
+        const isCartLink =
+          e.target.closest(".cart-link") ||
+          e.target.closest('a[href*="checkout.html"]');
+        const isHomeLink = e.target.closest('a[href*="index.html"]');
+
+        // Skip tracking these navigation clicks to prevent category click inflation
+        if (isDashboardLink || isAnalyticsLink || isCartLink || isHomeLink) {
+          clickTimeout = null;
+          return;
+        }
+
         this.trackEvent("click", {
           element: e.target.tagName,
           className: e.target.className,
@@ -340,7 +359,6 @@ class SimpleAnalytics {
       action: "navigation",
     });
     this.updateProductDiscoveryData("categoryClicks", 1);
-    console.log(`Tracked category click: ${categoryName}`);
   }
 
   trackProductClick(productName, category = null) {
@@ -353,7 +371,6 @@ class SimpleAnalytics {
     if (category) {
       this.updateCategoryPerformance(category, 1);
     }
-    console.log(`Tracked product click: ${productName}`);
   }
 
   trackSearchQuery(query) {
@@ -362,7 +379,6 @@ class SimpleAnalytics {
       action: "search",
     });
     this.updateProductDiscoveryData("searchQueries", 1);
-    console.log(`Tracked search query: ${query}`);
   }
 
   trackAddToCart(productName, category = null) {
@@ -372,7 +388,6 @@ class SimpleAnalytics {
       action: "add_to_cart",
     });
     this.updateProductDiscoveryData("cartAdditions", 1);
-    console.log(`Tracked add to cart: ${productName}`);
   }
 
   trackSidebarExpand(section) {
@@ -381,7 +396,6 @@ class SimpleAnalytics {
       action: "navigation",
     });
     this.updateProductDiscoveryData("sidebarClicks", 1);
-    console.log(`Tracked sidebar expand: ${section}`);
   }
 
   trackHeaderClick(item) {
@@ -390,7 +404,6 @@ class SimpleAnalytics {
       action: "navigation",
     });
     this.updateProductDiscoveryData("headerClicks", 1);
-    console.log(`Tracked header click: ${item}`);
   }
 
   updateProductDiscoveryData(metric, increment = 1) {
