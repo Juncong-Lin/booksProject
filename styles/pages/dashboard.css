@@ -372,8 +372,8 @@
   grid-template-rows: 1fr 1fr;
   gap: 24px;
   margin-bottom: 40px;
-  min-height: 520px;
-  max-height: 580px;
+  min-height: 720px;
+  max-height: 800px;
 }
 
 .chart-card {
@@ -383,8 +383,8 @@
   border-radius: 16px;
   padding: 20px;
   transition: all 0.3s ease;
-  min-height: 240px;
-  max-height: 270px;
+  min-height: 340px;
+  max-height: 380px;
   display: flex;
   flex-direction: column;
 }
@@ -499,16 +499,16 @@
 .chart-content {
   flex: 1;
   position: relative;
-  min-height: 180px;
-  max-height: 210px;
+  min-height: 280px;
+  max-height: 320px;
 }
 
 .chart-content-with-legend {
   flex: 1;
   display: flex;
   gap: 16px;
-  min-height: 180px;
-  max-height: 210px;
+  min-height: 280px;
+  max-height: 320px;
 }
 
 .chart-content-with-legend .chart-content {
@@ -524,13 +524,13 @@
 
 /* Event Types Chart specific styling for horizontal bar chart */
 .chart-card:has(#event-types-chart) .chart-content {
-  min-height: 180px;
-  max-height: 220px;
+  min-height: 280px;
+  max-height: 320px;
 }
 
 .chart-card:has(#event-types-chart) {
-  min-height: 240px;
-  max-height: 280px;
+  min-height: 340px;
+  max-height: 380px;
 }
 
 .chart-card:has(#event-types-chart) .chart-content-with-legend {
@@ -544,13 +544,13 @@
 
 /* User Activity Timeline Chart - match Event Types chart height */
 .chart-card:has(#activity-timeline-chart) {
-  min-height: 240px;
-  max-height: 280px;
+  min-height: 340px;
+  max-height: 380px;
 }
 
 .chart-card:has(#activity-timeline-chart) .chart-content {
-  min-height: 180px;
-  max-height: 220px;
+  min-height: 280px;
+  max-height: 320px;
 }
 
 /* Funnel Section */
@@ -1077,19 +1077,19 @@
 @media (max-width: 1100px) and (min-width: 901px) {
   .charts-grid {
     gap: 20px;
-    min-height: 480px;
-    max-height: 540px;
+    min-height: 680px;
+    max-height: 760px;
   }
 
   .chart-card {
-    min-height: 220px;
-    max-height: 250px;
+    min-height: 320px;
+    max-height: 360px;
     padding: 18px;
   }
 
   .chart-content {
-    min-height: 160px;
-    max-height: 180px;
+    min-height: 260px;
+    max-height: 300px;
   }
 
   .chart-title h3 {
@@ -1097,23 +1097,23 @@
   }
 
   .chart-card:has(#event-types-chart) {
-    min-height: 240px;
-    max-height: 270px;
+    min-height: 340px;
+    max-height: 380px;
   }
 
   .chart-card:has(#event-types-chart) .chart-content {
-    min-height: 170px;
-    max-height: 200px;
+    min-height: 270px;
+    max-height: 320px;
   }
 
   .chart-card:has(#activity-timeline-chart) {
-    min-height: 220px;
-    max-height: 250px;
+    min-height: 320px;
+    max-height: 360px;
   }
 
   .chart-card:has(#activity-timeline-chart) .chart-content {
-    min-height: 160px;
-    max-height: 180px;
+    min-height: 260px;
+    max-height: 300px;
   }
 }
 
@@ -1127,13 +1127,13 @@
   }
 
   .chart-card {
-    min-height: 300px;
-    max-height: 400px;
+    min-height: 400px;
+    max-height: 500px;
   }
 
   .chart-content {
-    min-height: 200px;
-    max-height: 280px;
+    min-height: 300px;
+    max-height: 380px;
   }
 
   .chart-content-with-legend {
@@ -1157,23 +1157,23 @@
 
   /* Override specific chart heights for tablet */
   .chart-card:has(#event-types-chart) {
-    min-height: 320px;
-    max-height: 420px;
+    min-height: 420px;
+    max-height: 520px;
   }
 
   .chart-card:has(#event-types-chart) .chart-content {
-    min-height: 220px;
-    max-height: 300px;
+    min-height: 320px;
+    max-height: 400px;
   }
 
   .chart-card:has(#activity-timeline-chart) {
-    min-height: 300px;
-    max-height: 380px;
+    min-height: 400px;
+    max-height: 480px;
   }
 
   .chart-card:has(#activity-timeline-chart) .chart-content {
-    min-height: 200px;
-    max-height: 260px;
+    min-height: 300px;
+    max-height: 360px;
   }
 }
 
@@ -1220,14 +1220,14 @@
   }
 
   .chart-card {
-    min-height: 320px;
-    max-height: 400px;
+    min-height: 420px;
+    max-height: 500px;
     padding: 16px;
   }
 
   .chart-content {
-    min-height: 220px;
-    max-height: 280px;
+    min-height: 320px;
+    max-height: 380px;
   }
 
   .chart-header {
@@ -1244,20 +1244,20 @@
 
   /* Event Types Chart mobile adjustments */
   .chart-card:has(#event-types-chart) {
-    min-height: 380px;
-    max-height: 460px;
+    min-height: 480px;
+    max-height: 560px;
   }
 
   .chart-card:has(#event-types-chart) .chart-content {
-    min-height: 240px;
-    max-height: 300px;
+    min-height: 340px;
+    max-height: 400px;
   }
 
   .chart-card:has(#event-types-chart) .chart-content-with-legend {
     flex-direction: column;
     gap: 16px;
-    min-height: 300px;
-    max-height: 380px;
+    min-height: 400px;
+    max-height: 480px;
   }
 
   /* Use default legend styling on mobile - same as Popular Book Categories */
@@ -1286,13 +1286,13 @@
 
   /* Timeline Chart mobile adjustments */
   .chart-card:has(#activity-timeline-chart) {
-    min-height: 320px;
-    max-height: 380px;
+    min-height: 420px;
+    max-height: 480px;
   }
 
   .chart-card:has(#activity-timeline-chart) .chart-content {
-    min-height: 220px;
-    max-height: 260px;
+    min-height: 320px;
+    max-height: 360px;
   }
 
   .time-filter {
@@ -1302,6 +1302,159 @@
   .filter-btn {
     padding: 4px 8px;
     font-size: 11px;
+  }
+
+  /* Book Categories Chart mobile adjustments */
+  .chart-card:has(#book-categories-chart) {
+    min-height: 500px;
+    max-height: 680px;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-content-with-legend {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    min-height: 400px;
+    max-height: 580px;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-content {
+    order: 1;
+    min-height: 200px;
+    max-height: 220px;
+    max-width: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-content canvas {
+    max-width: 200px !important;
+    max-height: 200px !important;
+    width: 200px !important;
+    height: 200px !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-legend-left,
+  .chart-card:has(#book-categories-chart) .chart-legend-right {
+    order: 2;
+    flex: none;
+    min-width: auto;
+    max-width: none;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-legend-left::-webkit-scrollbar,
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-right::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-left::-webkit-scrollbar-track,
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-right::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-left::-webkit-scrollbar-thumb,
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-right::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  /* Ultra thin legend items like Category Click Patterns */
+  .chart-card:has(#book-categories-chart) .legend-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 3px !important;
+    font-size: 9px !important;
+    flex: none !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+    padding: 1px 3px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 8px !important;
+    border: none !important;
+    transition: none !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .legend-item:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: transparent !important;
+    transform: none !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .legend-color {
+    width: 4px !important;
+    height: 4px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .legend-text {
+    font-weight: 500 !important;
+    font-size: 9px !important;
+    color: #e5e7eb !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .legend-label {
+    display: none !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .legend-value {
+    display: none !important;
+  }
+
+  /* Category Click Patterns Chart mobile adjustments */
+  .chart-card:has(#category-clicks-chart) {
+    min-height: 480px;
+    max-height: 560px;
+  }
+
+  .chart-card:has(#category-clicks-chart) .chart-content {
+    min-height: 380px;
+    max-height: 460px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chart-card:has(#category-clicks-chart) canvas {
+    flex: 1;
+    max-height: 380px !important;
+  }
+
+  /* Ensure legend at bottom has proper spacing on mobile */
+  .chart-card:has(#category-clicks-chart) .chart-content {
+    padding-bottom: 8px;
+  }
+
+  /* Optimize legend display for mobile */
+  .chart-card:has(#category-clicks-chart) .chart-content canvas {
+    min-height: 200px;
+  }
+
+  /* Custom styling for Category Click Patterns chart legend dots - make smaller */
+  .chart-card:has(#category-clicks-chart)
+    .chart-legend
+    span[style*="border-radius"] {
+    width: 4px !important;
+    height: 4px !important;
+    min-width: 4px !important;
+    min-height: 4px !important;
   }
 
   .bottom-grid {
@@ -1387,14 +1540,14 @@
   }
 
   .chart-card {
-    min-height: 280px;
-    max-height: 360px;
+    min-height: 380px;
+    max-height: 460px;
     padding: 12px;
   }
 
   .chart-content {
-    min-height: 180px;
-    max-height: 220px;
+    min-height: 280px;
+    max-height: 320px;
   }
 
   .chart-header {
@@ -1412,20 +1565,20 @@
 
   /* Event Types Chart very small screen */
   .chart-card:has(#event-types-chart) {
-    min-height: 380px;
-    max-height: 460px;
+    min-height: 480px;
+    max-height: 560px;
   }
 
   .chart-card:has(#event-types-chart) .chart-content {
-    min-height: 220px;
-    max-height: 280px;
+    min-height: 320px;
+    max-height: 380px;
   }
 
   .chart-card:has(#event-types-chart) .chart-content-with-legend {
     flex-direction: column;
     gap: 12px;
-    min-height: 320px;
-    max-height: 400px;
+    min-height: 420px;
+    max-height: 500px;
   }
 
   /* Use default legend styling on very small screens - same as Popular Book Categories */
@@ -1460,6 +1613,118 @@
 
   .legend-value {
     font-size: 11px;
+  }
+
+  /* Book Categories Chart very small screen */
+  .chart-card:has(#book-categories-chart) {
+    min-height: 450px;
+    max-height: 520px;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-content-with-legend {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    min-height: 350px;
+    max-height: 420px;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-content {
+    order: 1;
+    min-height: 160px;
+    max-height: 180px;
+    max-width: none;
+    width: 100%;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-content canvas {
+    max-width: 160px !important;
+    max-height: 160px !important;
+    width: 160px !important;
+    height: 160px !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-legend-left,
+  .chart-card:has(#book-categories-chart) .chart-legend-right {
+    order: 2;
+    width: 100%;
+    gap: 1px 3px;
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .chart-card:has(#book-categories-chart) .chart-legend-left::-webkit-scrollbar,
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-right::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-left::-webkit-scrollbar-track,
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-right::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-left::-webkit-scrollbar-thumb,
+  .chart-card:has(#book-categories-chart)
+    .chart-legend-right::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  .chart-card:has(#book-categories-chart) .legend-item {
+    font-size: 8px !important;
+    padding: 1px 2px !important;
+    gap: 2px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: none !important;
+    border-radius: 6px !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .legend-color {
+    width: 3px !important;
+    height: 3px !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .legend-text {
+    font-size: 8px !important;
+  }
+
+  .chart-card:has(#book-categories-chart) .legend-label,
+  .chart-card:has(#book-categories-chart) .legend-value {
+    display: none !important;
+  }
+
+  /* Category Click Patterns Chart very small screen */
+  .chart-card:has(#category-clicks-chart) {
+    min-height: 420px;
+    max-height: 500px;
+  }
+
+  .chart-card:has(#category-clicks-chart) .chart-content {
+    min-height: 320px;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chart-card:has(#category-clicks-chart) canvas {
+    flex: 1;
+    max-height: 300px !important;
+  }
+
+  /* Ensure legend at bottom has proper spacing on very small screens */
+  .chart-card:has(#category-clicks-chart) .chart-content {
+    padding-bottom: 6px;
+  }
+
+  /* Optimize legend display for very small mobile */
+  .chart-card:has(#category-clicks-chart) .chart-content canvas {
+    min-height: 160px;
   }
 
   /* Timeline Chart very small screen */
@@ -1751,21 +2016,35 @@
   padding: 1rem;
 }
 
-/* Book Categories Chart - Three Column Layout */
+/* Book Categories Chart - Desktop Layout - Legend Below Chart */
 .chart-card:has(#book-categories-chart) .chart-content-with-legend {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
 }
 
 .chart-card:has(#book-categories-chart) .chart-legend-left,
 .chart-card:has(#book-categories-chart) .chart-legend-right {
-  flex: 0 0 160px;
-  min-width: 160px;
+  order: 2;
+  flex: none;
+  min-width: auto;
+  max-width: none;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
 
 .chart-card:has(#book-categories-chart) .chart-content {
-  flex: 1;
+  order: 1;
+  flex: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1779,6 +2058,44 @@
   max-height: 160px !important;
   width: 160px !important;
   height: 160px !important;
+}
+
+/* Add desktop legend item styling similar to mobile */
+.chart-card:has(#book-categories-chart) .legend-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: 10px !important;
+  flex: none !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  padding: 2px 4px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 10px !important;
+  border: none !important;
+  transition: background 0.2s ease !important;
+}
+
+.chart-card:has(#book-categories-chart) .legend-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.chart-card:has(#book-categories-chart) .legend-color {
+  width: 4px !important;
+  height: 4px !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+}
+
+.chart-card:has(#book-categories-chart) .legend-text {
+  font-weight: 500 !important;
+  font-size: 10px !important;
+  color: #e5e7eb !important;
+}
+
+.chart-card:has(#book-categories-chart) .legend-label,
+.chart-card:has(#book-categories-chart) .legend-value {
+  display: none !important;
 }
 
 #top-categories-list .empty-state {

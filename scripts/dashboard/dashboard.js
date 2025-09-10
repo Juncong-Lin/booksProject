@@ -31,6 +31,7 @@ class ProductDiscoveryDashboard {
     }, 100);
     this.initEventHandlers();
     this.loadCategoryAnalytics();
+    this.initResponsiveHandlers();
   }
 
   initDashboard() {
@@ -769,8 +770,7 @@ class ProductDiscoveryDashboard {
       // Use actual clicked categories
       const sortedCategories = Object.entries(data.categoryPerformance)
         .filter(([name, clicks]) => clicks > 0)
-        .sort(([, a], [, b]) => b - a) // Sort by clicks descending
-        .slice(0, 8); // Limit to top 8 categories for readability
+        .sort(([, a], [, b]) => b - a); // Sort by clicks descending (no limit)
 
       const colors = [
         "#3b82f6",
@@ -781,6 +781,18 @@ class ProductDiscoveryDashboard {
         "#06b6d4",
         "#84cc16",
         "#f97316",
+        "#6366f1",
+        "#14b8a6",
+        "#f43f5e",
+        "#eab308",
+        "#8c6de7",
+        "#f59e0b",
+        "#22c55e",
+        "#ec4899",
+        "#06b6d4",
+        "#a855f7",
+        "#64748b",
+        "#0ea5e9",
       ];
 
       bookCategories = sortedCategories.map(([name, clicks], index) => ({
@@ -1018,6 +1030,47 @@ class ProductDiscoveryDashboard {
         }, 100);
       });
     });
+  }
+
+  initResponsiveHandlers() {
+    // Handle window resize for responsive chart configurations
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        this.updateChartsForResponsive();
+      }, 250); // Debounce resize events
+    });
+  }
+
+  updateChartsForResponsive() {
+    // Update category clicks chart legend position based on screen size
+    if (this.charts.categoryClicks) {
+      const isMobile = window.innerWidth <= 768;
+      const isSmallMobile = window.innerWidth <= 480;
+
+      // Update legend position
+      this.charts.categoryClicks.options.plugins.legend.position = isMobile
+        ? "bottom"
+        : "top";
+
+      // Update legend font size
+      this.charts.categoryClicks.options.plugins.legend.labels.font.size =
+        isSmallMobile ? 10 : 12;
+      this.charts.categoryClicks.options.plugins.legend.labels.padding =
+        isMobile ? 8 : 12;
+      this.charts.categoryClicks.options.plugins.legend.labels.maxWidth =
+        isSmallMobile ? 80 : 120;
+
+      // Update scale font sizes
+      this.charts.categoryClicks.options.scales.x.ticks.font.size =
+        isSmallMobile ? 10 : 12;
+      this.charts.categoryClicks.options.scales.y.ticks.font.size =
+        isSmallMobile ? 10 : 12;
+
+      // Update the chart
+      this.charts.categoryClicks.update("none"); // Use 'none' animation for performance
+    }
   }
 
   updateMetrics() {
@@ -2156,8 +2209,7 @@ class ProductDiscoveryDashboard {
           this.productDiscoveryData.categoryPerformance
         )
           .filter(([name, clicks]) => clicks > 0)
-          .sort(([, a], [, b]) => b - a) // Sort by clicks descending
-          .slice(0, 8); // Limit to top 8 categories for readability
+          .sort(([, a], [, b]) => b - a); // Sort by clicks descending (no limit)
 
         const colors = [
           "#3b82f6",
@@ -2168,6 +2220,18 @@ class ProductDiscoveryDashboard {
           "#06b6d4",
           "#84cc16",
           "#f97316",
+          "#6366f1",
+          "#14b8a6",
+          "#f43f5e",
+          "#eab308",
+          "#8c6de7",
+          "#f59e0b",
+          "#22c55e",
+          "#ec4899",
+          "#06b6d4",
+          "#a855f7",
+          "#64748b",
+          "#0ea5e9",
         ];
 
         bookCategories = sortedCategories.map(([name, clicks], index) => ({
@@ -2281,13 +2345,10 @@ class ProductDiscoveryDashboard {
       return;
     }
 
-    // Filter categories with sales and split into two groups
+    // Filter categories with sales (show ALL categories, no limit)
     const validCategories = categories.filter((cat) => cat.sales > 0);
-    const midPoint = Math.ceil(validCategories.length / 2);
-    const leftCategories = validCategories.slice(0, midPoint);
-    const rightCategories = validCategories.slice(midPoint);
 
-    // Create legend items function
+    // Create compact legend items - show all in one container
     const createLegendItems = (cats) =>
       cats
         .map((cat) => {
@@ -2298,16 +2359,15 @@ class ProductDiscoveryDashboard {
           return `
         <div class="legend-item">
           <div class="legend-color" style="background-color: ${cat.color}"></div>
-          <span class="legend-label">${cat.name}</span>
-          <span class="legend-value">${percentage}%</span>
+          <span class="legend-text">${cat.name} ${percentage}%</span>
         </div>
       `;
         })
         .join("");
 
-    // Populate both legends
-    leftLegend.innerHTML = createLegendItems(leftCategories);
-    rightLegend.innerHTML = createLegendItems(rightCategories);
+    // Show all categories in the left container, clear the right one
+    leftLegend.innerHTML = createLegendItems(validCategories);
+    rightLegend.innerHTML = "";
   }
 
   // New Product Discovery Analytics Charts
@@ -2418,8 +2478,16 @@ class ProductDiscoveryDashboard {
         interaction: { intersect: false },
         plugins: {
           legend: {
-            position: "top",
-            labels: { color: "#ffffff", usePointStyle: true },
+            position: "bottom", // Always position legend below chart
+            labels: {
+              color: "#ffffff",
+              usePointStyle: true,
+              font: {
+                size: window.innerWidth <= 480 ? 8 : 10, // Match Popular Book Categories font size
+              },
+              padding: window.innerWidth <= 768 ? 6 : 8, // Reduce padding to match
+              maxWidth: window.innerWidth <= 480 ? 80 : 100, // Slightly reduce max width
+            },
             display: datasets.length > 0, // Only show legend if we have datasets
           },
           tooltip: {
@@ -2431,11 +2499,21 @@ class ProductDiscoveryDashboard {
         scales: {
           x: {
             grid: { color: "rgba(255, 255, 255, 0.1)" },
-            ticks: { color: "#9ca3af" },
+            ticks: {
+              color: "#9ca3af",
+              font: {
+                size: window.innerWidth <= 480 ? 10 : 12,
+              },
+            },
           },
           y: {
             grid: { color: "rgba(255, 255, 255, 0.1)" },
-            ticks: { color: "#9ca3af" },
+            ticks: {
+              color: "#9ca3af",
+              font: {
+                size: window.innerWidth <= 480 ? 10 : 12,
+              },
+            },
           },
         },
       },
