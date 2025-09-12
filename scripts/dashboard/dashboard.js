@@ -649,7 +649,6 @@ class ProductDiscoveryDashboard {
       this.updateBookCategoriesChart();
     }
 
-    // Update funnel chart instead of heatmap
     this.updateCategoryFunnelChart();
 
     // Mini charts removed - no longer needed
@@ -867,27 +866,6 @@ class ProductDiscoveryDashboard {
 
     // Update the legend with new data
     this.createBookCategoriesLegend(bookCategories);
-  }
-
-  updateDiscoveryHeatmapWithRealData(chart, data) {
-    const totalInteractions =
-      (data.categoryClicks || 0) + (data.productClicks || 0);
-
-    if (totalInteractions === 0) {
-      chart.data.datasets[0].data = [];
-    } else {
-      // Generate realistic heatmap data based on interactions
-      const heatmapData = [];
-      for (let i = 0; i < Math.min(totalInteractions, 50); i++) {
-        heatmapData.push({
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          r: Math.random() * 10 + 5,
-        });
-      }
-      chart.data.datasets[0].data = heatmapData;
-    }
-    chart.update();
   }
 
   initEventHandlers() {
@@ -2874,14 +2852,15 @@ class ProductDiscoveryDashboard {
     // Use real category purchase data if available, otherwise estimate
     const categoryPurchases = this.productDiscoveryData.categoryPurchases || 0;
     const actualPurchases = this.productDiscoveryData.actualPurchases || 0;
+    const searchPurchases = this.productDiscoveryData.searchPurchases || 0;
 
     let purchases;
     if (categoryPurchases > 0) {
       // Use actual category purchase tracking
       purchases = categoryPurchases;
     } else if (actualPurchases > 0) {
-      // If we have total purchases but no source tracking, estimate category portion
-      purchases = Math.floor(actualPurchases * 0.7); // Assume 70% from category funnel
+      // If we have total purchases but no source tracking, subtract search purchases to avoid double counting
+      purchases = Math.max(0, actualPurchases - searchPurchases);
     } else {
       // Fallback: Estimate purchases as percentage of total category cart additions
       purchases = Math.floor(categoryCartAdditions * 0.25); // 25% cart-to-purchase conversion
@@ -3076,22 +3055,6 @@ class ProductDiscoveryDashboard {
       labels.push(time.getHours().toString().padStart(2, "0") + ":00");
     }
     return labels;
-  }
-
-  generateHeatmapData(totalInteractions = 0) {
-    const data = [];
-    if (totalInteractions === 0) {
-      return data; // Return empty array when no interactions
-    }
-
-    const numPoints = Math.min(totalInteractions, 50); // Limit to 50 points max
-    for (let i = 0; i < numPoints; i++) {
-      data.push({
-        x: Math.random() * 100,
-        y: Math.random() * 150,
-      });
-    }
-    return data;
   }
 
   startRealTimeUpdates() {
