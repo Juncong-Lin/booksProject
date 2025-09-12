@@ -1,67 +1,69 @@
-import {cart, cleanInvalidItems} from '../../data/cart.js';
-import {formatCurrency, formatPriceRange} from '../shared/money.js';
-import {getProduct,products} from '../../data/products.js';
-import {booksProducts} from '../../data/books.js';
-import {removeFromCart, updateDeliveryOption} from '../../data/cart.js';
-import {deliveryOptions, getDeliveryOption} from '../../data/deleveryOptions.js';
-
+import { cart, cleanInvalidItems } from "../../data/cart.js";
+import { formatCurrency, formatPriceRange } from "../shared/money.js";
+import { getProduct, products } from "../../data/products.js";
+import { booksProducts } from "../../data/books.js";
+import { removeFromCart, updateDeliveryOption } from "../../data/cart.js";
+import {
+  deliveryOptions,
+  getDeliveryOption,
+} from "../../data/deleveryOptions.js";
 
 export function renderPaymentSummary() {
   // First, clean invalid items from cart
   const allValidProductIds = [];
-  
+
   // Collect all valid product IDs from regular products
-  products.forEach(p => allValidProductIds.push(p.id));
-  
+  products.forEach((p) => allValidProductIds.push(p.id));
+
   // Collect all valid product IDs from books
   for (const category in booksProducts) {
-    booksProducts[category].forEach(p => allValidProductIds.push(p.id));
+    booksProducts[category].forEach((p) => allValidProductIds.push(p.id));
   }
-  
+
   // Clean cart of invalid items
   cleanInvalidItems(allValidProductIds);
-  
+
   // If cart is empty after cleaning, show empty cart message
   if (cart.length === 0) {
-    document.querySelector('.js-payment-summary').style.display = 'none';
-    document.querySelector('.checkout-grid').style.display = 'none';
-    document.querySelector('.js-empty-cart').style.display = 'block';
-    const pageTitleElement = document.querySelector('.page-title');
+    document.querySelector(".js-payment-summary").style.display = "none";
+    document.querySelector(".checkout-grid").style.display = "none";
+    document.querySelector(".js-empty-cart").style.display = "block";
+    const pageTitleElement = document.querySelector(".page-title");
     if (pageTitleElement) {
-      pageTitleElement.style.display = 'none';
+      pageTitleElement.style.display = "none";
     }
     return;
   }
-    let productPriceCents = 0;
+  let productPriceCents = 0;
   let higherProductPriceCents = 0;
   let shippingPriceCents = 0;
 
   cart.forEach((cartItem) => {
     let product;
-    
+
     // First search in regular products
     product = products.find((p) => p.id === cartItem.productId);
-    
+
     // If not found in regular products, search in books
     if (!product) {
       for (const category in booksProducts) {
         const categoryProducts = booksProducts[category];
-        const found = categoryProducts.find(p => p.id === cartItem.productId);
+        const found = categoryProducts.find((p) => p.id === cartItem.productId);
         if (found) {
           product = found;
           break;
         }
       }
     }
-    
+
     // Skip if product not found to avoid errors
     if (!product) {
       console.warn(`Product with ID ${cartItem.productId} not found`);
       return;
     }
-      // Handle different price formats: priceCents (regular) vs lower_price/higher_price (new format)
+    // Handle different price formats: priceCents (regular) vs lower_price/higher_price (new format)
     let lowerPricePerItem, higherPricePerItem;
-    
+
     if (product.priceCents) {
       // Regular products with priceCents
       lowerPricePerItem = higherPricePerItem = product.priceCents;
@@ -76,7 +78,7 @@ export function renderPaymentSummary() {
       console.warn(`No valid price found for product ${cartItem.productId}`);
       return;
     }
-    
+
     productPriceCents += lowerPricePerItem * cartItem.quantity;
     higherProductPriceCents += higherPricePerItem * cartItem.quantity;
 
@@ -98,42 +100,80 @@ export function renderPaymentSummary() {
 
     <div class="payment-summary-row">
       <div>Items (${cart.length}):</div>
-      <div class="payment-summary-money">${productPriceCents === higherProductPriceCents ? 
-        `USD:${formatCurrency(productPriceCents)}` : 
-        `USD:${formatCurrency(productPriceCents)} - ${formatCurrency(higherProductPriceCents)}`}</div>
+      <div class="payment-summary-money">${
+        productPriceCents === higherProductPriceCents
+          ? `USD:${formatCurrency(productPriceCents)}`
+          : `USD:${formatCurrency(productPriceCents)} - ${formatCurrency(
+              higherProductPriceCents
+            )}`
+      }</div>
     </div>
 
     <div class="payment-summary-row">
       <div>Shipping &amp; handling:</div>
-      <div class="payment-summary-money">USD:${formatCurrency(shippingPriceCents)}</div>
+      <div class="payment-summary-money">USD:${formatCurrency(
+        shippingPriceCents
+      )}</div>
     </div>
 
     <div class="payment-summary-row subtotal-row">
       <div>Total before tax:</div>
-      <div class="payment-summary-money">${lowerTotalBeforeTax === higherTotalBeforeTax ? 
-        `USD:${formatCurrency(lowerTotalBeforeTax)}` : 
-        `USD:${formatCurrency(lowerTotalBeforeTax)} - ${formatCurrency(higherTotalBeforeTax)}`}</div>
+      <div class="payment-summary-money">${
+        lowerTotalBeforeTax === higherTotalBeforeTax
+          ? `USD:${formatCurrency(lowerTotalBeforeTax)}`
+          : `USD:${formatCurrency(lowerTotalBeforeTax)} - ${formatCurrency(
+              higherTotalBeforeTax
+            )}`
+      }</div>
     </div>
 
     <div class="payment-summary-row">
       <div>Estimated tax (10%):</div>
-      <div class="payment-summary-money">${lowerTax === higherTax ? 
-        `USD:${formatCurrency(lowerTax)}` : 
-        `USD:${formatCurrency(lowerTax)} - ${formatCurrency(higherTax)}`}</div>
+      <div class="payment-summary-money">${
+        lowerTax === higherTax
+          ? `USD:${formatCurrency(lowerTax)}`
+          : `USD:${formatCurrency(lowerTax)} - ${formatCurrency(higherTax)}`
+      }</div>
     </div>
 
     <div class="payment-summary-row total-row">
       <div>Order total:</div>
-      <div class="payment-summary-money">${lowerTotal === higherTotal ? 
-        `USD:${formatCurrency(lowerTotal)}` : 
-        `USD:${formatCurrency(lowerTotal)} - ${formatCurrency(higherTotal)}`}</div>
+      <div class="payment-summary-money">${
+        lowerTotal === higherTotal
+          ? `USD:${formatCurrency(lowerTotal)}`
+          : `USD:${formatCurrency(lowerTotal)} - ${formatCurrency(higherTotal)}`
+      }</div>
     </div>
 
-    <button class="place-order-button button-primary">
+    <button class="place-order-button button-primary js-place-order">
       Place your order
     </button>
   `;
-  document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
+  document.querySelector(".js-payment-summary").innerHTML = paymentSummaryHTML;
+
+  // Add event listener for the place order button
+  const placeOrderButton = document.querySelector(".js-place-order");
+  if (placeOrderButton) {
+    placeOrderButton.addEventListener("click", () => {
+      // Track the purchase
+      if (window.analytics) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const orderTotal =
+          lowerTotal === higherTotal ? lowerTotal : higherTotal; // Use higher price for tracking
+        window.analytics.trackPurchase(orderTotal, totalItems);
+      }
+
+      // Show success message (simulate order completion)
+      alert("Order placed successfully! Thank you for your purchase.");
+
+      // Clear cart after successful order
+      cart.length = 0;
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      // Redirect to index page
+      window.location.href = "index.html";
+    });
+  }
 }
 
 export function renderOrderSummary() {
@@ -141,32 +181,39 @@ export function renderOrderSummary() {
     <div class="order-summary-title">
       Order Summary
     </div>
-  `;  cart.forEach((cartItem) => {
+  `;
+  cart.forEach((cartItem) => {
     let matchingProduct;
-    
+
     // First search in regular products
-    matchingProduct = products.find((product) => product.id === cartItem.productId);
-    
+    matchingProduct = products.find(
+      (product) => product.id === cartItem.productId
+    );
+
     // If not found in regular products, search in books
     if (!matchingProduct) {
       for (const category in booksProducts) {
         const categoryProducts = booksProducts[category];
-        const found = categoryProducts.find(product => product.id === cartItem.productId);
+        const found = categoryProducts.find(
+          (product) => product.id === cartItem.productId
+        );
         if (found) {
           matchingProduct = found;
           break;
         }
       }
     }
-    
+
     // Skip if product not found to avoid errors
     if (!matchingProduct) {
       console.warn(`Product with ID ${cartItem.productId} not found`);
       return;
     }
-    
+
     paymentSummaryHTML += `
-      <div class="order-summary-item js-cart-item-container-${cartItem.productId}">
+      <div class="order-summary-item js-cart-item-container-${
+        cartItem.productId
+      }">
         <div class="order-summary-product-image-container">
           <img class="order-summary-product-image"
             src="${matchingProduct.image}">
@@ -178,20 +225,26 @@ export function renderOrderSummary() {
             ${(() => {
               if (matchingProduct.getPrice) {
                 return matchingProduct.getPrice();
-              } else if (matchingProduct.lower_price !== undefined || matchingProduct.higher_price !== undefined) {
-                return formatPriceRange(matchingProduct.lower_price, matchingProduct.higher_price);
+              } else if (
+                matchingProduct.lower_price !== undefined ||
+                matchingProduct.higher_price !== undefined
+              ) {
+                return formatPriceRange(
+                  matchingProduct.lower_price,
+                  matchingProduct.higher_price
+                );
               } else if (matchingProduct.priceCents || matchingProduct.price) {
-                return formatCurrency(matchingProduct.priceCents || matchingProduct.price);
+                return formatCurrency(
+                  matchingProduct.priceCents || matchingProduct.price
+                );
               } else {
-                return 'USD: #NA';
+                return "USD: #NA";
               }
             })()}
           </div>
           <div class="product-quantity">
             <span>
-              Quantity: <span class="quantity-label">${
-                cartItem.quantity
-              }</span>
+              Quantity: <span class="quantity-label">${cartItem.quantity}</span>
             </span>
             <span class="update-quantity-link link-primary">
               Update
@@ -205,6 +258,5 @@ export function renderOrderSummary() {
       </div>
     `;
   });
-  document.querySelector('.js-order-summary')
-    .innerHTML = paymentSummaryHTML;
+  document.querySelector(".js-order-summary").innerHTML = paymentSummaryHTML;
 }

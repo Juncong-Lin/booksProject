@@ -621,6 +621,11 @@ class SearchSystem {
           const success = addToCart(productId, quantity);
 
           if (success !== false) {
+            // Track this as a search-to-cart conversion specifically
+            if (window.analytics) {
+              window.analytics.trackAddToCart(productId, "search");
+            }
+
             updateCartQuantity();
 
             // Show the 'Added' message

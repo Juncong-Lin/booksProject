@@ -301,14 +301,15 @@ class ProductDiscoveryDashboard {
     if (!this.charts.categoryClicks) return;
 
     const data = this.productDiscoveryData;
-    const hasData =
+    const hasCategoryData =
       data &&
       (data.categoryClicks > 0 ||
-        data.productClicks > 0 ||
-        data.searchQueries > 0);
+        (data.categoryPerformance &&
+          Object.keys(data.categoryPerformance).length > 0 &&
+          Object.values(data.categoryPerformance).some((val) => val > 0)));
 
-    if (!hasData) {
-      // Clear chart data when no data exists
+    if (!hasCategoryData) {
+      // Clear chart data when no category data exists
       this.clearChartData(this.charts.categoryClicks);
       this.updateCategoryClicksEmptyState(true);
     } else {
@@ -745,10 +746,23 @@ class ProductDiscoveryDashboard {
   }
 
   updateSearchConversionWithRealData(chart, data) {
+    // Force reload latest data from localStorage
+    const stored = localStorage.getItem("product_discovery_data");
+    if (stored) {
+      try {
+        data = JSON.parse(stored);
+      } catch (error) {
+        console.error("Error loading stored data:", error);
+      }
+    }
+
     const searchQueries = data.searchQueries || 0;
-    const clicksFromSearch = Math.round(searchQueries * 0.7); // 70% click rate
-    const addToCart = Math.round(clicksFromSearch * 0.15); // 15% add to cart
-    const purchases = Math.round(addToCart * 0.6); // 60% purchase conversion
+    // Use search-specific cart conversions instead of general cart additions
+    const addToCart = data.searchToCartConversions || 0;
+    // For clicks from search, assume at least as many clicks as searches when items are added
+    const clicksFromSearch = Math.max(searchQueries, addToCart);
+    // Purchases should only show actual completed purchases, not estimates
+    const purchases = data.actualPurchases || 0;
 
     chart.data.datasets[0].data = [
       searchQueries,
@@ -1105,6 +1119,9 @@ class ProductDiscoveryDashboard {
 
       // Update category performance
       this.updateCategoryPerformance(productMetrics);
+
+      // Update all charts with latest data
+      this.updateAllCharts();
 
       // Update last refreshed time
       this.updateLastRefreshTime();
@@ -2381,12 +2398,16 @@ class ProductDiscoveryDashboard {
       this.charts.categoryClicks.destroy();
     }
 
-    // Check if we have any real data
-    const hasRealData =
+    // Check if we have any real CATEGORY data specifically
+    const hasRealCategoryData =
       this.productDiscoveryData &&
       (this.productDiscoveryData.categoryClicks > 0 ||
-        this.productDiscoveryData.productClicks > 0 ||
-        this.productDiscoveryData.searchQueries > 0);
+        (this.productDiscoveryData.categoryPerformance &&
+          Object.keys(this.productDiscoveryData.categoryPerformance).length >
+            0 &&
+          Object.values(this.productDiscoveryData.categoryPerformance).some(
+            (val) => val > 0
+          )));
 
     // Generate time info and labels
     const timeInfo = this.getTimeInfoForPeriod(period);
@@ -2394,7 +2415,7 @@ class ProductDiscoveryDashboard {
 
     let datasets = [];
 
-    if (hasRealData) {
+    if (hasRealCategoryData) {
       // Get categories from actual category performance data or use defaults
       let categories = [];
       let categoryValues = {};
@@ -2417,18 +2438,6 @@ class ProductDiscoveryDashboard {
         categories.forEach((cat) => {
           categoryValues[cat] =
             this.productDiscoveryData.categoryPerformance[cat];
-        });
-      } else {
-        // Fallback to default categories with zero values when no specific performance data
-        categories = [
-          "Fiction",
-          "Romance",
-          "Mystery",
-          "Science Fiction",
-          "Non-Fiction",
-        ];
-        categories.forEach((cat) => {
-          categoryValues[cat] = 0;
         });
       }
 
@@ -2519,8 +2528,8 @@ class ProductDiscoveryDashboard {
       },
     });
 
-    // Add empty state overlay if no data
-    this.updateCategoryClicksEmptyState(!hasRealData);
+    // Add empty state overlay if no category data
+    this.updateCategoryClicksEmptyState(!hasRealCategoryData);
   }
 
   updateCategoryClicksEmptyState(isEmpty) {
@@ -2554,20 +2563,28 @@ class ProductDiscoveryDashboard {
       .getElementById("search-conversion-chart")
       .getContext("2d");
 
+    // Force reload data from localStorage to get latest cart additions
+    this.loadStoredData();
+
     // Start with zero data, update with real data if available
     let searchQueries = 0;
     let clicksFromSearch = 0;
     let addToCart = 0;
     let purchases = 0;
 
+    // Use real data if available
     if (
       this.productDiscoveryData &&
       this.productDiscoveryData.searchQueries > 0
     ) {
       searchQueries = this.productDiscoveryData.searchQueries;
-      clicksFromSearch = Math.round(searchQueries * 0.7); // 70% click rate
-      addToCart = Math.round(clicksFromSearch * 0.15); // 15% add to cart
-      purchases = Math.round(addToCart * 0.6); // 60% purchase conversion
+      // Use actual search-to-cart conversions instead of general cart additions
+      addToCart = this.productDiscoveryData.searchToCartConversions || 0;
+      // For clicks from search, we should assume at least as many clicks as cart additions
+      // since you can't add to cart without clicking. In reality, this should be tracked separately.
+      clicksFromSearch = Math.max(searchQueries, addToCart); // At least as many clicks as searches when items are added
+      // Purchases should only show actual completed purchases, not estimates
+      purchases = this.productDiscoveryData.actualPurchases || 0;
     }
 
     const searchData = {

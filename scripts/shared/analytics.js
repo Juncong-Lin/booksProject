@@ -378,6 +378,11 @@ class SimpleAnalytics {
       action: "add_to_cart",
     });
     this.updateProductDiscoveryData("cartAdditions", 1);
+
+    // If this is from search results, also track search-to-cart conversion
+    if (category === "search") {
+      this.updateProductDiscoveryData("searchToCartConversions", 1);
+    }
   }
 
   trackSidebarExpand(section) {
@@ -386,6 +391,15 @@ class SimpleAnalytics {
       action: "navigation",
     });
     this.updateProductDiscoveryData("sidebarClicks", 1);
+  }
+
+  trackPurchase(orderTotal, itemCount) {
+    this.trackEvent("purchase_completed", {
+      orderTotal: orderTotal,
+      itemCount: itemCount,
+      action: "purchase",
+    });
+    this.updateProductDiscoveryData("actualPurchases", 1);
   }
 
   trackHeaderClick(item) {
@@ -408,6 +422,8 @@ class SimpleAnalytics {
         productClicks: 0,
         searchQueries: 0,
         cartAdditions: 0,
+        searchToCartConversions: 0,
+        actualPurchases: 0,
         homepageVisits: 0,
         sidebarClicks: 0,
         headerClicks: 0,

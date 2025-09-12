@@ -145,11 +145,15 @@ export function addToCart(productId, quantity = 1) {
 
     // Track cart addition for analytics
     if (window.analytics) {
+      // Track generic cart event
       window.analytics.trackEvent("cart_add", {
         productId: productId,
         quantity: quantity,
         cartSize: cart.length,
       });
+
+      // Only track general cart additions for non-search scenarios
+      // Search-specific tracking is handled in search.js
     }
 
     saveToStorage();

@@ -57,8 +57,10 @@ window.handleNavigationClick = function (hash) {
 };
 
 window.handleCategoryClick = function (categoryName) {
-  // Track header click
+  // Track category click for analytics dashboard
   if (window.analytics) {
+    window.analytics.trackCategoryClick(categoryName);
+    // Also track as header click for general navigation metrics
     window.analytics.trackHeaderClick(categoryName);
   }
 
