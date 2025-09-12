@@ -160,7 +160,7 @@ export function renderPaymentSummary() {
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         const orderTotal =
           lowerTotal === higherTotal ? lowerTotal : higherTotal; // Use higher price for tracking
-        window.analytics.trackPurchase(orderTotal, totalItems);
+        window.analytics.trackPurchase(orderTotal, totalItems, cart);
       }
 
       // Show success message (simulate order completion)

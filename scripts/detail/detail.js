@@ -1690,14 +1690,12 @@ document.querySelector(".js-add-to-cart").addEventListener("click", () => {
   if (!productId) return;
   const quantitySelect = document.querySelector(".js-quantity-selector");
   const quantity = Number(quantitySelect.value);
-  addToCart(productId, quantity);
+  addToCart(productId, quantity, "detail");
 
   // Track add to cart analytics
-  const product = [...products, ...booksProducts].find(
-    (p) => p.id === productId
-  );
+  const product = findBookById(productId);
   if (product && window.analytics) {
-    window.analytics.trackAddToCart(product.name, product.category, quantity);
+    window.analytics.trackAddToCart(product.name, product.category, "detail");
   }
 
   updateCartQuantity();

@@ -107,7 +107,7 @@ function showCartError(message) {
   }, 5000);
 }
 
-export function addToCart(productId, quantity = 1) {
+export function addToCart(productId, quantity = 1, source = "unknown") {
   try {
     // Validate inputs
     if (!productId || typeof productId !== "string") {
@@ -140,6 +140,7 @@ export function addToCart(productId, quantity = 1) {
         quantity: quantity,
         deliveryOptionId: "1",
         addedAt: Date.now(),
+        source: source, // Track where this item was added from
       });
     }
 

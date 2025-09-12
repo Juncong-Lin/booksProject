@@ -191,15 +191,20 @@
           >
             <div class="chart-header">
               <div class="chart-title">
-                <h3>Search to Click Conversion</h3>
-                <p>Query optimization and search success rates</p>
+                <h3>Search Conversion Funnel</h3>
+                <p>Track user journey from search query to purchase</p>
+              </div>
+              <div class="chart-controls">
+                <div class="conversion-metric">
+                  <span class="metric-label">Overall Conversion:</span>
+                  <span class="metric-value" id="search-funnel-conversion-rate"
+                    >0.0%</span
+                  >
+                </div>
               </div>
             </div>
-            <div class="chart-content-with-legend">
-              <div class="chart-content">
-                <canvas id="search-conversion-chart"></canvas>
-              </div>
-              <div class="chart-legend" id="search-legend"></div>
+            <div class="chart-content">
+              <canvas id="search-conversion-chart"></canvas>
             </div>
           </div>
 
@@ -239,12 +244,20 @@
           >
             <div class="chart-header">
               <div class="chart-title">
-                <h3>Product Discovery Heatmap</h3>
-                <p>Click positioning and engagement optimization</p>
+                <h3>Category Conversion Funnel</h3>
+                <p>Track user journey from category view to purchase</p>
+              </div>
+              <div class="chart-controls">
+                <div class="conversion-metric">
+                  <span class="metric-label">Overall Conversion:</span>
+                  <span class="metric-value" id="funnel-conversion-rate"
+                    >0.0%</span
+                  >
+                </div>
               </div>
             </div>
             <div class="chart-content">
-              <canvas id="discovery-heatmap-chart"></canvas>
+              <canvas id="category-funnel-chart"></canvas>
             </div>
           </div>
         </div>
