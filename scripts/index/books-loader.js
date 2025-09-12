@@ -151,7 +151,7 @@ window.changePage = function (page) {
 
   // Re-attach event listeners
   attachAddToCartListeners();
-  attachProductClickTracking();
+  attachProductClickTracking("category");
 
   // Enhance product images with fallback handling
   if (window.ImageLoader) {
@@ -275,7 +275,7 @@ window.loadAllBooks = function () {
 
       // Re-attach event listeners
       attachAddToCartListeners();
-      attachProductClickTracking();
+      attachProductClickTracking("category");
 
       // Enhance product images with fallback handling
       if (window.ImageLoader) {
@@ -561,7 +561,7 @@ setTimeout(() => {
 
         // Re-attach event listeners
         attachAddToCartListeners();
-        attachProductClickTracking();
+        attachProductClickTracking("category");
 
         // Enhance product images with fallback handling
         if (window.ImageLoader) {
@@ -807,12 +807,12 @@ function attachAddToCartListeners() {
         }
 
         if (productName) {
-          window.analytics.trackAddToCart(productName, category);
+          window.analytics.trackAddToCart(productName, category, "category");
         }
       }
 
       // Call addToCart with the selected quantity
-      addToCart(productId, quantity);
+      addToCart(productId, quantity, "category");
       updateCartQuantity();
 
       // Show the 'Added' message
@@ -841,7 +841,7 @@ export function findProductById(productId) {
 }
 
 // Function to attach product click tracking
-window.attachProductClickTracking = function () {
+window.attachProductClickTracking = function (context = null) {
   // Track product image and name clicks
   document
     .querySelectorAll(".product-image-link, .product-link")
@@ -864,7 +864,7 @@ window.attachProductClickTracking = function () {
               category = activeNavLink.textContent.trim();
             }
 
-            window.analytics.trackProductClick(productName, category);
+            window.analytics.trackProductClick(productName, category, context);
           }
         }
       });

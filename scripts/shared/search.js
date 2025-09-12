@@ -618,12 +618,12 @@ class SearchSystem {
           const { addToCart } = await import("../../data/cart.js");
           const { updateCartQuantity } = await import("./cart-quantity.js");
 
-          const success = addToCart(productId, quantity);
+          const success = addToCart(productId, quantity, "search");
 
           if (success !== false) {
             // Track this as a search-to-cart conversion specifically
             if (window.analytics) {
-              window.analytics.trackAddToCart(productId, "search");
+              window.analytics.trackAddToCart(productId, "search", "search");
             }
 
             updateCartQuantity();
@@ -843,7 +843,7 @@ class SearchSystem {
           window.attachProductClickTracking &&
           typeof window.attachProductClickTracking === "function"
         ) {
-          window.attachProductClickTracking();
+          window.attachProductClickTracking("search");
         }
 
         // Enhance product images with fallback handling

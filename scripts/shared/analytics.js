@@ -351,13 +351,21 @@ class SimpleAnalytics {
     this.updateCategoryPerformance(categoryName, 1);
   }
 
-  trackProductClick(productName, category = null) {
+  trackProductClick(productName, category = null, context = null) {
     this.trackEvent("product_click", {
       product: productName,
       category: category,
       action: "view_product",
+      context: context,
     });
-    this.updateProductDiscoveryData("productClicks", 1);
+
+    // Track different types of clicks based on context
+    if (context === "search") {
+      this.updateProductDiscoveryData("searchProductClicks", 1);
+    } else {
+      this.updateProductDiscoveryData("productClicks", 1);
+    }
+
     if (category) {
       this.updateCategoryPerformance(category, 1);
     }
@@ -371,13 +379,21 @@ class SimpleAnalytics {
     this.updateProductDiscoveryData("searchQueries", 1);
   }
 
-  trackAddToCart(productName, category = null) {
+  trackAddToCart(productName, category = null, source = "unknown") {
     this.trackEvent("add_to_cart", {
       product: productName,
       category: category,
+      source: source, // Track where the add to cart came from
       action: "add_to_cart",
     });
     this.updateProductDiscoveryData("cartAdditions", 1);
+
+    // Track separate counters for category vs detail page
+    if (source === "category" || source === "index") {
+      this.updateProductDiscoveryData("categoryPageCartAdditions", 1);
+    } else if (source === "detail") {
+      this.updateProductDiscoveryData("detailPageCartAdditions", 1);
+    }
 
     // If this is from search results, also track search-to-cart conversion
     if (category === "search") {
@@ -393,13 +409,39 @@ class SimpleAnalytics {
     this.updateProductDiscoveryData("sidebarClicks", 1);
   }
 
-  trackPurchase(orderTotal, itemCount) {
+  trackPurchase(orderTotal, itemCount, cartItems = []) {
+    console.log("trackPurchase called:", { orderTotal, itemCount, cartItems });
     this.trackEvent("purchase_completed", {
       orderTotal: orderTotal,
       itemCount: itemCount,
       action: "purchase",
     });
     this.updateProductDiscoveryData("actualPurchases", 1);
+
+    // Analyze cart sources to determine purchase attribution
+    let hasCategoryItems = false;
+    let hasSearchItems = false;
+
+    cartItems.forEach((item) => {
+      if (item.source === "category" || item.source === "detail") {
+        hasCategoryItems = true;
+      } else if (item.source === "search") {
+        hasSearchItems = true;
+      }
+    });
+
+    // Attribute purchases based on cart sources
+    // If cart has category/detail items, count as category purchase
+    if (hasCategoryItems) {
+      console.log("Updating categoryPurchases");
+      this.updateProductDiscoveryData("categoryPurchases", 1);
+    }
+
+    // If cart has search items, count as search purchase
+    if (hasSearchItems) {
+      console.log("Updating searchPurchases");
+      this.updateProductDiscoveryData("searchPurchases", 1);
+    }
   }
 
   trackHeaderClick(item) {
@@ -421,9 +463,14 @@ class SimpleAnalytics {
         categoryClicks: 0,
         productClicks: 0,
         searchQueries: 0,
+        searchProductClicks: 0,
         cartAdditions: 0,
+        categoryPageCartAdditions: 0,
+        detailPageCartAdditions: 0,
         searchToCartConversions: 0,
         actualPurchases: 0,
+        categoryPurchases: 0,
+        searchPurchases: 0,
         homepageVisits: 0,
         sidebarClicks: 0,
         headerClicks: 0,
