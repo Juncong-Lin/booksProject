@@ -349,6 +349,9 @@ class SimpleAnalytics {
     this.updateProductDiscoveryData("categoryClicks", 1);
     // Also update the specific category performance
     this.updateCategoryPerformance(categoryName, 1);
+
+    // Clear search flag since user is now browsing categories
+    sessionStorage.removeItem("from_search");
   }
 
   trackProductClick(productName, category = null, context = null) {
@@ -377,6 +380,9 @@ class SimpleAnalytics {
       action: "search",
     });
     this.updateProductDiscoveryData("searchQueries", 1);
+
+    // Set flag to indicate user is now in a search-based journey
+    sessionStorage.setItem("from_search", "true");
   }
 
   trackAddToCart(productName, category = null, source = "unknown") {
@@ -388,17 +394,60 @@ class SimpleAnalytics {
     });
     this.updateProductDiscoveryData("cartAdditions", 1);
 
-    // Track separate counters for category vs detail page
-    if (source === "category" || source === "index") {
-      this.updateProductDiscoveryData("categoryPageCartAdditions", 1);
-    } else if (source === "detail") {
-      this.updateProductDiscoveryData("detailPageCartAdditions", 1);
+    // Determine if this is a search-based or category-based cart addition
+    const isFromSearch = this.isUserFromSearch();
+
+    if (isFromSearch) {
+      // This is a search-based cart addition
+      this.updateProductDiscoveryData("searchToCartConversions", 1);
+
+      if (source === "search") {
+        // Added to cart directly from search results page
+        this.updateProductDiscoveryData("searchPageCartAdditions", 1);
+      } else if (source === "detail") {
+        // Added to cart from detail page after coming from search
+        this.updateProductDiscoveryData("searchDetailPageCartAdditions", 1);
+      }
+    } else {
+      // This is a category-based cart addition
+      if (source === "category" || source === "index") {
+        this.updateProductDiscoveryData("categoryPageCartAdditions", 1);
+      } else if (source === "detail") {
+        this.updateProductDiscoveryData("detailPageCartAdditions", 1);
+      }
+    }
+  }
+
+  isUserFromSearch() {
+    // Check if user recently performed a search by looking at recent events
+    // and URL parameters
+
+    // Check URL for search parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("search") || urlParams.has("q")) {
+      return true;
     }
 
-    // If this is from search results, also track search-to-cart conversion
-    if (category === "search") {
-      this.updateProductDiscoveryData("searchToCartConversions", 1);
+    // Check if user came from search results (referrer check)
+    if (document.referrer && document.referrer.includes("search")) {
+      return true;
     }
+
+    // Check recent events for search activity
+    const recentEvents = this.events.slice(-10); // Check last 10 events
+    const hasRecentSearch = recentEvents.some(
+      (event) =>
+        event.type === "search" ||
+        (event.type === "click" && event.data.source === "search")
+    );
+
+    if (hasRecentSearch) {
+      return true;
+    }
+
+    // Check session storage for search flag
+    const searchFlag = sessionStorage.getItem("from_search");
+    return searchFlag === "true";
   }
 
   trackSidebarExpand(section) {

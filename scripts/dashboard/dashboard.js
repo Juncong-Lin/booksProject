@@ -641,7 +641,7 @@ class ProductDiscoveryDashboard {
       this.updateCategoryClicksChart();
     }
 
-    if (this.charts.searchConversion) {
+    if (this.charts.searchConversionChart) {
       this.updateSearchConversionChart();
     }
 
@@ -700,16 +700,24 @@ class ProductDiscoveryDashboard {
     if (!this.charts.categoryFunnel) return;
 
     const data = this.productDiscoveryData;
-    const hasData =
+
+    // Only check for CATEGORY-related data, not search data
+    const hasCategoryData =
       data &&
       (data.categoryClicks > 0 ||
-        data.productClicks > 0 ||
-        data.searchQueries > 0 ||
-        data.cartAdditions > 0);
+        (data.productClicks > 0 && data.categoryClicks > 0)); // Product clicks only count if there are category clicks
 
-    if (!hasData) {
-      // Clear chart data when no data exists, just like other charts
+    if (!hasCategoryData) {
+      // Clear chart data when no category data exists
       this.clearBarChartData(this.charts.categoryFunnel);
+      // Also update conversion rate to 0 when no data
+      const conversionRateElement = document.getElementById(
+        "funnel-conversion-rate"
+      );
+      if (conversionRateElement) {
+        conversionRateElement.textContent = "0.00%";
+        conversionRateElement.style.color = "#ef4444"; // Red for no data
+      }
     } else {
       // Update with real data
       const funnelData = this.calculateFunnelData();
@@ -725,11 +733,10 @@ class ProductDiscoveryDashboard {
 
       // Update the chart
       this.charts.categoryFunnel.update();
-    }
 
-    // Always update conversion rate display
-    const funnelData = this.calculateFunnelData();
-    this.updateFunnelConversionRate(funnelData);
+      // Update conversion rate display only when there's data
+      this.updateFunnelConversionRate(funnelData);
+    }
   }
 
   clearBarChartData(chart) {
@@ -1000,7 +1007,7 @@ class ProductDiscoveryDashboard {
     }, 30000);
   }
 
-  updateAllCharts() {
+  refreshAllCharts() {
     try {
       // Throttle chart updates to prevent excessive CPU usage
       if (this.chartUpdatePending) {
@@ -1579,6 +1586,11 @@ class ProductDiscoveryDashboard {
     setTimeout(() => {
       this.createCharts();
       this.chartsCreated = true;
+
+      // Update charts with real data after creation
+      setTimeout(() => {
+        this.updateAllCharts();
+      }, 50);
     }, 200);
 
     // Mini charts removed - no longer needed
@@ -2575,12 +2587,7 @@ class ProductDiscoveryDashboard {
       .getElementById("search-conversion-chart")
       .getContext("2d");
 
-    // Force reload data from localStorage to get latest data
-    this.loadStoredData();
-
-    // Calculate search funnel data
-    const funnelData = this.calculateSearchFunnelData();
-
+    // Start with zero data - will be updated by updateSearchConversionChart()
     const searchFunnelData = {
       labels: [
         "Search Query",
@@ -2592,13 +2599,7 @@ class ProductDiscoveryDashboard {
       datasets: [
         {
           label: "Search Conversion Funnel",
-          data: [
-            funnelData["search-query"].count,
-            funnelData["clicks-from-search"].count,
-            funnelData["search-add-to-cart"].count,
-            funnelData["detail-add-to-cart"].count,
-            funnelData["purchase"].count,
-          ],
+          data: [0, 0, 0, 0, 0], // Start with zeros
           backgroundColor: [
             "rgba(59, 130, 246, 0.8)", // Blue for Search Query
             "rgba(16, 185, 129, 0.8)", // Green for Clicks from Search
@@ -2660,8 +2661,7 @@ class ProductDiscoveryDashboard {
       },
     });
 
-    // Update conversion rate display
-    this.updateSearchFunnelConversionRate(funnelData);
+    // Let updateSearchConversionChart() handle the initial data update
   }
 
   createCategoryFunnelChart() {
@@ -2669,9 +2669,7 @@ class ProductDiscoveryDashboard {
       .getElementById("category-funnel-chart")
       .getContext("2d");
 
-    // Calculate funnel data from analytics
-    const funnelData = this.calculateFunnelData();
-
+    // Start with zero data - will be updated by updateCategoryFunnelChart()
     const chartData = {
       labels: [
         "Category View",
@@ -2683,13 +2681,7 @@ class ProductDiscoveryDashboard {
       datasets: [
         {
           label: "Conversion Funnel",
-          data: [
-            funnelData["category-view"].count,
-            funnelData["product-click"].count,
-            funnelData["category-add-to-cart"].count,
-            funnelData["detail-add-to-cart"].count,
-            funnelData["purchase"].count,
-          ],
+          data: [0, 0, 0, 0, 0], // Start with zeros
           backgroundColor: [
             "rgba(59, 130, 246, 0.8)", // Blue for Category View
             "rgba(16, 185, 129, 0.8)", // Green for Product Click
@@ -2754,8 +2746,7 @@ class ProductDiscoveryDashboard {
     // Store reference for tooltip access
     window.dashboard = this;
 
-    // Update overall conversion rate
-    this.updateFunnelConversionRate(funnelData);
+    // Let updateCategoryFunnelChart() handle the initial data update
   }
 
   // OLD FUNNEL STEP FUNCTION - NO LONGER USED
@@ -2816,9 +2807,18 @@ class ProductDiscoveryDashboard {
     const productClicks = this.productDiscoveryData.productClicks || 0;
     const cartAdditions = this.productDiscoveryData.cartAdditions || 0;
     const searchQueries = this.productDiscoveryData.searchQueries || 0;
+    const searchToCartConversions =
+      this.productDiscoveryData.searchToCartConversions || 0;
+
+    // For category funnel, exclude cart additions that came from search
+    const categoryCartAdditions = Math.max(
+      0,
+      cartAdditions - searchToCartConversions
+    );
 
     // Check if all category-related data is zero or empty (exclude search data)
-    const categoryInteractions = categoryViews + productClicks + cartAdditions;
+    const categoryInteractions =
+      categoryViews + productClicks + categoryCartAdditions;
 
     if (categoryInteractions === 0) {
       // Return all zeros when no category data exists
@@ -2844,27 +2844,30 @@ class ProductDiscoveryDashboard {
       categoryPageAddToCart = categoryPageCartAdditions;
       detailPageAddToCart = detailPageCartAdditions;
     } else {
-      // Fallback: Split total cart additions between category page and detail page
+      // Fallback: Split total category cart additions between category page and detail page
       // For small numbers, track realistic user behavior patterns
-      if (cartAdditions === 0) {
+      if (categoryCartAdditions === 0) {
         categoryPageAddToCart = 0;
         detailPageAddToCart = 0;
-      } else if (cartAdditions === 1) {
+      } else if (categoryCartAdditions === 1) {
         // Single cart addition - based on user feedback, showing as category page
         categoryPageAddToCart = 1;
         detailPageAddToCart = 0;
-      } else if (cartAdditions === 2) {
+      } else if (categoryCartAdditions === 2) {
         // 2 cart additions - distribute based on typical user behavior
         categoryPageAddToCart = 1;
         detailPageAddToCart = 1;
-      } else if (cartAdditions <= 5) {
+      } else if (categoryCartAdditions <= 5) {
         // For small numbers (3-5), ensure both get representation
-        categoryPageAddToCart = Math.max(1, Math.floor(cartAdditions * 0.4));
-        detailPageAddToCart = cartAdditions - categoryPageAddToCart;
+        categoryPageAddToCart = Math.max(
+          1,
+          Math.floor(categoryCartAdditions * 0.4)
+        );
+        detailPageAddToCart = categoryCartAdditions - categoryPageAddToCart;
       } else {
         // For larger numbers, use percentage split (60% detail, 40% category)
-        categoryPageAddToCart = Math.floor(cartAdditions * 0.4);
-        detailPageAddToCart = Math.floor(cartAdditions * 0.6);
+        categoryPageAddToCart = Math.floor(categoryCartAdditions * 0.4);
+        detailPageAddToCart = Math.floor(categoryCartAdditions * 0.6);
       }
     }
 
@@ -2880,8 +2883,8 @@ class ProductDiscoveryDashboard {
       // If we have total purchases but no source tracking, estimate category portion
       purchases = Math.floor(actualPurchases * 0.7); // Assume 70% from category funnel
     } else {
-      // Fallback: Estimate purchases as percentage of total cart additions
-      purchases = Math.floor(cartAdditions * 0.25); // 25% cart-to-purchase conversion
+      // Fallback: Estimate purchases as percentage of total category cart additions
+      purchases = Math.floor(categoryCartAdditions * 0.25); // 25% cart-to-purchase conversion
     }
 
     // Calculate realistic base views from actual category interactions only
@@ -2958,11 +2961,36 @@ class ProductDiscoveryDashboard {
     // Use actual clicks from search instead of estimation
     const clicksFromSearch = searchProductClicks;
 
-    // For search funnel, we need to split cart additions between search page and detail page
-    // Assume 60% from search page, 40% from detail page after search
-    const searchPageAddToCart = Math.floor(searchToCartConversions * 0.6);
-    const detailPageAddToCartFromSearch =
-      searchToCartConversions - searchPageAddToCart;
+    // For search funnel, use separate tracking if available, otherwise estimate
+    let searchPageAddToCart, detailPageAddToCartFromSearch;
+
+    // Check if we have separate tracking for search page vs detail page cart additions
+    const searchPageCartAdditions =
+      this.productDiscoveryData.searchPageCartAdditions || 0;
+    const searchDetailPageCartAdditions =
+      this.productDiscoveryData.searchDetailPageCartAdditions || 0;
+
+    if (searchPageCartAdditions > 0 || searchDetailPageCartAdditions > 0) {
+      // Use actual tracking data when available
+      searchPageAddToCart = searchPageCartAdditions;
+      detailPageAddToCartFromSearch = searchDetailPageCartAdditions;
+    } else if (searchToCartConversions === 0) {
+      searchPageAddToCart = 0;
+      detailPageAddToCartFromSearch = 0;
+    } else if (searchToCartConversions === 1) {
+      // Single cart addition from search - assume detail page since most users click through
+      searchPageAddToCart = 0;
+      detailPageAddToCartFromSearch = 1;
+    } else if (searchToCartConversions === 2) {
+      // 2 cart additions - 1 search page, 1 detail page
+      searchPageAddToCart = 1;
+      detailPageAddToCartFromSearch = 1;
+    } else {
+      // For larger numbers, use percentage split (40% search page, 60% detail page)
+      searchPageAddToCart = Math.floor(searchToCartConversions * 0.4);
+      detailPageAddToCartFromSearch =
+        searchToCartConversions - searchPageAddToCart;
+    }
 
     // Use actual search purchases
     const purchases = searchPurchases;
