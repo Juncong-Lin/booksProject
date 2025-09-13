@@ -29,10 +29,8 @@ const authenticate = async (req, res, next) => {
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      // Get user from database (excluding password)
-      const user = await User.findById(decoded.id).select(
-        "-password -refreshTokens"
-      );
+      // Get user from database (password already excluded by default)
+      const user = await User.findById(decoded.id);
 
       if (!user) {
         return res.status(401).json({

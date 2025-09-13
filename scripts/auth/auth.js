@@ -5,7 +5,7 @@ class AuthService {
     this.baseURL = "http://localhost:5000/api/v1";
     this.currentUser = null;
     this.authToken = null;
-    this.init();
+    this.initPromise = this.init();
   }
 
   async init() {
@@ -66,7 +66,7 @@ class AuthService {
 
       if (response.success) {
         this.currentUser = response.data.user;
-        this.authToken = response.data.token;
+        this.authToken = response.data.accessToken; // Changed from token to accessToken
 
         // Store token in localStorage for persistence
         if (this.authToken) {
@@ -91,7 +91,7 @@ class AuthService {
 
       if (response.success) {
         this.currentUser = response.data.user;
-        this.authToken = response.data.token;
+        this.authToken = response.data.accessToken; // Changed from token to accessToken
 
         // Store token in localStorage for persistence
         if (this.authToken) {
@@ -202,7 +202,7 @@ class AuthService {
 
   // Update header authentication state
   updateHeader() {
-    const authContainer = document.querySelector(".qili-header-right-section");
+    const authContainer = document.querySelector("#auth-section");
 
     if (!authContainer) return;
 
@@ -331,7 +331,10 @@ class AuthService {
   }
 
   // Redirect to login if not authenticated
-  requireAuth() {
+  async requireAuth() {
+    // Wait for initialization to complete
+    await this.initPromise;
+
     if (!this.isAuthenticated()) {
       window.location.href = "signin.html";
       return false;
@@ -340,7 +343,10 @@ class AuthService {
   }
 
   // Redirect to home if already authenticated
-  requireGuest() {
+  async requireGuest() {
+    // Wait for initialization to complete
+    await this.initPromise;
+
     if (this.isAuthenticated()) {
       window.location.href = "index.html";
       return false;

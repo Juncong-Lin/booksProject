@@ -24,6 +24,9 @@ async function loadSharedHeader() {
       // Add analytics tracking for dashboard clicks
       initializeDashboardAnalytics();
 
+      // Initialize authentication UI
+      initializeAuthenticationAfterHeaderLoad();
+
       // Dispatch event that header is loaded
       window.dispatchEvent(new CustomEvent("headerLoaded"));
     } else {
@@ -133,6 +136,24 @@ function initializeDashboardAnalytics() {
           timestamp: Date.now(),
         });
       }
+    });
+  }
+}
+
+// Initialize authentication after header loads
+function initializeAuthenticationAfterHeaderLoad() {
+  // Wait for auth service to be available
+  if (window.authService) {
+    // Update authentication UI
+    window.authService.updateUI();
+  } else {
+    // If auth service isn't loaded yet, wait for it
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        if (window.authService) {
+          window.authService.updateUI();
+        }
+      }, 100);
     });
   }
 }

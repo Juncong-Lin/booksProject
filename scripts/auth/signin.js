@@ -1,8 +1,8 @@
 // Sign in page functionality
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // Redirect if already authenticated
-  if (authService.requireGuest() === false) return;
+  if ((await authService.requireGuest()) === false) return;
 
   const signinForm = document.getElementById("signin-form");
   const emailInput = document.getElementById("email");
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const returnUrl = new URLSearchParams(window.location.search).get(
               "returnUrl"
             );
-            window.location.href = returnUrl || "index.html";
+            window.location.href = returnUrl || "profile.html";
           }, 1500);
         }
       } catch (error) {

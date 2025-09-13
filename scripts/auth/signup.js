@@ -1,8 +1,8 @@
 // Sign up page functionality
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // Redirect if already authenticated
-  if (authService.requireGuest() === false) return;
+  if ((await authService.requireGuest()) === false) return;
 
   const signupForm = document.getElementById("signup-form");
   const nameInput = document.getElementById("name");
@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Redirect after short delay
           setTimeout(() => {
-            window.location.href = "index.html";
+            window.location.href = "profile.html";
           }, 2000);
         }
       } catch (error) {

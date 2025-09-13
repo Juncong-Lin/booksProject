@@ -1,97 +1,127 @@
 const express = require("express");
 const { optionalAuth } = require("../middleware/auth");
 const { asyncHandler } = require("../middleware/errorHandler");
+const Book = require("../models/Book");
 
 const router = express.Router();
-
-// Mock book data (will be replaced with database integration)
-const mockBooks = [
-  {
-    id: "1",
-    title: "The Great Gatsby",
-    author: "F. Scott Fitzgerald",
-    price: 12.99,
-    category: "Fiction",
-    description: "A classic American novel",
-    image: "images/placeholder-book.svg",
-    stock: 25,
-    rating: 4.5,
-    reviews: 128,
-  },
-  {
-    id: "2",
-    title: "To Kill a Mockingbird",
-    author: "Harper Lee",
-    price: 14.99,
-    category: "Fiction",
-    description: "A gripping tale of racial injustice",
-    image: "images/placeholder-book.svg",
-    stock: 18,
-    rating: 4.8,
-    reviews: 203,
-  },
-  {
-    id: "3",
-    title: "1984",
-    author: "George Orwell",
-    price: 13.99,
-    category: "Dystopian Fiction",
-    description: "A dystopian social science fiction novel",
-    image: "images/placeholder-book.svg",
-    stock: 32,
-    rating: 4.7,
-    reviews: 156,
-  },
-];
 
 // @desc    Get all books
 // @route   GET /api/v1/books
 // @access  Public
 const getAllBooks = asyncHandler(async (req, res) => {
-  const { category, search, page = 1, limit = 10 } = req.query;
+  const {
+    category,
+    search,
+    author,
+    minPrice,
+    maxPrice,
+    minRating,
+    page = 1,
+    limit = 20,
+    sortBy = "createdAt",
+    sortOrder = "desc",
+  } = req.query;
 
-  let filteredBooks = [...mockBooks];
+  // Build query
+  let query = { isActive: true };
 
-  // Filter by category
+  // Category filter (case-insensitive partial match)
   if (category) {
-    filteredBooks = filteredBooks.filter((book) =>
-      book.category.toLowerCase().includes(category.toLowerCase())
+    query.category = new RegExp(
+      category.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+      "i"
     );
   }
 
-  // Search by title or author
-  if (search) {
-    filteredBooks = filteredBooks.filter(
-      (book) =>
-        book.title.toLowerCase().includes(search.toLowerCase()) ||
-        book.author.toLowerCase().includes(search.toLowerCase())
+  // Author filter
+  if (author) {
+    query.author = new RegExp(
+      author.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+      "i"
     );
+  }
+
+  // Price range filters (prices stored in cents)
+  if (minPrice !== undefined) {
+    query.lower_price = { $gte: parseFloat(minPrice) * 100 };
+  }
+  if (maxPrice !== undefined) {
+    query.higher_price = { $lte: parseFloat(maxPrice) * 100 };
+  }
+
+  // Rating filter
+  if (minRating !== undefined) {
+    query.star = { $gte: parseFloat(minRating) };
+  }
+
+  // Text search across name, author, description
+  if (search) {
+    query.$text = { $search: search };
   }
 
   // Pagination
-  const startIndex = (page - 1) * limit;
-  const endIndex = startIndex + parseInt(limit);
-  const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
+  const pageNum = parseInt(page);
+  const limitNum = parseInt(limit);
+  const skip = (pageNum - 1) * limitNum;
 
-  res.status(200).json({
-    success: true,
-    data: {
-      books: paginatedBooks,
-      pagination: {
-        current: parseInt(page),
-        total: Math.ceil(filteredBooks.length / limit),
-        count: paginatedBooks.length,
-        totalBooks: filteredBooks.length,
+  // Sort order
+  const sortObj = {};
+  sortObj[sortBy] = sortOrder === "asc" ? 1 : -1;
+
+  try {
+    // Execute query with aggregation for better performance
+    const [books, totalCount] = await Promise.all([
+      Book.find(query).sort(sortObj).skip(skip).limit(limitNum).lean(), // Use lean for better performance
+      Book.countDocuments(query),
+    ]);
+
+    // Transform books to match frontend expectations
+    const transformedBooks = books.map((book) => ({
+      id: book.id,
+      name: book.name,
+      author: book.author,
+      category: book.category,
+      image: book.image,
+      star: book.star,
+      lower_price: book.lower_price,
+      higher_price: book.higher_price,
+      description: book.description,
+      stock: book.stock,
+      reviews: book.reviews || 0,
+      isActive: book.isActive,
+      createdAt: book.createdAt,
+    }));
+
+    res.status(200).json({
+      success: true,
+      data: {
+        books: transformedBooks,
+        pagination: {
+          current: pageNum,
+          total: Math.ceil(totalCount / limitNum),
+          count: transformedBooks.length,
+          totalBooks: totalCount,
+          limit: limitNum,
+          hasNext: pageNum * limitNum < totalCount,
+          hasPrev: pageNum > 1,
+        },
       },
-    },
-  });
+    });
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching books",
+      error: process.env.NODE_ENV === "development" ? error.message : undefined,
+    });
+  }
 });
 
 // @desc    Get single book
 // @route   GET /api/v1/books/:id
 // @access  Public
 const getBook = asyncHandler(async (req, res) => {
-  const book = mockBooks.find((book) => book.id === req.params.id);
+  const book = await Book.findOne({ id: req.params.id, isActive: true }).lean();
 
   if (!book) {
     return res.status(404).json({
@@ -100,16 +130,108 @@ const getBook = asyncHandler(async (req, res) => {
     });
   }
 
+  // Transform book to match frontend expectations
+  const transformedBook = {
+    id: book.id,
+    name: book.name,
+    author: book.author,
+    category: book.category,
+    image: book.image,
+    star: book.star,
+    lower_price: book.lower_price,
+    higher_price: book.higher_price,
+    description: book.description,
+    stock: book.stock,
+    reviews: book.reviews || 0,
+    isActive: book.isActive,
+    isbn: book.isbn,
+    publisher: book.publisher,
+    pages: book.pages,
+    language: book.language,
+    publishedDate: book.publishedDate,
+    tags: book.tags,
+    createdAt: book.createdAt,
+  };
+
   res.status(200).json({
     success: true,
     data: {
-      book,
+      book: transformedBook,
+    },
+  });
+});
+
+// @desc    Get book categories
+// @route   GET /api/v1/books/categories
+// @access  Public
+const getCategories = asyncHandler(async (req, res) => {
+  const categories = await Book.getCategories();
+
+  res.status(200).json({
+    success: true,
+    data: {
+      categories: categories.sort(),
+      count: categories.length,
+    },
+  });
+});
+
+// @desc    Search books with advanced filters
+// @route   POST /api/v1/books/search
+// @access  Public
+const searchBooks = asyncHandler(async (req, res) => {
+  const {
+    query: searchQuery,
+    filters = {},
+    page = 1,
+    limit = 20,
+    sort = { createdAt: -1 },
+  } = req.body;
+
+  const books = await Book.searchBooks(searchQuery, {
+    ...filters,
+    page: parseInt(page),
+    limit: parseInt(limit),
+    sortBy: Object.keys(sort)[0] || "createdAt",
+    sortOrder: Object.values(sort)[0] || -1,
+  });
+
+  const totalCount = await Book.countDocuments({
+    $text: { $search: searchQuery },
+    isActive: true,
+    ...filters,
+  });
+
+  res.status(200).json({
+    success: true,
+    data: {
+      books: books.map((book) => ({
+        id: book.id,
+        name: book.name,
+        author: book.author,
+        category: book.category,
+        image: book.image,
+        star: book.star,
+        lower_price: book.lower_price,
+        higher_price: book.higher_price,
+        description: book.description,
+        stock: book.stock,
+        reviews: book.reviews || 0,
+      })),
+      pagination: {
+        current: parseInt(page),
+        total: Math.ceil(totalCount / parseInt(limit)),
+        count: books.length,
+        totalBooks: totalCount,
+      },
     },
   });
 });
 
 // Routes
 router.get("/", optionalAuth, getAllBooks);
+router.get("/categories", optionalAuth, getCategories);
 router.get("/:id", optionalAuth, getBook);
+router.post("/search", optionalAuth, searchBooks);
 
 module.exports = router;

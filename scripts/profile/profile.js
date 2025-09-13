@@ -1,8 +1,8 @@
 // Profile page functionality
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // Require authentication
-  if (!authService.requireAuth()) return;
+  if (!(await authService.requireAuth())) return;
 
   // Initialize profile page
   initializeProfile();
