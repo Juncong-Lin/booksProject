@@ -142,20 +142,39 @@ function initializeDashboardAnalytics() {
 
 // Initialize authentication after header loads
 function initializeAuthenticationAfterHeaderLoad() {
-  // Wait for auth service to be available
-  if (window.authService) {
-    // Update authentication UI
-    window.authService.updateUI();
-  } else {
-    // If auth service isn't loaded yet, wait for it
-    document.addEventListener("DOMContentLoaded", () => {
-      setTimeout(() => {
-        if (window.authService) {
-          window.authService.updateUI();
-        }
-      }, 100);
-    });
-  }
+  // Function to update auth UI
+  const updateAuthUI = () => {
+    if (
+      window.authService &&
+      typeof window.authService.updateUI === "function"
+    ) {
+      window.authService.updateUI();
+    }
+  };
+
+  // Try immediate update
+  updateAuthUI();
+
+  // Also set up a more robust check with retries
+  let retryCount = 0;
+  const maxRetries = 10;
+  const checkAuthService = () => {
+    if (
+      window.authService &&
+      typeof window.authService.updateUI === "function"
+    ) {
+      window.authService.updateUI();
+    } else if (retryCount < maxRetries) {
+      retryCount++;
+      setTimeout(checkAuthService, 100 * retryCount); // Progressive delay
+    }
+  };
+
+  // Start checking after a short delay
+  setTimeout(checkAuthService, 50);
+
+  // Also listen for the auth service to be ready
+  window.addEventListener("authServiceReady", updateAuthUI);
 }
 
 // Load the shared header when the DOM is loaded

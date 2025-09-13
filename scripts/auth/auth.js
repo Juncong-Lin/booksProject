@@ -15,6 +15,9 @@ class AuthService {
     // Check if user is already authenticated
     await this.checkAuthStatus();
     this.updateUI();
+
+    // Dispatch ready event
+    window.dispatchEvent(new CustomEvent("authServiceReady"));
   }
 
   // API call helper
