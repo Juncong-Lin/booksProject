@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/UserAdapter");
 const { asyncHandler } = require("../middleware/errorHandler");
 const jwt = require("jsonwebtoken");
 
@@ -50,8 +50,8 @@ const signup = asyncHandler(async (req, res) => {
   });
 
   // Generate tokens
-  const accessToken = user.generateAccessToken();
-  const refreshToken = user.generateRefreshToken();
+  const accessToken = user.getSignedJwtToken();
+  const refreshToken = user.getSignedRefreshToken();
 
   // Save refresh token to user
   await user.addRefreshToken(refreshToken);
@@ -80,7 +80,7 @@ const signin = asyncHandler(async (req, res) => {
   const { email, password, rememberMe = false } = req.body;
 
   // Find user and include password for comparison
-  const user = await User.findByEmail(email).select("+password");
+  const user = await User.findByEmailWithPassword(email);
   if (!user) {
     return res.status(401).json({
       success: false,
@@ -89,7 +89,7 @@ const signin = asyncHandler(async (req, res) => {
   }
 
   // Check password
-  const isPasswordMatch = await user.comparePassword(password);
+  const isPasswordMatch = await user.matchPassword(password);
   if (!isPasswordMatch) {
     return res.status(401).json({
       success: false,
@@ -98,8 +98,8 @@ const signin = asyncHandler(async (req, res) => {
   }
 
   // Generate tokens
-  const accessToken = user.generateAccessToken();
-  const refreshToken = user.generateRefreshToken();
+  const accessToken = user.getSignedJwtToken();
+  const refreshToken = user.getSignedRefreshToken();
 
   // Save refresh token to user
   await user.addRefreshToken(refreshToken);
@@ -141,8 +141,8 @@ const refreshToken = asyncHandler(async (req, res) => {
   const user = req.user;
 
   // Generate new tokens
-  const newAccessToken = user.generateAccessToken();
-  const newRefreshToken = user.generateRefreshToken();
+  const newAccessToken = user.getSignedJwtToken();
+  const newRefreshToken = user.getSignedRefreshToken();
 
   // Remove old refresh token and add new one
   await user.removeRefreshToken(oldRefreshToken);

@@ -4,10 +4,14 @@ class AuthService {
   constructor() {
     this.baseURL = "http://localhost:5000/api/v1";
     this.currentUser = null;
+    this.authToken = null;
     this.init();
   }
 
   async init() {
+    // Load stored token
+    this.authToken = localStorage.getItem("authToken");
+
     // Check if user is already authenticated
     await this.checkAuthStatus();
     this.updateUI();
@@ -23,7 +27,17 @@ class AuthService {
       credentials: "include", // Include cookies
     };
 
+    // Add Authorization header if we have a token
+    if (this.authToken) {
+      defaultOptions.headers.Authorization = `Bearer ${this.authToken}`;
+    }
+
     const config = { ...defaultOptions, ...options };
+
+    // Merge headers properly
+    if (options.headers) {
+      config.headers = { ...defaultOptions.headers, ...options.headers };
+    }
 
     try {
       const response = await fetch(url, config);
@@ -52,6 +66,13 @@ class AuthService {
 
       if (response.success) {
         this.currentUser = response.data.user;
+        this.authToken = response.data.token;
+
+        // Store token in localStorage for persistence
+        if (this.authToken) {
+          localStorage.setItem("authToken", this.authToken);
+        }
+
         this.updateUI();
         return response;
       }
@@ -70,6 +91,13 @@ class AuthService {
 
       if (response.success) {
         this.currentUser = response.data.user;
+        this.authToken = response.data.token;
+
+        // Store token in localStorage for persistence
+        if (this.authToken) {
+          localStorage.setItem("authToken", this.authToken);
+        }
+
         this.updateUI();
         return response;
       }
@@ -87,8 +115,10 @@ class AuthService {
     } catch (error) {
       console.error("Logout error:", error);
     } finally {
-      // Clear user data regardless of API response
+      // Clear user data and token regardless of API response
       this.currentUser = null;
+      this.authToken = null;
+      localStorage.removeItem("authToken");
       this.updateUI();
     }
   }

@@ -1,4 +1,5 @@
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -92,6 +93,14 @@ app.get("/health", (req, res) => {
   });
 });
 
+// Serve API tester (for development)
+app.get("/test", (req, res) => {
+  res.sendFile(__dirname + "/api-tester.html");
+});
+
+// Serve frontend files (for development)
+app.use(express.static(path.join(__dirname, "..")));
+
 // API routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
@@ -113,18 +122,30 @@ app.use(errorHandler);
 // Graceful shutdown
 process.on("SIGTERM", () => {
   console.log("SIGTERM received, shutting down gracefully");
-  mongoose.connection.close(() => {
-    console.log("MongoDB connection closed");
-    process.exit(0);
-  });
+  mongoose.connection
+    .close()
+    .then(() => {
+      console.log("MongoDB connection closed");
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.log("Error closing MongoDB connection:", err.message);
+      process.exit(1);
+    });
 });
 
 process.on("SIGINT", () => {
   console.log("SIGINT received, shutting down gracefully");
-  mongoose.connection.close(() => {
-    console.log("MongoDB connection closed");
-    process.exit(0);
-  });
+  mongoose.connection
+    .close()
+    .then(() => {
+      console.log("MongoDB connection closed");
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.log("Error closing MongoDB connection:", err.message);
+      process.exit(1);
+    });
 });
 
 // Start server
