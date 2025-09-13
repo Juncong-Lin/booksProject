@@ -1,10 +1,11 @@
 .qili-header {
   background-color: #232f3e;
   color: white;
-  padding: 0 15px;
-  display: flex;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* Equal outer sections, larger middle for search */
   align-items: center;
-  justify-content: space-between;
+  gap: 20px; /* Add gap between sections for visual separation */
   position: fixed;
   top: 0;
   left: 0;
@@ -41,12 +42,19 @@
 }
 
 .qili-header-left-section {
-  width: 150px; /* Increased from 120px for better balance */
-  min-width: 100px;
-  margin-right: 10px; /* Restored margin */
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  justify-content: flex-start;
+  gap: 12px; /* Comfortable gap between dashboard and data management buttons */
+  padding: 8px 12px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Subtle background to group elements */
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-link {
@@ -62,76 +70,10 @@
   border: 1px solid white;
 }
 
-/* Desktop Logo Styles */
-.book-logo {
-  margin-top: 5px;
-  width: 50px; /* Appropriate size for the new book logo */
-  height: auto;
-  display: block;
-}
-
-/* Mobile Logo Styles */
-.book-mobile-logo {
-  display: none;
-  width: 40px;
-  height: auto;
-}
-
-/* Logo Display Toggle */
-@media (max-width: 575px) {
-  .book-logo {
-    display: none;
-  }
-
-  .book-mobile-logo {
-    display: block;
-    width: 35px;
-    height: auto;
-    margin-top: 5px;
-  }
-}
-
-/* Mobile Responsive Adjustments */
-@media (max-width: 480px) {
-  .book-mobile-logo {
-    width: 28px;
-    margin-top: 1px;
-  }
-
-  .header-link {
-    padding: 2px;
-  }
-}
-
-@media (max-width: 360px) {
-  .book-mobile-logo {
-    width: 24px;
-    margin-top: 1px;
-  }
-
-  .header-link {
-    padding: 1px;
-  }
-}
-
-@media (max-width: 320px) {
-  .book-mobile-logo {
-    width: 20px;
-    margin-top: 0;
-  }
-
-  .header-link {
-    padding: 1px;
-  }
-}
-
 .qili-header-middle-section {
-  flex: 1;
-  max-width: 500px; /* Reduced from 600px for better desktop balance */
-  min-width: 250px; /* Ensure minimum usable width */
   display: flex;
   align-items: center;
-  margin: 0 15px; /* Restore reasonable margins for desktop */
+  justify-content: center;
   position: relative; /* Ensure this is the positioning context for the dropdown */
   overflow: visible; /* Ensure dropdown can overflow the container */
   z-index: 10001; /* Higher than sub-header to create proper stacking context */
@@ -141,170 +83,123 @@
 @media (max-width: 768px) {
   .qili-header {
     display: grid;
-    grid-template-columns: auto 1fr auto; /* Auto-size side columns based on content */
+    grid-template-columns: 1fr 2fr 1fr; /* Maintain 3-group balance on tablet */
     align-items: center;
-    gap: 8px; /* Increased gap for better spacing */
-    padding: 0 8px; /* Increased padding */
+    gap: 12px; /* Comfortable gap for tablet */
+    padding: 0 12px;
   }
 
   .qili-header-left-section {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0; /* Remove margin for grid layout */
-    width: auto; /* Let it size based on content */
-  }
-
-  .qili-header-middle-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0; /* Remove margin for grid layout */
-    min-width: 0; /* Allow shrinking */
-    max-width: 300px; /* Constrain maximum width on mobile */
+    padding: 6px 8px; /* Reduced padding for tablet */
+    gap: 8px;
   }
 
   .qili-header-right-section {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: auto; /* Let it size based on content */
+    padding: 6px 8px; /* Reduced padding for tablet */
+    gap: 8px;
   }
 }
 
 @media (max-width: 480px) {
   .qili-header {
-    padding: 0 5px;
-    gap: 4px; /* Reduced gap to save space */
-    grid-template-columns: 80px 1fr 120px; /* Balanced left and right sections for better centering */
+    padding: 0 8px;
+    gap: 8px; /* Comfortable gap for mobile */
+    grid-template-columns: 1fr 2fr 1fr; /* Maintain 3-group balance on mobile */
   }
 
   .qili-header-left-section {
-    width: 80px;
-    min-width: 80px;
-  }
-
-  .qili-header-middle-section {
-    max-width: none; /* Remove constraint to use available space */
-    justify-content: center; /* Ensure search is centered */
+    padding: 4px 6px; /* Reduced padding for mobile */
+    gap: 6px;
   }
 
   .qili-header-right-section {
-    width: 140px; /* Increased to accommodate dashboard, cart, and auth */
-    min-width: 140px;
+    padding: 4px 6px; /* Reduced padding for mobile */
+    gap: 6px;
   }
 }
 
 @media (max-width: 360px) {
   .qili-header {
+    padding: 0 6px;
+    gap: 6px; /* Tight gap for very small screens */
+    grid-template-columns: 1fr 2fr 1fr; /* Maintain 3-group balance */
+  }
+
+  .qili-header-left-section {
+    padding: 3px 4px; /* Minimal padding for tiny screens */
+    gap: 4px;
+  }
+
+  .qili-header-right-section {
+    padding: 3px 4px; /* Minimal padding for tiny screens */
+    gap: 4px;
+  }
+}
+
+@media (max-width: 320px) {
+  .qili-header {
     padding: 0 4px;
-    gap: 3px; /* Reduced gap to save space */
-    grid-template-columns: 70px 1fr 100px; /* More balanced left and right sections */
+    gap: 4px; /* Ultra-tight gap for smallest screens */
+    grid-template-columns: 1fr 2fr 1fr; /* Maintain 3-group balance */
   }
 
   .qili-header-left-section {
-    width: 70px;
-    min-width: 70px;
-  }
-
-  .qili-header-middle-section {
-    justify-content: center; /* Ensure search is centered */
+    padding: 2px 3px; /* Ultra-minimal padding */
+    gap: 3px;
   }
 
   .qili-header-right-section {
-    width: 120px; /* Increased to accommodate dashboard, cart, and auth */
-    min-width: 120px;
+    padding: 2px 3px; /* Ultra-minimal padding */
+    gap: 3px;
   }
 }
 
-@media (max-width: 320px) {
-  .qili-header {
-    padding: 0 3px;
-    height: 55px;
-    gap: 2px; /* Minimal gap to save space */
-    grid-template-columns: 60px 1fr 80px; /* More balanced sections for better centering */
-  }
-
-  .qili-header-left-section {
-    width: 60px;
-    min-width: 60px;
-  }
-
-  .qili-header-middle-section {
-    justify-content: center; /* Ensure search is centered */
-  }
-
-  .qili-header-right-section {
-    width: 100px; /* Increased to accommodate dashboard, cart, and auth icons */
-    min-width: 100px;
-  }
-
-  /* Hide orders link on ultra-small screens for more space */
-  .qili-header-right-section .orders-link {
-    display: none;
-  }
-}
-
-/* Mobile-specific positioning fixes */
-@media (max-width: 768px) {
-  /* Removed body padding-top as it conflicts with .main margin-top */
-}
-
-@media (max-width: 320px) {
-  .qili-header {
-    height: 55px !important; /* Reduced height for ultra-small screens */
-  }
-
-  /* Removed body padding-top as it conflicts with .main margin-top */
-}
-
+/* Search bar styles */
 .search-bar {
-  flex: 1;
-  width: 100%; /* Force full width */
+  width: 150px; /* Half the previous width for more compact design */
+  max-width: 100%;
   height: 40px;
   padding: 0 15px;
   border: none;
   border-radius: 4px 0 0 4px;
   font-size: 16px;
   transition: all 0.2s ease;
-  min-width: 0; /* Allow shrinking below content size */
-  max-width: none; /* Remove any max-width constraints */
 }
 
 @media (max-width: 768px) {
   .search-bar {
+    width: 120px; /* Half the previous width for tablet */
     height: 36px;
-    padding: 0 8px; /* Reduced padding */
+    padding: 0 10px;
     font-size: 14px;
-    max-width: 250px; /* Constrain width on mobile */
   }
 }
 
 @media (max-width: 480px) {
   .search-bar {
+    width: 100px; /* Compact width for mobile */
     height: 32px;
-    padding: 0 6px; /* Reduced padding */
+    padding: 0 8px;
     font-size: 13px;
-    max-width: 160px; /* Increased slightly for better balance */
   }
 }
 
 @media (max-width: 360px) {
   .search-bar {
+    width: 80px; /* Very compact width for small screens */
     padding: 0 4px; /* Minimal padding */
     font-size: 12px;
     height: 28px; /* Smaller height for very small screens */
-    max-width: 120px; /* Increased for better balance */
   }
 }
 
 @media (max-width: 320px) {
   /* Mobile search bar sizing to match container constraints */
   .search-bar {
+    width: 70px; /* Ultra-compact width for tiny screens */
     height: 26px;
     padding: 0 3px;
     font-size: 11px;
-    max-width: 100px; /* Increased for better balance */
   }
 }
 
@@ -571,37 +466,59 @@
 }
 
 .qili-header-right-section {
-  width: 200px; /* Increased width to accommodate better spacing */
-  flex-shrink: 0;
   display: flex;
-  justify-content: end;
-  gap: 20px; /* Increased gap for better separation between all elements */
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px; /* Comfortable spacing between cart and auth icons */
+  padding: 8px 12px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Subtle background to group elements */
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hide the orders link since it's empty and just taking space */
+.orders-link {
+  display: none;
 }
 
 /* Mobile right section optimizations */
 @media (max-width: 768px) {
   .qili-header-right-section {
-    gap: 6px; /* Reduced gap for mobile */
+    gap: 4px; /* Tighter spacing for mobile to keep cart close to auth icons */
   }
 }
 
 @media (max-width: 480px) {
   .qili-header-right-section {
-    gap: 2px; /* Minimal gap for tight space */
-    justify-content: space-between; /* Better distribution */
+    gap: 3px; /* Even tighter spacing on smaller screens */
   }
 }
 
 @media (max-width: 360px) {
   .qili-header-right-section {
-    gap: 1px; /* Minimal gap */
+    gap: 2px; /* Minimal gap for ultra-compact layout */
+  }
+}
+
+@media (max-width: 320px) {
+  .qili-header-right-section {
+    gap: 2px; /* Maintain minimal gap */
+  }
+}
+
+@media (max-width: 360px) {
+  .qili-header-right-section {
     justify-content: space-between; /* Distribute evenly */
   }
 }
 
 @media (max-width: 320px) {
   .qili-header-right-section {
-    gap: 1px; /* Minimal gap for ultra-small screens */
     justify-content: space-between; /* Distribute icons evenly */
   }
 }
@@ -611,6 +528,15 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.dashboard-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .dashboard-text {
@@ -627,31 +553,52 @@
 
 @media (max-width: 480px) {
   .dashboard-text {
-    font-size: 9px; /* Even smaller for small phones */
+    display: none; /* Hide text on small screens to save space */
+  }
+
+  .dashboard-link {
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+  }
+
+  .dashboard-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  /* Add a dashboard icon for small screens */
+  .dashboard-link::after {
+    content: "📊";
+    font-size: 16px;
+    display: block;
   }
 }
 
 @media (max-width: 360px) {
-  .dashboard-text {
-    font-size: 8px; /* Very small for compact screens */
+  .dashboard-link {
+    width: 28px;
+    height: 28px;
+  }
+
+  .dashboard-link::after {
+    font-size: 14px;
   }
 }
 
 @media (max-width: 320px) {
-  .dashboard-text {
-    display: none; /* Hide text on ultra-small screens */
-  }
-
   .dashboard-link {
-    min-width: 30px;
-    justify-content: center;
+    width: 24px;
+    height: 24px;
   }
 
-  /* Add a dashboard icon for ultra-small screens */
   .dashboard-link::after {
-    content: "📊";
-    font-size: 14px;
-    display: block;
+    font-size: 12px;
   }
 }
 
@@ -660,6 +607,15 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.data-management-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .data-management-text {
@@ -676,31 +632,52 @@
 
 @media (max-width: 480px) {
   .data-management-text {
-    font-size: 9px; /* Same as dashboard */
+    display: none; /* Hide text on small screens to save space */
+  }
+
+  .data-management-link {
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+  }
+
+  .data-management-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  /* Add a data management icon for small screens */
+  .data-management-link::after {
+    content: "⚙️";
+    font-size: 16px;
+    display: block;
   }
 }
 
 @media (max-width: 360px) {
-  .data-management-text {
-    font-size: 8px; /* Same as dashboard */
+  .data-management-link {
+    width: 28px;
+    height: 28px;
+  }
+
+  .data-management-link::after {
+    font-size: 14px;
   }
 }
 
 @media (max-width: 320px) {
-  .data-management-text {
-    display: none; /* Hide text like dashboard */
-  }
-
   .data-management-link {
-    min-width: 30px;
-    justify-content: center;
+    width: 24px;
+    height: 24px;
   }
 
-  /* Add a data management icon for ultra-small screens */
   .data-management-link::after {
-    content: "📊";
-    font-size: 14px;
-    display: block;
+    font-size: 12px;
   }
 }
 
@@ -723,18 +700,41 @@
   color: white;
   display: flex;
   align-items: center;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  border: 1px solid transparent;
   position: relative;
 }
 
-.cart-icon {
-  width: 50px;
-  display: block; /* Ensure cart icon is always visible */
+.cart-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.cart-text {
-  margin-top: 12px;
-  font-size: 15px;
-  font-weight: 700;
+.cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.cart-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.cart-button i {
+  width: 18px;
+  height: 18px;
+  color: white;
 }
 
 .cart-quantity {
@@ -742,9 +742,8 @@
   font-size: 16px;
   font-weight: 700;
   position: absolute;
-  top: 30%;
-  left: 56%;
-  transform: translate(-50%, -50%);
+  top: 8px;
+  left: 25px;
   width: 26px;
   height: 26px;
   text-align: center;
@@ -755,11 +754,16 @@
   min-height: 18px;
 }
 
-/* Mobile cart icon sizing adjustments */
+/* Mobile cart button sizing adjustments */
 @media (max-width: 768px) {
-  .cart-icon {
+  .cart-button {
     width: 32px;
-    display: block; /* Ensure visibility */
+    height: 32px;
+  }
+
+  .cart-button i {
+    width: 18px;
+    height: 18px;
   }
 
   .cart-text {
@@ -769,11 +773,21 @@
   }
 
   .cart-quantity {
+    position: absolute;
+    top: -6px;
+    right: -6px;
     font-size: 12px;
     width: 20px;
-    left: 5px;
-    top: 2px;
+    height: 20px;
     min-height: 16px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 1px 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .orders-text,
@@ -783,65 +797,104 @@
 }
 
 @media (max-width: 480px) {
-  .cart-icon {
-    width: 24px; /* Smaller for compact layout */
-    display: block; /* Ensure visibility */
+  .cart-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cart-button i {
+    width: 16px;
+    height: 16px;
   }
 
   .cart-text {
-    font-size: 9px; /* Smaller text */
-    margin-top: 4px;
-    display: block; /* Ensure visibility */
+    display: none; /* Hide cart text to save space */
   }
 
   .cart-quantity {
-    font-size: 9px;
-    width: 16px;
-    left: 8px;
-    top: 0px;
-    min-height: 12px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 8px;
+    width: 14px;
+    height: 14px;
+    min-height: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 1px 3px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
 @media (max-width: 360px) {
-  .cart-icon {
-    width: 20px; /* Smaller for very compact layout */
-    display: block; /* Ensure visibility */
+  .cart-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .cart-button i {
+    width: 14px;
+    height: 14px;
   }
 
   .cart-text {
-    font-size: 8px; /* Smaller text */
-    margin-top: 2px;
-    display: block; /* Ensure visibility */
+    display: none; /* Keep hidden */
   }
 
   .cart-quantity {
-    font-size: 8px;
-    width: 14px;
-    left: 6px;
-    top: 0px;
-    min-height: 10px;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    font-size: 7px;
+    width: 12px;
+    height: 12px;
+    min-height: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 1px 2px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
 @media (max-width: 320px) {
-  .cart-icon {
-    width: 18px; /* Very small for ultra-compact layout */
-    display: block; /* Ensure visibility */
+  .cart-button {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart-button i {
+    width: 12px;
+    height: 12px;
   }
 
   .cart-text {
-    font-size: 7px; /* Very small text */
-    margin-top: 1px;
-    display: block; /* Ensure cart text is always visible */
+    display: none; /* Keep hidden for space */
   }
 
   .cart-quantity {
+    position: absolute;
+    top: -3px;
+    right: -3px;
     font-size: 7px;
     width: 12px;
-    left: 6px;
-    top: 0;
+    height: 12px;
     min-height: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 1px 2px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -849,26 +902,29 @@
 .auth-section {
   display: flex;
   align-items: center;
-  margin-left: 2rem; /* Increased margin for better separation between cart and profile */
+  margin-left: 1rem; /* Reduced margin for better mobile fit */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .auth-buttons {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem; /* Reduced gap for mobile */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .header-auth-btn {
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem; /* Reduced padding for mobile */
   border-radius: 6px;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Smaller font for mobile */
   font-weight: 500;
   transition: all 0.2s;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem; /* Reduced gap */
   white-space: nowrap;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .header-auth-btn.signin {
@@ -897,11 +953,12 @@
 .user-menu {
   position: relative;
   display: inline-block;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
+  width: 28px; /* Reduced size for mobile */
+  height: 28px;
   border-radius: 50%;
   background: #667eea;
   color: white;
@@ -910,8 +967,9 @@
   justify-content: center;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.8rem; /* Smaller font */
   transition: all 0.2s;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .user-avatar:hover {
@@ -1010,13 +1068,23 @@
 
 /* Responsive authentication */
 @media (max-width: 768px) {
+  .auth-section {
+    margin-left: 0.5rem;
+  }
+
   .auth-buttons {
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
 
   .header-auth-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .user-avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
   }
 
   .user-dropdown {
@@ -1027,15 +1095,87 @@
 
 @media (max-width: 480px) {
   .auth-section {
-    margin-left: 0.5rem;
+    margin-left: 0;
+  }
+
+  .auth-buttons {
+    gap: 0.2rem;
   }
 
   .header-auth-btn {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.8rem;
+    padding: 0;
+    font-size: 0;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hide all text content and show only icons */
+  .header-auth-btn .auth-btn-text {
+    display: none;
+  }
+
+  .header-auth-btn.signin .auth-btn-text::before,
+  .header-auth-btn.signup .auth-btn-text::before {
+    display: none;
+  }
+
+  .user-avatar {
+    width: 20px;
+    height: 20px;
+    font-size: 0.6rem;
   }
 
   .header-auth-btn i {
-    display: none; /* Hide icons on very small screens */
+    display: block !important; /* Show icons on mobile */
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .auth-section {
+    margin-left: 0;
+  }
+
+  .auth-buttons {
+    gap: 0.15rem;
+  }
+
+  .header-auth-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .header-auth-btn i {
+    width: 14px;
+    height: 14px;
+  }
+
+  .user-avatar {
+    width: 18px;
+    height: 18px;
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-auth-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header-auth-btn i {
+    width: 12px;
+    height: 12px;
+  }
+
+  .user-avatar {
+    width: 16px;
+    height: 16px;
+    font-size: 0.5rem;
   }
 }

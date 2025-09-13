@@ -1,12 +1,7 @@
 <div class="qili-header">
   <div class="qili-header-left-section">
-    <a href="index.html" class="header-link">
-      <img class="book-logo" src="images/bookstack-logo.svg" width="50" />
-      <img
-        class="book-mobile-logo"
-        src="images/bookstack-logo.svg"
-        width="40"
-      />
+    <a class="dashboard-link header-link" href="dashboard.html">
+      <span class="dashboard-text">Dashboard</span>
     </a>
     <a
       class="data-management-link header-link"
@@ -29,19 +24,16 @@
     </button>
   </div>
   <div class="qili-header-right-section">
-    <a class="dashboard-link header-link" href="dashboard.html">
-      <span class="dashboard-text">Dashboard</span>
-    </a>
-    <!--
     <a class="orders-link header-link" href="orders.html">
-      <span class="returns-text">Returns</span>
-      <span class="orders-text">& Orders</span>
+      <!-- <span class="returns-text">Returns</span> -->
+      <!-- <span class="orders-text">& Orders</span> -->
     </a>
-    -->
+
     <a class="cart-link header-link" href="checkout.html">
-      <img class="cart-icon" src="images/icons/cart-icon.png" />
-      <div class="cart-quantity js-cart-quantity empty-cart">0</div>
-      <div class="cart-text">Cart</div>
+      <div class="cart-button">
+        <i data-feather="shopping-cart"></i>
+        <div class="cart-quantity js-cart-quantity empty-cart">0</div>
+      </div>
     </a>
 
     <!-- Authentication section - will be populated by auth.js -->
@@ -50,11 +42,11 @@
       <div class="auth-buttons">
         <a href="signin.html" class="header-auth-btn signin">
           <i data-feather="log-in"></i>
-          Sign In
+          <span class="auth-btn-text">Sign In</span>
         </a>
         <a href="signup.html" class="header-auth-btn signup">
           <i data-feather="user-plus"></i>
-          Sign Up
+          <span class="auth-btn-text">Sign Up</span>
         </a>
       </div>
     </div>

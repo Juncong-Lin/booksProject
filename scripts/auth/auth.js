@@ -260,11 +260,11 @@ class AuthService {
         <div class="auth-buttons">
           <a href="signin.html" class="header-auth-btn signin">
             <i data-feather="log-in"></i>
-            Sign In
+            <span class="auth-btn-text">Sign In</span>
           </a>
           <a href="signup.html" class="header-auth-btn signup">
             <i data-feather="user-plus"></i>
-            Sign Up
+            <span class="auth-btn-text">Sign Up</span>
           </a>
         </div>
       `;
