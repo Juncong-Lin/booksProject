@@ -1,6 +1,18 @@
 // Profile page functionality
 
 document.addEventListener("DOMContentLoaded", async function () {
+  // Wait for auth service to be ready
+  if (!window.authService) {
+    console.log("⏳ Waiting for authService to be ready...");
+    await new Promise((resolve) => {
+      if (window.authService) {
+        resolve();
+      } else {
+        window.addEventListener("authServiceReady", resolve, { once: true });
+      }
+    });
+  }
+
   // Require authentication
   if (!(await authService.requireAuth())) return;
 

@@ -1,31 +1,41 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-    <title>Orders</title>    <!-- This code is needed for responsive design to work.
+    <title>Orders</title>
+    <!-- This code is needed for responsive design to work.
       (Responsive design = make the website look good on
       smaller screen sizes like a phone or a tablet). -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
+    />
 
     <!-- Load a font called Roboto from Google Fonts. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">    <!-- Here are the CSS files for this page. -->    <link rel="stylesheet" href="styles/shared/general.css">
-    <link rel="stylesheet" href="styles/shared/qili-header.css">
-    <link rel="stylesheet" href="styles/shared/sub-header.css">
-    <link rel="stylesheet" href="styles/pages/orders.css">    <link rel="stylesheet" href="styles/shared/footer.css">
-    <link rel="stylesheet" href="styles/shared/right-panel.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Here are the CSS files for this page. -->
+    <link rel="stylesheet" href="styles/shared/general.css" />
+    <link rel="stylesheet" href="styles/shared/qili-header.css" />
+    <link rel="stylesheet" href="styles/shared/sub-header.css" />
+    <link rel="stylesheet" href="styles/pages/orders.css" />
+    <link rel="stylesheet" href="styles/shared/footer.css" />
+    <link rel="stylesheet" href="styles/shared/right-panel.css" />
+  </head>
 
-  </head>  
-  
   <body class="no-sidebar">
     <!-- Main Header - Loaded dynamically from shared component -->
-    <div id="shared-header-placeholder"></div><!-- Sub Header Navigation - Loaded dynamically from shared component -->
-    <div id="shared-subheader-placeholder"></div>    <div class="main">
+    <div id="shared-header-placeholder"></div>
+    <!-- Sub Header Navigation - Loaded dynamically from shared component -->
+    <div id="shared-subheader-placeholder"></div>
+    <div class="main">
       <div class="page-title">Your Orders</div>
 
       <div class="orders-grid">
         <div class="order-container">
-          
           <div class="order-header">
             <div class="order-header-left-section">
               <div class="order-date">
@@ -46,25 +56,21 @@
 
           <div class="order-details-grid">
             <div class="product-image-container">
-              <img src="products/athletic-cotton-socks-6-pairs.jpg">
+              <img src="products/athletic-cotton-socks-6-pairs.jpg" />
             </div>
 
             <div class="product-image-container">
-              <img src="products/adults-plain-cotton-tshirt-2-pack-teal.jpg">
+              <img src="products/adults-plain-cotton-tshirt-2-pack-teal.jpg" />
             </div>
 
             <div class="product-details">
               <div class="product-name">
                 Adults Plain Cotton T-Shirt - 2 Pack
               </div>
-              <div class="product-delivery-date">
-                Arriving on: August 19
-              </div>
-              <div class="product-quantity">
-                Quantity: 2
-              </div>
+              <div class="product-delivery-date">Arriving on: August 19</div>
+              <div class="product-quantity">Quantity: 2</div>
               <button class="buy-again-button button-primary">
-                <img class="buy-again-icon" src="images/icons/buy-again.png">
+                <img class="buy-again-icon" src="images/icons/buy-again.png" />
                 <span class="buy-again-message">Buy it again</span>
               </button>
             </div>
@@ -80,7 +86,6 @@
         </div>
 
         <div class="order-container">
-
           <div class="order-header">
             <div class="order-header-left-section">
               <div class="order-date">
@@ -101,21 +106,15 @@
 
           <div class="order-details-grid">
             <div class="product-image-container">
-              <img src="products/intermediate-composite-basketball.jpg">
+              <img src="products/intermediate-composite-basketball.jpg" />
             </div>
 
             <div class="product-details">
-              <div class="product-name">
-                Intermediate Size Basketball
-              </div>
-              <div class="product-delivery-date">
-                Arriving on: June 17
-              </div>
-              <div class="product-quantity">
-                Quantity: 2
-              </div>
+              <div class="product-name">Intermediate Size Basketball</div>
+              <div class="product-delivery-date">Arriving on: June 17</div>
+              <div class="product-quantity">Quantity: 2</div>
               <button class="buy-again-button button-primary">
-                <img class="buy-again-icon" src="images/icons/buy-again.png">
+                <img class="buy-again-icon" src="images/icons/buy-again.png" />
                 <span class="buy-again-message">Buy it again</span>
               </button>
             </div>
@@ -129,11 +128,12 @@
             </div>
           </div>
         </div>
-      </div>    </div>
-    
+      </div>
+    </div>
+
     <!-- Shared Footer - Loaded dynamically from shared component -->
     <div id="shared-footer-placeholder"></div>
-    
+
     <!-- Shared Right Panel - Loaded dynamically from shared component -->
     <div id="shared-right-panel-placeholder"></div>
     <script src="scripts/shared/url-utils.js"></script>
