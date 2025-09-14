@@ -437,8 +437,11 @@ class SimpleAnalytics {
     const recentEvents = this.events.slice(-10); // Check last 10 events
     const hasRecentSearch = recentEvents.some(
       (event) =>
-        event.type === "search" ||
-        (event.type === "click" && event.data.source === "search")
+        event &&
+        (event.type === "search" ||
+          (event.type === "click" &&
+            event.data &&
+            event.data.source === "search"))
     );
 
     if (hasRecentSearch) {

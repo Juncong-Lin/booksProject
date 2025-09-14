@@ -1688,24 +1688,51 @@ window.booksProducts = booksProducts;
 // Add to cart functionality
 document.querySelector(".js-add-to-cart").addEventListener("click", () => {
   if (!productId) return;
+
+  const button = document.querySelector(".js-add-to-cart");
   const quantitySelect = document.querySelector(".js-quantity-selector");
   const quantity = Number(quantitySelect.value);
-  addToCart(productId, quantity, "detail");
 
-  // Track add to cart analytics
-  const product = findBookById(productId);
-  if (product && window.analytics) {
-    window.analytics.trackAddToCart(product.name, product.category, "detail");
+  // Disable button to prevent multiple clicks
+  const originalText = button.textContent;
+  button.textContent = "Adding...";
+  button.disabled = true;
+
+  // Call addToCart and check result
+  const success = addToCart(productId, quantity, "detail");
+
+  if (success) {
+    // Track add to cart analytics
+    const product = findBookById(productId);
+    if (product && window.analytics) {
+      window.analytics.trackAddToCart(product.name, product.category, "detail");
+    }
+
+    updateCartQuantity();
+
+    // Show the "Added" message
+    const addedMessage = document.querySelector(".js-added-message");
+    addedMessage.style.opacity = "1";
+
+    // Show success feedback on button
+    button.textContent = "Added!";
+
+    // Hide the message and restore button after 2 seconds
+    setTimeout(() => {
+      addedMessage.style.opacity = "0";
+      button.textContent = originalText;
+      button.disabled = false;
+    }, 2000);
+  } else {
+    // Show error feedback
+    button.textContent = "Error!";
+    button.style.backgroundColor = "#ff4444";
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.style.backgroundColor = "";
+      button.disabled = false;
+    }, 2000);
   }
-
-  updateCartQuantity();
-  // Show the "Added" message
-  const addedMessage = document.querySelector(".js-added-message");
-  addedMessage.style.opacity = "1";
-  // Hide the message after 2 seconds
-  setTimeout(() => {
-    addedMessage.style.opacity = "0";
-  }, 2000);
 });
 /**
  * Setup mobile touch scrolling for thumbnail gallery

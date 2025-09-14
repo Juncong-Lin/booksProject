@@ -160,7 +160,7 @@ export function addToCart(productId, quantity = 1, source = "unknown") {
     saveToStorage();
 
     // Show success feedback
-    showAddToCartSuccess(quantity);
+    // showAddToCartSuccess(quantity); // Commented out - user requested to remove notification
 
     return true;
   } catch (error) {

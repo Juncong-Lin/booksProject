@@ -12,8 +12,23 @@ class AuthService {
     // Load stored token
     this.authToken = localStorage.getItem("authToken");
 
-    // Check if user is already authenticated
-    await this.checkAuthStatus();
+    // Check if user is already authenticated (handle server unavailable gracefully)
+    try {
+      await this.checkAuthStatus();
+    } catch (error) {
+      // If server is unavailable, just work in offline mode
+      if (
+        error.message.includes("fetch") ||
+        error.message.includes("Failed to fetch")
+      ) {
+        console.log("Server unavailable - working in offline mode");
+        // Clear any stored token since we can't verify it
+        this.authToken = null;
+        this.currentUser = null;
+        localStorage.removeItem("authToken");
+      }
+    }
+
     this.updateUI();
 
     // Dispatch ready event
@@ -54,7 +69,14 @@ class AuthService {
 
       return data;
     } catch (error) {
-      console.error("API call error:", error);
+      // Only log errors that are not authentication-related or network errors
+      if (
+        !error.message.includes("expired") &&
+        !error.message.includes("Unauthorized") &&
+        !error.message.includes("401")
+      ) {
+        console.error("API call error:", error);
+      }
       throw error;
     }
   }
@@ -128,6 +150,12 @@ class AuthService {
 
   // Check authentication status
   async checkAuthStatus() {
+    // If no token exists, user is not authenticated
+    if (!this.authToken) {
+      this.currentUser = null;
+      return false;
+    }
+
     try {
       const response = await this.apiCall("/auth/me");
       if (response.success) {
@@ -135,8 +163,20 @@ class AuthService {
         return true;
       }
     } catch (error) {
-      console.log("Not authenticated:", error.message);
-      this.currentUser = null;
+      // Handle token expiration or authentication errors silently
+      if (
+        error.message.includes("expired") ||
+        error.message.includes("Unauthorized")
+      ) {
+        // Token is expired or invalid, clear it
+        this.authToken = null;
+        localStorage.removeItem("authToken");
+        this.currentUser = null;
+        // Don't log this as an error since it's expected behavior
+      } else {
+        // Only log unexpected errors
+        console.log("Authentication check failed:", error.message);
+      }
       return false;
     }
   }

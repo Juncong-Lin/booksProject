@@ -788,10 +788,18 @@ function attachAddToCartListeners() {
     button.addEventListener("click", () => {
       const productId = button.dataset.productId;
 
+      // Prevent multiple clicks by disabling the button
+      if (button.disabled) return;
+
       // Get the quantity from the dropdown
       const productContainer = button.closest(".product-container");
       const quantitySelect = productContainer.querySelector("select");
       const quantity = Number(quantitySelect.value);
+
+      // Disable button and show loading state
+      const originalText = button.textContent;
+      button.textContent = "Adding...";
+      button.disabled = true;
 
       // Track add to cart action
       if (window.analytics) {
@@ -812,15 +820,36 @@ function attachAddToCartListeners() {
       }
 
       // Call addToCart with the selected quantity
-      addToCart(productId, quantity, "category");
-      updateCartQuantity();
+      const success = addToCart(productId, quantity, "category");
 
-      // Show the 'Added' message
-      const addedMessage = productContainer.querySelector(".added-message");
-      if (addedMessage) {
-        addedMessage.style.display = "block";
+      if (success) {
+        updateCartQuantity();
+
+        // Show success feedback
+        button.textContent = "Added!";
+
+        // Show the 'Added' message
+        const addedMessage = productContainer.querySelector(".added-message");
+        if (addedMessage) {
+          addedMessage.style.display = "block";
+          setTimeout(() => {
+            addedMessage.style.display = "none";
+          }, 2000);
+        }
+
+        // Reset button after delay
         setTimeout(() => {
-          addedMessage.style.display = "none";
+          button.textContent = originalText;
+          button.disabled = false;
+        }, 2000);
+      } else {
+        // Show error feedback
+        button.textContent = "Error!";
+        button.style.backgroundColor = "#ff4444";
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.backgroundColor = "";
+          button.disabled = false;
         }, 2000);
       }
     });
