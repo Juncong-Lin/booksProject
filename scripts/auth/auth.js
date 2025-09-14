@@ -6,10 +6,11 @@ class AuthService {
     console.log("🔧 AuthService init - window.CONFIG:", window.CONFIG);
     console.log("🔧 window.CONFIG available:", !!window.CONFIG);
     console.log("🔧 window.CONFIG.apiBaseUrl:", window.CONFIG?.apiBaseUrl);
-    
-    this.baseURL = window.CONFIG && window.CONFIG.apiBaseUrl
-      ? window.CONFIG.apiBaseUrl
-      : "http://localhost:5000/api/v1";
+
+    this.baseURL =
+      window.CONFIG && window.CONFIG.apiBaseUrl
+        ? window.CONFIG.apiBaseUrl
+        : "http://localhost:5000/api/v1";
     console.log("🔗 AuthService using baseURL:", this.baseURL);
     this.currentUser = null;
     this.authToken = null;
@@ -536,7 +537,14 @@ const UIHelpers = {
 // Initialize auth service when script loads
 // Ensure CONFIG is available first
 function initializeAuthService() {
+  // Prevent multiple instances
+  if (window.authService) {
+    console.log("🔧 AuthService already exists, skipping initialization");
+    return;
+  }
+
   if (window.CONFIG) {
+    console.log("🔧 Initializing AuthService with CONFIG available");
     const authService = new AuthService();
     window.authService = authService;
     window.ValidationUtils = ValidationUtils;
