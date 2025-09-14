@@ -18,7 +18,8 @@ const orderRoutes = require("./src/routes/orders");
 
 // Import middleware
 const { errorHandler } = require("./src/middleware/errorHandler");
-const { connectDB } = require("./src/config/database");
+// Use Atlas-optimized database configuration
+const { connectDB } = require("./src/config/database-atlas");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
