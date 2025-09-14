@@ -271,11 +271,6 @@ select {
   animation: pulse 0.5s ease;
 }
 
-.js-cart-quantity.empty-cart {
-  background-color: transparent;
-  color: rgb(240, 136, 4); /* Keep original cart color when empty */
-}
-
 /* Button loading and disabled states */
 button:disabled {
   opacity: 0.6;

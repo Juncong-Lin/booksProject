@@ -1,3 +1,23 @@
+/* CSS Custom Properties for Search Width Synchronization */
+:root {
+  --search-width-desktop: 300px;
+  --search-width-tablet: 120px;
+  --search-width-mobile: 100px;
+  --search-width-small: 80px;
+  --search-width-tiny: 70px;
+  --search-height-desktop: 40px;
+  --search-height-tablet: 36px;
+  --search-height-mobile: 32px;
+  --search-height-small: 28px;
+  --search-height-tiny: 26px;
+
+  /* Additional responsive variables for better control */
+  --search-width-large-tablet: 200px;
+  --search-width-medium-mobile: 110px;
+  --search-height-large-tablet: 38px;
+  --search-height-medium-mobile: 34px;
+}
+
 .qili-header {
   background-color: #232f3e;
   color: white;
@@ -14,10 +34,18 @@
   z-index: 10000; /* Increased z-index to be above sub-header */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: visible; /* Ensure dropdown can overflow the header */
+  min-width: 320px; /* Prevent total collapse on very small screens */
 }
 
 /* Ensure proper flex distribution for better search bar width */
 @media (max-width: 1200px) {
+  .qili-header {
+    grid-template-columns: minmax(120px, 1fr) minmax(200px, 2fr) minmax(
+        180px,
+        1fr
+      ); /* Better minimum sizes */
+  }
+
   .qili-header-middle-section {
     max-width: 450px; /* Further reduce on larger tablets */
     margin: 0 12px;
@@ -25,6 +53,13 @@
 }
 
 @media (max-width: 1024px) {
+  .qili-header {
+    grid-template-columns: minmax(100px, 1fr) minmax(180px, 2fr) minmax(
+        160px,
+        1fr
+      ); /* Tighter constraints */
+  }
+
   .qili-header-left-section {
     width: 80px; /* Further reduced for more search space */
     min-width: 60px;
@@ -41,20 +76,163 @@
   }
 }
 
+/* Additional breakpoint for better tablet sizing */
+@media (max-width: 900px) {
+  .qili-header {
+    grid-template-columns: minmax(90px, 1fr) minmax(160px, 2fr) minmax(
+        150px,
+        1fr
+      );
+  }
+
+  .search-bar {
+    width: var(--search-width-large-tablet) !important;
+    height: var(--search-height-large-tablet);
+    min-width: 120px;
+  }
+
+  .search-button {
+    height: var(--search-height-large-tablet);
+  }
+
+  .search-history-dropdown {
+    width: calc(
+      var(--search-width-large-tablet) + 40px
+    ) !important; /* Add large tablet button width */
+    min-width: calc(var(--search-width-large-tablet) + 40px) !important;
+    max-width: calc(var(--search-width-large-tablet) + 40px) !important;
+    top: calc(var(--search-height-large-tablet) - 1px);
+  }
+}
+
+/* Add new breakpoint to handle cutoff at 980px+ range */
+@media (max-width: 1024px) {
+  .qili-header {
+    grid-template-columns: minmax(140px, 1fr) minmax(140px, 1.5fr) minmax(
+        200px,
+        1.3fr
+      ); /* Narrow search, expand right section for cart+auth grouping */
+    gap: 8px;
+    padding: 0 10px;
+  }
+
+  .qili-header-left-section {
+    min-width: 140px;
+  }
+
+  .qili-header-right-section {
+    min-width: 200px;
+    display: flex;
+    gap: 4px; /* Tight gap to keep cart near auth buttons */
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* Slightly reduce button padding to fit better */
+  .dashboard-link,
+  .data-management-link,
+  .cart-link,
+  .header-auth-btn {
+    padding: 0.4rem 0.6rem; /* More compact */
+  }
+
+  /* Make search narrower */
+  .search-bar {
+    width: var(
+      --search-width-mobile
+    ) !important; /* Use mobile width for compactness */
+    height: var(--search-height-mobile);
+    min-width: 120px;
+  }
+
+  .search-button {
+    height: var(--search-height-mobile);
+  }
+
+  .search-history-dropdown {
+    width: calc(var(--search-width-mobile) + 32px) !important;
+    max-width: calc(var(--search-width-mobile) + 32px) !important;
+  }
+}
+
+/* Earlier breakpoint to start protecting right section */
+@media (max-width: 950px) {
+  .qili-header {
+    grid-template-columns: minmax(80px, 0.8fr) minmax(150px, 1.8fr) minmax(
+        160px,
+        1.1fr
+      ); /* Start giving more space to right section */
+    gap: 8px;
+    padding: 0 8px;
+  }
+
+  .qili-header-right-section {
+    min-width: 160px;
+  }
+
+  /* Start reducing auth button size earlier */
+  .header-auth-btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Add new breakpoint to handle the problematic screen width */
+@media (max-width: 850px) {
+  .qili-header {
+    grid-template-columns: minmax(50px, 0.5fr) minmax(120px, 1.5fr) minmax(
+        200px,
+        1.5fr
+      ); /* Much more space to right section */
+    gap: 4px;
+    padding: 0 4px;
+  }
+
+  .qili-header-left-section {
+    gap: 4px;
+  }
+
+  .qili-header-right-section {
+    gap: 4px;
+    min-width: 200px; /* Increased minimum width */
+  }
+
+  /* Start hiding auth button text earlier */
+  .header-auth-btn {
+    padding: 0.25rem 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  /* Make left buttons smaller */
+  .dashboard-link,
+  .data-management-link {
+    width: 28px;
+    height: 28px;
+  }
+
+  .dashboard-link::before,
+  .data-management-link::before {
+    font-size: 14px;
+  }
+}
+
 .qili-header-left-section {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 12px; /* Comfortable gap between dashboard and data management buttons */
-  padding: 8px 12px;
-  background: rgba(
-    255,
-    255,
-    255,
-    0.05
-  ); /* Subtle background to group elements */
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 8px; /* Reduced gap to match right section spacing */
+  padding: 0; /* Remove padding since buttons have their own */
+  flex-shrink: 1; /* Allow some shrinking but maintain usability */
+  min-width: fit-content; /* Ensure minimum width */
+  overflow: visible; /* Prevent cutoff */
+}
+
+/* Force both left buttons to always be visible */
+.dashboard-link,
+.data-management-link {
+  flex-shrink: 0; /* Prevent shrinking/disappearing */
+  min-width: 32px;
+  min-height: 32px;
 }
 
 .header-link {
@@ -77,129 +255,279 @@
   position: relative; /* Ensure this is the positioning context for the dropdown */
   overflow: visible; /* Ensure dropdown can overflow the container */
   z-index: 10001; /* Higher than sub-header to create proper stacking context */
+  flex-shrink: 1; /* Allow shrinking when space is limited */
+  min-width: 0; /* Allow shrinking below content size */
 }
 
 /* Mobile search centering - ensure search bar is properly constrained */
 @media (max-width: 768px) {
   .qili-header {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr; /* Maintain 3-group balance on tablet */
+    grid-template-columns: minmax(50px, 0.6fr) minmax(120px, 1.4fr) minmax(
+        180px,
+        1.2fr
+      ); /* More aggressive space allocation for right section */
     align-items: center;
-    gap: 12px; /* Comfortable gap for tablet */
-    padding: 0 12px;
+    gap: 6px; /* Further reduced gap */
+    padding: 0 6px; /* Further reduced padding */
   }
 
   .qili-header-left-section {
-    padding: 6px 8px; /* Reduced padding for tablet */
-    gap: 8px;
-  }
-
-  .qili-header-right-section {
-    padding: 6px 8px; /* Reduced padding for tablet */
-    gap: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .qili-header {
-    padding: 0 8px;
-    gap: 8px; /* Comfortable gap for mobile */
-    grid-template-columns: 1fr 2fr 1fr; /* Maintain 3-group balance on mobile */
-  }
-
-  .qili-header-left-section {
-    padding: 4px 6px; /* Reduced padding for mobile */
-    gap: 6px;
-  }
-
-  .qili-header-right-section {
-    padding: 4px 6px; /* Reduced padding for mobile */
-    gap: 6px;
-  }
-}
-
-@media (max-width: 360px) {
-  .qili-header {
-    padding: 0 6px;
-    gap: 6px; /* Tight gap for very small screens */
-    grid-template-columns: 1fr 2fr 1fr; /* Maintain 3-group balance */
-  }
-
-  .qili-header-left-section {
-    padding: 3px 4px; /* Minimal padding for tiny screens */
+    padding: 2px 4px; /* Further reduced padding */
     gap: 4px;
   }
 
   .qili-header-right-section {
-    padding: 3px 4px; /* Minimal padding for tiny screens */
+    padding: 2px 4px; /* Further reduced padding */
     gap: 4px;
-  }
-}
-
-@media (max-width: 320px) {
-  .qili-header {
-    padding: 0 4px;
-    gap: 4px; /* Ultra-tight gap for smallest screens */
-    grid-template-columns: 1fr 2fr 1fr; /* Maintain 3-group balance */
+    min-width: 180px; /* Increased minimum width */
   }
 
-  .qili-header-left-section {
-    padding: 2px 3px; /* Ultra-minimal padding */
-    gap: 3px;
+  /* Ensure left section buttons are smaller */
+  .dashboard-link,
+  .data-management-link {
+    width: 28px;
+    height: 28px;
   }
 
-  .qili-header-right-section {
-    padding: 2px 3px; /* Ultra-minimal padding */
-    gap: 3px;
-  }
-}
-
-/* Search bar styles */
-.search-bar {
-  width: 150px; /* Half the previous width for more compact design */
-  max-width: 100%;
-  height: 40px;
-  padding: 0 15px;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  font-size: 16px;
-  transition: all 0.2s ease;
-}
-
-@media (max-width: 768px) {
-  .search-bar {
-    width: 120px; /* Half the previous width for tablet */
-    height: 36px;
-    padding: 0 10px;
+  .dashboard-link::before,
+  .data-management-link::before {
     font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
+  .qili-header {
+    padding: 0 4px;
+    gap: 4px; /* Tight gap for mobile */
+    grid-template-columns: minmax(40px, 0.6fr) minmax(80px, 1.2fr) minmax(
+        120px,
+        1fr
+      ); /* Prioritize right section space */
+  }
+
+  .qili-header-left-section {
+    padding: 2px 4px; /* Minimal padding for mobile */
+    gap: 4px;
+  }
+
+  .qili-header-right-section {
+    padding: 2px 4px; /* Minimal padding for mobile */
+    gap: 3px;
+    min-width: 120px; /* Ensure minimum width */
+  }
+}
+
+/* Additional breakpoint for medium mobile screens */
+@media (max-width: 600px) {
+  .qili-header {
+    grid-template-columns: minmax(50px, 0.7fr) minmax(90px, 1.3fr) minmax(
+        140px,
+        1fr
+      ); /* Even more space for right section */
+    gap: 6px;
+    padding: 0 6px;
+  }
+
   .search-bar {
-    width: 100px; /* Compact width for mobile */
-    height: 32px;
-    padding: 0 8px;
+    width: var(--search-width-medium-mobile) !important;
+    height: var(--search-height-medium-mobile);
+    min-width: 80px; /* Reduced minimum width */
+    padding: 0 6px;
+    font-size: 14px;
+  }
+
+  .search-button {
+    height: var(--search-height-medium-mobile);
+    min-width: 34px; /* Reduced button width */
+  }
+
+  .search-history-dropdown {
+    width: calc(
+      var(--search-width-medium-mobile) + 34px
+    ) !important; /* Add medium mobile button width */
+    min-width: calc(var(--search-width-medium-mobile) + 34px) !important;
+    max-width: calc(var(--search-width-medium-mobile) + 34px) !important;
+    top: calc(var(--search-height-medium-mobile) - 1px);
+  }
+
+  .qili-header-right-section {
+    min-width: 140px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 360px) {
+  .qili-header {
+    padding: 0 4px;
+    gap: 2px; /* Tight gap for small screens */
+    grid-template-columns: 64px 1fr 112px; /* Fixed widths for consistent layout */
+    align-items: center;
+  }
+
+  .qili-header-left-section {
+    display: flex;
+    gap: 2px;
+    justify-content: flex-start;
+  }
+
+  .qili-header-middle-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .qili-header-right-section {
+    display: flex;
+    gap: 2px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* Ensure all buttons have same height */
+  .dashboard-link,
+  .data-management-link,
+  .cart-link,
+  .header-auth-btn {
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+  }
+
+  /* Search bar sizing */
+  .search-bar {
+    width: 100%;
+    height: 30px !important;
+    font-size: 12px;
+    min-width: unset;
+  }
+
+  .search-button {
+    height: 30px !important;
+    width: 30px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .qili-header {
+    padding: 0 3px;
+    gap: 2px; /* Ultra-tight gap for smallest screens */
+    grid-template-columns: 60px 1fr 100px; /* Fixed widths for smallest screens */
+    align-items: center;
+  }
+
+  .qili-header-left-section {
+    display: flex;
+    gap: 2px;
+    justify-content: flex-start;
+  }
+
+  .qili-header-middle-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .qili-header-right-section {
+    display: flex;
+    gap: 1px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* Ensure all buttons have same height - smaller for 320px */
+  .dashboard-link,
+  .data-management-link,
+  .cart-link,
+  .header-auth-btn {
+    width: 28px !important;
+    height: 28px !important;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+  }
+
+  /* Search bar sizing */
+  .search-bar {
+    width: 100%;
+    height: 28px !important;
+    font-size: 11px;
+    min-width: unset;
+  }
+
+  .search-button {
+    height: 28px !important;
+    width: 28px !important;
+  }
+}
+
+/* Search bar styles */
+.search-bar {
+  width: var(
+    --search-width-desktop
+  ) !important; /* Force CSS variable for synchronized width */
+  max-width: 100%;
+  height: var(
+    --search-height-desktop
+  ); /* Use CSS variable for synchronized height */
+  padding: 0 15px;
+  border: 1px solid #ddd; /* Add border to match dropdown */
+  border-right: none; /* Remove right border to connect with button */
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  box-sizing: border-box; /* Ensure consistent box model */
+  flex-shrink: 1; /* Allow shrinking when space is limited */
+  min-width: 120px; /* Ensure minimum usable width */
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    width: var(--search-width-tablet) !important; /* Force CSS variable */
+    height: var(--search-height-tablet); /* Use CSS variable */
+    padding: 0 10px;
+    font-size: 14px;
+    min-width: 100px; /* Adjusted minimum width for tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    width: var(--search-width-mobile) !important; /* Force CSS variable */
+    height: var(--search-height-mobile); /* Use CSS variable */
+    padding: 0 6px;
     font-size: 13px;
+    min-width: 70px; /* Reduced minimum width for mobile */
+    max-width: 100px; /* Add maximum width constraint */
   }
 }
 
 @media (max-width: 360px) {
   .search-bar {
-    width: 80px; /* Very compact width for small screens */
-    padding: 0 4px; /* Minimal padding */
+    width: var(--search-width-small) !important; /* Force CSS variable */
+    padding: 0 3px; /* Minimal padding */
     font-size: 12px;
-    height: 28px; /* Smaller height for very small screens */
+    height: var(--search-height-small); /* Use CSS variable */
+    min-width: 50px; /* Smaller minimum width for small screens */
+    max-width: 80px; /* Add maximum width constraint */
   }
 }
 
 @media (max-width: 320px) {
   /* Mobile search bar sizing to match container constraints */
   .search-bar {
-    width: 70px; /* Ultra-compact width for tiny screens */
-    height: 26px;
-    padding: 0 3px;
+    width: var(--search-width-tiny) !important; /* Force CSS variable */
+    height: var(--search-height-tiny); /* Use CSS variable */
+    padding: 0 2px;
     font-size: 11px;
+    min-width: 40px; /* Very small minimum width for tiny screens */
+    max-width: 70px; /* Add maximum width constraint */
   }
 }
 
@@ -214,9 +542,12 @@
 
 .search-button {
   min-width: 45px;
-  height: 40px;
+  height: var(
+    --search-height-desktop
+  ); /* Use CSS variable to match search bar */
   background-color: #1a252f;
-  border: none;
+  border: 1px solid #ddd; /* Add border to match search bar */
+  border-left: none; /* Remove left border to connect with search bar */
   border-radius: 0 4px 4px 0;
   display: flex;
   align-items: center;
@@ -229,28 +560,28 @@
 @media (max-width: 768px) {
   .search-button {
     min-width: 36px; /* Reduced */
-    height: 36px;
+    height: var(--search-height-tablet); /* Use CSS variable */
   }
 }
 
 @media (max-width: 480px) {
   .search-button {
     min-width: 32px; /* Reduced */
-    height: 32px;
+    height: var(--search-height-mobile); /* Use CSS variable */
   }
 }
 
 @media (max-width: 360px) {
   .search-button {
     min-width: 28px; /* Reduced to match smaller search bar */
-    height: 28px; /* Match search bar height */
+    height: var(--search-height-small); /* Use CSS variable */
   }
 }
 
 @media (max-width: 320px) {
   .search-button {
     min-width: 26px;
-    height: 26px;
+    height: var(--search-height-tiny); /* Use CSS variable */
   }
 }
 
@@ -296,30 +627,38 @@
 /* Search History Dropdown */
 .search-history-dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
-  right: 45px; /* Account for search button width */
+  top: calc(
+    var(--search-height-desktop) - 1px
+  ); /* Use CSS variable for height */
+  left: 50%; /* Center horizontally */
+  transform: translateX(
+    -50%
+  ); /* Center the dropdown with the search container */
   background: white;
   border: 1px solid #ddd;
-  border-top: none;
+  border-top: none; /* Remove top border to connect seamlessly with search bar */
   border-radius: 0 0 4px 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 1000; /* High z-index relative to parent stacking context */
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
   transition: all 0.2s ease;
   max-height: 250px;
   overflow-y: auto;
   pointer-events: none;
-  min-width: 250px; /* Ensure adequate width */
-  width: calc(100% - 45px); /* Full width minus search button */
+  /* Match width of entire search container (search bar + button) */
+  width: calc(
+    var(--search-width-desktop) + 45px
+  ) !important; /* Add button width */
+  min-width: calc(var(--search-width-desktop) + 45px) !important;
+  max-width: calc(var(--search-width-desktop) + 45px) !important;
+  box-sizing: border-box !important; /* Force same box model as search bar */
 }
 
 .search-history-dropdown.show {
   opacity: 1 !important;
   visibility: visible !important;
-  transform: translateY(0) !important;
+  transform: translateX(-50%) !important; /* Maintain centering when shown */
   z-index: 1001 !important; /* Slightly higher when shown */
   pointer-events: auto !important;
 }
@@ -400,8 +739,15 @@
 
 @media (max-width: 768px) {
   .search-history-dropdown {
-    right: 36px; /* Account for smaller search button */
     max-height: 200px;
+    width: calc(
+      var(--search-width-tablet) + 36px
+    ) !important; /* Add tablet button width */
+    min-width: calc(var(--search-width-tablet) + 36px) !important;
+    max-width: calc(var(--search-width-tablet) + 36px) !important;
+    top: calc(
+      var(--search-height-tablet) - 1px
+    ); /* Use CSS variable for height */
   }
 
   .search-history-item {
@@ -426,9 +772,15 @@
 
 @media (max-width: 480px) {
   .search-history-dropdown {
-    right: 32px; /* Account for search button */
     max-height: 180px;
-    left: 0; /* Ensure it starts from the left edge */
+    width: calc(
+      var(--search-width-mobile) + 32px
+    ) !important; /* Add mobile button width */
+    min-width: calc(var(--search-width-mobile) + 32px) !important;
+    max-width: calc(var(--search-width-mobile) + 32px) !important;
+    top: calc(
+      var(--search-height-mobile) - 1px
+    ); /* Use CSS variable for height */
   }
 
   .search-history-item {
@@ -454,14 +806,28 @@
 
 @media (max-width: 360px) {
   .search-history-dropdown {
-    right: 28px; /* Account for smaller search button */
+    width: calc(
+      var(--search-width-small) + 28px
+    ) !important; /* Add small button width */
+    min-width: calc(var(--search-width-small) + 28px) !important;
+    max-width: calc(var(--search-width-small) + 28px) !important;
+    top: calc(
+      var(--search-height-small) - 1px
+    ); /* Use CSS variable for height */
   }
 }
 
 /* Extra small screens */
 @media (max-width: 320px) {
   .search-history-dropdown {
-    right: 26px; /* Account for even smaller search button */
+    width: calc(
+      var(--search-width-tiny) + 26px
+    ) !important; /* Add tiny button width */
+    min-width: calc(var(--search-width-tiny) + 26px) !important;
+    max-width: calc(var(--search-width-tiny) + 26px) !important;
+    top: calc(
+      var(--search-height-tiny) - 1px
+    ); /* Use CSS variable for height */
   }
 }
 
@@ -469,16 +835,12 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 10px; /* Comfortable spacing between cart and auth icons */
-  padding: 8px 12px;
-  background: rgba(
-    255,
-    255,
-    255,
-    0.05
-  ); /* Subtle background to group elements */
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 8px; /* Reduced spacing to save space */
+  padding: 4px 8px; /* Reduced padding to save space */
+  flex-shrink: 0; /* Prevent shrinking to ensure icons remain visible */
+  min-width: fit-content; /* Ensure minimum width to contain icons */
+  overflow: visible; /* Prevent icon cutoff */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 /* Hide the orders link since it's empty and just taking space */
@@ -524,59 +886,38 @@
 }
 
 .dashboard-link {
-  color: white;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
   transition: all 0.2s;
-  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  color: #cbd5e0;
+  background: transparent;
+  border: 1px solid #4a5568;
 }
 
 .dashboard-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.dashboard-text {
-  font-size: 13px;
-  font-weight: 500;
+  background: #4a5568;
+  color: white;
 }
 
 /* Mobile dashboard button optimizations */
 @media (max-width: 768px) {
   .dashboard-text {
-    font-size: 10px; /* Smaller font for mobile */
+    display: none; /* Hide text label on smaller screens */
   }
 }
 
 @media (max-width: 480px) {
-  .dashboard-text {
-    display: none; /* Hide text on small screens to save space */
-  }
-
   .dashboard-link {
-    padding: 0;
     width: 32px;
     height: 32px;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    display: flex;
-  }
-
-  .dashboard-link:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-  }
-
-  /* Add a dashboard icon for small screens */
-  .dashboard-link::after {
-    content: "📊";
-    font-size: 16px;
-    display: block;
   }
 }
 
@@ -585,77 +926,72 @@
     width: 28px;
     height: 28px;
   }
-
-  .dashboard-link::after {
-    font-size: 14px;
-  }
 }
 
 @media (max-width: 320px) {
   .dashboard-link {
     width: 24px;
     height: 24px;
-  }
-
-  .dashboard-link::after {
-    font-size: 12px;
   }
 }
 
 .data-management-link {
-  color: white;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap; /* Change back to nowrap for single line */
+  flex-shrink: 0;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: 1px solid transparent;
 }
 
 .data-management-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.data-management-text {
-  font-size: 13px;
-  font-weight: 500;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 /* Mobile data management button optimizations - match dashboard sizing */
+@media (max-width: 900px) {
+  .dashboard-link,
+  .data-management-link {
+    padding: 0;
+    font-size: 0;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dashboard-text,
+  .data-management-text {
+    display: none;
+  }
+
+  .dashboard-link i,
+  .data-management-link i {
+    width: 16px;
+    height: 16px;
+  }
+}
 @media (max-width: 768px) {
   .data-management-text {
-    font-size: 10px; /* Same as dashboard */
+    display: none; /* Hide text label on smaller screens */
   }
 }
 
 @media (max-width: 480px) {
-  .data-management-text {
-    display: none; /* Hide text on small screens to save space */
-  }
-
   .data-management-link {
-    padding: 0;
     width: 32px;
     height: 32px;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    display: flex;
-  }
-
-  .data-management-link:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-  }
-
-  /* Add a data management icon for small screens */
-  .data-management-link::after {
-    content: "⚙️";
-    font-size: 16px;
-    display: block;
   }
 }
 
@@ -664,20 +1000,12 @@
     width: 28px;
     height: 28px;
   }
-
-  .data-management-link::after {
-    font-size: 14px;
-  }
 }
 
 @media (max-width: 320px) {
   .data-management-link {
     width: 24px;
     height: 24px;
-  }
-
-  .data-management-link::after {
-    font-size: 12px;
   }
 }
 
@@ -697,204 +1025,74 @@
 }
 
 .cart-link {
-  color: white;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
   transition: all 0.2s;
-  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  color: #cbd5e0;
+  background: transparent;
+  border: 1px solid #4a5568;
   position: relative;
 }
 
 .cart-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.cart-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 32px;
-  height: 32px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
-  transition: all 0.2s;
-}
-
-.cart-button:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.cart-button i {
-  width: 18px;
-  height: 18px;
+  background: #4a5568;
   color: white;
 }
 
 .cart-quantity {
-  color: rgb(240, 136, 4);
-  font-size: 16px;
+  color: white;
+  font-size: 11px;
   font-weight: 700;
   position: absolute;
-  top: 8px;
-  left: 25px;
-  width: 26px;
-  height: 26px;
-  text-align: center;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  border: 2px solid white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 18px;
+  min-height: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
 }
 
 /* Mobile cart button sizing adjustments */
-@media (max-width: 768px) {
-  .cart-button {
+@media (max-width: 900px) {
+  .cart-link {
+    padding: 0;
+    font-size: 0;
+    border-radius: 6px;
     width: 32px;
     height: 32px;
-  }
-
-  .cart-button i {
-    width: 18px;
-    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .cart-text {
-    font-size: 12px;
-    margin-top: 8px;
-    display: block; /* Ensure visibility */
+    display: none;
   }
 
   .cart-quantity {
     position: absolute;
     top: -6px;
     right: -6px;
-    font-size: 12px;
-    width: 20px;
-    height: 20px;
-    min-height: 16px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    padding: 1px 5px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .orders-text,
-  .returns-text {
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .cart-button {
-    width: 32px;
-    height: 32px;
-  }
-
-  .cart-button i {
-    width: 16px;
-    height: 16px;
-  }
-
-  .cart-text {
-    display: none; /* Hide cart text to save space */
-  }
-
-  .cart-quantity {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    font-size: 8px;
-    width: 14px;
-    height: 14px;
-    min-height: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    padding: 1px 3px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 360px) {
-  .cart-button {
-    width: 28px;
-    height: 28px;
-  }
-
-  .cart-button i {
-    width: 14px;
-    height: 14px;
-  }
-
-  .cart-text {
-    display: none; /* Keep hidden */
-  }
-
-  .cart-quantity {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    font-size: 7px;
-    width: 12px;
-    height: 12px;
-    min-height: 8px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    padding: 1px 2px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 320px) {
-  .cart-button {
-    width: 24px;
-    height: 24px;
-  }
-
-  .cart-button i {
-    width: 12px;
-    height: 12px;
-  }
-
-  .cart-text {
-    display: none; /* Keep hidden for space */
-  }
-
-  .cart-quantity {
-    position: absolute;
-    top: -3px;
-    right: -3px;
-    font-size: 7px;
-    width: 12px;
-    height: 12px;
-    min-height: 8px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    padding: 1px 2px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 9px;
+    width: 18px;
+    height: 18px;
+    min-height: 14px;
+    border: 1.5px solid white;
   }
 }
 
@@ -1067,6 +1265,38 @@
 }
 
 /* Responsive authentication */
+/* Add even earlier breakpoint to start transitioning auth buttons */
+@media (max-width: 950px) {
+  .auth-section {
+    margin-left: 0.4rem;
+  }
+
+  .auth-buttons {
+    gap: 0.3rem;
+  }
+
+  .header-auth-btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Add earlier breakpoint to start transitioning auth buttons */
+@media (max-width: 850px) {
+  .auth-section {
+    margin-left: 0.3rem;
+  }
+
+  .auth-buttons {
+    gap: 0.25rem;
+  }
+
+  .header-auth-btn {
+    padding: 0.25rem 0.4rem;
+    font-size: 0.75rem;
+  }
+}
+
 @media (max-width: 768px) {
   .auth-section {
     margin-left: 0.5rem;
@@ -1093,7 +1323,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 900px) {
   .auth-section {
     margin-left: 0;
   }
@@ -1124,15 +1354,33 @@
   }
 
   .user-avatar {
-    width: 20px;
-    height: 20px;
-    font-size: 0.6rem;
+    width: 24px;
+    height: 24px;
+    font-size: 0.65rem;
   }
 
   .header-auth-btn i {
     display: block !important; /* Show icons on mobile */
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-auth-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .header-auth-btn i {
     width: 16px;
     height: 16px;
+  }
+
+  .user-avatar {
+    width: 20px;
+    height: 20px;
+    font-size: 0.6rem;
   }
 }
 
