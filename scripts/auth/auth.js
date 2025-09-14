@@ -4,7 +4,10 @@ class AuthService {
   constructor() {
     // Use environment-aware configuration
     console.log("🔧 AuthService init - window.CONFIG:", window.CONFIG);
-    this.baseURL = window.CONFIG
+    console.log("🔧 window.CONFIG available:", !!window.CONFIG);
+    console.log("🔧 window.CONFIG.apiBaseUrl:", window.CONFIG?.apiBaseUrl);
+    
+    this.baseURL = window.CONFIG && window.CONFIG.apiBaseUrl
       ? window.CONFIG.apiBaseUrl
       : "http://localhost:5000/api/v1";
     console.log("🔗 AuthService using baseURL:", this.baseURL);
