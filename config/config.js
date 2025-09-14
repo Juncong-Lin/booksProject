@@ -32,10 +32,10 @@ class Config {
         ENVIRONMENT: "development",
       },
       production: {
-        // Update this with your actual production backend URL
-        API_BASE_URL: "https://your-backend-domain.com/api/v1",
+        // Updated with your Render backend URL
+        API_BASE_URL: "https://bookstore-backend-yu11.onrender.com/api/v1",
         FRONTEND_URL: window.location.origin,
-        WEBSOCKET_URL: "wss://your-backend-domain.com",
+        WEBSOCKET_URL: "wss://bookstore-backend-yu11.onrender.com",
         ENVIRONMENT: "production",
       },
     };

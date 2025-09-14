@@ -1,12 +1,12 @@
 [build]
   publish = "."
-  functions = "netlify/functions"
 
 # Redirect API calls to Render backend
 [[redirects]]
   from = "/api/*"
   to = "https://bookstore-backend-yu11.onrender.com/api/:splat"
   status = 200
+  force = true
 
 # Handle client-side routing
 [[redirects]]
