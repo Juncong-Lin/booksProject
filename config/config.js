@@ -2,7 +2,7 @@
 
 class Config {
   constructor() {
-    this.environment = this.detectEnvironment();
+    this._environment = this.detectEnvironment();
     this.config = this.getConfig();
   }
 
@@ -40,7 +40,7 @@ class Config {
       },
     };
 
-    return configs[this.environment];
+    return configs[this._environment];
   }
 
   get apiBaseUrl() {
