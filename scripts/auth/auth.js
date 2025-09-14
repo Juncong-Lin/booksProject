@@ -3,9 +3,11 @@
 class AuthService {
   constructor() {
     // Use environment-aware configuration
+    console.log("🔧 AuthService init - window.CONFIG:", window.CONFIG);
     this.baseURL = window.CONFIG
       ? window.CONFIG.apiBaseUrl
       : "http://localhost:5000/api/v1";
+    console.log("🔗 AuthService using baseURL:", this.baseURL);
     this.currentUser = null;
     this.authToken = null;
     this.initPromise = this.init();
@@ -529,9 +531,21 @@ const UIHelpers = {
 };
 
 // Initialize auth service when script loads
-const authService = new AuthService();
+// Ensure CONFIG is available first
+function initializeAuthService() {
+  if (window.CONFIG) {
+    const authService = new AuthService();
+    window.authService = authService;
+    window.ValidationUtils = ValidationUtils;
+    
+    // Dispatch event that auth service is ready
+    window.dispatchEvent(new CustomEvent("authServiceReady"));
+  } else {
+    console.log("⏳ Waiting for CONFIG to be available...");
+    setTimeout(initializeAuthService, 50);
+  }
+}
 
-// Make it available globally
-window.authService = authService;
-window.ValidationUtils = ValidationUtils;
+// Start initialization
+initializeAuthService();
 window.UIHelpers = UIHelpers;
