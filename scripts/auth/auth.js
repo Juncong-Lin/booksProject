@@ -537,7 +537,7 @@ function initializeAuthService() {
     const authService = new AuthService();
     window.authService = authService;
     window.ValidationUtils = ValidationUtils;
-    
+
     // Dispatch event that auth service is ready
     window.dispatchEvent(new CustomEvent("authServiceReady"));
   } else {

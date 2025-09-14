@@ -1,9 +1,9 @@
-// Configuration for different environments
+// Configuration for different environments - v2.0
 
-class Config {
+class AppConfig {
   constructor() {
-    this._environment = this.detectEnvironment();
-    this.config = this.getConfig();
+    this.env = this.detectEnvironment();
+    this.settings = this.getConfig();
   }
 
   detectEnvironment() {
@@ -40,23 +40,23 @@ class Config {
       },
     };
 
-    return configs[this._environment];
+    return configs[this.env];
   }
 
   get apiBaseUrl() {
-    return this.config.API_BASE_URL;
+    return this.settings.API_BASE_URL;
   }
 
   get frontendUrl() {
-    return this.config.FRONTEND_URL;
+    return this.settings.FRONTEND_URL;
   }
 
   get websocketUrl() {
-    return this.config.WEBSOCKET_URL;
+    return this.settings.WEBSOCKET_URL;
   }
 
   get environment() {
-    return this.config.ENVIRONMENT;
+    return this.settings.ENVIRONMENT;
   }
 
   get isDevelopment() {
@@ -69,7 +69,7 @@ class Config {
 }
 
 // Create global configuration instance
-window.CONFIG = new Config();
+window.CONFIG = new AppConfig();
 
 // Log current environment for debugging
 console.log(`🌍 Environment: ${window.CONFIG.environment}`);
