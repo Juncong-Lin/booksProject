@@ -1,10 +1,10 @@
-// Total products: 998, New products scraped: 998, Date: 2025-07-15 19:52:18
+﻿// Total products: 998, New products scraped: 998, Date: 2025-07-15 19:52:18
 export const booksProducts = {
   academic: [
     {
       id: "Logan-Kade-Fallen-Crest-High-5-5",
-      name: "Logan Kade (Fallen Crest High #5.5)",
-      image: "products/books/Academic/Logan Kade (Fallen Crest High #5.5)/image/Logan Kade (Fallen Crest High #5.5).jpg",
+      name: "Logan Kade (Fallen Crest High -5.5)",
+      image: "products/books/Academic/Logan Kade (Fallen Crest High -5.5)/image/Logan Kade (Fallen Crest High -5.5).jpg",
       star: 2,
       lower_price: 1312,
       higher_price: 1312
@@ -53,8 +53,8 @@ export const booksProducts = {
     },
     {
       id: "Shobu-Samurai-Project-Aryoku-3",
-      name: "Shobu Samurai, Project Aryoku (#3)",
-      image: "products/books/Add a comment/Shobu Samurai, Project Aryoku (#3)/image/Shobu Samurai, Project Aryoku (#3).jpg",
+      name: "Shobu Samurai, Project Aryoku (-3)",
+      image: "products/books/Add a comment/Shobu Samurai, Project Aryoku (-3)/image/Shobu Samurai, Project Aryoku (-3).jpg",
       star: 3,
       lower_price: 2906,
       higher_price: 2906
@@ -69,8 +69,8 @@ export const booksProducts = {
     },
     {
       id: "The-White-Queen-The-Cousins-War-1",
-      name: "The White Queen (The Cousins' War #1)",
-      image: "products/books/Add a comment/The White Queen (The Cousins' War #1)/image/The White Queen (The Cousins' War #1).jpg",
+      name: "The White Queen (The Cousins' War -1)",
+      image: "products/books/Add a comment/The White Queen (The Cousins' War -1)/image/The White Queen (The Cousins' War -1).jpg",
       star: 5,
       lower_price: 2591,
       higher_price: 2591
@@ -101,16 +101,16 @@ export const booksProducts = {
     },
     {
       id: "More-Than-Music-Chasing-the-Dream-1",
-      name: "More Than Music (Chasing the Dream #1)",
-      image: "products/books/Add a comment/More Than Music (Chasing the Dream #1)/image/More Than Music (Chasing the Dream #1).jpg",
+      name: "More Than Music (Chasing the Dream -1)",
+      image: "products/books/Add a comment/More Than Music (Chasing the Dream -1)/image/More Than Music (Chasing the Dream -1).jpg",
       star: 2,
       lower_price: 3761,
       higher_price: 3761
     },
     {
       id: "Code-Name-Verity-Code-Name-Verity-1",
-      name: "Code Name Verity (Code Name Verity #1)",
-      image: "products/books/Add a comment/Code Name Verity (Code Name Verity #1)/image/Code Name Verity (Code Name Verity #1).jpg",
+      name: "Code Name Verity (Code Name Verity -1)",
+      image: "products/books/Add a comment/Code Name Verity (Code Name Verity -1)/image/Code Name Verity (Code Name Verity -1).jpg",
       star: 4,
       lower_price: 2213,
       higher_price: 2213
@@ -125,8 +125,8 @@ export const booksProducts = {
     },
     {
       id: "Angels-Walking-Angels-Walking-1",
-      name: "Angels Walking (Angels Walking #1)",
-      image: "products/books/Add a comment/Angels Walking (Angels Walking #1)/image/Angels Walking (Angels Walking #1).jpg",
+      name: "Angels Walking (Angels Walking -1)",
+      image: "products/books/Add a comment/Angels Walking (Angels Walking -1)/image/Angels Walking (Angels Walking -1).jpg",
       star: 2,
       lower_price: 3420,
       higher_price: 3420
@@ -141,8 +141,8 @@ export const booksProducts = {
     },
     {
       id: "A-Brush-of-Wings-Angels-Walking-3",
-      name: "A Brush of Wings (Angels Walking #3)",
-      image: "products/books/Add a comment/A Brush of Wings (Angels Walking #3)/image/A Brush of Wings (Angels Walking #3).jpg",
+      name: "A Brush of Wings (Angels Walking -3)",
+      image: "products/books/Add a comment/A Brush of Wings (Angels Walking -3)/image/A Brush of Wings (Angels Walking -3).jpg",
       star: 1,
       lower_price: 5551,
       higher_price: 5551
@@ -181,8 +181,8 @@ export const booksProducts = {
     },
     {
       id: "One-with-You-Crossfire-5",
-      name: "One with You (Crossfire #5)",
-      image: "products/books/Add a comment/One with You (Crossfire #5)/image/One with You (Crossfire #5).jpg",
+      name: "One with You (Crossfire -5)",
+      image: "products/books/Add a comment/One with You (Crossfire -5)/image/One with You (Crossfire -5).jpg",
       star: 4,
       lower_price: 1571,
       higher_price: 1571
@@ -205,8 +205,8 @@ export const booksProducts = {
     },
     {
       id: "A-Hero-s-Curse-The-Unseen-Chronicles-1",
-      name: "A Hero's Curse (The Unseen Chronicles #1)",
-      image: "products/books/Add a comment/A Hero's Curse (The Unseen Chronicles #1)/image/A Hero's Curse (The Unseen Chronicles #1).jpg",
+      name: "A Hero's Curse (The Unseen Chronicles -1)",
+      image: "products/books/Add a comment/A Hero's Curse (The Unseen Chronicles -1)/image/A Hero's Curse (The Unseen Chronicles -1).jpg",
       star: 3,
       lower_price: 5049,
       higher_price: 5049
@@ -245,8 +245,8 @@ export const booksProducts = {
     },
     {
       id: "Good-in-Bed-Cannie-Shapiro-1",
-      name: "Good in Bed (Cannie Shapiro #1)",
-      image: "products/books/Add a comment/Good in Bed (Cannie Shapiro #1)/image/Good in Bed (Cannie Shapiro #1).jpg",
+      name: "Good in Bed (Cannie Shapiro -1)",
+      image: "products/books/Add a comment/Good in Bed (Cannie Shapiro -1)/image/Good in Bed (Cannie Shapiro -1).jpg",
       star: 5,
       lower_price: 3704,
       higher_price: 3704
@@ -261,8 +261,8 @@ export const booksProducts = {
     },
     {
       id: "The-Golden-Compass-His-Dark-Materials-1",
-      name: "The Golden Compass (His Dark Materials #1)",
-      image: "products/books/Add a comment/The Golden Compass (His Dark Materials #1)/image/The Golden Compass (His Dark Materials #1).jpg",
+      name: "The Golden Compass (His Dark Materials -1)",
+      image: "products/books/Add a comment/The Golden Compass (His Dark Materials -1)/image/The Golden Compass (His Dark Materials -1).jpg",
       star: 1,
       lower_price: 1877,
       higher_price: 1877
@@ -301,32 +301,32 @@ export const booksProducts = {
     },
     {
       id: "The-Raven-King-The-Raven-Cycle-4",
-      name: "The Raven King (The Raven Cycle #4)",
-      image: "products/books/Add a comment/The Raven King (The Raven Cycle #4)/image/The Raven King (The Raven Cycle #4).jpg",
+      name: "The Raven King (The Raven Cycle -4)",
+      image: "products/books/Add a comment/The Raven King (The Raven Cycle -4)/image/The Raven King (The Raven Cycle -4).jpg",
       star: 2,
       lower_price: 3057,
       higher_price: 3057
     },
     {
       id: "Find-Her-Detective-D-D-Warren-8",
-      name: "Find Her (Detective D.D. Warren #8)",
-      image: "products/books/Add a comment/Find Her (Detective D.D. Warren #8)/image/Find Her (Detective D.D. Warren #8).jpg",
+      name: "Find Her (Detective D.D. Warren -8)",
+      image: "products/books/Add a comment/Find Her (Detective D.D. Warren -8)/image/Find Her (Detective D.D. Warren -8).jpg",
       star: 1,
       lower_price: 2237,
       higher_price: 2237
     },
     {
       id: "A-Game-of-Thrones-A-Song-of-Ice-and-Fire-1",
-      name: "A Game of Thrones (A Song of Ice and Fire #1)",
-      image: "products/books/Add a comment/A Game of Thrones (A Song of Ice and Fire #1)/image/A Game of Thrones (A Song of Ice and Fire #1).jpg",
+      name: "A Game of Thrones (A Song of Ice and Fire -1)",
+      image: "products/books/Add a comment/A Game of Thrones (A Song of Ice and Fire -1)/image/A Game of Thrones (A Song of Ice and Fire -1).jpg",
       star: 2,
       lower_price: 4642,
       higher_price: 4642
     },
     {
       id: "A-Clash-of-Kings-A-Song-of-Ice-and-Fire-2",
-      name: "A Clash of Kings (A Song of Ice and Fire #2)",
-      image: "products/books/Add a comment/A Clash of Kings (A Song of Ice and Fire #2)/image/A Clash of Kings (A Song of Ice and Fire #2).jpg",
+      name: "A Clash of Kings (A Song of Ice and Fire -2)",
+      image: "products/books/Add a comment/A Clash of Kings (A Song of Ice and Fire -2)/image/A Clash of Kings (A Song of Ice and Fire -2).jpg",
       star: 3,
       lower_price: 1079,
       higher_price: 1079
@@ -357,16 +357,16 @@ export const booksProducts = {
     },
     {
       id: "The-Hitchhiker-s-Guide-to-the-Galaxy-Hitchhiker-s-Guide-to-the-Galaxy-1",
-      name: "The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy #1)",
-      image: "products/books/Add a comment/The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy #1)/image/The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy #1).jpg",
+      name: "The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy -1)",
+      image: "products/books/Add a comment/The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy -1)/image/The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy -1).jpg",
       star: 3,
       lower_price: 4780,
       higher_price: 4780
     },
     {
       id: "The-Girl-Who-Kicked-the-Hornet-s-Nest-Millennium-Trilogy-3",
-      name: "The Girl Who Kicked the Hornet's Nest (Millennium Trilogy #3)",
-      image: "products/books/Add a comment/The Girl Who Kicked the Hornet's Nest (Millennium Trilogy #3)/image/The Girl Who Kicked the Hornet's Nest (Millennium Trilogy #3).jpg",
+      name: "The Girl Who Kicked the Hornet's Nest (Millennium Trilogy -3)",
+      image: "products/books/Add a comment/The Girl Who Kicked the Hornet's Nest (Millennium Trilogy -3)/image/The Girl Who Kicked the Hornet's Nest (Millennium Trilogy -3).jpg",
       star: 1,
       lower_price: 5748,
       higher_price: 5748
@@ -429,8 +429,8 @@ export const booksProducts = {
     },
     {
       id: "Rogue-Lawyer-Rogue-Lawyer-1",
-      name: "Rogue Lawyer (Rogue Lawyer #1)",
-      image: "products/books/Add a comment/Rogue Lawyer (Rogue Lawyer #1)/image/Rogue Lawyer (Rogue Lawyer #1).jpg",
+      name: "Rogue Lawyer (Rogue Lawyer -1)",
+      image: "products/books/Add a comment/Rogue Lawyer (Rogue Lawyer -1)/image/Rogue Lawyer (Rogue Lawyer -1).jpg",
       star: 3,
       lower_price: 5011,
       higher_price: 5011
@@ -445,8 +445,8 @@ export const booksProducts = {
     },
     {
       id: "Fire-Bound-Sea-Haven-Sisters-of-the-Heart-5",
-      name: "Fire Bound (Sea Haven/Sisters of the Heart #5)",
-      image: "products/books/Add a comment/Fire Bound (Sea HavenSisters of the Heart #5)/image/Fire Bound (Sea HavenSisters of the Heart #5).jpg",
+      name: "Fire Bound (Sea Haven/Sisters of the Heart -5)",
+      image: "products/books/Add a comment/Fire Bound (Sea HavenSisters of the Heart -5)/image/Fire Bound (Sea HavenSisters of the Heart -5).jpg",
       star: 4,
       lower_price: 2128,
       higher_price: 2128
@@ -461,8 +461,8 @@ export const booksProducts = {
     },
     {
       id: "GIRLBOSS",
-      name: "#GIRLBOSS",
-      image: "products/books/Add a comment/#GIRLBOSS/image/#GIRLBOSS.jpg",
+      name: "-GIRLBOSS",
+      image: "products/books/Add a comment/-GIRLBOSS/image/-GIRLBOSS.jpg",
       star: 1,
       lower_price: 5096,
       higher_price: 5096
@@ -694,8 +694,8 @@ export const booksProducts = {
     },
     {
       id: "The-Rise-of-Theodore-Roosevelt-Theodore-Roosevelt-1",
-      name: "The Rise of Theodore Roosevelt (Theodore Roosevelt #1)",
-      image: "products/books/Biography/The Rise of Theodore Roosevelt (Theodore Roosevelt #1)/image/The Rise of Theodore Roosevelt (Theodore Roosevelt #1).jpg",
+      name: "The Rise of Theodore Roosevelt (Theodore Roosevelt -1)",
+      image: "products/books/Biography/The Rise of Theodore Roosevelt (Theodore Roosevelt -1)/image/The Rise of Theodore Roosevelt (Theodore Roosevelt -1).jpg",
       star: 3,
       lower_price: 4257,
       higher_price: 4257
@@ -712,8 +712,8 @@ export const booksProducts = {
     },
     {
       id: "The-Third-Wave-An-Entrepreneur-s-Vision-of-the-Future",
-      name: "The Third Wave: An Entrepreneur’s Vision of the Future",
-      image: "products/books/Business/The Third Wave An Entrepreneur’s Vision of the Future/image/The Third Wave An Entrepreneur’s Vision of the Future.jpg",
+      name: "The Third Wave: An Entrepreneurâ€™s Vision of the Future",
+      image: "products/books/Business/The Third Wave An Entrepreneurâ€™s Vision of the Future/image/The Third Wave An Entrepreneurâ€™s Vision of the Future.jpg",
       star: 5,
       lower_price: 1261,
       higher_price: 1261
@@ -825,9 +825,9 @@ export const booksProducts = {
       higher_price: 5613
     },
     {
-      id: "The-White-Cat-and-the-Monk-A-Retelling-of-the-Poem-Pangur-Bán",
-      name: "The White Cat and the Monk: A Retelling of the Poem “Pangur Bán”",
-      image: "products/books/Childrens/The White Cat and the Monk A Retelling of the Poem “Pangur Bán”/image/The White Cat and the Monk A Retelling of the Poem “Pangur Bán”.jpg",
+      id: "The-White-Cat-and-the-Monk-A-Retelling-of-the-Poem-Pangur-BÃ¡n",
+      name: "The White Cat and the Monk: A Retelling of the Poem â€œPangur BÃ¡nâ€",
+      image: "products/books/Childrens/The White Cat and the Monk A Retelling of the Poem â€œPangur BÃ¡nâ€/image/The White Cat and the Monk A Retelling of the Poem â€œPangur BÃ¡nâ€.jpg",
       star: 4,
       lower_price: 5808,
       higher_price: 5808
@@ -1026,8 +1026,8 @@ export const booksProducts = {
     },
     {
       id: "Charlie-and-the-Chocolate-Factory-Charlie-Bucket-1",
-      name: "Charlie and the Chocolate Factory (Charlie Bucket #1)",
-      image: "products/books/Childrens/Charlie and the Chocolate Factory (Charlie Bucket #1)/image/Charlie and the Chocolate Factory (Charlie Bucket #1).jpg",
+      name: "Charlie and the Chocolate Factory (Charlie Bucket -1)",
+      image: "products/books/Childrens/Charlie and the Chocolate Factory (Charlie Bucket -1)/image/Charlie and the Chocolate Factory (Charlie Bucket -1).jpg",
       star: 3,
       lower_price: 2285,
       higher_price: 2285
@@ -1078,32 +1078,32 @@ export const booksProducts = {
     },
     {
       id: "Shadows-of-the-Past-Logan-Point-1",
-      name: "Shadows of the Past (Logan Point #1)",
-      image: "products/books/Christian Fiction/Shadows of the Past (Logan Point #1)/image/Shadows of the Past (Logan Point #1).jpg",
+      name: "Shadows of the Past (Logan Point -1)",
+      image: "products/books/Christian Fiction/Shadows of the Past (Logan Point -1)/image/Shadows of the Past (Logan Point -1).jpg",
       star: 5,
       lower_price: 3967,
       higher_price: 3967
     },
     {
       id: "Like-Never-Before-Walker-Family-2",
-      name: "Like Never Before (Walker Family #2)",
-      image: "products/books/Christian Fiction/Like Never Before (Walker Family #2)/image/Like Never Before (Walker Family #2).jpg",
+      name: "Like Never Before (Walker Family -2)",
+      image: "products/books/Christian Fiction/Like Never Before (Walker Family -2)/image/Like Never Before (Walker Family -2).jpg",
       star: 2,
       lower_price: 2877,
       higher_price: 2877
     },
     {
       id: "Counted-With-the-Stars-Out-from-Egypt-1",
-      name: "Counted With the Stars (Out from Egypt #1)",
-      image: "products/books/Christian Fiction/Counted With the Stars (Out from Egypt #1)/image/Counted With the Stars (Out from Egypt #1).jpg",
+      name: "Counted With the Stars (Out from Egypt -1)",
+      image: "products/books/Christian Fiction/Counted With the Stars (Out from Egypt -1)/image/Counted With the Stars (Out from Egypt -1).jpg",
       star: 5,
       lower_price: 1797,
       higher_price: 1797
     },
     {
       id: "If-I-Run-If-I-Run-1",
-      name: "If I Run (If I Run #1)",
-      image: "products/books/Christian Fiction/If I Run (If I Run #1)/image/If I Run (If I Run #1).jpg",
+      name: "If I Run (If I Run -1)",
+      image: "products/books/Christian Fiction/If I Run (If I Run -1)/image/If I Run (If I Run -1).jpg",
       star: 4,
       lower_price: 4997,
       higher_price: 4997
@@ -1136,16 +1136,16 @@ export const booksProducts = {
     },
     {
       id: "The-Hound-of-the-Baskervilles-Sherlock-Holmes-5",
-      name: "The Hound of the Baskervilles (Sherlock Holmes #5)",
-      image: "products/books/Classics/The Hound of the Baskervilles (Sherlock Holmes #5)/image/The Hound of the Baskervilles (Sherlock Holmes #5).jpg",
+      name: "The Hound of the Baskervilles (Sherlock Holmes -5)",
+      image: "products/books/Classics/The Hound of the Baskervilles (Sherlock Holmes -5)/image/The Hound of the Baskervilles (Sherlock Holmes -5).jpg",
       star: 2,
       lower_price: 1482,
       higher_price: 1482
     },
     {
       id: "Little-Women-Little-Women-1",
-      name: "Little Women (Little Women #1)",
-      image: "products/books/Classics/Little Women (Little Women #1)/image/Little Women (Little Women #1).jpg",
+      name: "Little Women (Little Women -1)",
+      image: "products/books/Classics/Little Women (Little Women -1)/image/Little Women (Little Women -1).jpg",
       star: 4,
       lower_price: 2807,
       higher_price: 2807
@@ -1249,8 +1249,8 @@ export const booksProducts = {
     },
     {
       id: "Alice-in-Wonderland-Alice-s-Adventures-in-Wonderland-1",
-      name: "Alice in Wonderland (Alice's Adventures in Wonderland #1)",
-      image: "products/books/Classics/Alice in Wonderland (Alice's Adventures in Wonderland #1)/image/Alice in Wonderland (Alice's Adventures in Wonderland #1).jpg",
+      name: "Alice in Wonderland (Alice's Adventures in Wonderland -1)",
+      image: "products/books/Classics/Alice in Wonderland (Alice's Adventures in Wonderland -1)/image/Alice in Wonderland (Alice's Adventures in Wonderland -1).jpg",
       star: 1,
       lower_price: 5553,
       higher_price: 5553
@@ -1267,8 +1267,8 @@ export const booksProducts = {
     },
     {
       id: "Someone-Like-You-The-Harrisons-2",
-      name: "Someone Like You (The Harrisons #2)",
-      image: "products/books/Contemporary/Someone Like You (The Harrisons #2)/image/Someone Like You (The Harrisons #2).jpg",
+      name: "Someone Like You (The Harrisons -2)",
+      image: "products/books/Contemporary/Someone Like You (The Harrisons -2)/image/Someone Like You (The Harrisons -2).jpg",
       star: 5,
       lower_price: 5279,
       higher_price: 5279
@@ -1321,8 +1321,8 @@ export const booksProducts = {
     },
     {
       id: "Starving-Hearts-Triangular-Trade-Trilogy-1",
-      name: "Starving Hearts (Triangular Trade Trilogy, #1)",
-      image: "products/books/Default/Starving Hearts (Triangular Trade Trilogy, #1)/image/Starving Hearts (Triangular Trade Trilogy, #1).jpg",
+      name: "Starving Hearts (Triangular Trade Trilogy, -1)",
+      image: "products/books/Default/Starving Hearts (Triangular Trade Trilogy, -1)/image/Starving Hearts (Triangular Trade Trilogy, -1).jpg",
       star: 2,
       lower_price: 1399,
       higher_price: 1399
@@ -1417,8 +1417,8 @@ export const booksProducts = {
     },
     {
       id: "The-Secret-The-Secret-1",
-      name: "The Secret (The Secret #1)",
-      image: "products/books/Default/The Secret (The Secret #1)/image/The Secret (The Secret #1).jpg",
+      name: "The Secret (The Secret -1)",
+      image: "products/books/Default/The Secret (The Secret -1)/image/The Secret (The Secret -1).jpg",
       star: 4,
       lower_price: 2737,
       higher_price: 2737
@@ -1473,8 +1473,8 @@ export const booksProducts = {
     },
     {
       id: "Secrets-and-Lace-Fatal-Hearts-1",
-      name: "Secrets and Lace (Fatal Hearts #1)",
-      image: "products/books/Default/Secrets and Lace (Fatal Hearts #1)/image/Secrets and Lace (Fatal Hearts #1).jpg",
+      name: "Secrets and Lace (Fatal Hearts -1)",
+      image: "products/books/Default/Secrets and Lace (Fatal Hearts -1)/image/Secrets and Lace (Fatal Hearts -1).jpg",
       star: 1,
       lower_price: 2027,
       higher_price: 2027
@@ -1497,8 +1497,8 @@ export const booksProducts = {
     },
     {
       id: "Miss-Peregrine-s-Home-for-Peculiar-Children-Miss-Peregrine-s-Peculiar-Children-1",
-      name: "Miss Peregrine’s Home for Peculiar Children (Miss Peregrine’s Peculiar Children #1)",
-      image: "products/books/Default/Miss Peregrine’s Home for Peculiar Children (Miss Peregrine’s Peculiar Children #1)/image/Miss Peregrine’s Home for Peculiar Children (Miss Peregrine’s Peculiar Children #1).jpg",
+      name: "Miss Peregrineâ€™s Home for Peculiar Children (Miss Peregrineâ€™s Peculiar Children -1)",
+      image: "products/books/Default/Miss Peregrineâ€™s Home for Peculiar Children (Miss Peregrineâ€™s Peculiar Children -1)/image/Miss Peregrineâ€™s Home for Peculiar Children (Miss Peregrineâ€™s Peculiar Children -1).jpg",
       star: 1,
       lower_price: 1076,
       higher_price: 1076
@@ -1545,16 +1545,16 @@ export const booksProducts = {
     },
     {
       id: "Done-Rubbed-Out-Reightman-Bailey-1",
-      name: "Done Rubbed Out (Reightman & Bailey #1)",
-      image: "products/books/Default/Done Rubbed Out (Reightman & Bailey #1)/image/Done Rubbed Out (Reightman & Bailey #1).jpg",
+      name: "Done Rubbed Out (Reightman & Bailey -1)",
+      image: "products/books/Default/Done Rubbed Out (Reightman & Bailey -1)/image/Done Rubbed Out (Reightman & Bailey -1).jpg",
       star: 5,
       lower_price: 3772,
       higher_price: 3772
     },
     {
       id: "Beauty-Restored-Riley-Family-Legacy-Novellas-3",
-      name: "Beauty Restored (Riley Family Legacy Novellas #3)",
-      image: "products/books/Default/Beauty Restored (Riley Family Legacy Novellas #3)/image/Beauty Restored (Riley Family Legacy Novellas #3).jpg",
+      name: "Beauty Restored (Riley Family Legacy Novellas -3)",
+      image: "products/books/Default/Beauty Restored (Riley Family Legacy Novellas -3)/image/Beauty Restored (Riley Family Legacy Novellas -3).jpg",
       star: 2,
       lower_price: 1111,
       higher_price: 1111
@@ -1625,8 +1625,8 @@ export const booksProducts = {
     },
     {
       id: "The-Rosie-Project-Don-Tillman-1",
-      name: "The Rosie Project (Don Tillman #1)",
-      image: "products/books/Default/The Rosie Project (Don Tillman #1)/image/The Rosie Project (Don Tillman #1).jpg",
+      name: "The Rosie Project (Don Tillman -1)",
+      image: "products/books/Default/The Rosie Project (Don Tillman -1)/image/The Rosie Project (Don Tillman -1).jpg",
       star: 1,
       lower_price: 5404,
       higher_price: 5404
@@ -1665,16 +1665,16 @@ export const booksProducts = {
     },
     {
       id: "Lady-Midnight-The-Dark-Artifices-1",
-      name: "Lady Midnight (The Dark Artifices #1)",
-      image: "products/books/Default/Lady Midnight (The Dark Artifices #1)/image/Lady Midnight (The Dark Artifices #1).jpg",
+      name: "Lady Midnight (The Dark Artifices -1)",
+      image: "products/books/Default/Lady Midnight (The Dark Artifices -1)/image/Lady Midnight (The Dark Artifices -1).jpg",
       star: 5,
       lower_price: 1628,
       higher_price: 1628
     },
     {
       id: "Hush-Hush-Hush-Hush-1",
-      name: "Hush, Hush (Hush, Hush #1)",
-      image: "products/books/Default/Hush, Hush (Hush, Hush #1)/image/Hush, Hush (Hush, Hush #1).jpg",
+      name: "Hush, Hush (Hush, Hush -1)",
+      image: "products/books/Default/Hush, Hush (Hush, Hush -1)/image/Hush, Hush (Hush, Hush -1).jpg",
       star: 3,
       lower_price: 4702,
       higher_price: 4702
@@ -1705,32 +1705,32 @@ export const booksProducts = {
     },
     {
       id: "Clockwork-Angel-The-Infernal-Devices-1",
-      name: "Clockwork Angel (The Infernal Devices #1)",
-      image: "products/books/Default/Clockwork Angel (The Infernal Devices #1)/image/Clockwork Angel (The Infernal Devices #1).jpg",
+      name: "Clockwork Angel (The Infernal Devices -1)",
+      image: "products/books/Default/Clockwork Angel (The Infernal Devices -1)/image/Clockwork Angel (The Infernal Devices -1).jpg",
       star: 1,
       lower_price: 4414,
       higher_price: 4414
     },
     {
       id: "City-of-Fallen-Angels-The-Mortal-Instruments-4",
-      name: "City of Fallen Angels (The Mortal Instruments #4)",
-      image: "products/books/Default/City of Fallen Angels (The Mortal Instruments #4)/image/City of Fallen Angels (The Mortal Instruments #4).jpg",
+      name: "City of Fallen Angels (The Mortal Instruments -4)",
+      image: "products/books/Default/City of Fallen Angels (The Mortal Instruments -4)/image/City of Fallen Angels (The Mortal Instruments -4).jpg",
       star: 4,
       lower_price: 1123,
       higher_price: 1123
     },
     {
       id: "City-of-Bones-The-Mortal-Instruments-1",
-      name: "City of Bones (The Mortal Instruments #1)",
-      image: "products/books/Default/City of Bones (The Mortal Instruments #1)/image/City of Bones (The Mortal Instruments #1).jpg",
+      name: "City of Bones (The Mortal Instruments -1)",
+      image: "products/books/Default/City of Bones (The Mortal Instruments -1)/image/City of Bones (The Mortal Instruments -1).jpg",
       star: 1,
       lower_price: 4328,
       higher_price: 4328
     },
     {
       id: "City-of-Ashes-The-Mortal-Instruments-2",
-      name: "City of Ashes (The Mortal Instruments #2)",
-      image: "products/books/Default/City of Ashes (The Mortal Instruments #2)/image/City of Ashes (The Mortal Instruments #2).jpg",
+      name: "City of Ashes (The Mortal Instruments -2)",
+      image: "products/books/Default/City of Ashes (The Mortal Instruments -2)/image/City of Ashes (The Mortal Instruments -2).jpg",
       star: 1,
       lower_price: 4727,
       higher_price: 4727
@@ -1753,8 +1753,8 @@ export const booksProducts = {
     },
     {
       id: "Angels-Demons-Robert-Langdon-1",
-      name: "Angels & Demons (Robert Langdon #1)",
-      image: "products/books/Default/Angels & Demons (Robert Langdon #1)/image/Angels & Demons (Robert Langdon #1).jpg",
+      name: "Angels & Demons (Robert Langdon -1)",
+      image: "products/books/Default/Angels & Demons (Robert Langdon -1)/image/Angels & Demons (Robert Langdon -1).jpg",
       star: 3,
       lower_price: 5148,
       higher_price: 5148
@@ -1857,24 +1857,24 @@ export const booksProducts = {
     },
     {
       id: "The-Unlikely-Pilgrimage-of-Harold-Fry-Harold-Fry-1",
-      name: "The Unlikely Pilgrimage of Harold Fry (Harold Fry #1)",
-      image: "products/books/Default/The Unlikely Pilgrimage of Harold Fry (Harold Fry #1)/image/The Unlikely Pilgrimage of Harold Fry (Harold Fry #1).jpg",
+      name: "The Unlikely Pilgrimage of Harold Fry (Harold Fry -1)",
+      image: "products/books/Default/The Unlikely Pilgrimage of Harold Fry (Harold Fry -1)/image/The Unlikely Pilgrimage of Harold Fry (Harold Fry -1).jpg",
       star: 5,
       lower_price: 4362,
       higher_price: 4362
     },
     {
       id: "The-Martian-The-Martian-1",
-      name: "The Martian (The Martian #1)",
-      image: "products/books/Default/The Martian (The Martian #1)/image/The Martian (The Martian #1).jpg",
+      name: "The Martian (The Martian -1)",
+      image: "products/books/Default/The Martian (The Martian -1)/image/The Martian (The Martian -1).jpg",
       star: 2,
       lower_price: 4139,
       higher_price: 4139
     },
     {
       id: "Left-Behind-Left-Behind-1",
-      name: "Left Behind (Left Behind #1)",
-      image: "products/books/Default/Left Behind (Left Behind #1)/image/Left Behind (Left Behind #1).jpg",
+      name: "Left Behind (Left Behind -1)",
+      image: "products/books/Default/Left Behind (Left Behind -1)/image/Left Behind (Left Behind -1).jpg",
       star: 2,
       lower_price: 4072,
       higher_price: 4072
@@ -1905,8 +1905,8 @@ export const booksProducts = {
     },
     {
       id: "Ender-s-Game-The-Ender-Quintet-1",
-      name: "Ender's Game (The Ender Quintet #1)",
-      image: "products/books/Default/Ender's Game (The Ender Quintet #1)/image/Ender's Game (The Ender Quintet #1).jpg",
+      name: "Ender's Game (The Ender Quintet -1)",
+      image: "products/books/Default/Ender's Game (The Ender Quintet -1)/image/Ender's Game (The Ender Quintet -1).jpg",
       star: 1,
       lower_price: 4364,
       higher_price: 4364
@@ -2009,8 +2009,8 @@ export const booksProducts = {
     },
     {
       id: "The-Fellowship-of-the-Ring-The-Lord-of-the-Rings-1",
-      name: "The Fellowship of the Ring (The Lord of the Rings #1)",
-      image: "products/books/Default/The Fellowship of the Ring (The Lord of the Rings #1)/image/The Fellowship of the Ring (The Lord of the Rings #1).jpg",
+      name: "The Fellowship of the Ring (The Lord of the Rings -1)",
+      image: "products/books/Default/The Fellowship of the Ring (The Lord of the Rings -1)/image/The Fellowship of the Ring (The Lord of the Rings -1).jpg",
       star: 2,
       lower_price: 1027,
       higher_price: 1027
@@ -2049,24 +2049,24 @@ export const booksProducts = {
     },
     {
       id: "The-Dream-Thieves-The-Raven-Cycle-2",
-      name: "The Dream Thieves (The Raven Cycle #2)",
-      image: "products/books/Default/The Dream Thieves (The Raven Cycle #2)/image/The Dream Thieves (The Raven Cycle #2).jpg",
+      name: "The Dream Thieves (The Raven Cycle -2)",
+      image: "products/books/Default/The Dream Thieves (The Raven Cycle -2)/image/The Dream Thieves (The Raven Cycle -2).jpg",
       star: 1,
       lower_price: 3450,
       higher_price: 3450
     },
     {
       id: "The-5th-Wave-The-5th-Wave-1",
-      name: "The 5th Wave (The 5th Wave #1)",
-      image: "products/books/Default/The 5th Wave (The 5th Wave #1)/image/The 5th Wave (The 5th Wave #1).jpg",
+      name: "The 5th Wave (The 5th Wave -1)",
+      image: "products/books/Default/The 5th Wave (The 5th Wave -1)/image/The 5th Wave (The 5th Wave -1).jpg",
       star: 2,
       lower_price: 1183,
       higher_price: 1183
     },
     {
       id: "Shiver-The-Wolves-of-Mercy-Falls-1",
-      name: "Shiver (The Wolves of Mercy Falls #1)",
-      image: "products/books/Default/Shiver (The Wolves of Mercy Falls #1)/image/Shiver (The Wolves of Mercy Falls #1).jpg",
+      name: "Shiver (The Wolves of Mercy Falls -1)",
+      image: "products/books/Default/Shiver (The Wolves of Mercy Falls -1)/image/Shiver (The Wolves of Mercy Falls -1).jpg",
       star: 5,
       lower_price: 1623,
       higher_price: 1623
@@ -2081,24 +2081,24 @@ export const booksProducts = {
     },
     {
       id: "If-I-Stay-If-I-Stay-1",
-      name: "If I Stay (If I Stay #1)",
-      image: "products/books/Default/If I Stay (If I Stay #1)/image/If I Stay (If I Stay #1).jpg",
+      name: "If I Stay (If I Stay -1)",
+      image: "products/books/Default/If I Stay (If I Stay -1)/image/If I Stay (If I Stay -1).jpg",
       star: 5,
       lower_price: 3813,
       higher_price: 3813
     },
     {
       id: "I-Know-Why-the-Caged-Bird-Sings-Maya-Angelou-s-Autobiography-1",
-      name: "I Know Why the Caged Bird Sings (Maya Angelou's Autobiography #1)",
-      image: "products/books/Default/I Know Why the Caged Bird Sings (Maya Angelou's Autobiography #1)/image/I Know Why the Caged Bird Sings (Maya Angelou's Autobiography #1).jpg",
+      name: "I Know Why the Caged Bird Sings (Maya Angelou's Autobiography -1)",
+      image: "products/books/Default/I Know Why the Caged Bird Sings (Maya Angelou's Autobiography -1)/image/I Know Why the Caged Bird Sings (Maya Angelou's Autobiography -1).jpg",
       star: 2,
       lower_price: 3654,
       higher_price: 3654
     },
     {
       id: "Harry-Potter-and-the-Deathly-Hallows-Harry-Potter-7",
-      name: "Harry Potter and the Deathly Hallows (Harry Potter #7)",
-      image: "products/books/Default/Harry Potter and the Deathly Hallows (Harry Potter #7)/image/Harry Potter and the Deathly Hallows (Harry Potter #7).jpg",
+      name: "Harry Potter and the Deathly Hallows (Harry Potter -7)",
+      image: "products/books/Default/Harry Potter and the Deathly Hallows (Harry Potter -7)/image/Harry Potter and the Deathly Hallows (Harry Potter -7).jpg",
       star: 1,
       lower_price: 2332,
       higher_price: 2332
@@ -2121,16 +2121,16 @@ export const booksProducts = {
     },
     {
       id: "Blue-Lily-Lily-Blue-The-Raven-Cycle-3",
-      name: "Blue Lily, Lily Blue (The Raven Cycle #3)",
-      image: "products/books/Default/Blue Lily, Lily Blue (The Raven Cycle #3)/image/Blue Lily, Lily Blue (The Raven Cycle #3).jpg",
+      name: "Blue Lily, Lily Blue (The Raven Cycle -3)",
+      image: "products/books/Default/Blue Lily, Lily Blue (The Raven Cycle -3)/image/Blue Lily, Lily Blue (The Raven Cycle -3).jpg",
       star: 5,
       lower_price: 3413,
       higher_price: 3413
     },
     {
       id: "Alight-The-Generations-Trilogy-2",
-      name: "Alight (The Generations Trilogy #2)",
-      image: "products/books/Default/Alight (The Generations Trilogy #2)/image/Alight (The Generations Trilogy #2).jpg",
+      name: "Alight (The Generations Trilogy -2)",
+      image: "products/books/Default/Alight (The Generations Trilogy -2)/image/Alight (The Generations Trilogy -2).jpg",
       star: 4,
       lower_price: 5859,
       higher_price: 5859
@@ -2145,56 +2145,56 @@ export const booksProducts = {
     },
     {
       id: "The-Shining-The-Shining-1",
-      name: "The Shining (The Shining #1)",
-      image: "products/books/Default/The Shining (The Shining #1)/image/The Shining (The Shining #1).jpg",
+      name: "The Shining (The Shining -1)",
+      image: "products/books/Default/The Shining (The Shining -1)/image/The Shining (The Shining -1).jpg",
       star: 3,
       lower_price: 2788,
       higher_price: 2788
     },
     {
       id: "The-Hunger-Games-The-Hunger-Games-1",
-      name: "The Hunger Games (The Hunger Games #1)",
-      image: "products/books/Default/The Hunger Games (The Hunger Games #1)/image/The Hunger Games (The Hunger Games #1).jpg",
+      name: "The Hunger Games (The Hunger Games -1)",
+      image: "products/books/Default/The Hunger Games (The Hunger Games -1)/image/The Hunger Games (The Hunger Games -1).jpg",
       star: 5,
       lower_price: 2985,
       higher_price: 2985
     },
     {
       id: "Outlander-Outlander-1",
-      name: "Outlander (Outlander #1)",
-      image: "products/books/Default/Outlander (Outlander #1)/image/Outlander (Outlander #1).jpg",
+      name: "Outlander (Outlander -1)",
+      image: "products/books/Default/Outlander (Outlander -1)/image/Outlander (Outlander -1).jpg",
       star: 5,
       lower_price: 1967,
       higher_price: 1967
     },
     {
       id: "Mockingjay-The-Hunger-Games-3",
-      name: "Mockingjay (The Hunger Games #3)",
-      image: "products/books/Default/Mockingjay (The Hunger Games #3)/image/Mockingjay (The Hunger Games #3).jpg",
+      name: "Mockingjay (The Hunger Games -3)",
+      image: "products/books/Default/Mockingjay (The Hunger Games -3)/image/Mockingjay (The Hunger Games -3).jpg",
       star: 4,
       lower_price: 2044,
       higher_price: 2044
     },
     {
       id: "Harry-Potter-and-the-Sorcerer-s-Stone-Harry-Potter-1",
-      name: "Harry Potter and the Sorcerer's Stone (Harry Potter #1)",
-      image: "products/books/Default/Harry Potter and the Sorcerer's Stone (Harry Potter #1)/image/Harry Potter and the Sorcerer's Stone (Harry Potter #1).jpg",
+      name: "Harry Potter and the Sorcerer's Stone (Harry Potter -1)",
+      image: "products/books/Default/Harry Potter and the Sorcerer's Stone (Harry Potter -1)/image/Harry Potter and the Sorcerer's Stone (Harry Potter -1).jpg",
       star: 3,
       lower_price: 1390,
       higher_price: 1390
     },
     {
       id: "Confessions-of-a-Shopaholic-Shopaholic-1",
-      name: "Confessions of a Shopaholic (Shopaholic #1)",
-      image: "products/books/Default/Confessions of a Shopaholic (Shopaholic #1)/image/Confessions of a Shopaholic (Shopaholic #1).jpg",
+      name: "Confessions of a Shopaholic (Shopaholic -1)",
+      image: "products/books/Default/Confessions of a Shopaholic (Shopaholic -1)/image/Confessions of a Shopaholic (Shopaholic -1).jpg",
       star: 2,
       lower_price: 4894,
       higher_price: 4894
     },
     {
       id: "Zero-History-Blue-Ant-3",
-      name: "Zero History (Blue Ant #3)",
-      image: "products/books/Default/Zero History (Blue Ant #3)/image/Zero History (Blue Ant #3).jpg",
+      name: "Zero History (Blue Ant -3)",
+      image: "products/books/Default/Zero History (Blue Ant -3)/image/Zero History (Blue Ant -3).jpg",
       star: 1,
       lower_price: 3477,
       higher_price: 3477
@@ -2225,8 +2225,8 @@ export const booksProducts = {
     },
     {
       id: "Twilight-Twilight-1",
-      name: "Twilight (Twilight #1)",
-      image: "products/books/Default/Twilight (Twilight #1)/image/Twilight (Twilight #1).jpg",
+      name: "Twilight (Twilight -1)",
+      image: "products/books/Default/Twilight (Twilight -1)/image/Twilight (Twilight -1).jpg",
       star: 2,
       lower_price: 4193,
       higher_price: 4193
@@ -2241,8 +2241,8 @@ export const booksProducts = {
     },
     {
       id: "The-Maze-Runner-The-Maze-Runner-1",
-      name: "The Maze Runner (The Maze Runner #1)",
-      image: "products/books/Default/The Maze Runner (The Maze Runner #1)/image/The Maze Runner (The Maze Runner #1).jpg",
+      name: "The Maze Runner (The Maze Runner -1)",
+      image: "products/books/Default/The Maze Runner (The Maze Runner -1)/image/The Maze Runner (The Maze Runner -1).jpg",
       star: 1,
       lower_price: 2093,
       higher_price: 2093
@@ -2265,16 +2265,16 @@ export const booksProducts = {
     },
     {
       id: "The-Giver-The-Giver-Quartet-1",
-      name: "The Giver (The Giver Quartet #1)",
-      image: "products/books/Default/The Giver (The Giver Quartet #1)/image/The Giver (The Giver Quartet #1).jpg",
+      name: "The Giver (The Giver Quartet -1)",
+      image: "products/books/Default/The Giver (The Giver Quartet -1)/image/The Giver (The Giver Quartet -1).jpg",
       star: 1,
       lower_price: 1230,
       higher_price: 1230
     },
     {
       id: "The-Girl-Who-Played-with-Fire-Millennium-Trilogy-2",
-      name: "The Girl Who Played with Fire (Millennium Trilogy #2)",
-      image: "products/books/Default/The Girl Who Played with Fire (Millennium Trilogy #2)/image/The Girl Who Played with Fire (Millennium Trilogy #2).jpg",
+      name: "The Girl Who Played with Fire (Millennium Trilogy -2)",
+      image: "products/books/Default/The Girl Who Played with Fire (Millennium Trilogy -2)/image/The Girl Who Played with Fire (Millennium Trilogy -2).jpg",
       star: 2,
       lower_price: 2214,
       higher_price: 2214
@@ -2305,8 +2305,8 @@ export const booksProducts = {
     },
     {
       id: "Shopaholic-Baby-Shopaholic-5",
-      name: "Shopaholic & Baby (Shopaholic #5)",
-      image: "products/books/Default/Shopaholic & Baby (Shopaholic #5)/image/Shopaholic & Baby (Shopaholic #5).jpg",
+      name: "Shopaholic & Baby (Shopaholic -5)",
+      image: "products/books/Default/Shopaholic & Baby (Shopaholic -5)/image/Shopaholic & Baby (Shopaholic -5).jpg",
       star: 2,
       lower_price: 4645,
       higher_price: 4645
@@ -2337,16 +2337,16 @@ export const booksProducts = {
     },
     {
       id: "One-for-the-Money-Stephanie-Plum-1",
-      name: "One for the Money (Stephanie Plum #1)",
-      image: "products/books/Default/One for the Money (Stephanie Plum #1)/image/One for the Money (Stephanie Plum #1).jpg",
+      name: "One for the Money (Stephanie Plum -1)",
+      image: "products/books/Default/One for the Money (Stephanie Plum -1)/image/One for the Money (Stephanie Plum -1).jpg",
       star: 2,
       lower_price: 3286,
       higher_price: 3286
     },
     {
       id: "Morning-Star-Red-Rising-3",
-      name: "Morning Star (Red Rising #3)",
-      image: "products/books/Default/Morning Star (Red Rising #3)/image/Morning Star (Red Rising #3).jpg",
+      name: "Morning Star (Red Rising -3)",
+      image: "products/books/Default/Morning Star (Red Rising -3)/image/Morning Star (Red Rising -3).jpg",
       star: 1,
       lower_price: 2940,
       higher_price: 2940
@@ -2393,8 +2393,8 @@ export const booksProducts = {
     },
     {
       id: "Eclipse-Twilight-3",
-      name: "Eclipse (Twilight #3)",
-      image: "products/books/Default/Eclipse (Twilight #3)/image/Eclipse (Twilight #3).jpg",
+      name: "Eclipse (Twilight -3)",
+      image: "products/books/Default/Eclipse (Twilight -3)/image/Eclipse (Twilight -3).jpg",
       star: 1,
       lower_price: 1873,
       higher_price: 1873
@@ -2433,16 +2433,16 @@ export const booksProducts = {
     },
     {
       id: "Breaking-Dawn-Twilight-4",
-      name: "Breaking Dawn (Twilight #4)",
-      image: "products/books/Default/Breaking Dawn (Twilight #4)/image/Breaking Dawn (Twilight #4).jpg",
+      name: "Breaking Dawn (Twilight -4)",
+      image: "products/books/Default/Breaking Dawn (Twilight -4)/image/Breaking Dawn (Twilight -4).jpg",
       star: 5,
       lower_price: 3528,
       higher_price: 3528
     },
     {
       id: "Beautiful-Creatures-Caster-Chronicles-1",
-      name: "Beautiful Creatures (Caster Chronicles #1)",
-      image: "products/books/Default/Beautiful Creatures (Caster Chronicles #1)/image/Beautiful Creatures (Caster Chronicles #1).jpg",
+      name: "Beautiful Creatures (Caster Chronicles -1)",
+      image: "products/books/Default/Beautiful Creatures (Caster Chronicles -1)/image/Beautiful Creatures (Caster Chronicles -1).jpg",
       star: 5,
       lower_price: 2155,
       higher_price: 2155
@@ -2465,32 +2465,32 @@ export const booksProducts = {
     },
     {
       id: "The-Name-of-the-Wind-The-Kingkiller-Chronicle-1",
-      name: "The Name of the Wind (The Kingkiller Chronicle #1)",
-      image: "products/books/Default/The Name of the Wind (The Kingkiller Chronicle #1)/image/The Name of the Wind (The Kingkiller Chronicle #1).jpg",
+      name: "The Name of the Wind (The Kingkiller Chronicle -1)",
+      image: "products/books/Default/The Name of the Wind (The Kingkiller Chronicle -1)/image/The Name of the Wind (The Kingkiller Chronicle -1).jpg",
       star: 3,
       lower_price: 5059,
       higher_price: 5059
     },
     {
       id: "Taking-Shots-Assassins-1",
-      name: "Taking Shots (Assassins #1)",
-      image: "products/books/Default/Taking Shots (Assassins #1)/image/Taking Shots (Assassins #1).jpg",
+      name: "Taking Shots (Assassins -1)",
+      image: "products/books/Default/Taking Shots (Assassins -1)/image/Taking Shots (Assassins -1).jpg",
       star: 2,
       lower_price: 1888,
       higher_price: 1888
     },
     {
       id: "Shatter-Me-Shatter-Me-1",
-      name: "Shatter Me (Shatter Me #1)",
-      image: "products/books/Default/Shatter Me (Shatter Me #1)/image/Shatter Me (Shatter Me #1).jpg",
+      name: "Shatter Me (Shatter Me -1)",
+      image: "products/books/Default/Shatter Me (Shatter Me -1)/image/Shatter Me (Shatter Me -1).jpg",
       star: 1,
       lower_price: 4240,
       higher_price: 4240
     },
     {
       id: "Paradise-Lost-Paradise-1",
-      name: "Paradise Lost (Paradise #1)",
-      image: "products/books/Default/Paradise Lost (Paradise #1)/image/Paradise Lost (Paradise #1).jpg",
+      name: "Paradise Lost (Paradise -1)",
+      image: "products/books/Default/Paradise Lost (Paradise -1)/image/Paradise Lost (Paradise -1).jpg",
       star: 1,
       lower_price: 2496,
       higher_price: 2496
@@ -2541,16 +2541,16 @@ export const booksProducts = {
     },
     {
       id: "Saga-Volume-6-Saga-Collected-Editions-6",
-      name: "Saga, Volume 6 (Saga (Collected Editions) #6)",
-      image: "products/books/Fantasy/Saga, Volume 6 (Saga (Collected Editions) #6)/image/Saga, Volume 6 (Saga (Collected Editions) #6).jpg",
+      name: "Saga, Volume 6 (Saga (Collected Editions) -6)",
+      image: "products/books/Fantasy/Saga, Volume 6 (Saga (Collected Editions) -6)/image/Saga, Volume 6 (Saga (Collected Editions) -6).jpg",
       star: 3,
       lower_price: 2502,
       higher_price: 2502
     },
     {
       id: "Princess-Between-Worlds-Wide-Awake-Princess-5",
-      name: "Princess Between Worlds (Wide-Awake Princess #5)",
-      image: "products/books/Fantasy/Princess Between Worlds (Wide-Awake Princess #5)/image/Princess Between Worlds (Wide-Awake Princess #5).jpg",
+      name: "Princess Between Worlds (Wide-Awake Princess -5)",
+      image: "products/books/Fantasy/Princess Between Worlds (Wide-Awake Princess -5)/image/Princess Between Worlds (Wide-Awake Princess -5).jpg",
       star: 5,
       lower_price: 1334,
       higher_price: 1334
@@ -2565,48 +2565,48 @@ export const booksProducts = {
     },
     {
       id: "Crown-of-Midnight-Throne-of-Glass-2",
-      name: "Crown of Midnight (Throne of Glass #2)",
-      image: "products/books/Fantasy/Crown of Midnight (Throne of Glass #2)/image/Crown of Midnight (Throne of Glass #2).jpg",
+      name: "Crown of Midnight (Throne of Glass -2)",
+      image: "products/books/Fantasy/Crown of Midnight (Throne of Glass -2)/image/Crown of Midnight (Throne of Glass -2).jpg",
       star: 3,
       lower_price: 4329,
       higher_price: 4329
     },
     {
       id: "Avatar-The-Last-Airbender-Smoke-and-Shadow-Part-3-Smoke-and-Shadow-3",
-      name: "Avatar: The Last Airbender: Smoke and Shadow, Part 3 (Smoke and Shadow #3)",
-      image: "products/books/Fantasy/Avatar The Last Airbender Smoke and Shadow, Part 3 (Smoke and Shadow #3)/image/Avatar The Last Airbender Smoke and Shadow, Part 3 (Smoke and Shadow #3).jpg",
+      name: "Avatar: The Last Airbender: Smoke and Shadow, Part 3 (Smoke and Shadow -3)",
+      image: "products/books/Fantasy/Avatar The Last Airbender Smoke and Shadow, Part 3 (Smoke and Shadow -3)/image/Avatar The Last Airbender Smoke and Shadow, Part 3 (Smoke and Shadow -3).jpg",
       star: 2,
       lower_price: 2809,
       higher_price: 2809
     },
     {
       id: "A-Court-of-Thorns-and-Roses-A-Court-of-Thorns-and-Roses-1",
-      name: "A Court of Thorns and Roses (A Court of Thorns and Roses #1)",
-      image: "products/books/Fantasy/A Court of Thorns and Roses (A Court of Thorns and Roses #1)/image/A Court of Thorns and Roses (A Court of Thorns and Roses #1).jpg",
+      name: "A Court of Thorns and Roses (A Court of Thorns and Roses -1)",
+      image: "products/books/Fantasy/A Court of Thorns and Roses (A Court of Thorns and Roses -1)/image/A Court of Thorns and Roses (A Court of Thorns and Roses -1).jpg",
       star: 1,
       lower_price: 5237,
       higher_price: 5237
     },
     {
       id: "Throne-of-Glass-Throne-of-Glass-1",
-      name: "Throne of Glass (Throne of Glass #1)",
-      image: "products/books/Fantasy/Throne of Glass (Throne of Glass #1)/image/Throne of Glass (Throne of Glass #1).jpg",
+      name: "Throne of Glass (Throne of Glass -1)",
+      image: "products/books/Fantasy/Throne of Glass (Throne of Glass -1)/image/Throne of Glass (Throne of Glass -1).jpg",
       star: 3,
       lower_price: 3507,
       higher_price: 3507
     },
     {
       id: "The-Glittering-Court-The-Glittering-Court-1",
-      name: "The Glittering Court (The Glittering Court #1)",
-      image: "products/books/Fantasy/The Glittering Court (The Glittering Court #1)/image/The Glittering Court (The Glittering Court #1).jpg",
+      name: "The Glittering Court (The Glittering Court -1)",
+      image: "products/books/Fantasy/The Glittering Court (The Glittering Court -1)/image/The Glittering Court (The Glittering Court -1).jpg",
       star: 1,
       lower_price: 4428,
       higher_price: 4428
     },
     {
       id: "Hollow-City-Miss-Peregrine-s-Peculiar-Children-2",
-      name: "Hollow City (Miss Peregrine’s Peculiar Children #2)",
-      image: "products/books/Fantasy/Hollow City (Miss Peregrine’s Peculiar Children #2)/image/Hollow City (Miss Peregrine’s Peculiar Children #2).jpg",
+      name: "Hollow City (Miss Peregrineâ€™s Peculiar Children -2)",
+      image: "products/books/Fantasy/Hollow City (Miss Peregrineâ€™s Peculiar Children -2)/image/Hollow City (Miss Peregrineâ€™s Peculiar Children -2).jpg",
       star: 1,
       lower_price: 4298,
       higher_price: 4298
@@ -2621,40 +2621,40 @@ export const booksProducts = {
     },
     {
       id: "The-Hidden-Oracle-The-Trials-of-Apollo-1",
-      name: "The Hidden Oracle (The Trials of Apollo #1)",
-      image: "products/books/Fantasy/The Hidden Oracle (The Trials of Apollo #1)/image/The Hidden Oracle (The Trials of Apollo #1).jpg",
+      name: "The Hidden Oracle (The Trials of Apollo -1)",
+      image: "products/books/Fantasy/The Hidden Oracle (The Trials of Apollo -1)/image/The Hidden Oracle (The Trials of Apollo -1).jpg",
       star: 2,
       lower_price: 5226,
       higher_price: 5226
     },
     {
       id: "The-Bane-Chronicles-The-Bane-Chronicles-1-11",
-      name: "The Bane Chronicles (The Bane Chronicles #1-11)",
-      image: "products/books/Fantasy/The Bane Chronicles (The Bane Chronicles #1-11)/image/The Bane Chronicles (The Bane Chronicles #1-11).jpg",
+      name: "The Bane Chronicles (The Bane Chronicles -1-11)",
+      image: "products/books/Fantasy/The Bane Chronicles (The Bane Chronicles -1-11)/image/The Bane Chronicles (The Bane Chronicles -1-11).jpg",
       star: 4,
       lower_price: 4473,
       higher_price: 4473
     },
     {
       id: "Island-of-Dragons-Unwanteds-7",
-      name: "Island of Dragons (Unwanteds #7)",
-      image: "products/books/Fantasy/Island of Dragons (Unwanteds #7)/image/Island of Dragons (Unwanteds #7).jpg",
+      name: "Island of Dragons (Unwanteds -7)",
+      image: "products/books/Fantasy/Island of Dragons (Unwanteds -7)/image/Island of Dragons (Unwanteds -7).jpg",
       star: 1,
       lower_price: 2965,
       higher_price: 2965
     },
     {
       id: "Demigods-Magicians-Percy-and-Annabeth-Meet-the-Kanes-Percy-Jackson-Kane-Chronicles-Crossover-1-3",
-      name: "Demigods & Magicians: Percy and Annabeth Meet the Kanes (Percy Jackson & Kane Chronicles Crossover #1-3)",
-      image: "products/books/Fantasy/Demigods & Magicians Percy and Annabeth Meet the Kanes (Percy Jackson & Kane Chronicles Crossover #1-3)/image/Demigods & Magicians Percy and Annabeth Meet the Kanes (Percy Jackson & Kane Chronicles Crossover #1-3).jpg",
+      name: "Demigods & Magicians: Percy and Annabeth Meet the Kanes (Percy Jackson & Kane Chronicles Crossover -1-3)",
+      image: "products/books/Fantasy/Demigods & Magicians Percy and Annabeth Meet the Kanes (Percy Jackson & Kane Chronicles Crossover -1-3)/image/Demigods & Magicians Percy and Annabeth Meet the Kanes (Percy Jackson & Kane Chronicles Crossover -1-3).jpg",
       star: 5,
       lower_price: 3751,
       higher_price: 3751
     },
     {
       id: "City-of-Glass-The-Mortal-Instruments-3",
-      name: "City of Glass (The Mortal Instruments #3)",
-      image: "products/books/Fantasy/City of Glass (The Mortal Instruments #3)/image/City of Glass (The Mortal Instruments #3).jpg",
+      name: "City of Glass (The Mortal Instruments -3)",
+      image: "products/books/Fantasy/City of Glass (The Mortal Instruments -3)/image/City of Glass (The Mortal Instruments -3).jpg",
       star: 4,
       lower_price: 5602,
       higher_price: 5602
@@ -2669,48 +2669,48 @@ export const booksProducts = {
     },
     {
       id: "A-Shard-of-Ice-The-Black-Symphony-Saga-1",
-      name: "A Shard of Ice (The Black Symphony Saga #1)",
-      image: "products/books/Fantasy/A Shard of Ice (The Black Symphony Saga #1)/image/A Shard of Ice (The Black Symphony Saga #1).jpg",
+      name: "A Shard of Ice (The Black Symphony Saga -1)",
+      image: "products/books/Fantasy/A Shard of Ice (The Black Symphony Saga -1)/image/A Shard of Ice (The Black Symphony Saga -1).jpg",
       star: 3,
       lower_price: 5663,
       higher_price: 5663
     },
     {
       id: "King-s-Folly-The-Kinsman-Chronicles-1",
-      name: "King's Folly (The Kinsman Chronicles #1)",
-      image: "products/books/Fantasy/King's Folly (The Kinsman Chronicles #1)/image/King's Folly (The Kinsman Chronicles #1).jpg",
+      name: "King's Folly (The Kinsman Chronicles -1)",
+      image: "products/books/Fantasy/King's Folly (The Kinsman Chronicles -1)/image/King's Folly (The Kinsman Chronicles -1).jpg",
       star: 5,
       lower_price: 3961,
       higher_price: 3961
     },
     {
       id: "Every-Heart-a-Doorway-Every-Heart-A-Doorway-1",
-      name: "Every Heart a Doorway (Every Heart A Doorway #1)",
-      image: "products/books/Fantasy/Every Heart a Doorway (Every Heart A Doorway #1)/image/Every Heart a Doorway (Every Heart A Doorway #1).jpg",
+      name: "Every Heart a Doorway (Every Heart A Doorway -1)",
+      image: "products/books/Fantasy/Every Heart a Doorway (Every Heart A Doorway -1)/image/Every Heart a Doorway (Every Heart A Doorway -1).jpg",
       star: 5,
       lower_price: 1216,
       higher_price: 1216
     },
     {
       id: "A-Gathering-of-Shadows-Shades-of-Magic-2",
-      name: "A Gathering of Shadows (Shades of Magic #2)",
-      image: "products/books/Fantasy/A Gathering of Shadows (Shades of Magic #2)/image/A Gathering of Shadows (Shades of Magic #2).jpg",
+      name: "A Gathering of Shadows (Shades of Magic -2)",
+      image: "products/books/Fantasy/A Gathering of Shadows (Shades of Magic -2)/image/A Gathering of Shadows (Shades of Magic -2).jpg",
       star: 4,
       lower_price: 4481,
       higher_price: 4481
     },
     {
       id: "The-Raven-Boys-The-Raven-Cycle-1",
-      name: "The Raven Boys (The Raven Cycle #1)",
-      image: "products/books/Fantasy/The Raven Boys (The Raven Cycle #1)/image/The Raven Boys (The Raven Cycle #1).jpg",
+      name: "The Raven Boys (The Raven Cycle -1)",
+      image: "products/books/Fantasy/The Raven Boys (The Raven Cycle -1)/image/The Raven Boys (The Raven Cycle -1).jpg",
       star: 4,
       lower_price: 5774,
       higher_price: 5774
     },
     {
       id: "The-False-Prince-The-Ascendance-Trilogy-1",
-      name: "The False Prince (The Ascendance Trilogy #1)",
-      image: "products/books/Fantasy/The False Prince (The Ascendance Trilogy #1)/image/The False Prince (The Ascendance Trilogy #1).jpg",
+      name: "The False Prince (The Ascendance Trilogy -1)",
+      image: "products/books/Fantasy/The False Prince (The Ascendance Trilogy -1)/image/The False Prince (The Ascendance Trilogy -1).jpg",
       star: 5,
       lower_price: 5600,
       higher_price: 5600
@@ -2725,80 +2725,80 @@ export const booksProducts = {
     },
     {
       id: "A-Feast-for-Crows-A-Song-of-Ice-and-Fire-4",
-      name: "A Feast for Crows (A Song of Ice and Fire #4)",
-      image: "products/books/Fantasy/A Feast for Crows (A Song of Ice and Fire #4)/image/A Feast for Crows (A Song of Ice and Fire #4).jpg",
+      name: "A Feast for Crows (A Song of Ice and Fire -4)",
+      image: "products/books/Fantasy/A Feast for Crows (A Song of Ice and Fire -4)/image/A Feast for Crows (A Song of Ice and Fire -4).jpg",
       star: 4,
       lower_price: 1721,
       higher_price: 1721
     },
     {
       id: "The-Demonists-Demonist-1",
-      name: "The Demonists (Demonist #1)",
-      image: "products/books/Fantasy/The Demonists (Demonist #1)/image/The Demonists (Demonist #1).jpg",
+      name: "The Demonists (Demonist -1)",
+      image: "products/books/Fantasy/The Demonists (Demonist -1)/image/The Demonists (Demonist -1).jpg",
       star: 2,
       lower_price: 5211,
       higher_price: 5211
     },
     {
       id: "The-Beast-Black-Dagger-Brotherhood-14",
-      name: "The Beast (Black Dagger Brotherhood #14)",
-      image: "products/books/Fantasy/The Beast (Black Dagger Brotherhood #14)/image/The Beast (Black Dagger Brotherhood #14).jpg",
+      name: "The Beast (Black Dagger Brotherhood -14)",
+      image: "products/books/Fantasy/The Beast (Black Dagger Brotherhood -14)/image/The Beast (Black Dagger Brotherhood -14).jpg",
       star: 5,
       lower_price: 4608,
       higher_price: 4608
     },
     {
       id: "Paper-and-Fire-The-Great-Library-2",
-      name: "Paper and Fire (The Great Library #2)",
-      image: "products/books/Fantasy/Paper and Fire (The Great Library #2)/image/Paper and Fire (The Great Library #2).jpg",
+      name: "Paper and Fire (The Great Library -2)",
+      image: "products/books/Fantasy/Paper and Fire (The Great Library -2)/image/Paper and Fire (The Great Library -2).jpg",
       star: 5,
       lower_price: 4945,
       higher_price: 4945
     },
     {
       id: "Harry-Potter-and-the-Order-of-the-Phoenix-Harry-Potter-5",
-      name: "Harry Potter and the Order of the Phoenix (Harry Potter #5)",
-      image: "products/books/Fantasy/Harry Potter and the Order of the Phoenix (Harry Potter #5)/image/Harry Potter and the Order of the Phoenix (Harry Potter #5).jpg",
+      name: "Harry Potter and the Order of the Phoenix (Harry Potter -5)",
+      image: "products/books/Fantasy/Harry Potter and the Order of the Phoenix (Harry Potter -5)/image/Harry Potter and the Order of the Phoenix (Harry Potter -5).jpg",
       star: 4,
       lower_price: 3163,
       higher_price: 3163
     },
     {
       id: "Harry-Potter-and-the-Half-Blood-Prince-Harry-Potter-6",
-      name: "Harry Potter and the Half-Blood Prince (Harry Potter #6)",
-      image: "products/books/Fantasy/Harry Potter and the Half-Blood Prince (Harry Potter #6)/image/Harry Potter and the Half-Blood Prince (Harry Potter #6).jpg",
+      name: "Harry Potter and the Half-Blood Prince (Harry Potter -6)",
+      image: "products/books/Fantasy/Harry Potter and the Half-Blood Prince (Harry Potter -6)/image/Harry Potter and the Half-Blood Prince (Harry Potter -6).jpg",
       star: 5,
       lower_price: 4875,
       higher_price: 4875
     },
     {
       id: "Harry-Potter-and-the-Chamber-of-Secrets-Harry-Potter-2",
-      name: "Harry Potter and the Chamber of Secrets (Harry Potter #2)",
-      image: "products/books/Fantasy/Harry Potter and the Chamber of Secrets (Harry Potter #2)/image/Harry Potter and the Chamber of Secrets (Harry Potter #2).jpg",
+      name: "Harry Potter and the Chamber of Secrets (Harry Potter -2)",
+      image: "products/books/Fantasy/Harry Potter and the Chamber of Secrets (Harry Potter -2)/image/Harry Potter and the Chamber of Secrets (Harry Potter -2).jpg",
       star: 1,
       lower_price: 1474,
       higher_price: 1474
     },
     {
       id: "The-Rose-the-Dagger-The-Wrath-and-the-Dawn-2",
-      name: "The Rose & the Dagger (The Wrath and the Dawn #2)",
-      image: "products/books/Fantasy/The Rose & the Dagger (The Wrath and the Dawn #2)/image/The Rose & the Dagger (The Wrath and the Dawn #2).jpg",
+      name: "The Rose & the Dagger (The Wrath and the Dawn -2)",
+      image: "products/books/Fantasy/The Rose & the Dagger (The Wrath and the Dawn -2)/image/The Rose & the Dagger (The Wrath and the Dawn -2).jpg",
       star: 4,
       lower_price: 5864,
       higher_price: 5864
     },
     {
       id: "Soldier-Talon-3",
-      name: "Soldier (Talon #3)",
-      image: "products/books/Fantasy/Soldier (Talon #3)/image/Soldier (Talon #3).jpg",
+      name: "Soldier (Talon -3)",
+      image: "products/books/Fantasy/Soldier (Talon -3)/image/Soldier (Talon -3).jpg",
       star: 2,
       lower_price: 2472,
       higher_price: 2472
     },
     {
       id: "Midnight-Riot-Peter-Grant-Rivers-of-London-books-1",
-      name: "Midnight Riot (Peter Grant/ Rivers of London - books #1)",
-      image: "products/books/Fantasy/Midnight Riot (Peter Grant Rivers of London - books #1)/image/Midnight Riot (Peter Grant Rivers of London - books #1).jpg",
+      name: "Midnight Riot (Peter Grant/ Rivers of London - books -1)",
+      image: "products/books/Fantasy/Midnight Riot (Peter Grant Rivers of London - books -1)/image/Midnight Riot (Peter Grant Rivers of London - books -1).jpg",
       star: 2,
       lower_price: 5546,
       higher_price: 5546
@@ -2813,16 +2813,16 @@ export const booksProducts = {
     },
     {
       id: "Eragon-The-Inheritance-Cycle-1",
-      name: "Eragon (The Inheritance Cycle #1)",
-      image: "products/books/Fantasy/Eragon (The Inheritance Cycle #1)/image/Eragon (The Inheritance Cycle #1).jpg",
+      name: "Eragon (The Inheritance Cycle -1)",
+      image: "products/books/Fantasy/Eragon (The Inheritance Cycle -1)/image/Eragon (The Inheritance Cycle -1).jpg",
       star: 3,
       lower_price: 4387,
       higher_price: 4387
     },
     {
       id: "Darkfever-Fever-1",
-      name: "Darkfever (Fever #1)",
-      image: "products/books/Fantasy/Darkfever (Fever #1)/image/Darkfever (Fever #1).jpg",
+      name: "Darkfever (Fever -1)",
+      image: "products/books/Fantasy/Darkfever (Fever -1)/image/Darkfever (Fever -1).jpg",
       star: 1,
       lower_price: 5602,
       higher_price: 5602
@@ -2837,48 +2837,48 @@ export const booksProducts = {
     },
     {
       id: "A-Storm-of-Swords-A-Song-of-Ice-and-Fire-3",
-      name: "A Storm of Swords (A Song of Ice and Fire #3)",
-      image: "products/books/Fantasy/A Storm of Swords (A Song of Ice and Fire #3)/image/A Storm of Swords (A Song of Ice and Fire #3).jpg",
+      name: "A Storm of Swords (A Song of Ice and Fire -3)",
+      image: "products/books/Fantasy/A Storm of Swords (A Song of Ice and Fire -3)/image/A Storm of Swords (A Song of Ice and Fire -3).jpg",
       star: 2,
       lower_price: 3122,
       higher_price: 3122
     },
     {
       id: "Vampire-Girl-Vampire-Girl-1",
-      name: "Vampire Girl (Vampire Girl #1)",
-      image: "products/books/Fantasy/Vampire Girl (Vampire Girl #1)/image/Vampire Girl (Vampire Girl #1).jpg",
+      name: "Vampire Girl (Vampire Girl -1)",
+      image: "products/books/Fantasy/Vampire Girl (Vampire Girl -1)/image/Vampire Girl (Vampire Girl -1).jpg",
       star: 2,
       lower_price: 5382,
       higher_price: 5382
     },
     {
       id: "The-Silent-Twin-Detective-Jennifer-Knight-3",
-      name: "The Silent Twin (Detective Jennifer Knight #3)",
-      image: "products/books/Fantasy/The Silent Twin (Detective Jennifer Knight #3)/image/The Silent Twin (Detective Jennifer Knight #3).jpg",
+      name: "The Silent Twin (Detective Jennifer Knight -3)",
+      image: "products/books/Fantasy/The Silent Twin (Detective Jennifer Knight -3)/image/The Silent Twin (Detective Jennifer Knight -3).jpg",
       star: 3,
       lower_price: 3625,
       higher_price: 3625
     },
     {
       id: "The-Mirror-the-Maze-The-Wrath-and-the-Dawn-1-5",
-      name: "The Mirror & the Maze (The Wrath and the Dawn #1.5)",
-      image: "products/books/Fantasy/The Mirror & the Maze (The Wrath and the Dawn #1.5)/image/The Mirror & the Maze (The Wrath and the Dawn #1.5).jpg",
+      name: "The Mirror & the Maze (The Wrath and the Dawn -1.5)",
+      image: "products/books/Fantasy/The Mirror & the Maze (The Wrath and the Dawn -1.5)/image/The Mirror & the Maze (The Wrath and the Dawn -1.5).jpg",
       star: 1,
       lower_price: 2938,
       higher_price: 2938
     },
     {
       id: "Sister-Sable-The-Mad-Queen-1",
-      name: "Sister Sable (The Mad Queen #1)",
-      image: "products/books/Fantasy/Sister Sable (The Mad Queen #1)/image/Sister Sable (The Mad Queen #1).jpg",
+      name: "Sister Sable (The Mad Queen -1)",
+      image: "products/books/Fantasy/Sister Sable (The Mad Queen -1)/image/Sister Sable (The Mad Queen -1).jpg",
       star: 3,
       lower_price: 1333,
       higher_price: 1333
     },
     {
       id: "Shadow-Rites-Jane-Yellowrock-10",
-      name: "Shadow Rites (Jane Yellowrock #10)",
-      image: "products/books/Fantasy/Shadow Rites (Jane Yellowrock #10)/image/Shadow Rites (Jane Yellowrock #10).jpg",
+      name: "Shadow Rites (Jane Yellowrock -10)",
+      image: "products/books/Fantasy/Shadow Rites (Jane Yellowrock -10)/image/Shadow Rites (Jane Yellowrock -10).jpg",
       star: 4,
       lower_price: 2172,
       higher_price: 2172
@@ -2893,16 +2893,16 @@ export const booksProducts = {
     },
     {
       id: "One-Second-Seven-7",
-      name: "One Second (Seven #7)",
-      image: "products/books/Fantasy/One Second (Seven #7)/image/One Second (Seven #7).jpg",
+      name: "One Second (Seven -7)",
+      image: "products/books/Fantasy/One Second (Seven -7)/image/One Second (Seven -7).jpg",
       star: 2,
       lower_price: 5294,
       higher_price: 5294
     },
     {
       id: "Myriad-Prentor-1",
-      name: "Myriad (Prentor #1)",
-      image: "products/books/Fantasy/Myriad (Prentor #1)/image/Myriad (Prentor #1).jpg",
+      name: "Myriad (Prentor -1)",
+      image: "products/books/Fantasy/Myriad (Prentor -1)/image/Myriad (Prentor -1).jpg",
       star: 4,
       lower_price: 5875,
       higher_price: 5875
@@ -2919,8 +2919,8 @@ export const booksProducts = {
     },
     {
       id: "Private-Paris-Private-10",
-      name: "Private Paris (Private #10)",
-      image: "products/books/Fiction/Private Paris (Private #10)/image/Private Paris (Private #10).jpg",
+      name: "Private Paris (Private -10)",
+      image: "products/books/Fiction/Private Paris (Private -10)/image/Private Paris (Private -10).jpg",
       star: 5,
       lower_price: 4761,
       higher_price: 4761
@@ -2943,8 +2943,8 @@ export const booksProducts = {
     },
     {
       id: "The-Murder-That-Never-Was-Forensic-Instincts-5",
-      name: "The Murder That Never Was (Forensic Instincts #5)",
-      image: "products/books/Fiction/The Murder That Never Was (Forensic Instincts #5)/image/The Murder That Never Was (Forensic Instincts #5).jpg",
+      name: "The Murder That Never Was (Forensic Instincts -5)",
+      image: "products/books/Fiction/The Murder That Never Was (Forensic Instincts -5)/image/The Murder That Never Was (Forensic Instincts -5).jpg",
       star: 3,
       lower_price: 5411,
       higher_price: 5411
@@ -2975,8 +2975,8 @@ export const booksProducts = {
     },
     {
       id: "Finders-Keepers-Bill-Hodges-Trilogy-2",
-      name: "Finders Keepers (Bill Hodges Trilogy #2)",
-      image: "products/books/Fiction/Finders Keepers (Bill Hodges Trilogy #2)/image/Finders Keepers (Bill Hodges Trilogy #2).jpg",
+      name: "Finders Keepers (Bill Hodges Trilogy -2)",
+      image: "products/books/Fiction/Finders Keepers (Bill Hodges Trilogy -2)/image/Finders Keepers (Bill Hodges Trilogy -2).jpg",
       star: 5,
       lower_price: 5353,
       higher_price: 5353
@@ -2999,8 +2999,8 @@ export const booksProducts = {
     },
     {
       id: "The-First-Hostage-J-B-Collins-2",
-      name: "The First Hostage (J.B. Collins #2)",
-      image: "products/books/Fiction/The First Hostage (J.B. Collins #2)/image/The First Hostage (J.B. Collins #2).jpg",
+      name: "The First Hostage (J.B. Collins -2)",
+      image: "products/books/Fiction/The First Hostage (J.B. Collins -2)/image/The First Hostage (J.B. Collins -2).jpg",
       star: 3,
       lower_price: 2585,
       higher_price: 2585
@@ -3047,24 +3047,24 @@ export const booksProducts = {
     },
     {
       id: "Mr-Mercedes-Bill-Hodges-Trilogy-1",
-      name: "Mr. Mercedes (Bill Hodges Trilogy #1)",
-      image: "products/books/Fiction/Mr. Mercedes (Bill Hodges Trilogy #1)/image/Mr. Mercedes (Bill Hodges Trilogy #1).jpg",
+      name: "Mr. Mercedes (Bill Hodges Trilogy -1)",
+      image: "products/books/Fiction/Mr. Mercedes (Bill Hodges Trilogy -1)/image/Mr. Mercedes (Bill Hodges Trilogy -1).jpg",
       star: 1,
       lower_price: 2890,
       higher_price: 2890
     },
     {
       id: "I-Am-Pilgrim-Pilgrim-1",
-      name: "I Am Pilgrim (Pilgrim #1)",
-      image: "products/books/Fiction/I Am Pilgrim (Pilgrim #1)/image/I Am Pilgrim (Pilgrim #1).jpg",
+      name: "I Am Pilgrim (Pilgrim -1)",
+      image: "products/books/Fiction/I Am Pilgrim (Pilgrim -1)/image/I Am Pilgrim (Pilgrim -1).jpg",
       star: 4,
       lower_price: 1060,
       higher_price: 1060
     },
     {
       id: "Eligible-The-Austen-Project-4",
-      name: "Eligible (The Austen Project #4)",
-      image: "products/books/Fiction/Eligible (The Austen Project #4)/image/Eligible (The Austen Project #4).jpg",
+      name: "Eligible (The Austen Project -4)",
+      image: "products/books/Fiction/Eligible (The Austen Project -4)/image/Eligible (The Austen Project -4).jpg",
       star: 3,
       lower_price: 2709,
       higher_price: 2709
@@ -3087,8 +3087,8 @@ export const booksProducts = {
     },
     {
       id: "Cometh-the-Hour-The-Clifton-Chronicles-6",
-      name: "Cometh the Hour (The Clifton Chronicles #6)",
-      image: "products/books/Fiction/Cometh the Hour (The Clifton Chronicles #6)/image/Cometh the Hour (The Clifton Chronicles #6).jpg",
+      name: "Cometh the Hour (The Clifton Chronicles -6)",
+      image: "products/books/Fiction/Cometh the Hour (The Clifton Chronicles -6)/image/Cometh the Hour (The Clifton Chronicles -6).jpg",
       star: 3,
       lower_price: 2501,
       higher_price: 2501
@@ -3111,8 +3111,8 @@ export const booksProducts = {
     },
     {
       id: "The-Silent-Sister-Riley-MacPherson-1",
-      name: "The Silent Sister (Riley MacPherson #1)",
-      image: "products/books/Fiction/The Silent Sister (Riley MacPherson #1)/image/The Silent Sister (Riley MacPherson #1).jpg",
+      name: "The Silent Sister (Riley MacPherson -1)",
+      image: "products/books/Fiction/The Silent Sister (Riley MacPherson -1)/image/The Silent Sister (Riley MacPherson -1).jpg",
       star: 5,
       lower_price: 4629,
       higher_price: 4629
@@ -3199,8 +3199,8 @@ export const booksProducts = {
     },
     {
       id: "The-Bourne-Identity-Jason-Bourne-1",
-      name: "The Bourne Identity (Jason Bourne #1)",
-      image: "products/books/Fiction/The Bourne Identity (Jason Bourne #1)/image/The Bourne Identity (Jason Bourne #1).jpg",
+      name: "The Bourne Identity (Jason Bourne -1)",
+      image: "products/books/Fiction/The Bourne Identity (Jason Bourne -1)/image/The Bourne Identity (Jason Bourne -1).jpg",
       star: 4,
       lower_price: 4278,
       higher_price: 4278
@@ -3223,8 +3223,8 @@ export const booksProducts = {
     },
     {
       id: "Me-Before-You-Me-Before-You-1",
-      name: "Me Before You (Me Before You #1)",
-      image: "products/books/Fiction/Me Before You (Me Before You #1)/image/Me Before You (Me Before You #1).jpg",
+      name: "Me Before You (Me Before You -1)",
+      image: "products/books/Fiction/Me Before You (Me Before You -1)/image/Me Before You (Me Before You -1).jpg",
       star: 1,
       lower_price: 1902,
       higher_price: 1902
@@ -3271,8 +3271,8 @@ export const booksProducts = {
     },
     {
       id: "Last-One-Home-New-Beginnings-1",
-      name: "Last One Home (New Beginnings #1)",
-      image: "products/books/Fiction/Last One Home (New Beginnings #1)/image/Last One Home (New Beginnings #1).jpg",
+      name: "Last One Home (New Beginnings -1)",
+      image: "products/books/Fiction/Last One Home (New Beginnings -1)/image/Last One Home (New Beginnings -1).jpg",
       star: 3,
       lower_price: 5998,
       higher_price: 5998
@@ -3320,8 +3320,8 @@ export const booksProducts = {
     },
     {
       id: "The-Da-Vinci-Code-Robert-Langdon-2",
-      name: "The Da Vinci Code (Robert Langdon #2)",
-      image: "products/books/Fiction/The Da Vinci Code (Robert Langdon #2)/image/The Da Vinci Code (Robert Langdon #2).jpg",
+      name: "The Da Vinci Code (Robert Langdon -2)",
+      image: "products/books/Fiction/The Da Vinci Code (Robert Langdon -2)/image/The Da Vinci Code (Robert Langdon -2).jpg",
       star: 2,
       lower_price: 2296,
       higher_price: 2296
@@ -3336,32 +3336,32 @@ export const booksProducts = {
     },
     {
       id: "Lila-Gilead-3",
-      name: "Lila (Gilead #3)",
-      image: "products/books/Fiction/Lila (Gilead #3)/image/Lila (Gilead #3).jpg",
+      name: "Lila (Gilead -3)",
+      image: "products/books/Fiction/Lila (Gilead -3)/image/Lila (Gilead -3).jpg",
       star: 3,
       lower_price: 1247,
       higher_price: 1247
     },
     {
       id: "Jurassic-Park-Jurassic-Park-1",
-      name: "Jurassic Park (Jurassic Park #1)",
-      image: "products/books/Fiction/Jurassic Park (Jurassic Park #1)/image/Jurassic Park (Jurassic Park #1).jpg",
+      name: "Jurassic Park (Jurassic Park -1)",
+      image: "products/books/Fiction/Jurassic Park (Jurassic Park -1)/image/Jurassic Park (Jurassic Park -1).jpg",
       star: 1,
       lower_price: 4497,
       higher_price: 4497
     },
     {
       id: "Inferno-Robert-Langdon-4",
-      name: "Inferno (Robert Langdon #4)",
-      image: "products/books/Fiction/Inferno (Robert Langdon #4)/image/Inferno (Robert Langdon #4).jpg",
+      name: "Inferno (Robert Langdon -4)",
+      image: "products/books/Fiction/Inferno (Robert Langdon -4)/image/Inferno (Robert Langdon -4).jpg",
       star: 5,
       lower_price: 4100,
       higher_price: 4100
     },
     {
       id: "Crazy-Rich-Asians-Crazy-Rich-Asians-1",
-      name: "Crazy Rich Asians (Crazy Rich Asians #1)",
-      image: "products/books/Fiction/Crazy Rich Asians (Crazy Rich Asians #1)/image/Crazy Rich Asians (Crazy Rich Asians #1).jpg",
+      name: "Crazy Rich Asians (Crazy Rich Asians -1)",
+      image: "products/books/Fiction/Crazy Rich Asians (Crazy Rich Asians -1)/image/Crazy Rich Asians (Crazy Rich Asians -1).jpg",
       star: 5,
       lower_price: 4913,
       higher_price: 4913
@@ -3710,8 +3710,8 @@ export const booksProducts = {
     },
     {
       id: "The-Girl-You-Left-Behind-The-Girl-You-Left-Behind-1",
-      name: "The Girl You Left Behind (The Girl You Left Behind #1)",
-      image: "products/books/Historical/The Girl You Left Behind (The Girl You Left Behind #1)/image/The Girl You Left Behind (The Girl You Left Behind #1).jpg",
+      name: "The Girl You Left Behind (The Girl You Left Behind -1)",
+      image: "products/books/Historical/The Girl You Left Behind (The Girl You Left Behind -1)/image/The Girl You Left Behind (The Girl You Left Behind -1).jpg",
       star: 1,
       lower_price: 1579,
       higher_price: 1579
@@ -3736,8 +3736,8 @@ export const booksProducts = {
     },
     {
       id: "A-Flight-of-Arrows-The-Pathfinders-2",
-      name: "A Flight of Arrows (The Pathfinders #2)",
-      image: "products/books/Historical Fiction/A Flight of Arrows (The Pathfinders #2)/image/A Flight of Arrows (The Pathfinders #2).jpg",
+      name: "A Flight of Arrows (The Pathfinders -2)",
+      image: "products/books/Historical Fiction/A Flight of Arrows (The Pathfinders -2)/image/A Flight of Arrows (The Pathfinders -2).jpg",
       star: 5,
       lower_price: 5553,
       higher_price: 5553
@@ -3800,8 +3800,8 @@ export const booksProducts = {
     },
     {
       id: "The-Constant-Princess-The-Tudor-Court-1",
-      name: "The Constant Princess (The Tudor Court #1)",
-      image: "products/books/Historical Fiction/The Constant Princess (The Tudor Court #1)/image/The Constant Princess (The Tudor Court #1).jpg",
+      name: "The Constant Princess (The Tudor Court -1)",
+      image: "products/books/Historical Fiction/The Constant Princess (The Tudor Court -1)/image/The Constant Princess (The Tudor Court -1).jpg",
       star: 3,
       lower_price: 1662,
       higher_price: 1662
@@ -3816,8 +3816,8 @@ export const booksProducts = {
     },
     {
       id: "World-Without-End-The-Pillars-of-the-Earth-2",
-      name: "World Without End (The Pillars of the Earth #2)",
-      image: "products/books/Historical Fiction/World Without End (The Pillars of the Earth #2)/image/World Without End (The Pillars of the Earth #2).jpg",
+      name: "World Without End (The Pillars of the Earth -2)",
+      image: "products/books/Historical Fiction/World Without End (The Pillars of the Earth -2)/image/World Without End (The Pillars of the Earth -2).jpg",
       star: 4,
       lower_price: 3297,
       higher_price: 3297
@@ -3840,8 +3840,8 @@ export const booksProducts = {
     },
     {
       id: "Voyager-Outlander-3",
-      name: "Voyager (Outlander #3)",
-      image: "products/books/Historical Fiction/Voyager (Outlander #3)/image/Voyager (Outlander #3).jpg",
+      name: "Voyager (Outlander -3)",
+      image: "products/books/Historical Fiction/Voyager (Outlander -3)/image/Voyager (Outlander -3).jpg",
       star: 5,
       lower_price: 2107,
       higher_price: 2107
@@ -3920,8 +3920,8 @@ export const booksProducts = {
     },
     {
       id: "A-Spy-s-Devotion-The-Regency-Spies-of-London-1",
-      name: "A Spy's Devotion (The Regency Spies of London #1)",
-      image: "products/books/Historical Fiction/A Spy's Devotion (The Regency Spies of London #1)/image/A Spy's Devotion (The Regency Spies of London #1).jpg",
+      name: "A Spy's Devotion (The Regency Spies of London -1)",
+      image: "products/books/Historical Fiction/A Spy's Devotion (The Regency Spies of London -1)/image/A Spy's Devotion (The Regency Spies of London -1).jpg",
       star: 5,
       lower_price: 1697,
       higher_price: 1697
@@ -4101,32 +4101,32 @@ export const booksProducts = {
     },
     {
       id: "Doctor-Sleep-The-Shining-2",
-      name: "Doctor Sleep (The Shining #2)",
-      image: "products/books/Horror/Doctor Sleep (The Shining #2)/image/Doctor Sleep (The Shining #2).jpg",
+      name: "Doctor Sleep (The Shining -2)",
+      image: "products/books/Horror/Doctor Sleep (The Shining -2)/image/Doctor Sleep (The Shining -2).jpg",
       star: 2,
       lower_price: 4011,
       higher_price: 4011
     },
     {
       id: "Psycho-Sanitarium-Psycho-1-5",
-      name: "Psycho: Sanitarium (Psycho #1.5)",
-      image: "products/books/Horror/Psycho Sanitarium (Psycho #1.5)/image/Psycho Sanitarium (Psycho #1.5).jpg",
+      name: "Psycho: Sanitarium (Psycho -1.5)",
+      image: "products/books/Horror/Psycho Sanitarium (Psycho -1.5)/image/Psycho Sanitarium (Psycho -1.5).jpg",
       star: 5,
       lower_price: 3697,
       higher_price: 3697
     },
     {
       id: "Can-You-Keep-a-Secret-Fear-Street-Relaunch-4",
-      name: "Can You Keep a Secret? (Fear Street Relaunch #4)",
-      image: "products/books/Horror/Can You Keep a Secret (Fear Street Relaunch #4)/image/Can You Keep a Secret (Fear Street Relaunch #4).jpg",
+      name: "Can You Keep a Secret? (Fear Street Relaunch -4)",
+      image: "products/books/Horror/Can You Keep a Secret (Fear Street Relaunch -4)/image/Can You Keep a Secret (Fear Street Relaunch -4).jpg",
       star: 1,
       lower_price: 4864,
       higher_price: 4864
     },
     {
       id: "Red-Dragon-Hannibal-Lecter-1",
-      name: "Red Dragon (Hannibal Lecter #1)",
-      image: "products/books/Horror/Red Dragon (Hannibal Lecter #1)/image/Red Dragon (Hannibal Lecter #1).jpg",
+      name: "Red Dragon (Hannibal Lecter -1)",
+      image: "products/books/Horror/Red Dragon (Hannibal Lecter -1)/image/Red Dragon (Hannibal Lecter -1).jpg",
       star: 3,
       lower_price: 2337,
       higher_price: 2337
@@ -4141,8 +4141,8 @@ export const booksProducts = {
     },
     {
       id: "Night-Shift-Night-Shift-1-20",
-      name: "Night Shift (Night Shift #1-20)",
-      image: "products/books/Horror/Night Shift (Night Shift #1-20)/image/Night Shift (Night Shift #1-20).jpg",
+      name: "Night Shift (Night Shift -1-20)",
+      image: "products/books/Horror/Night Shift (Night Shift -1-20)/image/Night Shift (Night Shift -1-20).jpg",
       star: 4,
       lower_price: 1275,
       higher_price: 1275
@@ -4207,16 +4207,16 @@ export const booksProducts = {
   humor: [
     {
       id: "The-Long-Haul-Diary-of-a-Wimpy-Kid-9",
-      name: "The Long Haul (Diary of a Wimpy Kid #9)",
-      image: "products/books/Humor/The Long Haul (Diary of a Wimpy Kid #9)/image/The Long Haul (Diary of a Wimpy Kid #9).jpg",
+      name: "The Long Haul (Diary of a Wimpy Kid -9)",
+      image: "products/books/Humor/The Long Haul (Diary of a Wimpy Kid -9)/image/The Long Haul (Diary of a Wimpy Kid -9).jpg",
       star: 1,
       lower_price: 4407,
       higher_price: 4407
     },
     {
       id: "Old-School-Diary-of-a-Wimpy-Kid-10",
-      name: "Old School (Diary of a Wimpy Kid #10)",
-      image: "products/books/Humor/Old School (Diary of a Wimpy Kid #10)/image/Old School (Diary of a Wimpy Kid #10).jpg",
+      name: "Old School (Diary of a Wimpy Kid -10)",
+      image: "products/books/Humor/Old School (Diary of a Wimpy Kid -10)/image/Old School (Diary of a Wimpy Kid -10).jpg",
       star: 5,
       lower_price: 1183,
       higher_price: 1183
@@ -4313,8 +4313,8 @@ export const booksProducts = {
     },
     {
       id: "Love-Is-a-Mix-Tape-Music-1",
-      name: "Love Is a Mix Tape (Music #1)",
-      image: "products/books/Music/Love Is a Mix Tape (Music #1)/image/Love Is a Mix Tape (Music #1).jpg",
+      name: "Love Is a Mix Tape (Music -1)",
+      image: "products/books/Music/Love Is a Mix Tape (Music -1)/image/Love Is a Mix Tape (Music -1).jpg",
       star: 1,
       lower_price: 1803,
       higher_price: 1803
@@ -4385,8 +4385,8 @@ export const booksProducts = {
     },
     {
       id: "Forever-Rockers-The-Rocker-12",
-      name: "Forever Rockers (The Rocker #12)",
-      image: "products/books/Music/Forever Rockers (The Rocker #12)/image/Forever Rockers (The Rocker #12).jpg",
+      name: "Forever Rockers (The Rocker -12)",
+      image: "products/books/Music/Forever Rockers (The Rocker -12)/image/Forever Rockers (The Rocker -12).jpg",
       star: 3,
       lower_price: 2880,
       higher_price: 2880
@@ -4427,64 +4427,64 @@ export const booksProducts = {
     },
     {
       id: "The-Murder-of-Roger-Ackroyd-Hercule-Poirot-4",
-      name: "The Murder of Roger Ackroyd (Hercule Poirot #4)",
-      image: "products/books/Mystery/The Murder of Roger Ackroyd (Hercule Poirot #4)/image/The Murder of Roger Ackroyd (Hercule Poirot #4).jpg",
+      name: "The Murder of Roger Ackroyd (Hercule Poirot -4)",
+      image: "products/books/Mystery/The Murder of Roger Ackroyd (Hercule Poirot -4)/image/The Murder of Roger Ackroyd (Hercule Poirot -4).jpg",
       star: 4,
       lower_price: 4410,
       higher_price: 4410
     },
     {
       id: "The-Last-Mile-Amos-Decker-2",
-      name: "The Last Mile (Amos Decker #2)",
-      image: "products/books/Mystery/The Last Mile (Amos Decker #2)/image/The Last Mile (Amos Decker #2).jpg",
+      name: "The Last Mile (Amos Decker -2)",
+      image: "products/books/Mystery/The Last Mile (Amos Decker -2)/image/The Last Mile (Amos Decker -2).jpg",
       star: 2,
       lower_price: 5421,
       higher_price: 5421
     },
     {
       id: "That-Darkness-Gardiner-and-Renner-1",
-      name: "That Darkness (Gardiner and Renner #1)",
-      image: "products/books/Mystery/That Darkness (Gardiner and Renner #1)/image/That Darkness (Gardiner and Renner #1).jpg",
+      name: "That Darkness (Gardiner and Renner -1)",
+      image: "products/books/Mystery/That Darkness (Gardiner and Renner -1)/image/That Darkness (Gardiner and Renner -1).jpg",
       star: 1,
       lower_price: 1392,
       higher_price: 1392
     },
     {
       id: "Tastes-Like-Fear-DI-Marnie-Rome-3",
-      name: "Tastes Like Fear (DI Marnie Rome #3)",
-      image: "products/books/Mystery/Tastes Like Fear (DI Marnie Rome #3)/image/Tastes Like Fear (DI Marnie Rome #3).jpg",
+      name: "Tastes Like Fear (DI Marnie Rome -3)",
+      image: "products/books/Mystery/Tastes Like Fear (DI Marnie Rome -3)/image/Tastes Like Fear (DI Marnie Rome -3).jpg",
       star: 1,
       lower_price: 1069,
       higher_price: 1069
     },
     {
       id: "A-Time-of-Torment-Charlie-Parker-14",
-      name: "A Time of Torment (Charlie Parker #14)",
-      image: "products/books/Mystery/A Time of Torment (Charlie Parker #14)/image/A Time of Torment (Charlie Parker #14).jpg",
+      name: "A Time of Torment (Charlie Parker -14)",
+      image: "products/books/Mystery/A Time of Torment (Charlie Parker -14)/image/A Time of Torment (Charlie Parker -14).jpg",
       star: 5,
       lower_price: 4835,
       higher_price: 4835
     },
     {
       id: "A-Study-in-Scarlet-Sherlock-Holmes-1",
-      name: "A Study in Scarlet (Sherlock Holmes #1)",
-      image: "products/books/Mystery/A Study in Scarlet (Sherlock Holmes #1)/image/A Study in Scarlet (Sherlock Holmes #1).jpg",
+      name: "A Study in Scarlet (Sherlock Holmes -1)",
+      image: "products/books/Mystery/A Study in Scarlet (Sherlock Holmes -1)/image/A Study in Scarlet (Sherlock Holmes -1).jpg",
       star: 2,
       lower_price: 1673,
       higher_price: 1673
     },
     {
       id: "Poisonous-Max-Revere-Novels-3",
-      name: "Poisonous (Max Revere Novels #3)",
-      image: "products/books/Mystery/Poisonous (Max Revere Novels #3)/image/Poisonous (Max Revere Novels #3).jpg",
+      name: "Poisonous (Max Revere Novels -3)",
+      image: "products/books/Mystery/Poisonous (Max Revere Novels -3)/image/Poisonous (Max Revere Novels -3).jpg",
       star: 3,
       lower_price: 2680,
       higher_price: 2680
     },
     {
       id: "Murder-at-the-42nd-Street-Library-Raymond-Ambler-1",
-      name: "Murder at the 42nd Street Library (Raymond Ambler #1)",
-      image: "products/books/Mystery/Murder at the 42nd Street Library (Raymond Ambler #1)/image/Murder at the 42nd Street Library (Raymond Ambler #1).jpg",
+      name: "Murder at the 42nd Street Library (Raymond Ambler -1)",
+      image: "products/books/Mystery/Murder at the 42nd Street Library (Raymond Ambler -1)/image/Murder at the 42nd Street Library (Raymond Ambler -1).jpg",
       star: 4,
       lower_price: 5436,
       higher_price: 5436
@@ -4499,16 +4499,16 @@ export const booksProducts = {
     },
     {
       id: "Hide-Away-Eve-Duncan-20",
-      name: "Hide Away (Eve Duncan #20)",
-      image: "products/books/Mystery/Hide Away (Eve Duncan #20)/image/Hide Away (Eve Duncan #20).jpg",
+      name: "Hide Away (Eve Duncan -20)",
+      image: "products/books/Mystery/Hide Away (Eve Duncan -20)/image/Hide Away (Eve Duncan -20).jpg",
       star: 1,
       lower_price: 1184,
       higher_price: 1184
     },
     {
       id: "Boar-Island-Anna-Pigeon-19",
-      name: "Boar Island (Anna Pigeon #19)",
-      image: "products/books/Mystery/Boar Island (Anna Pigeon #19)/image/Boar Island (Anna Pigeon #19).jpg",
+      name: "Boar Island (Anna Pigeon -19)",
+      image: "products/books/Mystery/Boar Island (Anna Pigeon -19)/image/Boar Island (Anna Pigeon -19).jpg",
       star: 3,
       lower_price: 5948,
       higher_price: 5948
@@ -4531,48 +4531,48 @@ export const booksProducts = {
     },
     {
       id: "What-Happened-on-Beale-Street-Secrets-of-the-South-Mysteries-2",
-      name: "What Happened on Beale Street (Secrets of the South Mysteries #2)",
-      image: "products/books/Mystery/What Happened on Beale Street (Secrets of the South Mysteries #2)/image/What Happened on Beale Street (Secrets of the South Mysteries #2).jpg",
+      name: "What Happened on Beale Street (Secrets of the South Mysteries -2)",
+      image: "products/books/Mystery/What Happened on Beale Street (Secrets of the South Mysteries -2)/image/What Happened on Beale Street (Secrets of the South Mysteries -2).jpg",
       star: 5,
       lower_price: 2537,
       higher_price: 2537
     },
     {
       id: "The-Bachelor-Girl-s-Guide-to-Murder-Herringford-and-Watts-Mysteries-1",
-      name: "The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries #1)",
-      image: "products/books/Mystery/The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries #1)/image/The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries #1).jpg",
+      name: "The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries -1)",
+      image: "products/books/Mystery/The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries -1)/image/The Bachelor Girl's Guide to Murder (Herringford and Watts Mysteries -1).jpg",
       star: 5,
       lower_price: 5230,
       higher_price: 5230
     },
     {
       id: "Delivering-the-Truth-Quaker-Midwife-Mystery-1",
-      name: "Delivering the Truth (Quaker Midwife Mystery #1)",
-      image: "products/books/Mystery/Delivering the Truth (Quaker Midwife Mystery #1)/image/Delivering the Truth (Quaker Midwife Mystery #1).jpg",
+      name: "Delivering the Truth (Quaker Midwife Mystery -1)",
+      image: "products/books/Mystery/Delivering the Truth (Quaker Midwife Mystery -1)/image/Delivering the Truth (Quaker Midwife Mystery -1).jpg",
       star: 4,
       lower_price: 2089,
       higher_price: 2089
     },
     {
       id: "The-Mysterious-Affair-at-Styles-Hercule-Poirot-1",
-      name: "The Mysterious Affair at Styles (Hercule Poirot #1)",
-      image: "products/books/Mystery/The Mysterious Affair at Styles (Hercule Poirot #1)/image/The Mysterious Affair at Styles (Hercule Poirot #1).jpg",
+      name: "The Mysterious Affair at Styles (Hercule Poirot -1)",
+      image: "products/books/Mystery/The Mysterious Affair at Styles (Hercule Poirot -1)/image/The Mysterious Affair at Styles (Hercule Poirot -1).jpg",
       star: 4,
       lower_price: 2480,
       higher_price: 2480
     },
     {
       id: "In-the-Woods-Dublin-Murder-Squad-1",
-      name: "In the Woods (Dublin Murder Squad #1)",
-      image: "products/books/Mystery/In the Woods (Dublin Murder Squad #1)/image/In the Woods (Dublin Murder Squad #1).jpg",
+      name: "In the Woods (Dublin Murder Squad -1)",
+      image: "products/books/Mystery/In the Woods (Dublin Murder Squad -1)/image/In the Woods (Dublin Murder Squad -1).jpg",
       star: 2,
       lower_price: 3838,
       higher_price: 3838
     },
     {
       id: "The-Silkworm-Cormoran-Strike-2",
-      name: "The Silkworm (Cormoran Strike #2)",
-      image: "products/books/Mystery/The Silkworm (Cormoran Strike #2)/image/The Silkworm (Cormoran Strike #2).jpg",
+      name: "The Silkworm (Cormoran Strike -2)",
+      image: "products/books/Mystery/The Silkworm (Cormoran Strike -2)/image/The Silkworm (Cormoran Strike -2).jpg",
       star: 5,
       lower_price: 2305,
       higher_price: 2305
@@ -4587,32 +4587,32 @@ export const booksProducts = {
     },
     {
       id: "The-Cuckoo-s-Calling-Cormoran-Strike-1",
-      name: "The Cuckoo's Calling (Cormoran Strike #1)",
-      image: "products/books/Mystery/The Cuckoo's Calling (Cormoran Strike #1)/image/The Cuckoo's Calling (Cormoran Strike #1).jpg",
+      name: "The Cuckoo's Calling (Cormoran Strike -1)",
+      image: "products/books/Mystery/The Cuckoo's Calling (Cormoran Strike -1)/image/The Cuckoo's Calling (Cormoran Strike -1).jpg",
       star: 1,
       lower_price: 1921,
       higher_price: 1921
     },
     {
       id: "Extreme-Prey-Lucas-Davenport-26",
-      name: "Extreme Prey (Lucas Davenport #26)",
-      image: "products/books/Mystery/Extreme Prey (Lucas Davenport #26)/image/Extreme Prey (Lucas Davenport #26).jpg",
+      name: "Extreme Prey (Lucas Davenport -26)",
+      image: "products/books/Mystery/Extreme Prey (Lucas Davenport -26)/image/Extreme Prey (Lucas Davenport -26).jpg",
       star: 3,
       lower_price: 2540,
       higher_price: 2540
     },
     {
       id: "Career-of-Evil-Cormoran-Strike-3",
-      name: "Career of Evil (Cormoran Strike #3)",
-      image: "products/books/Mystery/Career of Evil (Cormoran Strike #3)/image/Career of Evil (Cormoran Strike #3).jpg",
+      name: "Career of Evil (Cormoran Strike -3)",
+      image: "products/books/Mystery/Career of Evil (Cormoran Strike -3)/image/Career of Evil (Cormoran Strike -3).jpg",
       star: 2,
       lower_price: 2472,
       higher_price: 2472
     },
     {
       id: "The-No-1-Ladies-Detective-Agency-No-1-Ladies-Detective-Agency-1",
-      name: "The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency #1)",
-      image: "products/books/Mystery/The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency #1)/image/The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency #1).jpg",
+      name: "The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency -1)",
+      image: "products/books/Mystery/The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency -1)/image/The No. 1 Ladies' Detective Agency (No. 1 Ladies' Detective Agency -1).jpg",
       star: 4,
       lower_price: 5770,
       higher_price: 5770
@@ -4627,24 +4627,24 @@ export const booksProducts = {
     },
     {
       id: "The-Girl-In-The-Ice-DCI-Erika-Foster-1",
-      name: "The Girl In The Ice (DCI Erika Foster #1)",
-      image: "products/books/Mystery/The Girl In The Ice (DCI Erika Foster #1)/image/The Girl In The Ice (DCI Erika Foster #1).jpg",
+      name: "The Girl In The Ice (DCI Erika Foster -1)",
+      image: "products/books/Mystery/The Girl In The Ice (DCI Erika Foster -1)/image/The Girl In The Ice (DCI Erika Foster -1).jpg",
       star: 3,
       lower_price: 1585,
       higher_price: 1585
     },
     {
       id: "Blood-Defense-Samantha-Brinkman-1",
-      name: "Blood Defense (Samantha Brinkman #1)",
-      image: "products/books/Mystery/Blood Defense (Samantha Brinkman #1)/image/Blood Defense (Samantha Brinkman #1).jpg",
+      name: "Blood Defense (Samantha Brinkman -1)",
+      image: "products/books/Mystery/Blood Defense (Samantha Brinkman -1)/image/Blood Defense (Samantha Brinkman -1).jpg",
       star: 3,
       lower_price: 2030,
       higher_price: 2030
     },
     {
       id: "1st-to-Die-Women-s-Murder-Club-1",
-      name: "1st to Die (Women's Murder Club #1)",
-      image: "products/books/Mystery/1st to Die (Women's Murder Club #1)/image/1st to Die (Women's Murder Club #1).jpg",
+      name: "1st to Die (Women's Murder Club -1)",
+      image: "products/books/Mystery/1st to Die (Women's Murder Club -1)/image/1st to Die (Women's Murder Club -1).jpg",
       star: 1,
       lower_price: 5398,
       higher_price: 5398
@@ -4653,32 +4653,32 @@ export const booksProducts = {
   new_adult: [
     {
       id: "Without-Borders-Wanderlove-1",
-      name: "Without Borders (Wanderlove #1)",
-      image: "products/books/New Adult/Without Borders (Wanderlove #1)/image/Without Borders (Wanderlove #1).jpg",
+      name: "Without Borders (Wanderlove -1)",
+      image: "products/books/New Adult/Without Borders (Wanderlove -1)/image/Without Borders (Wanderlove -1).jpg",
       star: 2,
       lower_price: 4507,
       higher_price: 4507
     },
     {
       id: "The-Mistake-Off-Campus-2",
-      name: "The Mistake (Off-Campus #2)",
-      image: "products/books/New Adult/The Mistake (Off-Campus #2)/image/The Mistake (Off-Campus #2).jpg",
+      name: "The Mistake (Off-Campus -2)",
+      image: "products/books/New Adult/The Mistake (Off-Campus -2)/image/The Mistake (Off-Campus -2).jpg",
       star: 3,
       lower_price: 4329,
       higher_price: 4329
     },
     {
       id: "The-Matchmaker-s-Playbook-Wingmen-Inc-1",
-      name: "The Matchmaker's Playbook (Wingmen Inc. #1)",
-      image: "products/books/New Adult/The Matchmaker's Playbook (Wingmen Inc. #1)/image/The Matchmaker's Playbook (Wingmen Inc. #1).jpg",
+      name: "The Matchmaker's Playbook (Wingmen Inc. -1)",
+      image: "products/books/New Adult/The Matchmaker's Playbook (Wingmen Inc. -1)/image/The Matchmaker's Playbook (Wingmen Inc. -1).jpg",
       star: 1,
       lower_price: 5585,
       higher_price: 5585
     },
     {
       id: "The-Hook-Up-Game-On-1",
-      name: "The Hook Up (Game On #1)",
-      image: "products/books/New Adult/The Hook Up (Game On #1)/image/The Hook Up (Game On #1).jpg",
+      name: "The Hook Up (Game On -1)",
+      image: "products/books/New Adult/The Hook Up (Game On -1)/image/The Hook Up (Game On -1).jpg",
       star: 5,
       lower_price: 3629,
       higher_price: 3629
@@ -4693,8 +4693,8 @@ export const booksProducts = {
     },
     {
       id: "Off-Sides-Off-1",
-      name: "Off Sides (Off #1)",
-      image: "products/books/New Adult/Off Sides (Off #1)/image/Off Sides (Off #1).jpg",
+      name: "Off Sides (Off -1)",
+      image: "products/books/New Adult/Off Sides (Off -1)/image/Off Sides (Off -1).jpg",
       star: 5,
       lower_price: 3945,
       higher_price: 3945
@@ -4703,8 +4703,8 @@ export const booksProducts = {
   nonfiction: [
     {
       id: "Worlds-Elsewhere-Journeys-Around-Shakespeare-s-Globe",
-      name: "Worlds Elsewhere: Journeys Around Shakespeare’s Globe",
-      image: "products/books/Nonfiction/Worlds Elsewhere Journeys Around Shakespeare’s Globe/image/Worlds Elsewhere Journeys Around Shakespeare’s Globe.jpg",
+      name: "Worlds Elsewhere: Journeys Around Shakespeareâ€™s Globe",
+      image: "products/books/Nonfiction/Worlds Elsewhere Journeys Around Shakespeareâ€™s Globe/image/Worlds Elsewhere Journeys Around Shakespeareâ€™s Globe.jpg",
       star: 5,
       lower_price: 4029,
       higher_price: 4029
@@ -4927,8 +4927,8 @@ export const booksProducts = {
     },
     {
       id: "The-Bad-Ass-Librarians-of-Timbuktu-And-Their-Race-to-Save-the-World-s-Most-Precious-Manuscripts",
-      name: "The Bad-Ass Librarians of Timbuktu: And Their Race to Save the World’s Most Precious Manuscripts",
-      image: "products/books/Nonfiction/The Bad-Ass Librarians of Timbuktu And Their Race to Save the World’s Most Precious Manuscripts/image/The Bad-Ass Librarians of Timbuktu And Their Race to Save the World’s Most Precious Manuscripts.jpg",
+      name: "The Bad-Ass Librarians of Timbuktu: And Their Race to Save the Worldâ€™s Most Precious Manuscripts",
+      image: "products/books/Nonfiction/The Bad-Ass Librarians of Timbuktu And Their Race to Save the Worldâ€™s Most Precious Manuscripts/image/The Bad-Ass Librarians of Timbuktu And Their Race to Save the Worldâ€™s Most Precious Manuscripts.jpg",
       star: 1,
       lower_price: 1577,
       higher_price: 1577
@@ -5370,16 +5370,16 @@ export const booksProducts = {
     },
     {
       id: "Notes-from-a-Small-Island-Notes-From-a-Small-Island-1",
-      name: "Notes from a Small Island (Notes From a Small Island #1)",
-      image: "products/books/Nonfiction/Notes from a Small Island (Notes From a Small Island #1)/image/Notes from a Small Island (Notes From a Small Island #1).jpg",
+      name: "Notes from a Small Island (Notes From a Small Island -1)",
+      image: "products/books/Nonfiction/Notes from a Small Island (Notes From a Small Island -1)/image/Notes from a Small Island (Notes From a Small Island -1).jpg",
       star: 1,
       lower_price: 4017,
       higher_price: 4017
     },
     {
       id: "Night-The-Night-Trilogy-1",
-      name: "Night (The Night Trilogy #1)",
-      image: "products/books/Nonfiction/Night (The Night Trilogy #1)/image/Night (The Night Trilogy #1).jpg",
+      name: "Night (The Night Trilogy -1)",
+      image: "products/books/Nonfiction/Night (The Night Trilogy -1)/image/Night (The Night Trilogy -1).jpg",
       star: 1,
       lower_price: 1351,
       higher_price: 1351
@@ -5499,8 +5499,8 @@ export const booksProducts = {
     },
     {
       id: "The-Suffragettes-Little-Black-Classics-96",
-      name: "The Suffragettes (Little Black Classics, #96)",
-      image: "products/books/Nonfiction/The Suffragettes (Little Black Classics, #96)/image/The Suffragettes (Little Black Classics, #96).jpg",
+      name: "The Suffragettes (Little Black Classics, -96)",
+      image: "products/books/Nonfiction/The Suffragettes (Little Black Classics, -96)/image/The Suffragettes (Little Black Classics, -96).jpg",
       star: 2,
       lower_price: 1189,
       higher_price: 1189
@@ -5539,8 +5539,8 @@ export const booksProducts = {
     },
     {
       id: "The-End-of-the-Jesus-Era-An-Investigation-1",
-      name: "The End of the Jesus Era (An Investigation #1)",
-      image: "products/books/Nonfiction/The End of the Jesus Era (An Investigation #1)/image/The End of the Jesus Era (An Investigation #1).jpg",
+      name: "The End of the Jesus Era (An Investigation -1)",
+      image: "products/books/Nonfiction/The End of the Jesus Era (An Investigation -1)/image/The End of the Jesus Era (An Investigation -1).jpg",
       star: 1,
       lower_price: 1440,
       higher_price: 1440
@@ -5567,8 +5567,8 @@ export const booksProducts = {
   paranormal: [
     {
       id: "Vampire-Knight-Vol-1-Vampire-Knight-1",
-      name: "Vampire Knight, Vol. 1 (Vampire Knight #1)",
-      image: "products/books/Paranormal/Vampire Knight, Vol. 1 (Vampire Knight #1)/image/Vampire Knight, Vol. 1 (Vampire Knight #1).jpg",
+      name: "Vampire Knight, Vol. 1 (Vampire Knight -1)",
+      image: "products/books/Paranormal/Vampire Knight, Vol. 1 (Vampire Knight -1)/image/Vampire Knight, Vol. 1 (Vampire Knight -1).jpg",
       star: 1,
       lower_price: 1540,
       higher_price: 1540
@@ -5790,8 +5790,8 @@ export const booksProducts = {
     },
     {
       id: "The-Collected-Poems-of-W-B-Yeats-The-Collected-Works-of-W-B-Yeats-1",
-      name: "The Collected Poems of W.B. Yeats (The Collected Works of W.B. Yeats #1)",
-      image: "products/books/Poetry/The Collected Poems of W.B. Yeats (The Collected Works of W.B. Yeats #1)/image/The Collected Poems of W.B. Yeats (The Collected Works of W.B. Yeats #1).jpg",
+      name: "The Collected Poems of W.B. Yeats (The Collected Works of W.B. Yeats -1)",
+      image: "products/books/Poetry/The Collected Poems of W.B. Yeats (The Collected Works of W.B. Yeats -1)/image/The Collected Poems of W.B. Yeats (The Collected Works of W.B. Yeats -1).jpg",
       star: 5,
       lower_price: 1542,
       higher_price: 1542
@@ -5959,8 +5959,8 @@ export const booksProducts = {
   romance: [
     {
       id: "Chase-Me-Paris-Nights-2",
-      name: "Chase Me (Paris Nights #2)",
-      image: "products/books/Romance/Chase Me (Paris Nights #2)/image/Chase Me (Paris Nights #2).jpg",
+      name: "Chase Me (Paris Nights -2)",
+      image: "products/books/Romance/Chase Me (Paris Nights -2)/image/Chase Me (Paris Nights -2).jpg",
       star: 5,
       lower_price: 2527,
       higher_price: 2527
@@ -5975,16 +5975,16 @@ export const booksProducts = {
     },
     {
       id: "Her-Backup-Boyfriend-The-Sorensen-Family-1",
-      name: "Her Backup Boyfriend (The Sorensen Family #1)",
-      image: "products/books/Romance/Her Backup Boyfriend (The Sorensen Family #1)/image/Her Backup Boyfriend (The Sorensen Family #1).jpg",
+      name: "Her Backup Boyfriend (The Sorensen Family -1)",
+      image: "products/books/Romance/Her Backup Boyfriend (The Sorensen Family -1)/image/Her Backup Boyfriend (The Sorensen Family -1).jpg",
       star: 1,
       lower_price: 3397,
       higher_price: 3397
     },
     {
       id: "First-and-First-Five-Boroughs-3",
-      name: "First and First (Five Boroughs #3)",
-      image: "products/books/Romance/First and First (Five Boroughs #3)/image/First and First (Five Boroughs #3).jpg",
+      name: "First and First (Five Boroughs -3)",
+      image: "products/books/Romance/First and First (Five Boroughs -3)/image/First and First (Five Boroughs -3).jpg",
       star: 4,
       lower_price: 1597,
       higher_price: 1597
@@ -6000,8 +6000,8 @@ export const booksProducts = {
     },
     {
       id: "Suddenly-in-Love-Lake-Haven-1",
-      name: "Suddenly in Love (Lake Haven #1)",
-      image: "products/books/Romance/Suddenly in Love (Lake Haven #1)/image/Suddenly in Love (Lake Haven #1).jpg",
+      name: "Suddenly in Love (Lake Haven -1)",
+      image: "products/books/Romance/Suddenly in Love (Lake Haven -1)/image/Suddenly in Love (Lake Haven -1).jpg",
       star: 2,
       lower_price: 5599,
       higher_price: 5599
@@ -6016,56 +6016,56 @@ export const booksProducts = {
     },
     {
       id: "Doing-It-Over-Most-Likely-To-1",
-      name: "Doing It Over (Most Likely To #1)",
-      image: "products/books/Romance/Doing It Over (Most Likely To #1)/image/Doing It Over (Most Likely To #1).jpg",
+      name: "Doing It Over (Most Likely To -1)",
+      image: "products/books/Romance/Doing It Over (Most Likely To -1)/image/Doing It Over (Most Likely To -1).jpg",
       star: 3,
       lower_price: 3561,
       higher_price: 3561
     },
     {
       id: "The-Wedding-Pact-The-O-Malleys-2",
-      name: "The Wedding Pact (The O'Malleys #2)",
-      image: "products/books/Romance/The Wedding Pact (The O'Malleys #2)/image/The Wedding Pact (The O'Malleys #2).jpg",
+      name: "The Wedding Pact (The O'Malleys -2)",
+      image: "products/books/Romance/The Wedding Pact (The O'Malleys -2)/image/The Wedding Pact (The O'Malleys -2).jpg",
       star: 3,
       lower_price: 3261,
       higher_price: 3261
     },
     {
       id: "Hold-Your-Breath-Search-and-Rescue-1",
-      name: "Hold Your Breath (Search and Rescue #1)",
-      image: "products/books/Romance/Hold Your Breath (Search and Rescue #1)/image/Hold Your Breath (Search and Rescue #1).jpg",
+      name: "Hold Your Breath (Search and Rescue -1)",
+      image: "products/books/Romance/Hold Your Breath (Search and Rescue -1)/image/Hold Your Breath (Search and Rescue -1).jpg",
       star: 1,
       lower_price: 2882,
       higher_price: 2882
     },
     {
       id: "Dirty-Dive-Bar-1",
-      name: "Dirty (Dive Bar #1)",
-      image: "products/books/Romance/Dirty (Dive Bar #1)/image/Dirty (Dive Bar #1).jpg",
+      name: "Dirty (Dive Bar -1)",
+      image: "products/books/Romance/Dirty (Dive Bar -1)/image/Dirty (Dive Bar -1).jpg",
       star: 4,
       lower_price: 4083,
       higher_price: 4083
     },
     {
       id: "Take-Me-Home-Tonight-Rock-Star-Romance-3",
-      name: "Take Me Home Tonight (Rock Star Romance #3)",
-      image: "products/books/Romance/Take Me Home Tonight (Rock Star Romance #3)/image/Take Me Home Tonight (Rock Star Romance #3).jpg",
+      name: "Take Me Home Tonight (Rock Star Romance -3)",
+      image: "products/books/Romance/Take Me Home Tonight (Rock Star Romance -3)/image/Take Me Home Tonight (Rock Star Romance -3).jpg",
       star: 3,
       lower_price: 5398,
       higher_price: 5398
     },
     {
       id: "Off-the-Hook-Fishing-for-Trouble-1",
-      name: "Off the Hook (Fishing for Trouble #1)",
-      image: "products/books/Romance/Off the Hook (Fishing for Trouble #1)/image/Off the Hook (Fishing for Trouble #1).jpg",
+      name: "Off the Hook (Fishing for Trouble -1)",
+      image: "products/books/Romance/Off the Hook (Fishing for Trouble -1)/image/Off the Hook (Fishing for Trouble -1).jpg",
       star: 3,
       lower_price: 4767,
       higher_price: 4767
     },
     {
       id: "A-Gentleman-s-Position-Society-of-Gentlemen-3",
-      name: "A Gentleman's Position (Society of Gentlemen #3)",
-      image: "products/books/Romance/A Gentleman's Position (Society of Gentlemen #3)/image/A Gentleman's Position (Society of Gentlemen #3).jpg",
+      name: "A Gentleman's Position (Society of Gentlemen -3)",
+      image: "products/books/Romance/A Gentleman's Position (Society of Gentlemen -3)/image/A Gentleman's Position (Society of Gentlemen -3).jpg",
       star: 5,
       lower_price: 1475,
       higher_price: 1475
@@ -6080,32 +6080,32 @@ export const booksProducts = {
     },
     {
       id: "A-Girl-s-Guide-to-Moving-On-New-Beginnings-2",
-      name: "A Girl's Guide to Moving On (New Beginnings #2)",
-      image: "products/books/Romance/A Girl's Guide to Moving On (New Beginnings #2)/image/A Girl's Guide to Moving On (New Beginnings #2).jpg",
+      name: "A Girl's Guide to Moving On (New Beginnings -2)",
+      image: "products/books/Romance/A Girl's Guide to Moving On (New Beginnings -2)/image/A Girl's Guide to Moving On (New Beginnings -2).jpg",
       star: 1,
       lower_price: 3130,
       higher_price: 3130
     },
     {
       id: "The-Perfect-Play-Play-by-Play-1",
-      name: "The Perfect Play (Play by Play #1)",
-      image: "products/books/Romance/The Perfect Play (Play by Play #1)/image/The Perfect Play (Play by Play #1).jpg",
+      name: "The Perfect Play (Play by Play -1)",
+      image: "products/books/Romance/The Perfect Play (Play by Play -1)/image/The Perfect Play (Play by Play -1).jpg",
       star: 3,
       lower_price: 5999,
       higher_price: 5999
     },
     {
       id: "Dark-Lover-Black-Dagger-Brotherhood-1",
-      name: "Dark Lover (Black Dagger Brotherhood #1)",
-      image: "products/books/Romance/Dark Lover (Black Dagger Brotherhood #1)/image/Dark Lover (Black Dagger Brotherhood #1).jpg",
+      name: "Dark Lover (Black Dagger Brotherhood -1)",
+      image: "products/books/Romance/Dark Lover (Black Dagger Brotherhood -1)/image/Dark Lover (Black Dagger Brotherhood -1).jpg",
       star: 1,
       lower_price: 1287,
       higher_price: 1287
     },
     {
       id: "Changing-the-Game-Play-by-Play-2",
-      name: "Changing the Game (Play by Play #2)",
-      image: "products/books/Romance/Changing the Game (Play by Play #2)/image/Changing the Game (Play by Play #2).jpg",
+      name: "Changing the Game (Play by Play -2)",
+      image: "products/books/Romance/Changing the Game (Play by Play -2)/image/Changing the Game (Play by Play -2).jpg",
       star: 3,
       lower_price: 1338,
       higher_price: 1338
@@ -6120,8 +6120,8 @@ export const booksProducts = {
     },
     {
       id: "The-Purest-Hook-Second-Circle-Tattoos-3",
-      name: "The Purest Hook (Second Circle Tattoos #3)",
-      image: "products/books/Romance/The Purest Hook (Second Circle Tattoos #3)/image/The Purest Hook (Second Circle Tattoos #3).jpg",
+      name: "The Purest Hook (Second Circle Tattoos -3)",
+      image: "products/books/Romance/The Purest Hook (Second Circle Tattoos -3)/image/The Purest Hook (Second Circle Tattoos -3).jpg",
       star: 1,
       lower_price: 1225,
       higher_price: 1225
@@ -6144,24 +6144,24 @@ export const booksProducts = {
     },
     {
       id: "Best-of-My-Love-Fool-s-Gold-20",
-      name: "Best of My Love (Fool's Gold #20)",
-      image: "products/books/Romance/Best of My Love (Fool's Gold #20)/image/Best of My Love (Fool's Gold #20).jpg",
+      name: "Best of My Love (Fool's Gold -20)",
+      image: "products/books/Romance/Best of My Love (Fool's Gold -20)/image/Best of My Love (Fool's Gold -20).jpg",
       star: 2,
       lower_price: 2741,
       higher_price: 2741
     },
     {
       id: "Where-Lightning-Strikes-Bleeding-Stars-3",
-      name: "Where Lightning Strikes (Bleeding Stars #3)",
-      image: "products/books/Romance/Where Lightning Strikes (Bleeding Stars #3)/image/Where Lightning Strikes (Bleeding Stars #3).jpg",
+      name: "Where Lightning Strikes (Bleeding Stars -3)",
+      image: "products/books/Romance/Where Lightning Strikes (Bleeding Stars -3)/image/Where Lightning Strikes (Bleeding Stars -3).jpg",
       star: 3,
       lower_price: 3977,
       higher_price: 3977
     },
     {
       id: "This-One-Moment-Pushing-Limits-1",
-      name: "This One Moment (Pushing Limits #1)",
-      image: "products/books/Romance/This One Moment (Pushing Limits #1)/image/This One Moment (Pushing Limits #1).jpg",
+      name: "This One Moment (Pushing Limits -1)",
+      image: "products/books/Romance/This One Moment (Pushing Limits -1)/image/This One Moment (Pushing Limits -1).jpg",
       star: 1,
       lower_price: 4871,
       higher_price: 4871
@@ -6176,16 +6176,16 @@ export const booksProducts = {
     },
     {
       id: "My-Perfect-Mistake-Over-the-Top-1",
-      name: "My Perfect Mistake (Over the Top #1)",
-      image: "products/books/Romance/My Perfect Mistake (Over the Top #1)/image/My Perfect Mistake (Over the Top #1).jpg",
+      name: "My Perfect Mistake (Over the Top -1)",
+      image: "products/books/Romance/My Perfect Mistake (Over the Top -1)/image/My Perfect Mistake (Over the Top -1).jpg",
       star: 2,
       lower_price: 3892,
       higher_price: 3892
     },
     {
       id: "Listen-to-Me-Fusion-1",
-      name: "Listen to Me (Fusion #1)",
-      image: "products/books/Romance/Listen to Me (Fusion #1)/image/Listen to Me (Fusion #1).jpg",
+      name: "Listen to Me (Fusion -1)",
+      image: "products/books/Romance/Listen to Me (Fusion -1)/image/Listen to Me (Fusion -1).jpg",
       star: 3,
       lower_price: 5899,
       higher_price: 5899
@@ -6200,32 +6200,32 @@ export const booksProducts = {
     },
     {
       id: "Fighting-Fate-Fighting-6",
-      name: "Fighting Fate (Fighting #6)",
-      image: "products/books/Romance/Fighting Fate (Fighting #6)/image/Fighting Fate (Fighting #6).jpg",
+      name: "Fighting Fate (Fighting -6)",
+      image: "products/books/Romance/Fighting Fate (Fighting -6)/image/Fighting Fate (Fighting -6).jpg",
       star: 3,
       lower_price: 3924,
       higher_price: 3924
     },
     {
       id: "Deep-Under-Walker-Security-1",
-      name: "Deep Under (Walker Security #1)",
-      image: "products/books/Romance/Deep Under (Walker Security #1)/image/Deep Under (Walker Security #1).jpg",
+      name: "Deep Under (Walker Security -1)",
+      image: "products/books/Romance/Deep Under (Walker Security -1)/image/Deep Under (Walker Security -1).jpg",
       star: 5,
       lower_price: 4709,
       higher_price: 4709
     },
     {
       id: "Charity-s-Cross-Charles-Towne-Belles-4",
-      name: "Charity's Cross (Charles Towne Belles #4)",
-      image: "products/books/Romance/Charity's Cross (Charles Towne Belles #4)/image/Charity's Cross (Charles Towne Belles #4).jpg",
+      name: "Charity's Cross (Charles Towne Belles -4)",
+      image: "products/books/Romance/Charity's Cross (Charles Towne Belles -4)/image/Charity's Cross (Charles Towne Belles -4).jpg",
       star: 1,
       lower_price: 4124,
       higher_price: 4124
     },
     {
       id: "Bounty-Colorado-Mountain-7",
-      name: "Bounty (Colorado Mountain #7)",
-      image: "products/books/Romance/Bounty (Colorado Mountain #7)/image/Bounty (Colorado Mountain #7).jpg",
+      name: "Bounty (Colorado Mountain -7)",
+      image: "products/books/Romance/Bounty (Colorado Mountain -7)/image/Bounty (Colorado Mountain -7).jpg",
       star: 4,
       lower_price: 3726,
       higher_price: 3726
@@ -6364,8 +6364,8 @@ export const booksProducts = {
     },
     {
       id: "William-Shakespeare-s-Star-Wars-Verily-A-New-Hope-William-Shakespeare-s-Star-Wars-4",
-      name: "William Shakespeare's Star Wars: Verily, A New Hope (William Shakespeare's Star Wars #4)",
-      image: "products/books/Science Fiction/William Shakespeare's Star Wars Verily, A New Hope (William Shakespeare's Star Wars #4)/image/William Shakespeare's Star Wars Verily, A New Hope (William Shakespeare's Star Wars #4).jpg",
+      name: "William Shakespeare's Star Wars: Verily, A New Hope (William Shakespeare's Star Wars -4)",
+      image: "products/books/Science Fiction/William Shakespeare's Star Wars Verily, A New Hope (William Shakespeare's Star Wars -4)/image/William Shakespeare's Star Wars Verily, A New Hope (William Shakespeare's Star Wars -4).jpg",
       star: 4,
       lower_price: 4330,
       higher_price: 4330
@@ -6388,8 +6388,8 @@ export const booksProducts = {
     },
     {
       id: "Sleeping-Giants-Themis-Files-1",
-      name: "Sleeping Giants (Themis Files #1)",
-      image: "products/books/Science Fiction/Sleeping Giants (Themis Files #1)/image/Sleeping Giants (Themis Files #1).jpg",
+      name: "Sleeping Giants (Themis Files -1)",
+      image: "products/books/Science Fiction/Sleeping Giants (Themis Files -1)/image/Sleeping Giants (Themis Files -1).jpg",
       star: 1,
       lower_price: 4874,
       higher_price: 4874
@@ -6404,16 +6404,16 @@ export const booksProducts = {
     },
     {
       id: "Foundation-Foundation-Publication-Order-1",
-      name: "Foundation (Foundation (Publication Order) #1)",
-      image: "products/books/Science Fiction/Foundation (Foundation (Publication Order) #1)/image/Foundation (Foundation (Publication Order) #1).jpg",
+      name: "Foundation (Foundation (Publication Order) -1)",
+      image: "products/books/Science Fiction/Foundation (Foundation (Publication Order) -1)/image/Foundation (Foundation (Publication Order) -1).jpg",
       star: 1,
       lower_price: 3242,
       higher_price: 3242
     },
     {
       id: "The-Restaurant-at-the-End-of-the-Universe-Hitchhiker-s-Guide-to-the-Galaxy-2",
-      name: "The Restaurant at the End of the Universe (Hitchhiker's Guide to the Galaxy #2)",
-      image: "products/books/Science Fiction/The Restaurant at the End of the Universe (Hitchhiker's Guide to the Galaxy #2)/image/The Restaurant at the End of the Universe (Hitchhiker's Guide to the Galaxy #2).jpg",
+      name: "The Restaurant at the End of the Universe (Hitchhiker's Guide to the Galaxy -2)",
+      image: "products/books/Science Fiction/The Restaurant at the End of the Universe (Hitchhiker's Guide to the Galaxy -2)/image/The Restaurant at the End of the Universe (Hitchhiker's Guide to the Galaxy -2).jpg",
       star: 1,
       lower_price: 1092,
       higher_price: 1092
@@ -6428,48 +6428,48 @@ export const booksProducts = {
     },
     {
       id: "Life-the-Universe-and-Everything-Hitchhiker-s-Guide-to-the-Galaxy-3",
-      name: "Life, the Universe and Everything (Hitchhiker's Guide to the Galaxy #3)",
-      image: "products/books/Science Fiction/Life, the Universe and Everything (Hitchhiker's Guide to the Galaxy #3)/image/Life, the Universe and Everything (Hitchhiker's Guide to the Galaxy #3).jpg",
+      name: "Life, the Universe and Everything (Hitchhiker's Guide to the Galaxy -3)",
+      image: "products/books/Science Fiction/Life, the Universe and Everything (Hitchhiker's Guide to the Galaxy -3)/image/Life, the Universe and Everything (Hitchhiker's Guide to the Galaxy -3).jpg",
       star: 2,
       lower_price: 3326,
       higher_price: 3326
     },
     {
       id: "Dune-Dune-1",
-      name: "Dune (Dune #1)",
-      image: "products/books/Science Fiction/Dune (Dune #1)/image/Dune (Dune #1).jpg",
+      name: "Dune (Dune -1)",
+      image: "products/books/Science Fiction/Dune (Dune -1)/image/Dune (Dune -1).jpg",
       star: 1,
       lower_price: 5486,
       higher_price: 5486
     },
     {
       id: "Do-Androids-Dream-of-Electric-Sheep-Blade-Runner-1",
-      name: "Do Androids Dream of Electric Sheep? (Blade Runner #1)",
-      image: "products/books/Science Fiction/Do Androids Dream of Electric Sheep (Blade Runner #1)/image/Do Androids Dream of Electric Sheep (Blade Runner #1).jpg",
+      name: "Do Androids Dream of Electric Sheep? (Blade Runner -1)",
+      image: "products/books/Science Fiction/Do Androids Dream of Electric Sheep (Blade Runner -1)/image/Do Androids Dream of Electric Sheep (Blade Runner -1).jpg",
       star: 1,
       lower_price: 5148,
       higher_price: 5148
     },
     {
       id: "Three-Wishes-River-of-Time-California-1",
-      name: "Three Wishes (River of Time: California #1)",
-      image: "products/books/Science Fiction/Three Wishes (River of Time California #1)/image/Three Wishes (River of Time California #1).jpg",
+      name: "Three Wishes (River of Time: California -1)",
+      image: "products/books/Science Fiction/Three Wishes (River of Time California -1)/image/Three Wishes (River of Time California -1).jpg",
       star: 2,
       lower_price: 4418,
       higher_price: 4418
     },
     {
       id: "The-Last-Girl-The-Dominion-Trilogy-1",
-      name: "The Last Girl (The Dominion Trilogy #1)",
-      image: "products/books/Science Fiction/The Last Girl (The Dominion Trilogy #1)/image/The Last Girl (The Dominion Trilogy #1).jpg",
+      name: "The Last Girl (The Dominion Trilogy -1)",
+      image: "products/books/Science Fiction/The Last Girl (The Dominion Trilogy -1)/image/The Last Girl (The Dominion Trilogy -1).jpg",
       star: 2,
       lower_price: 3626,
       higher_price: 3626
     },
     {
       id: "Having-the-Barbarian-s-Baby-Ice-Planet-Barbarians-7-5",
-      name: "Having the Barbarian's Baby (Ice Planet Barbarians #7.5)",
-      image: "products/books/Science Fiction/Having the Barbarian's Baby (Ice Planet Barbarians #7.5)/image/Having the Barbarian's Baby (Ice Planet Barbarians #7.5).jpg",
+      name: "Having the Barbarian's Baby (Ice Planet Barbarians -7.5)",
+      image: "products/books/Science Fiction/Having the Barbarian's Baby (Ice Planet Barbarians -7.5)/image/Having the Barbarian's Baby (Ice Planet Barbarians -7.5).jpg",
       star: 4,
       lower_price: 3496,
       higher_price: 3496
@@ -6520,16 +6520,16 @@ export const booksProducts = {
   sequential_art: [
     {
       id: "Scott-Pilgrim-s-Precious-Little-Life-Scott-Pilgrim-1",
-      name: "Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)",
-      image: "products/books/Sequential Art/Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)/image/Scott Pilgrim's Precious Little Life (Scott Pilgrim #1).jpg",
+      name: "Scott Pilgrim's Precious Little Life (Scott Pilgrim -1)",
+      image: "products/books/Sequential Art/Scott Pilgrim's Precious Little Life (Scott Pilgrim -1)/image/Scott Pilgrim's Precious Little Life (Scott Pilgrim -1).jpg",
       star: 5,
       lower_price: 5229,
       higher_price: 5229
     },
     {
       id: "Tsubasa-WoRLD-CHRoNiCLE-2-Tsubasa-WoRLD-CHRoNiCLE-2",
-      name: "Tsubasa: WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE #2)",
-      image: "products/books/Sequential Art/Tsubasa WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE #2)/image/Tsubasa WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE #2).jpg",
+      name: "Tsubasa: WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE -2)",
+      image: "products/books/Sequential Art/Tsubasa WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE -2)/image/Tsubasa WoRLD CHRoNiCLE 2 (Tsubasa WoRLD CHRoNiCLE -2).jpg",
       star: 1,
       lower_price: 1628,
       higher_price: 1628
@@ -6544,32 +6544,32 @@ export const booksProducts = {
     },
     {
       id: "The-Nameless-City-The-Nameless-City-1",
-      name: "The Nameless City (The Nameless City #1)",
-      image: "products/books/Sequential Art/The Nameless City (The Nameless City #1)/image/The Nameless City (The Nameless City #1).jpg",
+      name: "The Nameless City (The Nameless City -1)",
+      image: "products/books/Sequential Art/The Nameless City (The Nameless City -1)/image/The Nameless City (The Nameless City -1).jpg",
       star: 4,
       lower_price: 3815,
       higher_price: 3815
     },
     {
       id: "Saga-Volume-5-Saga-Collected-Editions-5",
-      name: "Saga, Volume 5 (Saga (Collected Editions) #5)",
-      image: "products/books/Sequential Art/Saga, Volume 5 (Saga (Collected Editions) #5)/image/Saga, Volume 5 (Saga (Collected Editions) #5).jpg",
+      name: "Saga, Volume 5 (Saga (Collected Editions) -5)",
+      image: "products/books/Sequential Art/Saga, Volume 5 (Saga (Collected Editions) -5)/image/Saga, Volume 5 (Saga (Collected Editions) -5).jpg",
       star: 2,
       lower_price: 5104,
       higher_price: 5104
     },
     {
       id: "Rat-Queens-Vol-3-Demons-Rat-Queens-Collected-Editions-11-15",
-      name: "Rat Queens, Vol. 3: Demons (Rat Queens (Collected Editions) #11-15)",
-      image: "products/books/Sequential Art/Rat Queens, Vol. 3 Demons (Rat Queens (Collected Editions) #11-15)/image/Rat Queens, Vol. 3 Demons (Rat Queens (Collected Editions) #11-15).jpg",
+      name: "Rat Queens, Vol. 3: Demons (Rat Queens (Collected Editions) -11-15)",
+      image: "products/books/Sequential Art/Rat Queens, Vol. 3 Demons (Rat Queens (Collected Editions) -11-15)/image/Rat Queens, Vol. 3 Demons (Rat Queens (Collected Editions) -11-15).jpg",
       star: 3,
       lower_price: 5040,
       higher_price: 5040
     },
     {
       id: "Princess-Jellyfish-2-in-1-Omnibus-Vol-01-Princess-Jellyfish-2-in-1-Omnibus-1",
-      name: "Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)",
-      image: "products/books/Sequential Art/Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1)/image/Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus #1).jpg",
+      name: "Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus -1)",
+      image: "products/books/Sequential Art/Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus -1)/image/Princess Jellyfish 2-in-1 Omnibus, Vol. 01 (Princess Jellyfish 2-in-1 Omnibus -1).jpg",
       star: 5,
       lower_price: 1361,
       higher_price: 1361
@@ -6592,48 +6592,48 @@ export const booksProducts = {
     },
     {
       id: "Outcast-Vol-1-A-Darkness-Surrounds-Him-Outcast-1",
-      name: "Outcast, Vol. 1: A Darkness Surrounds Him (Outcast #1)",
-      image: "products/books/Sequential Art/Outcast, Vol. 1 A Darkness Surrounds Him (Outcast #1)/image/Outcast, Vol. 1 A Darkness Surrounds Him (Outcast #1).jpg",
+      name: "Outcast, Vol. 1: A Darkness Surrounds Him (Outcast -1)",
+      image: "products/books/Sequential Art/Outcast, Vol. 1 A Darkness Surrounds Him (Outcast -1)/image/Outcast, Vol. 1 A Darkness Surrounds Him (Outcast -1).jpg",
       star: 4,
       lower_price: 1544,
       higher_price: 1544
     },
     {
       id: "orange-The-Complete-Collection-1-orange-The-Complete-Collection-1",
-      name: "orange: The Complete Collection 1 (orange: The Complete Collection #1)",
-      image: "products/books/Sequential Art/orange The Complete Collection 1 (orange The Complete Collection #1)/image/orange The Complete Collection 1 (orange The Complete Collection #1).jpg",
+      name: "orange: The Complete Collection 1 (orange: The Complete Collection -1)",
+      image: "products/books/Sequential Art/orange The Complete Collection 1 (orange The Complete Collection -1)/image/orange The Complete Collection 1 (orange The Complete Collection -1).jpg",
       star: 1,
       lower_price: 4841,
       higher_price: 4841
     },
     {
       id: "Lumberjanes-Vol-2-Friendship-to-the-Max-Lumberjanes-5-8",
-      name: "Lumberjanes, Vol. 2: Friendship to the Max (Lumberjanes #5-8)",
-      image: "products/books/Sequential Art/Lumberjanes, Vol. 2 Friendship to the Max (Lumberjanes #5-8)/image/Lumberjanes, Vol. 2 Friendship to the Max (Lumberjanes #5-8).jpg",
+      name: "Lumberjanes, Vol. 2: Friendship to the Max (Lumberjanes -5-8)",
+      image: "products/books/Sequential Art/Lumberjanes, Vol. 2 Friendship to the Max (Lumberjanes -5-8)/image/Lumberjanes, Vol. 2 Friendship to the Max (Lumberjanes -5-8).jpg",
       star: 2,
       lower_price: 4691,
       higher_price: 4691
     },
     {
       id: "Lumberjanes-Vol-1-Beware-the-Kitten-Holy-Lumberjanes-1-4",
-      name: "Lumberjanes, Vol. 1: Beware the Kitten Holy (Lumberjanes #1-4)",
-      image: "products/books/Sequential Art/Lumberjanes, Vol. 1 Beware the Kitten Holy (Lumberjanes #1-4)/image/Lumberjanes, Vol. 1 Beware the Kitten Holy (Lumberjanes #1-4).jpg",
+      name: "Lumberjanes, Vol. 1: Beware the Kitten Holy (Lumberjanes -1-4)",
+      image: "products/books/Sequential Art/Lumberjanes, Vol. 1 Beware the Kitten Holy (Lumberjanes -1-4)/image/Lumberjanes, Vol. 1 Beware the Kitten Holy (Lumberjanes -1-4).jpg",
       star: 3,
       lower_price: 4561,
       higher_price: 4561
     },
     {
       id: "Lumberjanes-Vol-3-A-Terrible-Plan-Lumberjanes-9-12",
-      name: "Lumberjanes Vol. 3: A Terrible Plan (Lumberjanes #9-12)",
-      image: "products/books/Sequential Art/Lumberjanes Vol. 3 A Terrible Plan (Lumberjanes #9-12)/image/Lumberjanes Vol. 3 A Terrible Plan (Lumberjanes #9-12).jpg",
+      name: "Lumberjanes Vol. 3: A Terrible Plan (Lumberjanes -9-12)",
+      image: "products/books/Sequential Art/Lumberjanes Vol. 3 A Terrible Plan (Lumberjanes -9-12)/image/Lumberjanes Vol. 3 A Terrible Plan (Lumberjanes -9-12).jpg",
       star: 2,
       lower_price: 1992,
       higher_price: 1992
     },
     {
       id: "I-Hate-Fairyland-Vol-1-Madly-Ever-After-I-Hate-Fairyland-Compilations-1-5",
-      name: "I Hate Fairyland, Vol. 1: Madly Ever After (I Hate Fairyland (Compilations) #1-5)",
-      image: "products/books/Sequential Art/I Hate Fairyland, Vol. 1 Madly Ever After (I Hate Fairyland (Compilations) #1-5)/image/I Hate Fairyland, Vol. 1 Madly Ever After (I Hate Fairyland (Compilations) #1-5).jpg",
+      name: "I Hate Fairyland, Vol. 1: Madly Ever After (I Hate Fairyland (Compilations) -1-5)",
+      image: "products/books/Sequential Art/I Hate Fairyland, Vol. 1 Madly Ever After (I Hate Fairyland (Compilations) -1-5)/image/I Hate Fairyland, Vol. 1 Madly Ever After (I Hate Fairyland (Compilations) -1-5).jpg",
       star: 2,
       lower_price: 2917,
       higher_price: 2917
@@ -6648,8 +6648,8 @@ export const booksProducts = {
     },
     {
       id: "Giant-Days-Vol-2-Giant-Days-5-8",
-      name: "Giant Days, Vol. 2 (Giant Days #5-8)",
-      image: "products/books/Sequential Art/Giant Days, Vol. 2 (Giant Days #5-8)/image/Giant Days, Vol. 2 (Giant Days #5-8).jpg",
+      name: "Giant Days, Vol. 2 (Giant Days -5-8)",
+      image: "products/books/Sequential Art/Giant Days, Vol. 2 (Giant Days -5-8)/image/Giant Days, Vol. 2 (Giant Days -5-8).jpg",
       star: 2,
       lower_price: 2211,
       higher_price: 2211
@@ -6696,8 +6696,8 @@ export const booksProducts = {
     },
     {
       id: "Fables-Vol-1-Legends-in-Exile-Fables-1",
-      name: "Fables, Vol. 1: Legends in Exile (Fables #1)",
-      image: "products/books/Sequential Art/Fables, Vol. 1 Legends in Exile (Fables #1)/image/Fables, Vol. 1 Legends in Exile (Fables #1).jpg",
+      name: "Fables, Vol. 1: Legends in Exile (Fables -1)",
+      image: "products/books/Sequential Art/Fables, Vol. 1 Legends in Exile (Fables -1)/image/Fables, Vol. 1 Legends in Exile (Fables -1).jpg",
       star: 4,
       lower_price: 4162,
       higher_price: 4162
@@ -6720,16 +6720,16 @@ export const booksProducts = {
     },
     {
       id: "Wonder-Woman-Earth-One-Volume-One-Wonder-Woman-Earth-One-1",
-      name: "Wonder Woman: Earth One, Volume One (Wonder Woman: Earth One #1)",
-      image: "products/books/Sequential Art/Wonder Woman Earth One, Volume One (Wonder Woman Earth One #1)/image/Wonder Woman Earth One, Volume One (Wonder Woman Earth One #1).jpg",
+      name: "Wonder Woman: Earth One, Volume One (Wonder Woman: Earth One -1)",
+      image: "products/books/Sequential Art/Wonder Woman Earth One, Volume One (Wonder Woman Earth One -1)/image/Wonder Woman Earth One, Volume One (Wonder Woman Earth One -1).jpg",
       star: 4,
       lower_price: 3734,
       higher_price: 3734
     },
     {
       id: "We-Are-Robin-Vol-1-The-Vigilante-Business-We-Are-Robin-1",
-      name: "We Are Robin, Vol. 1: The Vigilante Business (We Are Robin #1)",
-      image: "products/books/Sequential Art/We Are Robin, Vol. 1 The Vigilante Business (We Are Robin #1)/image/We Are Robin, Vol. 1 The Vigilante Business (We Are Robin #1).jpg",
+      name: "We Are Robin, Vol. 1: The Vigilante Business (We Are Robin -1)",
+      image: "products/books/Sequential Art/We Are Robin, Vol. 1 The Vigilante Business (We Are Robin -1)/image/We Are Robin, Vol. 1 The Vigilante Business (We Are Robin -1).jpg",
       star: 1,
       lower_price: 5390,
       higher_price: 5390
@@ -6744,16 +6744,16 @@ export const booksProducts = {
     },
     {
       id: "Superman-Vol-1-Before-Truth-Superman-by-Gene-Luen-Yang-1",
-      name: "Superman Vol. 1: Before Truth (Superman by Gene Luen Yang #1)",
-      image: "products/books/Sequential Art/Superman Vol. 1 Before Truth (Superman by Gene Luen Yang #1)/image/Superman Vol. 1 Before Truth (Superman by Gene Luen Yang #1).jpg",
+      name: "Superman Vol. 1: Before Truth (Superman by Gene Luen Yang -1)",
+      image: "products/books/Sequential Art/Superman Vol. 1 Before Truth (Superman by Gene Luen Yang -1)/image/Superman Vol. 1 Before Truth (Superman by Gene Luen Yang -1).jpg",
       star: 5,
       lower_price: 1189,
       higher_price: 1189
     },
     {
       id: "So-Cute-It-Hurts-Vol-6-So-Cute-It-Hurts-6",
-      name: "So Cute It Hurts!!, Vol. 6 (So Cute It Hurts!! #6)",
-      image: "products/books/Sequential Art/So Cute It Hurts!!, Vol. 6 (So Cute It Hurts!! #6)/image/So Cute It Hurts!!, Vol. 6 (So Cute It Hurts!! #6).jpg",
+      name: "So Cute It Hurts!!, Vol. 6 (So Cute It Hurts!! -6)",
+      image: "products/books/Sequential Art/So Cute It Hurts!!, Vol. 6 (So Cute It Hurts!! -6)/image/So Cute It Hurts!!, Vol. 6 (So Cute It Hurts!! -6).jpg",
       star: 4,
       lower_price: 3543,
       higher_price: 3543
@@ -6768,24 +6768,24 @@ export const booksProducts = {
     },
     {
       id: "Red-Hood-Arsenal-Vol-1-Open-for-Business-Red-Hood-Arsenal-1",
-      name: "Red Hood/Arsenal, Vol. 1: Open for Business (Red Hood/Arsenal #1)",
-      image: "products/books/Sequential Art/Red HoodArsenal, Vol. 1 Open for Business (Red HoodArsenal #1)/image/Red HoodArsenal, Vol. 1 Open for Business (Red HoodArsenal #1).jpg",
+      name: "Red Hood/Arsenal, Vol. 1: Open for Business (Red Hood/Arsenal -1)",
+      image: "products/books/Sequential Art/Red HoodArsenal, Vol. 1 Open for Business (Red HoodArsenal -1)/image/Red HoodArsenal, Vol. 1 Open for Business (Red HoodArsenal -1).jpg",
       star: 2,
       lower_price: 2548,
       higher_price: 2548
     },
     {
       id: "Naruto-3-in-1-Edition-Vol-14-Includes-Vols-40-41-42-Naruto-Omnibus-14",
-      name: "Naruto (3-in-1 Edition), Vol. 14: Includes Vols. 40, 41 & 42 (Naruto: Omnibus #14)",
-      image: "products/books/Sequential Art/Naruto (3-in-1 Edition), Vol. 14 Includes Vols. 40, 41 & 42 (Naruto Omnibus #14)/image/Naruto (3-in-1 Edition), Vol. 14 Includes Vols. 40, 41 & 42 (Naruto Omnibus #14).jpg",
+      name: "Naruto (3-in-1 Edition), Vol. 14: Includes Vols. 40, 41 & 42 (Naruto: Omnibus -14)",
+      image: "products/books/Sequential Art/Naruto (3-in-1 Edition), Vol. 14 Includes Vols. 40, 41 & 42 (Naruto Omnibus -14)/image/Naruto (3-in-1 Edition), Vol. 14 Includes Vols. 40, 41 & 42 (Naruto Omnibus -14).jpg",
       star: 2,
       lower_price: 3839,
       higher_price: 3839
     },
     {
       id: "Lowriders-to-the-Center-of-the-Earth-Lowriders-in-Space-2",
-      name: "Lowriders to the Center of the Earth (Lowriders in Space #2)",
-      image: "products/books/Sequential Art/Lowriders to the Center of the Earth (Lowriders in Space #2)/image/Lowriders to the Center of the Earth (Lowriders in Space #2).jpg",
+      name: "Lowriders to the Center of the Earth (Lowriders in Space -2)",
+      image: "products/books/Sequential Art/Lowriders to the Center of the Earth (Lowriders in Space -2)/image/Lowriders to the Center of the Earth (Lowriders in Space -2).jpg",
       star: 2,
       lower_price: 5151,
       higher_price: 5151
@@ -6824,8 +6824,8 @@ export const booksProducts = {
     },
     {
       id: "Fruits-Basket-Vol-9-Fruits-Basket-9",
-      name: "Fruits Basket, Vol. 9 (Fruits Basket #9)",
-      image: "products/books/Sequential Art/Fruits Basket, Vol. 9 (Fruits Basket #9)/image/Fruits Basket, Vol. 9 (Fruits Basket #9).jpg",
+      name: "Fruits Basket, Vol. 9 (Fruits Basket -9)",
+      image: "products/books/Sequential Art/Fruits Basket, Vol. 9 (Fruits Basket -9)/image/Fruits Basket, Vol. 9 (Fruits Basket -9).jpg",
       star: 4,
       lower_price: 3395,
       higher_price: 3395
@@ -6840,40 +6840,40 @@ export const booksProducts = {
     },
     {
       id: "Fruits-Basket-Vol-7-Fruits-Basket-7",
-      name: "Fruits Basket, Vol. 7 (Fruits Basket #7)",
-      image: "products/books/Sequential Art/Fruits Basket, Vol. 7 (Fruits Basket #7)/image/Fruits Basket, Vol. 7 (Fruits Basket #7).jpg",
+      name: "Fruits Basket, Vol. 7 (Fruits Basket -7)",
+      image: "products/books/Sequential Art/Fruits Basket, Vol. 7 (Fruits Basket -7)/image/Fruits Basket, Vol. 7 (Fruits Basket -7).jpg",
       star: 1,
       lower_price: 1957,
       higher_price: 1957
     },
     {
       id: "Fruits-Basket-Vol-6-Fruits-Basket-6",
-      name: "Fruits Basket, Vol. 6 (Fruits Basket #6)",
-      image: "products/books/Sequential Art/Fruits Basket, Vol. 6 (Fruits Basket #6)/image/Fruits Basket, Vol. 6 (Fruits Basket #6).jpg",
+      name: "Fruits Basket, Vol. 6 (Fruits Basket -6)",
+      image: "products/books/Sequential Art/Fruits Basket, Vol. 6 (Fruits Basket -6)/image/Fruits Basket, Vol. 6 (Fruits Basket -6).jpg",
       star: 4,
       lower_price: 2096,
       higher_price: 2096
     },
     {
       id: "Fruits-Basket-Vol-5-Fruits-Basket-5",
-      name: "Fruits Basket, Vol. 5 (Fruits Basket #5)",
-      image: "products/books/Sequential Art/Fruits Basket, Vol. 5 (Fruits Basket #5)/image/Fruits Basket, Vol. 5 (Fruits Basket #5).jpg",
+      name: "Fruits Basket, Vol. 5 (Fruits Basket -5)",
+      image: "products/books/Sequential Art/Fruits Basket, Vol. 5 (Fruits Basket -5)/image/Fruits Basket, Vol. 5 (Fruits Basket -5).jpg",
       star: 1,
       lower_price: 1632,
       higher_price: 1632
     },
     {
       id: "The-Demon-Prince-of-Momochi-House-Vol-4-The-Demon-Prince-of-Momochi-House-4",
-      name: "The Demon Prince of Momochi House, Vol. 4 (The Demon Prince of Momochi House #4)",
-      image: "products/books/Sequential Art/The Demon Prince of Momochi House, Vol. 4 (The Demon Prince of Momochi House #4)/image/The Demon Prince of Momochi House, Vol. 4 (The Demon Prince of Momochi House #4).jpg",
+      name: "The Demon Prince of Momochi House, Vol. 4 (The Demon Prince of Momochi House -4)",
+      image: "products/books/Sequential Art/The Demon Prince of Momochi House, Vol. 4 (The Demon Prince of Momochi House -4)/image/The Demon Prince of Momochi House, Vol. 4 (The Demon Prince of Momochi House -4).jpg",
       star: 2,
       lower_price: 2788,
       higher_price: 2788
     },
     {
       id: "Fruits-Basket-Vol-4-Fruits-Basket-4",
-      name: "Fruits Basket, Vol. 4 (Fruits Basket #4)",
-      image: "products/books/Sequential Art/Fruits Basket, Vol. 4 (Fruits Basket #4)/image/Fruits Basket, Vol. 4 (Fruits Basket #4).jpg",
+      name: "Fruits Basket, Vol. 4 (Fruits Basket -4)",
+      image: "products/books/Sequential Art/Fruits Basket, Vol. 4 (Fruits Basket -4)/image/Fruits Basket, Vol. 4 (Fruits Basket -4).jpg",
       star: 4,
       lower_price: 5044,
       higher_price: 5044
@@ -6888,32 +6888,32 @@ export const booksProducts = {
     },
     {
       id: "The-Sandman-Vol-3-Dream-Country-The-Sandman-volumes-3",
-      name: "The Sandman, Vol. 3: Dream Country (The Sandman (volumes) #3)",
-      image: "products/books/Sequential Art/The Sandman, Vol. 3 Dream Country (The Sandman (volumes) #3)/image/The Sandman, Vol. 3 Dream Country (The Sandman (volumes) #3).jpg",
+      name: "The Sandman, Vol. 3: Dream Country (The Sandman (volumes) -3)",
+      image: "products/books/Sequential Art/The Sandman, Vol. 3 Dream Country (The Sandman (volumes) -3)/image/The Sandman, Vol. 3 Dream Country (The Sandman (volumes) -3).jpg",
       star: 5,
       lower_price: 5555,
       higher_price: 5555
     },
     {
       id: "Saga-Volume-3-Saga-Collected-Editions-3",
-      name: "Saga, Volume 3 (Saga (Collected Editions) #3)",
-      image: "products/books/Sequential Art/Saga, Volume 3 (Saga (Collected Editions) #3)/image/Saga, Volume 3 (Saga (Collected Editions) #3).jpg",
+      name: "Saga, Volume 3 (Saga (Collected Editions) -3)",
+      image: "products/books/Sequential Art/Saga, Volume 3 (Saga (Collected Editions) -3)/image/Saga, Volume 3 (Saga (Collected Editions) -3).jpg",
       star: 5,
       lower_price: 2157,
       higher_price: 2157
     },
     {
       id: "Prodigy-The-Graphic-Novel-Legend-The-Graphic-Novel-2",
-      name: "Prodigy: The Graphic Novel (Legend: The Graphic Novel #2)",
-      image: "products/books/Sequential Art/Prodigy The Graphic Novel (Legend The Graphic Novel #2)/image/Prodigy The Graphic Novel (Legend The Graphic Novel #2).jpg",
+      name: "Prodigy: The Graphic Novel (Legend: The Graphic Novel -2)",
+      image: "products/books/Sequential Art/Prodigy The Graphic Novel (Legend The Graphic Novel -2)/image/Prodigy The Graphic Novel (Legend The Graphic Novel -2).jpg",
       star: 3,
       lower_price: 4363,
       higher_price: 4363
     },
     {
       id: "Persepolis-The-Story-of-a-Childhood-Persepolis-1-2",
-      name: "Persepolis: The Story of a Childhood (Persepolis #1-2)",
-      image: "products/books/Sequential Art/Persepolis The Story of a Childhood (Persepolis #1-2)/image/Persepolis The Story of a Childhood (Persepolis #1-2).jpg",
+      name: "Persepolis: The Story of a Childhood (Persepolis -1-2)",
+      image: "products/books/Sequential Art/Persepolis The Story of a Childhood (Persepolis -1-2)/image/Persepolis The Story of a Childhood (Persepolis -1-2).jpg",
       star: 1,
       lower_price: 3913,
       higher_price: 3913
@@ -6928,16 +6928,16 @@ export const booksProducts = {
     },
     {
       id: "Grayson-Vol-3-Nemesis-Grayson-3",
-      name: "Grayson, Vol 3: Nemesis (Grayson #3)",
-      image: "products/books/Sequential Art/Grayson, Vol 3 Nemesis (Grayson #3)/image/Grayson, Vol 3 Nemesis (Grayson #3).jpg",
+      name: "Grayson, Vol 3: Nemesis (Grayson -3)",
+      image: "products/books/Sequential Art/Grayson, Vol 3 Nemesis (Grayson -3)/image/Grayson, Vol 3 Nemesis (Grayson -3).jpg",
       star: 1,
       lower_price: 4272,
       higher_price: 4272
     },
     {
       id: "Fruits-Basket-Vol-3-Fruits-Basket-3",
-      name: "Fruits Basket, Vol. 3 (Fruits Basket #3)",
-      image: "products/books/Sequential Art/Fruits Basket, Vol. 3 (Fruits Basket #3)/image/Fruits Basket, Vol. 3 (Fruits Basket #3).jpg",
+      name: "Fruits Basket, Vol. 3 (Fruits Basket -3)",
+      image: "products/books/Sequential Art/Fruits Basket, Vol. 3 (Fruits Basket -3)/image/Fruits Basket, Vol. 3 (Fruits Basket -3).jpg",
       star: 2,
       lower_price: 4517,
       higher_price: 4517
@@ -6952,32 +6952,32 @@ export const booksProducts = {
     },
     {
       id: "The-Sandman-Vol-2-The-Doll-s-House-The-Sandman-volumes-2",
-      name: "The Sandman, Vol. 2: The Doll's House (The Sandman (volumes) #2)",
-      image: "products/books/Sequential Art/The Sandman, Vol. 2 The Doll's House (The Sandman (volumes) #2)/image/The Sandman, Vol. 2 The Doll's House (The Sandman (volumes) #2).jpg",
+      name: "The Sandman, Vol. 2: The Doll's House (The Sandman (volumes) -2)",
+      image: "products/books/Sequential Art/The Sandman, Vol. 2 The Doll's House (The Sandman (volumes) -2)/image/The Sandman, Vol. 2 The Doll's House (The Sandman (volumes) -2).jpg",
       star: 1,
       lower_price: 5481,
       higher_price: 5481
     },
     {
       id: "Saga-Volume-2-Saga-Collected-Editions-2",
-      name: "Saga, Volume 2 (Saga (Collected Editions) #2)",
-      image: "products/books/Sequential Art/Saga, Volume 2 (Saga (Collected Editions) #2)/image/Saga, Volume 2 (Saga (Collected Editions) #2).jpg",
+      name: "Saga, Volume 2 (Saga (Collected Editions) -2)",
+      image: "products/books/Sequential Art/Saga, Volume 2 (Saga (Collected Editions) -2)/image/Saga, Volume 2 (Saga (Collected Editions) -2).jpg",
       star: 3,
       lower_price: 1175,
       higher_price: 1175
     },
     {
       id: "Fruits-Basket-Vol-2-Fruits-Basket-2",
-      name: "Fruits Basket, Vol. 2 (Fruits Basket #2)",
-      image: "products/books/Sequential Art/Fruits Basket, Vol. 2 (Fruits Basket #2)/image/Fruits Basket, Vol. 2 (Fruits Basket #2).jpg",
+      name: "Fruits Basket, Vol. 2 (Fruits Basket -2)",
+      image: "products/books/Sequential Art/Fruits Basket, Vol. 2 (Fruits Basket -2)/image/Fruits Basket, Vol. 2 (Fruits Basket -2).jpg",
       star: 5,
       lower_price: 1164,
       higher_price: 1164
     },
     {
       id: "Y-The-Last-Man-Vol-1-Unmanned-Y-The-Last-Man-1",
-      name: "Y: The Last Man, Vol. 1: Unmanned (Y: The Last Man #1)",
-      image: "products/books/Sequential Art/Y The Last Man, Vol. 1 Unmanned (Y The Last Man #1)/image/Y The Last Man, Vol. 1 Unmanned (Y The Last Man #1).jpg",
+      name: "Y: The Last Man, Vol. 1: Unmanned (Y: The Last Man -1)",
+      image: "products/books/Sequential Art/Y The Last Man, Vol. 1 Unmanned (Y The Last Man -1)/image/Y The Last Man, Vol. 1 Unmanned (Y The Last Man -1).jpg",
       star: 4,
       lower_price: 1851,
       higher_price: 1851
@@ -6992,104 +6992,104 @@ export const booksProducts = {
     },
     {
       id: "The-Sandman-Vol-1-Preludes-and-Nocturnes-The-Sandman-volumes-1",
-      name: "The Sandman, Vol. 1: Preludes and Nocturnes (The Sandman (volumes) #1)",
-      image: "products/books/Sequential Art/The Sandman, Vol. 1 Preludes and Nocturnes (The Sandman (volumes) #1)/image/The Sandman, Vol. 1 Preludes and Nocturnes (The Sandman (volumes) #1).jpg",
+      name: "The Sandman, Vol. 1: Preludes and Nocturnes (The Sandman (volumes) -1)",
+      image: "products/books/Sequential Art/The Sandman, Vol. 1 Preludes and Nocturnes (The Sandman (volumes) -1)/image/The Sandman, Vol. 1 Preludes and Nocturnes (The Sandman (volumes) -1).jpg",
       star: 3,
       lower_price: 5412,
       higher_price: 5412
     },
     {
       id: "The-Complete-Maus-Maus-1-2",
-      name: "The Complete Maus (Maus #1-2)",
-      image: "products/books/Sequential Art/The Complete Maus (Maus #1-2)/image/The Complete Maus (Maus #1-2).jpg",
+      name: "The Complete Maus (Maus -1-2)",
+      image: "products/books/Sequential Art/The Complete Maus (Maus -1-2)/image/The Complete Maus (Maus -1-2).jpg",
       star: 3,
       lower_price: 1064,
       higher_price: 1064
     },
     {
       id: "Skip-Beat-Vol-01-Skip-Beat-1",
-      name: "Skip Beat!, Vol. 01 (Skip Beat! #1)",
-      image: "products/books/Sequential Art/Skip Beat!, Vol. 01 (Skip Beat! #1)/image/Skip Beat!, Vol. 01 (Skip Beat! #1).jpg",
+      name: "Skip Beat!, Vol. 01 (Skip Beat! -1)",
+      image: "products/books/Sequential Art/Skip Beat!, Vol. 01 (Skip Beat! -1)/image/Skip Beat!, Vol. 01 (Skip Beat! -1).jpg",
       star: 3,
       lower_price: 4212,
       higher_price: 4212
     },
     {
       id: "Saga-Volume-1-Saga-Collected-Editions-1",
-      name: "Saga, Volume 1 (Saga (Collected Editions) #1)",
-      image: "products/books/Sequential Art/Saga, Volume 1 (Saga (Collected Editions) #1)/image/Saga, Volume 1 (Saga (Collected Editions) #1).jpg",
+      name: "Saga, Volume 1 (Saga (Collected Editions) -1)",
+      image: "products/books/Sequential Art/Saga, Volume 1 (Saga (Collected Editions) -1)/image/Saga, Volume 1 (Saga (Collected Editions) -1).jpg",
       star: 1,
       lower_price: 2848,
       higher_price: 2848
     },
     {
       id: "Rat-Queens-Vol-1-Sass-Sorcery-Rat-Queens-Collected-Editions-1-5",
-      name: "Rat Queens, Vol. 1: Sass & Sorcery (Rat Queens (Collected Editions) #1-5)",
-      image: "products/books/Sequential Art/Rat Queens, Vol. 1 Sass & Sorcery (Rat Queens (Collected Editions) #1-5)/image/Rat Queens, Vol. 1 Sass & Sorcery (Rat Queens (Collected Editions) #1-5).jpg",
+      name: "Rat Queens, Vol. 1: Sass & Sorcery (Rat Queens (Collected Editions) -1-5)",
+      image: "products/books/Sequential Art/Rat Queens, Vol. 1 Sass & Sorcery (Rat Queens (Collected Editions) -1-5)/image/Rat Queens, Vol. 1 Sass & Sorcery (Rat Queens (Collected Editions) -1-5).jpg",
       star: 5,
       lower_price: 4696,
       higher_price: 4696
     },
     {
       id: "Paper-Girls-Vol-1-Paper-Girls-1-5",
-      name: "Paper Girls, Vol. 1 (Paper Girls #1-5)",
-      image: "products/books/Sequential Art/Paper Girls, Vol. 1 (Paper Girls #1-5)/image/Paper Girls, Vol. 1 (Paper Girls #1-5).jpg",
+      name: "Paper Girls, Vol. 1 (Paper Girls -1-5)",
+      image: "products/books/Sequential Art/Paper Girls, Vol. 1 (Paper Girls -1-5)/image/Paper Girls, Vol. 1 (Paper Girls -1-5).jpg",
       star: 4,
       lower_price: 2171,
       higher_price: 2171
     },
     {
       id: "Ouran-High-School-Host-Club-Vol-1-Ouran-High-School-Host-Club-1",
-      name: "Ouran High School Host Club, Vol. 1 (Ouran High School Host Club #1)",
-      image: "products/books/Sequential Art/Ouran High School Host Club, Vol. 1 (Ouran High School Host Club #1)/image/Ouran High School Host Club, Vol. 1 (Ouran High School Host Club #1).jpg",
+      name: "Ouran High School Host Club, Vol. 1 (Ouran High School Host Club -1)",
+      image: "products/books/Sequential Art/Ouran High School Host Club, Vol. 1 (Ouran High School Host Club -1)/image/Ouran High School Host Club, Vol. 1 (Ouran High School Host Club -1).jpg",
       star: 3,
       lower_price: 2987,
       higher_price: 2987
     },
     {
       id: "Ms-Marvel-Vol-1-No-Normal-Ms-Marvel-2014-2015-1",
-      name: "Ms. Marvel, Vol. 1: No Normal (Ms. Marvel (2014-2015) #1)",
-      image: "products/books/Sequential Art/Ms. Marvel, Vol. 1 No Normal (Ms. Marvel (2014-2015) #1)/image/Ms. Marvel, Vol. 1 No Normal (Ms. Marvel (2014-2015) #1).jpg",
+      name: "Ms. Marvel, Vol. 1: No Normal (Ms. Marvel (2014-2015) -1)",
+      image: "products/books/Sequential Art/Ms. Marvel, Vol. 1 No Normal (Ms. Marvel (2014-2015) -1)/image/Ms. Marvel, Vol. 1 No Normal (Ms. Marvel (2014-2015) -1).jpg",
       star: 4,
       lower_price: 3939,
       higher_price: 3939
     },
     {
       id: "Hawkeye-Vol-1-My-Life-as-a-Weapon-Hawkeye-1",
-      name: "Hawkeye, Vol. 1: My Life as a Weapon (Hawkeye #1)",
-      image: "products/books/Sequential Art/Hawkeye, Vol. 1 My Life as a Weapon (Hawkeye #1)/image/Hawkeye, Vol. 1 My Life as a Weapon (Hawkeye #1).jpg",
+      name: "Hawkeye, Vol. 1: My Life as a Weapon (Hawkeye -1)",
+      image: "products/books/Sequential Art/Hawkeye, Vol. 1 My Life as a Weapon (Hawkeye -1)/image/Hawkeye, Vol. 1 My Life as a Weapon (Hawkeye -1).jpg",
       star: 3,
       lower_price: 4524,
       higher_price: 4524
     },
     {
       id: "Giant-Days-Vol-1-Giant-Days-1-4",
-      name: "Giant Days, Vol. 1 (Giant Days #1-4)",
-      image: "products/books/Sequential Art/Giant Days, Vol. 1 (Giant Days #1-4)/image/Giant Days, Vol. 1 (Giant Days #1-4).jpg",
+      name: "Giant Days, Vol. 1 (Giant Days -1-4)",
+      image: "products/books/Sequential Art/Giant Days, Vol. 1 (Giant Days -1-4)/image/Giant Days, Vol. 1 (Giant Days -1-4).jpg",
       star: 4,
       lower_price: 5676,
       higher_price: 5676
     },
     {
       id: "Fruits-Basket-Vol-1-Fruits-Basket-1",
-      name: "Fruits Basket, Vol. 1 (Fruits Basket #1)",
-      image: "products/books/Sequential Art/Fruits Basket, Vol. 1 (Fruits Basket #1)/image/Fruits Basket, Vol. 1 (Fruits Basket #1).jpg",
+      name: "Fruits Basket, Vol. 1 (Fruits Basket -1)",
+      image: "products/books/Sequential Art/Fruits Basket, Vol. 1 (Fruits Basket -1)/image/Fruits Basket, Vol. 1 (Fruits Basket -1).jpg",
       star: 5,
       lower_price: 4028,
       higher_price: 4028
     },
     {
       id: "Bleach-Vol-1-Strawberry-and-the-Soul-Reapers-Bleach-1",
-      name: "Bleach, Vol. 1: Strawberry and the Soul Reapers (Bleach #1)",
-      image: "products/books/Sequential Art/Bleach, Vol. 1 Strawberry and the Soul Reapers (Bleach #1)/image/Bleach, Vol. 1 Strawberry and the Soul Reapers (Bleach #1).jpg",
+      name: "Bleach, Vol. 1: Strawberry and the Soul Reapers (Bleach -1)",
+      image: "products/books/Sequential Art/Bleach, Vol. 1 Strawberry and the Soul Reapers (Bleach -1)/image/Bleach, Vol. 1 Strawberry and the Soul Reapers (Bleach -1).jpg",
       star: 5,
       lower_price: 3465,
       higher_price: 3465
     },
     {
       id: "Ajin-Demi-Human-Volume-1-Ajin-Demi-Human-1",
-      name: "Ajin: Demi-Human, Volume 1 (Ajin: Demi-Human #1)",
-      image: "products/books/Sequential Art/Ajin Demi-Human, Volume 1 (Ajin Demi-Human #1)/image/Ajin Demi-Human, Volume 1 (Ajin Demi-Human #1).jpg",
+      name: "Ajin: Demi-Human, Volume 1 (Ajin: Demi-Human -1)",
+      image: "products/books/Sequential Art/Ajin Demi-Human, Volume 1 (Ajin Demi-Human -1)/image/Ajin Demi-Human, Volume 1 (Ajin Demi-Human -1).jpg",
       star: 4,
       lower_price: 5706,
       higher_price: 5706
@@ -7174,24 +7174,24 @@ export const booksProducts = {
     },
     {
       id: "Sugar-Rush-Offensive-Line-2",
-      name: "Sugar Rush (Offensive Line #2)",
-      image: "products/books/Sports and Games/Sugar Rush (Offensive Line #2)/image/Sugar Rush (Offensive Line #2).jpg",
+      name: "Sugar Rush (Offensive Line -2)",
+      image: "products/books/Sports and Games/Sugar Rush (Offensive Line -2)/image/Sugar Rush (Offensive Line -2).jpg",
       star: 1,
       lower_price: 2442,
       higher_price: 2442
     },
     {
       id: "Settling-the-Score-The-Summer-Games-1",
-      name: "Settling the Score (The Summer Games #1)",
-      image: "products/books/Sports and Games/Settling the Score (The Summer Games #1)/image/Settling the Score (The Summer Games #1).jpg",
+      name: "Settling the Score (The Summer Games -1)",
+      image: "products/books/Sports and Games/Settling the Score (The Summer Games -1)/image/Settling the Score (The Summer Games -1).jpg",
       star: 2,
       lower_price: 4491,
       higher_price: 4491
     },
     {
       id: "Icing-Aces-Hockey-2",
-      name: "Icing (Aces Hockey #2)",
-      image: "products/books/Sports and Games/Icing (Aces Hockey #2)/image/Icing (Aces Hockey #2).jpg",
+      name: "Icing (Aces Hockey -2)",
+      image: "products/books/Sports and Games/Icing (Aces Hockey -2)/image/Icing (Aces Hockey -2).jpg",
       star: 4,
       lower_price: 4044,
       higher_price: 4044
@@ -7200,8 +7200,8 @@ export const booksProducts = {
   suspense: [
     {
       id: "Silence-in-the-Dark-Logan-Point-4",
-      name: "Silence in the Dark (Logan Point #4)",
-      image: "products/books/Suspense/Silence in the Dark (Logan Point #4)/image/Silence in the Dark (Logan Point #4).jpg",
+      name: "Silence in the Dark (Logan Point -4)",
+      image: "products/books/Suspense/Silence in the Dark (Logan Point -4)/image/Silence in the Dark (Logan Point -4).jpg",
       star: 3,
       lower_price: 5833,
       higher_price: 5833
@@ -7234,24 +7234,24 @@ export const booksProducts = {
     },
     {
       id: "You-You-1",
-      name: "You (You #1)",
-      image: "products/books/Thriller/You (You #1)/image/You (You #1).jpg",
+      name: "You (You -1)",
+      image: "products/books/Thriller/You (You -1)/image/You (You -1).jpg",
       star: 5,
       lower_price: 4361,
       higher_price: 4361
     },
     {
       id: "The-Guilty-Will-Robie-4",
-      name: "The Guilty (Will Robie #4)",
-      image: "products/books/Thriller/The Guilty (Will Robie #4)/image/The Guilty (Will Robie #4).jpg",
+      name: "The Guilty (Will Robie -4)",
+      image: "products/books/Thriller/The Guilty (Will Robie -4)/image/The Guilty (Will Robie -4).jpg",
       star: 2,
       lower_price: 1382,
       higher_price: 1382
     },
     {
       id: "The-14th-Colony-Cotton-Malone-11",
-      name: "The 14th Colony (Cotton Malone #11)",
-      image: "products/books/Thriller/The 14th Colony (Cotton Malone #11)/image/The 14th Colony (Cotton Malone #11).jpg",
+      name: "The 14th Colony (Cotton Malone -11)",
+      image: "products/books/Thriller/The 14th Colony (Cotton Malone -11)/image/The 14th Colony (Cotton Malone -11).jpg",
       star: 1,
       lower_price: 3924,
       higher_price: 3924
@@ -7266,24 +7266,24 @@ export const booksProducts = {
     },
     {
       id: "Killing-Floor-Jack-Reacher-1",
-      name: "Killing Floor (Jack Reacher #1)",
-      image: "products/books/Thriller/Killing Floor (Jack Reacher #1)/image/Killing Floor (Jack Reacher #1).jpg",
+      name: "Killing Floor (Jack Reacher -1)",
+      image: "products/books/Thriller/Killing Floor (Jack Reacher -1)/image/Killing Floor (Jack Reacher -1).jpg",
       star: 4,
       lower_price: 3149,
       higher_price: 3149
     },
     {
       id: "The-Bone-Hunters-Lexy-Vaughan-Steven-Macaulay-2",
-      name: "The Bone Hunters (Lexy Vaughan & Steven Macaulay #2)",
-      image: "products/books/Thriller/The Bone Hunters (Lexy Vaughan & Steven Macaulay #2)/image/The Bone Hunters (Lexy Vaughan & Steven Macaulay #2).jpg",
+      name: "The Bone Hunters (Lexy Vaughan & Steven Macaulay -2)",
+      image: "products/books/Thriller/The Bone Hunters (Lexy Vaughan & Steven Macaulay -2)/image/The Bone Hunters (Lexy Vaughan & Steven Macaulay -2).jpg",
       star: 3,
       lower_price: 5971,
       higher_price: 5971
     },
     {
       id: "Far-From-True-Promise-Falls-Trilogy-2",
-      name: "Far From True (Promise Falls Trilogy #2)",
-      image: "products/books/Thriller/Far From True (Promise Falls Trilogy #2)/image/Far From True (Promise Falls Trilogy #2).jpg",
+      name: "Far From True (Promise Falls Trilogy -2)",
+      image: "products/books/Thriller/Far From True (Promise Falls Trilogy -2)/image/Far From True (Promise Falls Trilogy -2).jpg",
       star: 2,
       lower_price: 3493,
       higher_price: 3493
@@ -7308,8 +7308,8 @@ export const booksProducts = {
     },
     {
       id: "Full-Moon-over-Noah-s-Ark-An-Odyssey-to-Mount-Ararat-and-Beyond",
-      name: "Full Moon over Noah’s Ark: An Odyssey to Mount Ararat and Beyond",
-      image: "products/books/Travel/Full Moon over Noah’s Ark An Odyssey to Mount Ararat and Beyond/image/Full Moon over Noah’s Ark An Odyssey to Mount Ararat and Beyond.jpg",
+      name: "Full Moon over Noahâ€™s Ark: An Odyssey to Mount Ararat and Beyond",
+      image: "products/books/Travel/Full Moon over Noahâ€™s Ark An Odyssey to Mount Ararat and Beyond/image/Full Moon over Noahâ€™s Ark An Odyssey to Mount Ararat and Beyond.jpg",
       star: 4,
       lower_price: 4943,
       higher_price: 4943
@@ -7356,16 +7356,16 @@ export const booksProducts = {
     },
     {
       id: "A-Year-in-Provence-Provence-1",
-      name: "A Year in Provence (Provence #1)",
-      image: "products/books/Travel/A Year in Provence (Provence #1)/image/A Year in Provence (Provence #1).jpg",
+      name: "A Year in Provence (Provence -1)",
+      image: "products/books/Travel/A Year in Provence (Provence -1)/image/A Year in Provence (Provence -1).jpg",
       star: 4,
       lower_price: 5688,
       higher_price: 5688
     },
     {
       id: "The-Road-to-Little-Dribbling-Adventures-of-an-American-in-Britain-Notes-From-a-Small-Island-2",
-      name: "The Road to Little Dribbling: Adventures of an American in Britain (Notes From a Small Island #2)",
-      image: "products/books/Travel/The Road to Little Dribbling Adventures of an American in Britain (Notes From a Small Island #2)/image/The Road to Little Dribbling Adventures of an American in Britain (Notes From a Small Island #2).jpg",
+      name: "The Road to Little Dribbling: Adventures of an American in Britain (Notes From a Small Island -2)",
+      image: "products/books/Travel/The Road to Little Dribbling Adventures of an American in Britain (Notes From a Small Island -2)/image/The Road to Little Dribbling Adventures of an American in Britain (Notes From a Small Island -2).jpg",
       star: 1,
       lower_price: 2321,
       higher_price: 2321
@@ -7431,8 +7431,8 @@ export const booksProducts = {
     },
     {
       id: "Shopaholic-Ties-the-Knot-Shopaholic-3",
-      name: "Shopaholic Ties the Knot (Shopaholic #3)",
-      image: "products/books/Womens Fiction/Shopaholic Ties the Knot (Shopaholic #3)/image/Shopaholic Ties the Knot (Shopaholic #3).jpg",
+      name: "Shopaholic Ties the Knot (Shopaholic -3)",
+      image: "products/books/Womens Fiction/Shopaholic Ties the Knot (Shopaholic -3)/image/Shopaholic Ties the Knot (Shopaholic -3).jpg",
       star: 5,
       lower_price: 4839,
       higher_price: 4839
@@ -7463,32 +7463,32 @@ export const booksProducts = {
     },
     {
       id: "The-Nanny-Diaries-Nanny-1",
-      name: "The Nanny Diaries (Nanny #1)",
-      image: "products/books/Womens Fiction/The Nanny Diaries (Nanny #1)/image/The Nanny Diaries (Nanny #1).jpg",
+      name: "The Nanny Diaries (Nanny -1)",
+      image: "products/books/Womens Fiction/The Nanny Diaries (Nanny -1)/image/The Nanny Diaries (Nanny -1).jpg",
       star: 5,
       lower_price: 5253,
       higher_price: 5253
     },
     {
       id: "The-Devil-Wears-Prada-The-Devil-Wears-Prada-1",
-      name: "The Devil Wears Prada (The Devil Wears Prada #1)",
-      image: "products/books/Womens Fiction/The Devil Wears Prada (The Devil Wears Prada #1)/image/The Devil Wears Prada (The Devil Wears Prada #1).jpg",
+      name: "The Devil Wears Prada (The Devil Wears Prada -1)",
+      image: "products/books/Womens Fiction/The Devil Wears Prada (The Devil Wears Prada -1)/image/The Devil Wears Prada (The Devil Wears Prada -1).jpg",
       star: 1,
       lower_price: 4429,
       higher_price: 4429
     },
     {
       id: "Something-Borrowed-Darcy-Rachel-1",
-      name: "Something Borrowed (Darcy & Rachel #1)",
-      image: "products/books/Womens Fiction/Something Borrowed (Darcy & Rachel #1)/image/Something Borrowed (Darcy & Rachel #1).jpg",
+      name: "Something Borrowed (Darcy & Rachel -1)",
+      image: "products/books/Womens Fiction/Something Borrowed (Darcy & Rachel -1)/image/Something Borrowed (Darcy & Rachel -1).jpg",
       star: 5,
       lower_price: 4896,
       higher_price: 4896
     },
     {
       id: "Something-Blue-Darcy-Rachel-2",
-      name: "Something Blue (Darcy & Rachel #2)",
-      image: "products/books/Womens Fiction/Something Blue (Darcy & Rachel #2)/image/Something Blue (Darcy & Rachel #2).jpg",
+      name: "Something Blue (Darcy & Rachel -2)",
+      image: "products/books/Womens Fiction/Something Blue (Darcy & Rachel -2)/image/Something Blue (Darcy & Rachel -2).jpg",
       star: 1,
       lower_price: 5462,
       higher_price: 5462
@@ -7503,16 +7503,16 @@ export const booksProducts = {
     },
     {
       id: "The-Edge-of-Reason-Bridget-Jones-2",
-      name: "The Edge of Reason (Bridget Jones #2)",
-      image: "products/books/Womens Fiction/The Edge of Reason (Bridget Jones #2)/image/The Edge of Reason (Bridget Jones #2).jpg",
+      name: "The Edge of Reason (Bridget Jones -2)",
+      image: "products/books/Womens Fiction/The Edge of Reason (Bridget Jones -2)/image/The Edge of Reason (Bridget Jones -2).jpg",
       star: 4,
       lower_price: 1918,
       higher_price: 1918
     },
     {
       id: "Bridget-Jones-s-Diary-Bridget-Jones-1",
-      name: "Bridget Jones's Diary (Bridget Jones #1)",
-      image: "products/books/Womens Fiction/Bridget Jones's Diary (Bridget Jones #1)/image/Bridget Jones's Diary (Bridget Jones #1).jpg",
+      name: "Bridget Jones's Diary (Bridget Jones -1)",
+      image: "products/books/Womens Fiction/Bridget Jones's Diary (Bridget Jones -1)/image/Bridget Jones's Diary (Bridget Jones -1).jpg",
       star: 1,
       lower_price: 2982,
       higher_price: 2982
@@ -7537,16 +7537,16 @@ export const booksProducts = {
     },
     {
       id: "The-Natural-History-of-Us-The-Fine-Art-of-Pretending-2",
-      name: "The Natural History of Us (The Fine Art of Pretending #2)",
-      image: "products/books/Young Adult/The Natural History of Us (The Fine Art of Pretending #2)/image/The Natural History of Us (The Fine Art of Pretending #2).jpg",
+      name: "The Natural History of Us (The Fine Art of Pretending -2)",
+      image: "products/books/Young Adult/The Natural History of Us (The Fine Art of Pretending -2)/image/The Natural History of Us (The Fine Art of Pretending -2).jpg",
       star: 3,
       lower_price: 4522,
       higher_price: 4522
     },
     {
       id: "Obsidian-Lux-1",
-      name: "Obsidian (Lux #1)",
-      image: "products/books/Young Adult/Obsidian (Lux #1)/image/Obsidian (Lux #1).jpg",
+      name: "Obsidian (Lux -1)",
+      image: "products/books/Young Adult/Obsidian (Lux -1)/image/Obsidian (Lux -1).jpg",
       star: 2,
       lower_price: 1486,
       higher_price: 1486
@@ -7585,16 +7585,16 @@ export const booksProducts = {
     },
     {
       id: "Library-of-Souls-Miss-Peregrine-s-Peculiar-Children-3",
-      name: "Library of Souls (Miss Peregrine’s Peculiar Children #3)",
-      image: "products/books/Young Adult/Library of Souls (Miss Peregrine’s Peculiar Children #3)/image/Library of Souls (Miss Peregrine’s Peculiar Children #3).jpg",
+      name: "Library of Souls (Miss Peregrineâ€™s Peculiar Children -3)",
+      image: "products/books/Young Adult/Library of Souls (Miss Peregrineâ€™s Peculiar Children -3)/image/Library of Souls (Miss Peregrineâ€™s Peculiar Children -3).jpg",
       star: 5,
       lower_price: 4856,
       higher_price: 4856
     },
     {
       id: "Frostbite-Vampire-Academy-2",
-      name: "Frostbite (Vampire Academy #2)",
-      image: "products/books/Young Adult/Frostbite (Vampire Academy #2)/image/Frostbite (Vampire Academy #2).jpg",
+      name: "Frostbite (Vampire Academy -2)",
+      image: "products/books/Young Adult/Frostbite (Vampire Academy -2)/image/Frostbite (Vampire Academy -2).jpg",
       star: 5,
       lower_price: 2999,
       higher_price: 2999
@@ -7609,8 +7609,8 @@ export const booksProducts = {
     },
     {
       id: "Until-Friday-Night-The-Field-Party-1",
-      name: "Until Friday Night (The Field Party #1)",
-      image: "products/books/Young Adult/Until Friday Night (The Field Party #1)/image/Until Friday Night (The Field Party #1).jpg",
+      name: "Until Friday Night (The Field Party -1)",
+      image: "products/books/Young Adult/Until Friday Night (The Field Party -1)/image/Until Friday Night (The Field Party -1).jpg",
       star: 2,
       lower_price: 4631,
       higher_price: 4631
@@ -7657,8 +7657,8 @@ export const booksProducts = {
     },
     {
       id: "Aristotle-and-Dante-Discover-the-Secrets-of-the-Universe-Aristotle-and-Dante-Discover-the-Secrets-of-the-Universe-1",
-      name: "Aristotle and Dante Discover the Secrets of the Universe (Aristotle and Dante Discover the Secrets of the Universe #1)",
-      image: "products/books/Young Adult/Aristotle and Dante Discover the Secrets of the Universe (Aristotle and Dante Discover the Secrets of the Universe #1)/image/Aristotle and Dante Discover the Secrets of the Universe (Aristotle and Dante Discover the Secrets of the Universe #1).jpg",
+      name: "Aristotle and Dante Discover the Secrets of the Universe (Aristotle and Dante Discover the Secrets of the Universe -1)",
+      image: "products/books/Young Adult/Aristotle and Dante Discover the Secrets of the Universe (Aristotle and Dante Discover the Secrets of the Universe -1)/image/Aristotle and Dante Discover the Secrets of the Universe (Aristotle and Dante Discover the Secrets of the Universe -1).jpg",
       star: 4,
       lower_price: 5814,
       higher_price: 5814
@@ -7673,16 +7673,16 @@ export const booksProducts = {
     },
     {
       id: "Stars-Above-The-Lunar-Chronicles-4-5",
-      name: "Stars Above (The Lunar Chronicles #4.5)",
-      image: "products/books/Young Adult/Stars Above (The Lunar Chronicles #4.5)/image/Stars Above (The Lunar Chronicles #4.5).jpg",
+      name: "Stars Above (The Lunar Chronicles -4.5)",
+      image: "products/books/Young Adult/Stars Above (The Lunar Chronicles -4.5)/image/Stars Above (The Lunar Chronicles -4.5).jpg",
       star: 2,
       lower_price: 4805,
       higher_price: 4805
     },
     {
       id: "No-Love-Allowed-Dodge-Cove-1",
-      name: "No Love Allowed (Dodge Cove #1)",
-      image: "products/books/Young Adult/No Love Allowed (Dodge Cove #1)/image/No Love Allowed (Dodge Cove #1).jpg",
+      name: "No Love Allowed (Dodge Cove -1)",
+      image: "products/books/Young Adult/No Love Allowed (Dodge Cove -1)/image/No Love Allowed (Dodge Cove -1).jpg",
       star: 4,
       lower_price: 5465,
       higher_price: 5465
@@ -7729,8 +7729,8 @@ export const booksProducts = {
     },
     {
       id: "Future-Shock-Future-Shock-1",
-      name: "Future Shock (Future Shock #1)",
-      image: "products/books/Young Adult/Future Shock (Future Shock #1)/image/Future Shock (Future Shock #1).jpg",
+      name: "Future Shock (Future Shock -1)",
+      image: "products/books/Young Adult/Future Shock (Future Shock -1)/image/Future Shock (Future Shock -1).jpg",
       star: 5,
       lower_price: 5565,
       higher_price: 5565
@@ -7761,8 +7761,8 @@ export const booksProducts = {
     },
     {
       id: "Where-She-Went-If-I-Stay-2",
-      name: "Where She Went (If I Stay #2)",
-      image: "products/books/Young Adult/Where She Went (If I Stay #2)/image/Where She Went (If I Stay #2).jpg",
+      name: "Where She Went (If I Stay -2)",
+      image: "products/books/Young Adult/Where She Went (If I Stay -2)/image/Where She Went (If I Stay -2).jpg",
       star: 4,
       lower_price: 4173,
       higher_price: 4173
@@ -7793,8 +7793,8 @@ export const booksProducts = {
     },
     {
       id: "Lola-and-the-Boy-Next-Door-Anna-and-the-French-Kiss-2",
-      name: "Lola and the Boy Next Door (Anna and the French Kiss #2)",
-      image: "products/books/Young Adult/Lola and the Boy Next Door (Anna and the French Kiss #2)/image/Lola and the Boy Next Door (Anna and the French Kiss #2).jpg",
+      name: "Lola and the Boy Next Door (Anna and the French Kiss -2)",
+      image: "products/books/Young Adult/Lola and the Boy Next Door (Anna and the French Kiss -2)/image/Lola and the Boy Next Door (Anna and the French Kiss -2).jpg",
       star: 4,
       lower_price: 2363,
       higher_price: 2363
@@ -7809,8 +7809,8 @@ export const booksProducts = {
     },
     {
       id: "Isla-and-the-Happily-Ever-After-Anna-and-the-French-Kiss-3",
-      name: "Isla and the Happily Ever After (Anna and the French Kiss #3)",
-      image: "products/books/Young Adult/Isla and the Happily Ever After (Anna and the French Kiss #3)/image/Isla and the Happily Ever After (Anna and the French Kiss #3).jpg",
+      name: "Isla and the Happily Ever After (Anna and the French Kiss -3)",
+      image: "products/books/Young Adult/Isla and the Happily Ever After (Anna and the French Kiss -3)/image/Isla and the Happily Ever After (Anna and the French Kiss -3).jpg",
       star: 5,
       lower_price: 4813,
       higher_price: 4813
@@ -7825,16 +7825,16 @@ export const booksProducts = {
     },
     {
       id: "Harry-Potter-and-the-Prisoner-of-Azkaban-Harry-Potter-3",
-      name: "Harry Potter and the Prisoner of Azkaban (Harry Potter #3)",
-      image: "products/books/Young Adult/Harry Potter and the Prisoner of Azkaban (Harry Potter #3)/image/Harry Potter and the Prisoner of Azkaban (Harry Potter #3).jpg",
+      name: "Harry Potter and the Prisoner of Azkaban (Harry Potter -3)",
+      image: "products/books/Young Adult/Harry Potter and the Prisoner of Azkaban (Harry Potter -3)/image/Harry Potter and the Prisoner of Azkaban (Harry Potter -3).jpg",
       star: 4,
       lower_price: 2417,
       higher_price: 2417
     },
     {
       id: "Walk-the-Edge-Thunder-Road-2",
-      name: "Walk the Edge (Thunder Road #2)",
-      image: "products/books/Young Adult/Walk the Edge (Thunder Road #2)/image/Walk the Edge (Thunder Road #2).jpg",
+      name: "Walk the Edge (Thunder Road -2)",
+      image: "products/books/Young Adult/Walk the Edge (Thunder Road -2)/image/Walk the Edge (Thunder Road -2).jpg",
       star: 3,
       lower_price: 3236,
       higher_price: 3236
@@ -7865,40 +7865,40 @@ export const booksProducts = {
     },
     {
       id: "Scarlet-The-Lunar-Chronicles-2",
-      name: "Scarlet (The Lunar Chronicles #2)",
-      image: "products/books/Young Adult/Scarlet (The Lunar Chronicles #2)/image/Scarlet (The Lunar Chronicles #2).jpg",
+      name: "Scarlet (The Lunar Chronicles -2)",
+      image: "products/books/Young Adult/Scarlet (The Lunar Chronicles -2)/image/Scarlet (The Lunar Chronicles -2).jpg",
       star: 4,
       lower_price: 1457,
       higher_price: 1457
     },
     {
       id: "Legend-Legend-1",
-      name: "Legend (Legend #1)",
-      image: "products/books/Young Adult/Legend (Legend #1)/image/Legend (Legend #1).jpg",
+      name: "Legend (Legend -1)",
+      image: "products/books/Young Adult/Legend (Legend -1)/image/Legend (Legend -1).jpg",
       star: 4,
       lower_price: 4369,
       higher_price: 4369
     },
     {
       id: "Lady-Renegades-Rebel-Belle-3",
-      name: "Lady Renegades (Rebel Belle #3)",
-      image: "products/books/Young Adult/Lady Renegades (Rebel Belle #3)/image/Lady Renegades (Rebel Belle #3).jpg",
+      name: "Lady Renegades (Rebel Belle -3)",
+      image: "products/books/Young Adult/Lady Renegades (Rebel Belle -3)/image/Lady Renegades (Rebel Belle -3).jpg",
       star: 5,
       lower_price: 5304,
       higher_price: 5304
     },
     {
       id: "Golden-Heart-of-Dread-3",
-      name: "Golden (Heart of Dread #3)",
-      image: "products/books/Young Adult/Golden (Heart of Dread #3)/image/Golden (Heart of Dread #3).jpg",
+      name: "Golden (Heart of Dread -3)",
+      image: "products/books/Young Adult/Golden (Heart of Dread -3)/image/Golden (Heart of Dread -3).jpg",
       star: 4,
       lower_price: 4221,
       higher_price: 4221
     },
     {
       id: "Cinder-The-Lunar-Chronicles-1",
-      name: "Cinder (The Lunar Chronicles #1)",
-      image: "products/books/Young Adult/Cinder (The Lunar Chronicles #1)/image/Cinder (The Lunar Chronicles #1).jpg",
+      name: "Cinder (The Lunar Chronicles -1)",
+      image: "products/books/Young Adult/Cinder (The Lunar Chronicles -1)/image/Cinder (The Lunar Chronicles -1).jpg",
       star: 1,
       lower_price: 2609,
       higher_price: 2609
@@ -7921,16 +7921,16 @@ export const booksProducts = {
     },
     {
       id: "New-Moon-Twilight-2",
-      name: "New Moon (Twilight #2)",
-      image: "products/books/Young Adult/New Moon (Twilight #2)/image/New Moon (Twilight #2).jpg",
+      name: "New Moon (Twilight -2)",
+      image: "products/books/Young Adult/New Moon (Twilight -2)/image/New Moon (Twilight -2).jpg",
       star: 4,
       lower_price: 1286,
       higher_price: 1286
     },
     {
       id: "Girl-Online-On-Tour-Girl-Online-2",
-      name: "Girl Online On Tour (Girl Online #2)",
-      image: "products/books/Young Adult/Girl Online On Tour (Girl Online #2)/image/Girl Online On Tour (Girl Online #2).jpg",
+      name: "Girl Online On Tour (Girl Online -2)",
+      image: "products/books/Young Adult/Girl Online On Tour (Girl Online -2)/image/Girl Online On Tour (Girl Online -2).jpg",
       star: 1,
       lower_price: 5347,
       higher_price: 5347
@@ -7953,3 +7953,5 @@ export const booksProducts = {
     },
   ],
 };
+
+

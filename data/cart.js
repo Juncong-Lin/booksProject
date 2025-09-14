@@ -1,4 +1,4 @@
-let cart;
+﻿let cart;
 
 // Safe initialization of cart from localStorage with error handling
 function initializeCart() {
@@ -84,7 +84,7 @@ function showCartError(message) {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: #f44336;
+      background: -f44336;
       color: white;
       padding: 12px 20px;
       border-radius: 4px;
@@ -180,7 +180,7 @@ function showAddToCartSuccess(quantity) {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: #4CAF50;
+      background: -4CAF50;
       color: white;
       padding: 12px 20px;
       border-radius: 4px;
@@ -236,3 +236,5 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   matchingItem.deliveryOptionId = deliveryOptionId;
   saveToStorage();
 }
+
+

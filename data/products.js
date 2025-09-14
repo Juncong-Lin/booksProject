@@ -1,4 +1,4 @@
-import { formatCurrency } from '../scripts/shared/money.js';  
+﻿import { formatCurrency } from '../scripts/shared/money.js';  
 
 export function getProduct(productId) {
   let matchingProduct;
@@ -58,3 +58,4 @@ export const products = [].map((productDetails) => {
   } 
   return new Product(productDetails);
 })
+

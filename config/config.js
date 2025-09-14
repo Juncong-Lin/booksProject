@@ -74,4 +74,3 @@ window.CONFIG = new Config();
 // Log current environment for debugging
 console.log(`🌍 Environment: ${window.CONFIG.environment}`);
 console.log(`🔗 API Base URL: ${window.CONFIG.apiBaseUrl}`);
-
