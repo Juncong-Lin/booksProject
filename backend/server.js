@@ -174,9 +174,9 @@ process.on("SIGINT", () => {
 });
 
 // Start server
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`
-🚀 Server running in ${process.env.NODE_ENV || 'development'} mode
+🚀 Server running in ${process.env.NODE_ENV || "development"} mode
 📍 Port: ${PORT}
 🌍 Host: 0.0.0.0 (Railway compatible)
 🔗 Health check: http://localhost:${PORT}/health
