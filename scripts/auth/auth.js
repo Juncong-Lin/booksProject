@@ -2,7 +2,10 @@
 
 class AuthService {
   constructor() {
-    this.baseURL = "http://localhost:5000/api/v1";
+    // Use environment-aware configuration
+    this.baseURL = window.CONFIG
+      ? window.CONFIG.apiBaseUrl
+      : "http://localhost:5000/api/v1";
     this.currentUser = null;
     this.authToken = null;
     this.initPromise = this.init();

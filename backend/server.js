@@ -57,14 +57,38 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // CORS configuration
+const allowedOrigins = [
+  process.env.CLIENT_URL || "http://localhost:3000",
+  process.env.FRONTEND_URL || "http://localhost:8080",
+  "http://localhost:5500", // For VS Code Live Server
+  "http://127.0.0.1:5500",
+  // Production domains
+  "https://juncongmall.com",
+  "https://www.juncongmall.com",
+  // Add your actual production domain here
+  process.env.PRODUCTION_FRONTEND_URL,
+];
+
+// Filter out undefined values
+const validOrigins = allowedOrigins.filter(
+  (origin) => origin && origin !== undefined
+);
+
 app.use(
   cors({
-    origin: [
-      process.env.CLIENT_URL || "http://localhost:3000",
-      process.env.FRONTEND_URL || "http://localhost:8080",
-      "http://localhost:5500", // For VS Code Live Server
-      "http://127.0.0.1:5500",
-    ],
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps, curl, etc.)
+      if (!origin) return callback(null, true);
+
+      if (
+        validOrigins.indexOf(origin) !== -1 ||
+        process.env.NODE_ENV === "development"
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
