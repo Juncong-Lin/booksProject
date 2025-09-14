@@ -8,7 +8,8 @@
     "dev": "nodemon server.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "seed": "node scripts/seedBooks.js"
+    "seed": "node scripts/seedBooks.js",
+    "build": "echo 'No build step required'"
   },
   "keywords": [
     "bookstore",
@@ -43,6 +44,6 @@
     "supertest": "^6.3.3"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   }
 }

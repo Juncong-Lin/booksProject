@@ -1,0 +1,32 @@
+[build]
+  publish = "."
+
+# Redirect API calls to your Railway backend (will be updated after Railway deployment)
+[[redirects]]
+  from = "/api/*"
+  to = "https://your-backend-will-be-here/api/:splat"
+  status = 200
+  force = false
+
+# Handle client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# CORS headers for development
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
