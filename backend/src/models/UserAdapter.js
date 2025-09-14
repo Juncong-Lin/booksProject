@@ -120,14 +120,14 @@ userSchema.pre("save", async function (next) {
 // Instance method to get signed JWT token
 userSchema.methods.getSignedJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
+    expiresIn: process.env.JWT_EXPIRE || "15m",
   });
 };
 
 // Instance method to get signed refresh token
 userSchema.methods.getSignedRefreshToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
-    expiresIn: process.env.JWT_REFRESH_EXPIRE,
+    expiresIn: process.env.JWT_REFRESH_EXPIRE || "7d",
   });
 };
 
