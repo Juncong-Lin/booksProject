@@ -3,21 +3,7 @@ const { asyncHandler } = require("../middleware/errorHandler");
 const jwt = require("jsonwebtoken");
 
 // Helper function to set authentication cookies
-// 🆘 NUCLEAR-LEVEL JWT Generation - Signin Controller
-console.log(`🚨 NUCLEAR JWT Generation Starting - Signin Controller`);
-console.log(`🕐 DEPLOYMENT TIMESTAMP CHECK: ${new Date().toISOString()}`);
-console.log(`🏗️ NUCLEAR VERSION: 2.0 - COMPLETE OVERRIDE`);
-
-// BYPASS ALL JWT - Return success without tokens for testing
-console.log(`☢️ BYPASSING ALL JWT - Testing deployment`);
-return res.status(200).json({
-  success: true,
-  message: "NUCLEAR TEST MODE - JWT Bypassed",
-  timestamp: new Date().toISOString(),
-  user: user.toSafeObject(),
-  note: "This is a test response to verify deployment is working",
-});
-AuthCookies = (res, accessToken, refreshToken) => {
+const setAuthCookies = (res, accessToken, refreshToken) => {
   const cookieOptions = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

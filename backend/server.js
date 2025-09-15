@@ -83,7 +83,7 @@ app.use(
 );
 
 // 🚀 Trust proxy for Render deployment (fixes X-Forwarded-For header issues)
-app.set('trust proxy', 1);
+app.set("trust proxy", 1);
 
 // Rate limiting
 const limiter = rateLimit({
