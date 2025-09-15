@@ -18,6 +18,8 @@
     <!-- CSS files -->
     <link rel="stylesheet" href="styles/shared/general.css" />
     <link rel="stylesheet" href="styles/shared/qili-header.css" />
+    <link rel="stylesheet" href="styles/shared/sub-header.css" />
+    <link rel="stylesheet" href="styles/shared/footer.css" />
     <link rel="stylesheet" href="styles/pages/auth.css" />
 
     <!-- Feather icons -->
@@ -27,90 +29,103 @@
   <body class="auth-page">
     <!-- Header -->
     <div id="shared-header-placeholder"></div>
+    <div id="shared-subheader-placeholder"></div>
 
     <!-- Main content -->
-    <div class="auth-container">
-      <div class="auth-card">
-        <div class="auth-header">
-          <h1>Welcome Back</h1>
-          <p>Sign in to your account to continue</p>
+    <div class="main">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h1>Welcome Back</h1>
+            <p>Sign in to your account to continue</p>
+          </div>
+
+          <form id="signin-form" class="auth-form">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <div class="input-wrapper">
+                <i data-feather="mail" class="input-icon"></i>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email"
+                  autocomplete="email"
+                />
+              </div>
+              <span class="error-message" id="email-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="input-wrapper">
+                <i data-feather="lock" class="input-icon"></i>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                />
+                <button
+                  type="button"
+                  class="toggle-password"
+                  id="toggle-password"
+                >
+                  <i data-feather="eye" id="eye-icon"></i>
+                </button>
+              </div>
+              <span class="error-message" id="password-error"></span>
+            </div>
+
+            <div class="form-options">
+              <label class="checkbox-wrapper">
+                <input type="checkbox" id="remember-me" name="rememberMe" />
+                <span class="checkmark"></span>
+                Remember me
+              </label>
+              <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="auth-btn primary" id="signin-btn">
+              <span class="btn-text">Sign In</span>
+              <div class="btn-loading" style="display: none">
+                <div class="spinner"></div>
+                Signing in...
+              </div>
+            </button>
+
+            <div class="auth-divider">
+              <span>or</span>
+            </div>
+
+            <div class="auth-link">
+              Don't have an account? <a href="signup.html">Sign up here</a>
+            </div>
+          </form>
+
+          <!-- Error/Success messages -->
+          <div
+            id="auth-message"
+            class="auth-message"
+            style="display: none"
+          ></div>
         </div>
-
-        <form id="signin-form" class="auth-form">
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <div class="input-wrapper">
-              <i data-feather="mail" class="input-icon"></i>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                autocomplete="email"
-              />
-            </div>
-            <span class="error-message" id="email-error"></span>
-          </div>
-
-          <div class="form-group">
-            <label for="password">Password</label>
-            <div class="input-wrapper">
-              <i data-feather="lock" class="input-icon"></i>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                required
-                placeholder="Enter your password"
-                autocomplete="current-password"
-              />
-              <button
-                type="button"
-                class="toggle-password"
-                id="toggle-password"
-              >
-                <i data-feather="eye" id="eye-icon"></i>
-              </button>
-            </div>
-            <span class="error-message" id="password-error"></span>
-          </div>
-
-          <div class="form-options">
-            <label class="checkbox-wrapper">
-              <input type="checkbox" id="remember-me" name="rememberMe" />
-              <span class="checkmark"></span>
-              Remember me
-            </label>
-            <a href="#" class="forgot-password">Forgot Password?</a>
-          </div>
-
-          <button type="submit" class="auth-btn primary" id="signin-btn">
-            <span class="btn-text">Sign In</span>
-            <div class="btn-loading" style="display: none">
-              <div class="spinner"></div>
-              Signing in...
-            </div>
-          </button>
-
-          <div class="auth-divider">
-            <span>or</span>
-          </div>
-
-          <div class="auth-link">
-            Don't have an account? <a href="signup.html">Sign up here</a>
-          </div>
-        </form>
-
-        <!-- Error/Success messages -->
-        <div id="auth-message" class="auth-message" style="display: none"></div>
       </div>
     </div>
 
+    <!-- Shared Footer - Loaded dynamically from shared component -->
+    <div id="shared-footer-placeholder"></div>
+
     <!-- Scripts -->
     <script src="config/config.js?v=3.0"></script>
-    <script src="scripts/shared/header.js"></script>
     <script src="scripts/auth/auth.js?v=3.0"></script>
+    <script src="scripts/shared/shared-header-loader.js"></script>
+    <script src="scripts/shared/shared-subheader-loader.js"></script>
+    <script src="scripts/shared/sub-header-nav.js"></script>
+    <script src="scripts/shared/shared-footer-loader.js"></script>
     <script src="scripts/auth/signin.js?v=3.0"></script>
   </body>
 </html>

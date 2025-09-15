@@ -973,8 +973,17 @@ document.addEventListener("DOMContentLoaded", () => {
     "shared-subheader-placeholder"
   );
 
-  // Only auto-initialize if NOT using shared subheader
-  if (!hasSharedSubheader) {
+  if (hasSharedSubheader) {
+    // For shared subheader pages, wait a bit for the shared content to load
+    // then initialize if not already done
+    setTimeout(() => {
+      if (!window.subHeaderNav) {
+        window.subHeaderNav = new SubHeaderNavigation();
+        console.log("✅ SubHeaderNavigation initialized for shared subheader");
+      }
+    }, 100);
+  } else {
+    // For non-shared subheader pages, initialize immediately
     window.subHeaderNav = new SubHeaderNavigation();
 
     // Handle URL hash navigation on initial page load for non-shared subheader

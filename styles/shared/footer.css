@@ -1,9 +1,9 @@
 /* Footer styles */
 .footer {
-  background-color: #232F3E;
+  background-color: #232f3e;
   color: white;
   padding: 10px 0 5px;
-  margin-top: 20px;
+  margin-top: auto;
   width: 100%;
   position: relative;
   left: 0;
@@ -102,7 +102,7 @@
 
 .social-icons {
   display: flex;
-  gap: 15px;  /* Increased gap between icons */
+  gap: 15px; /* Increased gap between icons */
   margin-top: 10px;
   justify-content: flex-start;
   align-items: center;
@@ -111,7 +111,7 @@
 .social-icons a {
   color: white;
   background-color: rgba(255, 255, 255, 0.2);
-  width: 32px;  /* Fixed width for all icons */
+  width: 32px; /* Fixed width for all icons */
   height: 32px; /* Fixed height for all icons */
   border-radius: 50%;
   display: flex;
@@ -121,7 +121,7 @@
 }
 
 .social-icons img {
-  width: 18px;  /* Consistent size for icon images */
+  width: 18px; /* Consistent size for icon images */
   height: 18px;
   filter: brightness(1.2);
   object-fit: contain;
@@ -164,11 +164,11 @@
     flex: 0 0 50%;
     padding: 0 5px;
   }
-  
+
   .get-in-touch {
     flex: 0 0 100%;
   }
-  
+
   .footer {
     padding: 8px 0 3px;
   }
@@ -180,20 +180,22 @@
     margin-bottom: 3px;
     padding: 0 8px;
   }
-  
+
   .footer {
     padding: 8px 0 3px;
   }
-  
+
   .footer-container {
     padding: 0 8px;
   }
-  
+
   .footer h3 {
     font-size: 15px;
     margin-bottom: 3px;
   }
-    .footer-section p, .footer .contact-info, .footer-links a {
+  .footer-section p,
+  .footer .contact-info,
+  .footer-links a {
     font-size: 15px;
     line-height: 1.2;
   }
@@ -204,13 +206,13 @@
     left: 0;
     padding: 10px 0;
   }
-  
+
   .footer-container {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 0 10px; /* Remove left padding since sidebar isn't visible in portrait */
   }
-  
+
   .footer-section {
     flex: 0 0 50%;
     margin-bottom: 5px;
@@ -223,7 +225,7 @@
     position: relative;
     left: 0;
   }
-  
+
   body.has-sidebar .departments-sidebar {
     z-index: 1;
   }
@@ -233,32 +235,33 @@
   .footer {
     padding: 5px 0;
   }
-  
+
   .footer-container {
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding-left: 220px; /* Keep sidebar padding in landscape mode */
   }
-  
+
   .footer-section {
     flex: 0 0 200px;
     min-width: 400px;
   }
-  
+
   .footer h3 {
     font-size: 15px;
     margin-bottom: 3px;
   }
-    .footer .contact-info, .footer-links a {
+  .footer .contact-info,
+  .footer-links a {
     font-size: 15px;
   }
-  
+
   .footer-section p {
     font-size: 15px;
     line-height: 1.2;
   }
-  
+
   .footer-bottom {
     padding-top: 3px;
     margin-top: 3px;
@@ -295,11 +298,11 @@
     flex: 0 0 50%;
     min-width: 150px;
   }
-  
+
   .footer-section:first-child {
     flex: 0 0 100%;
   }
-  
+
   .get-in-touch {
     flex: 0 0 100%;
   }
@@ -312,38 +315,38 @@
     margin-bottom: 3px;
     padding: 0 8px;
   }
-  
+
   .footer-section:first-child {
     flex: 0 0 100%;
   }
-  
+
   .footer {
     padding: 8px 0 3px;
   }
-  
+
   .footer-container {
     display: flex;
     flex-direction: column;
     padding: 0 8px;
     max-width: 100vw;
   }
-  
+
   /* Give the about us section more width and make it first */
   .footer-section.about-us {
     flex: 0 0 100%;
     order: 1;
   }
-  
+
   /* Make Quick Links second */
   .footer-section.quick-links {
     order: 2;
   }
-  
+
   /* Make Contact Us third */
   .footer-section.contact-us {
     order: 3;
   }
-  
+
   /* Make Get in Touch last */
   .footer-section.get-in-touch {
     order: 4;

@@ -1,5 +1,10 @@
 /* Authentication Pages Styling - Unified with Management Page */
 
+/* Ensure body doesn't create separate scroll context for auth pages */
+body.auth-page {
+  overflow: hidden;
+}
+
 .auth-page {
   background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
   min-height: 100vh;
@@ -9,6 +14,7 @@
   flex-direction: column;
   position: relative;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Add animated background elements like management page */
@@ -44,8 +50,16 @@
   z-index: 0;
 }
 
+/* Main content area for auth pages */
+.auth-page .main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .auth-container {
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -592,72 +606,6 @@
   margin: 8px 0;
 }
 
-/* Auth buttons in header - Enhanced with dark theme */
-.auth-buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.header-auth-btn {
-  padding: 12px 20px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  overflow: hidden;
-}
-
-.header-auth-btn.signin {
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.header-auth-btn.signin:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.header-auth-btn.signup {
-  color: white;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  border: 1px solid transparent;
-}
-
-.header-auth-btn.signup::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.5s ease;
-}
-
-.header-auth-btn.signup:hover::before {
-  left: 100%;
-}
-
-.header-auth-btn.signup:hover {
-  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-}
-
 /* Enhanced Animations - Matching Management Page */
 @keyframes fadeIn {
   from {
@@ -789,11 +737,6 @@
     gap: 8px;
   }
 
-  .header-auth-btn {
-    padding: 10px 16px;
-    font-size: 0.85rem;
-  }
-
   .input-wrapper input {
     padding: 14px 14px 14px 40px;
   }
@@ -859,7 +802,6 @@
 @media (prefers-reduced-motion: reduce) {
   .auth-card,
   .auth-btn,
-  .header-auth-btn,
   .input-wrapper input,
   .checkmark,
   .user-avatar {
@@ -879,7 +821,6 @@
 
 /* Focus states for accessibility */
 .auth-btn:focus,
-.header-auth-btn:focus,
 .input-wrapper input:focus,
 .checkbox-wrapper:focus-within .checkmark,
 .toggle-password:focus {

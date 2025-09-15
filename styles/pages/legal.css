@@ -7,7 +7,8 @@ body.legal-page {
   color: #ffffff !important;
 
   /* Layout reset */
-  display: block !important;
+  display: flex !important;
+  flex-direction: column !important;
   position: static !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -98,7 +99,9 @@ body.legal-page main {
 
 /* Main container */
 .legal-container {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   padding: 2rem 1rem;
   position: relative;
   z-index: 1;
