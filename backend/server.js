@@ -82,6 +82,9 @@ app.use(
   })
 );
 
+// 🚀 Trust proxy for Render deployment (fixes X-Forwarded-For header issues)
+app.set('trust proxy', 1);
+
 // Rate limiting
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
@@ -168,16 +171,18 @@ app.get("/deployment-status", (req, res) => {
     environment: process.env.NODE_ENV,
     jwtConfig: {
       JWT_SECRET: process.env.JWT_SECRET ? "CONFIGURED" : "MISSING",
-      JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET ? "CONFIGURED" : "MISSING", 
+      JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET
+        ? "CONFIGURED"
+        : "MISSING",
       JWT_EXPIRE: process.env.JWT_EXPIRE || "NOT_SET",
-      JWT_REFRESH_EXPIRE: process.env.JWT_REFRESH_EXPIRE || "NOT_SET"
+      JWT_REFRESH_EXPIRE: process.env.JWT_REFRESH_EXPIRE || "NOT_SET",
     },
     nodeVersion: process.version,
     platform: process.platform,
     memory: process.memoryUsage(),
-    message: "If you see this endpoint, deployment is working!"
+    message: "If you see this endpoint, deployment is working!",
   };
-  
+
   res.status(200).json(deploymentInfo);
 });
 
