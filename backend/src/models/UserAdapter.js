@@ -130,11 +130,12 @@ userSchema.methods.getSignedJwtToken = function () {
   // Only use environment value if it's definitely valid
   if (jwtExpire) {
     const strValue = String(jwtExpire).trim();
-    
+
     // Check for pure numeric values (seconds)
     if (/^\d+$/.test(strValue)) {
       const numValue = parseInt(strValue, 10);
-      if (numValue > 0 && numValue < 31536000) { // Between 1 second and 1 year
+      if (numValue > 0 && numValue < 31536000) {
+        // Between 1 second and 1 year
         expiresIn = numValue;
       }
     }
@@ -178,11 +179,12 @@ userSchema.methods.getSignedRefreshToken = function () {
   // Only use environment value if it's definitely valid
   if (jwtRefreshExpire) {
     const strValue = String(jwtRefreshExpire).trim();
-    
+
     // Check for pure numeric values (seconds)
     if (/^\d+$/.test(strValue)) {
       const numValue = parseInt(strValue, 10);
-      if (numValue > 0 && numValue < 31536000) { // Between 1 second and 1 year
+      if (numValue > 0 && numValue < 31536000) {
+        // Between 1 second and 1 year
         expiresIn = numValue;
       }
     }
