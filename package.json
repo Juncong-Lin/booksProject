@@ -9,7 +9,12 @@
     "start": "echo 'Static site deployed' && exit 0",
     "dev": "echo 'Use Live Server for development' && exit 0"
   },
-  "keywords": ["bookstore", "ecommerce", "frontend", "static"],
+  "keywords": [
+    "bookstore",
+    "ecommerce",
+    "frontend",
+    "static"
+  ],
   "author": "Juncong Lin",
   "license": "MIT",
   "engines": {

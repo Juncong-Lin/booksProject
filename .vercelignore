@@ -1,16 +1,8 @@
-# Vercel ignore file - excludes files from deployment
-
-# Backend files (since backend is deployed on Render)
+# Minimal Vercel ignore - only exclude what's necessary
 backend/
 node_modules/
-*.log
-
-# Development files
 .git/
-.gitignore
-README.md
-*.md
-!VERCEL_DEPLOYMENT_GUIDE.md
+*.log
 
 # Build artifacts
 
