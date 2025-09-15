@@ -59,6 +59,28 @@ const getStorageStatus = asyncHandler(async (req, res) => {
 
   console.log("🌍 Environment Status:", envStatus);
 
+  // Test actual database operations
+  let databaseTest;
+  try {
+    // Try to find users directly in MongoDB
+    const MongoUser = mongoose.model("User");
+    const mongoUserCount = await MongoUser.countDocuments();
+    const recentUsers = await MongoUser.find({})
+      .limit(3)
+      .select("name email createdAt -_id");
+
+    databaseTest = {
+      mongoDirectCount: mongoUserCount,
+      recentUsers: recentUsers,
+      databaseName: mongoose.connection.name,
+      collectionName: "users",
+      fullPath: `${mongoose.connection.name}.users`,
+    };
+    console.log("📊 Direct MongoDB Test:", databaseTest);
+  } catch (dbError) {
+    databaseTest = { error: dbError.message };
+  }
+
   res.status(200).json({
     success: true,
     data: {
@@ -66,6 +88,7 @@ const getStorageStatus = asyncHandler(async (req, res) => {
       mongodb: mongoStatus,
       userModel: userModelInfo,
       environment: envStatus,
+      databaseTest: databaseTest,
       storageSystem: mongoStatus.connected
         ? "MongoDB"
         : "Mock Storage (Fallback)",
