@@ -119,15 +119,43 @@ userSchema.pre("save", async function (next) {
 
 // Instance method to get signed JWT token
 userSchema.methods.getSignedJwtToken = function () {
+  // Ensure we have a valid expiresIn value
+  const jwtExpire = process.env.JWT_EXPIRE;
+  let expiresIn = "15m"; // Default fallback
+  
+  // Validate the JWT_EXPIRE environment variable
+  if (jwtExpire && (typeof jwtExpire === 'string' || typeof jwtExpire === 'number')) {
+    // Common valid formats: "15m", "1h", "7d", 900 (seconds)
+    if (typeof jwtExpire === 'string' && /^(\d+[smhd]|\d+)$/.test(jwtExpire)) {
+      expiresIn = jwtExpire;
+    } else if (typeof jwtExpire === 'number' && jwtExpire > 0) {
+      expiresIn = jwtExpire;
+    }
+  }
+  
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE || "15m",
+    expiresIn: expiresIn,
   });
 };
 
 // Instance method to get signed refresh token
 userSchema.methods.getSignedRefreshToken = function () {
+  // Ensure we have a valid expiresIn value
+  const jwtRefreshExpire = process.env.JWT_REFRESH_EXPIRE;
+  let expiresIn = "7d"; // Default fallback
+  
+  // Validate the JWT_REFRESH_EXPIRE environment variable
+  if (jwtRefreshExpire && (typeof jwtRefreshExpire === 'string' || typeof jwtRefreshExpire === 'number')) {
+    // Common valid formats: "15m", "1h", "7d", 604800 (seconds)
+    if (typeof jwtRefreshExpire === 'string' && /^(\d+[smhd]|\d+)$/.test(jwtRefreshExpire)) {
+      expiresIn = jwtRefreshExpire;
+    } else if (typeof jwtRefreshExpire === 'number' && jwtRefreshExpire > 0) {
+      expiresIn = jwtRefreshExpire;
+    }
+  }
+  
   return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
-    expiresIn: process.env.JWT_REFRESH_EXPIRE || "7d",
+    expiresIn: expiresIn,
   });
 };
 
