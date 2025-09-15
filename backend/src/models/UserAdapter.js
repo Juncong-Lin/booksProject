@@ -291,10 +291,10 @@ class UserModel {
     return {
       select: (fields) => {
         return {
-          exec: () => mockStorage.findByIdWithPassword(id)
+          exec: () => mockStorage.findByIdWithPassword(id),
         };
       },
-      exec: () => mockStorage.findById(id)
+      exec: () => mockStorage.findById(id),
     };
   }
 
