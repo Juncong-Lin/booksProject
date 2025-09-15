@@ -198,7 +198,9 @@ userSchema.methods.getSignedRefreshToken = function () {
   } catch (error) {
     console.error(`❌ Refresh Token generation error:`, error.message);
     // Use a reliable fallback - numeric seconds
-    console.log(`🔄 Retrying with fallback expiresIn (604800 seconds = 7 days)`);
+    console.log(
+      `🔄 Retrying with fallback expiresIn (604800 seconds = 7 days)`
+    );
     return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
       expiresIn: 604800, // 7 days in seconds
     });
