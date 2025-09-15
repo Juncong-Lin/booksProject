@@ -8,6 +8,9 @@
   min-height: 100vh;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   color: #ffffff;
+  /* Ensure proper scrolling without duplicates */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Animated Background */
@@ -372,8 +375,8 @@
   grid-template-rows: 1fr 1fr;
   gap: 24px;
   margin-bottom: 40px;
-  min-height: 720px;
-  max-height: 800px;
+  /* Remove fixed height constraints to allow natural growth */
+  min-height: auto;
 }
 
 .chart-card {
@@ -384,7 +387,7 @@
   padding: 20px;
   transition: all 0.3s ease;
   min-height: 340px;
-  max-height: 380px;
+  /* Remove max-height to allow natural expansion */
   display: flex;
   flex-direction: column;
 }
@@ -928,6 +931,22 @@
   height: 300px;
   overflow-y: auto;
   margin-top: 16px;
+  /* Custom scrollbar styling for consistency */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.events-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.events-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.events-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
 }
 
 .events-list {
