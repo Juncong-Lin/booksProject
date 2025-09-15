@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { isConnected } = require("../config/database");
+const { isConnected } = require("../config/database-atlas");
 const mockStorage = require("../utils/mockStorage");
 
 // MongoDB User Schema (only used when MongoDB is connected)

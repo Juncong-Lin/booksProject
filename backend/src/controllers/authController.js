@@ -1,63 +1,64 @@
 const User = require("../models/UserAdapter");
 const { asyncHandler } = require("../middleware/errorHandler");
 const jwt = require("jsonwebtoken");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // @desc    Get storage system status
 // @route   GET /api/v1/auth/storage-status
 // @access  Public
 const getStorageStatus = asyncHandler(async (req, res) => {
-  console.log('🔍 STORAGE DIAGNOSTIC STARTING');
-  
+  console.log("🔍 STORAGE DIAGNOSTIC STARTING");
+
   // Check MongoDB connection
   const mongoStatus = {
     connected: mongoose.connection.readyState === 1,
     state: mongoose.connection.readyState,
     host: mongoose.connection.host,
     name: mongoose.connection.name,
-    models: Object.keys(mongoose.connection.models)
+    models: Object.keys(mongoose.connection.models),
   };
-  
-  console.log('📊 MongoDB Status:', mongoStatus);
-  
+
+  console.log("📊 MongoDB Status:", mongoStatus);
+
   // Check which User model is being used
   let userModelInfo;
   try {
     const UserModel = require("../models/UserAdapter");
     userModelInfo = {
       type: typeof UserModel,
-      hasCreate: typeof UserModel.create === 'function',
-      hasFindByEmail: typeof UserModel.findByEmail === 'function',
-      hasFind: typeof UserModel.find === 'function',
+      hasCreate: typeof UserModel.create === "function",
+      hasFindByEmail: typeof UserModel.findByEmail === "function",
+      hasFind: typeof UserModel.find === "function",
       constructor: UserModel.constructor.name,
-      isMongooseModel: UserModel.prototype && UserModel.prototype.constructor.name === 'model'
+      isMongooseModel:
+        UserModel.prototype && UserModel.prototype.constructor.name === "model",
     };
-    
+
     // Try to count users
     try {
-      const userCount = await UserModel.countDocuments ? 
-        await UserModel.countDocuments() : 
-        await UserModel.count();
+      const userCount = (await UserModel.countDocuments)
+        ? await UserModel.countDocuments()
+        : await UserModel.count();
       userModelInfo.userCount = userCount;
     } catch (countError) {
       userModelInfo.countError = countError.message;
     }
-    
-    console.log('👤 User Model Info:', userModelInfo);
+
+    console.log("👤 User Model Info:", userModelInfo);
   } catch (error) {
     userModelInfo = { error: error.message };
   }
-  
+
   // Check environment variables
   const envStatus = {
     NODE_ENV: process.env.NODE_ENV,
-    MONGODB_URI: process.env.MONGODB_URI ? 'SET' : 'NOT SET',
+    MONGODB_URI: process.env.MONGODB_URI ? "SET" : "NOT SET",
     USE_MOCK_DB: process.env.USE_MOCK_DB,
-    JWT_SECRET: process.env.JWT_SECRET ? 'SET' : 'NOT SET'
+    JWT_SECRET: process.env.JWT_SECRET ? "SET" : "NOT SET",
   };
-  
-  console.log('🌍 Environment Status:', envStatus);
-  
+
+  console.log("🌍 Environment Status:", envStatus);
+
   res.status(200).json({
     success: true,
     data: {
@@ -65,8 +66,10 @@ const getStorageStatus = asyncHandler(async (req, res) => {
       mongodb: mongoStatus,
       userModel: userModelInfo,
       environment: envStatus,
-      storageSystem: mongoStatus.connected ? 'MongoDB' : 'Mock Storage (Fallback)'
-    }
+      storageSystem: mongoStatus.connected
+        ? "MongoDB"
+        : "Mock Storage (Fallback)",
+    },
   });
 });
 
