@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "Frontend for Juncong Bookstore",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "echo 'Static site - no build needed'",
-    "start": "echo 'Static site deployed'"
+    "build": "echo 'Static site - no build needed' && exit 0",
+    "start": "echo 'Static site deployed' && exit 0",
+    "dev": "echo 'Use Live Server for development' && exit 0"
   },
-  "keywords": ["bookstore", "ecommerce", "frontend"],
+  "keywords": ["bookstore", "ecommerce", "frontend", "static"],
   "author": "Juncong Lin",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }
