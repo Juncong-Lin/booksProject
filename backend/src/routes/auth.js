@@ -1,5 +1,6 @@
 const express = require("express");
 const {
+  getStorageStatus,
   signup,
   signin,
   refreshToken,
@@ -23,6 +24,7 @@ const { authenticate, verifyRefreshToken } = require("../middleware/auth");
 const router = express.Router();
 
 // Public routes
+router.get("/storage-status", getStorageStatus);
 router.post("/signup", validateRegistration, signup);
 router.post("/signin", validateLogin, signin);
 router.post("/refresh", verifyRefreshToken, refreshToken);
