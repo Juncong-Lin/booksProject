@@ -15,6 +15,7 @@ const userRoutes = require("./src/routes/users");
 const bookRoutes = require("./src/routes/books");
 const cartRoutes = require("./src/routes/cart");
 const orderRoutes = require("./src/routes/orders");
+const debugRoutes = require("./src/routes/debug");
 
 // Import middleware
 const { errorHandler } = require("./src/middleware/errorHandler");
@@ -170,6 +171,7 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/books", bookRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/orders", orderRoutes);
+app.use("/api/v1/debug", debugRoutes);
 
 // Handle 404 errors
 app.use("*", (req, res) => {

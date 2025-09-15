@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { isConnected } = require("../config/database");
 const mockStorage = require("../utils/mockStorage");
+const { generateSafeJWT, processSafeExpiresIn } = require("../utils/safeJWT");
 
 // MongoDB User Schema (only used when MongoDB is connected)
 const userSchema = new mongoose.Schema(
@@ -119,99 +120,47 @@ userSchema.pre("save", async function (next) {
 
 // Instance method to get signed JWT token
 userSchema.methods.getSignedJwtToken = function () {
-  // Always use a safe numeric fallback to avoid any JWT library issues
-  let expiresIn = 900; // 15 minutes in seconds (safe fallback)
-  const jwtExpire = process.env.JWT_EXPIRE;
-
+  const expiresIn = processSafeExpiresIn(process.env.JWT_EXPIRE);
+  
   console.log(
-    `🔧 JWT Token Generation - Raw JWT_EXPIRE: "${jwtExpire}" (type: ${typeof jwtExpire})`
-  );
-
-  // Only use environment value if it's definitely valid
-  if (jwtExpire) {
-    const strValue = String(jwtExpire).trim();
-
-    // Check for pure numeric values (seconds)
-    if (/^\d+$/.test(strValue)) {
-      const numValue = parseInt(strValue, 10);
-      if (numValue > 0 && numValue < 31536000) {
-        // Between 1 second and 1 year
-        expiresIn = numValue;
-      }
-    }
-    // Check for time string format (like "15m", "1h", "7d")
-    else if (/^\d+[smhd]$/.test(strValue)) {
-      expiresIn = strValue;
-    }
-    // Invalid format - keep safe numeric default
-  }
-
-  console.log(
-    `🔧 JWT Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`
+    `🔧 Ultra-Safe JWT Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`
   );
 
   try {
-    const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-      expiresIn: expiresIn,
-    });
-    console.log(`✅ JWT Token generated successfully`);
+    const token = generateSafeJWT(
+      { id: this._id }, 
+      process.env.JWT_SECRET, 
+      { expiresIn }
+    );
+    console.log(`✅ Ultra-Safe JWT Token generated successfully`);
     return token;
   } catch (error) {
-    console.error(`❌ JWT Token generation error:`, error.message);
-    // Always use numeric seconds as ultimate fallback
-    console.log(`🔄 Using ultimate fallback: 900 seconds (15 minutes)`);
-    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-      expiresIn: 900,
-    });
+    console.error(`❌ Ultra-Safe JWT Token generation error:`, error.message);
+    // This should never happen with our safe function, but just in case
+    return generateSafeJWT({ id: this._id }, process.env.JWT_SECRET);
   }
 };
 
 // Instance method to get signed refresh token
 userSchema.methods.getSignedRefreshToken = function () {
-  // Always use a safe numeric fallback to avoid any JWT library issues
-  let expiresIn = 604800; // 7 days in seconds (safe fallback)
-  const jwtRefreshExpire = process.env.JWT_REFRESH_EXPIRE;
-
+  const expiresIn = processSafeExpiresIn(process.env.JWT_REFRESH_EXPIRE) || 604800; // 7 days fallback
+  
   console.log(
-    `🔧 Refresh Token Generation - Raw JWT_REFRESH_EXPIRE: "${jwtRefreshExpire}" (type: ${typeof jwtRefreshExpire})`
-  );
-
-  // Only use environment value if it's definitely valid
-  if (jwtRefreshExpire) {
-    const strValue = String(jwtRefreshExpire).trim();
-
-    // Check for pure numeric values (seconds)
-    if (/^\d+$/.test(strValue)) {
-      const numValue = parseInt(strValue, 10);
-      if (numValue > 0 && numValue < 31536000) {
-        // Between 1 second and 1 year
-        expiresIn = numValue;
-      }
-    }
-    // Check for time string format (like "15m", "1h", "7d")
-    else if (/^\d+[smhd]$/.test(strValue)) {
-      expiresIn = strValue;
-    }
-    // Invalid format - keep safe numeric default
-  }
-
-  console.log(
-    `🔧 Refresh Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`
+    `🔧 Ultra-Safe Refresh Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`
   );
 
   try {
-    const token = jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
-      expiresIn: expiresIn,
-    });
-    console.log(`✅ Refresh Token generated successfully`);
+    const token = generateSafeJWT(
+      { id: this._id }, 
+      process.env.JWT_REFRESH_SECRET, 
+      { expiresIn }
+    );
+    console.log(`✅ Ultra-Safe Refresh Token generated successfully`);
     return token;
   } catch (error) {
-    console.error(`❌ Refresh Token generation error:`, error.message);
-    // Always use numeric seconds as ultimate fallback
-    console.log(`🔄 Using ultimate fallback: 604800 seconds (7 days)`);
-    return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
-      expiresIn: 604800,
-    });
+    console.error(`❌ Ultra-Safe Refresh Token generation error:`, error.message);
+    // This should never happen with our safe function, but just in case
+    return generateSafeJWT({ id: this._id }, process.env.JWT_REFRESH_SECRET);
   }
 };
 

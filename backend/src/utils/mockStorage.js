@@ -2,6 +2,7 @@
 // This provides basic CRUD operations using in-memory storage
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { generateSafeJWT, processSafeExpiresIn } = require("./safeJWT");
 
 class MockUser {
   constructor(userData) {
