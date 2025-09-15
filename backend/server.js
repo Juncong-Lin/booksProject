@@ -157,6 +157,30 @@ app.get("/health", (req, res) => {
   });
 });
 
+// 🚨 DEPLOYMENT VERIFICATION ENDPOINT
+app.get("/deployment-status", (req, res) => {
+  const deploymentInfo = {
+    status: "DEPLOYMENT_ACTIVE",
+    timestamp: new Date().toISOString(),
+    version: "NUCLEAR_JWT_FIX_v3.0",
+    lastDeployed: "2025-09-15T20:15:00Z", // Will update this when we deploy
+    gitCommit: "Latest changes with nuclear JWT fixes",
+    environment: process.env.NODE_ENV,
+    jwtConfig: {
+      JWT_SECRET: process.env.JWT_SECRET ? "CONFIGURED" : "MISSING",
+      JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET ? "CONFIGURED" : "MISSING", 
+      JWT_EXPIRE: process.env.JWT_EXPIRE || "NOT_SET",
+      JWT_REFRESH_EXPIRE: process.env.JWT_REFRESH_EXPIRE || "NOT_SET"
+    },
+    nodeVersion: process.version,
+    platform: process.platform,
+    memory: process.memoryUsage(),
+    message: "If you see this endpoint, deployment is working!"
+  };
+  
+  res.status(200).json(deploymentInfo);
+});
+
 // Serve API tester (for development)
 app.get("/test", (req, res) => {
   res.sendFile(__dirname + "/api-tester.html");
