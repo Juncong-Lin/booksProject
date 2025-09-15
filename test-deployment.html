@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vercel Deployment Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #000; 
+            color: #fff; 
+            text-align: center; 
+            padding: 50px; 
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            background: #222; 
+            padding: 40px; 
+            border-radius: 10px; 
+        }
+        .success { 
+            color: #00ff00; 
+            font-size: 24px; 
+            margin-bottom: 20px; 
+        }
+        .info { 
+            color: #00aaff; 
+            font-size: 16px; 
+            margin: 10px 0; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success">✅ VERCEL DEPLOYMENT SUCCESS!</div>
+        <div class="info">🌐 Domain: <span id="domain">Loading...</span></div>
+        <div class="info">📅 Deployed: <span id="time">Loading...</span></div>
+        <div class="info">🚀 Status: Vercel deployment is working correctly</div>
+        <div class="info">🔧 Next: Visit your main site at <a href="/index.html" style="color: #00ff00;">index.html</a></div>
+    </div>
+    
+    <script>
+        document.getElementById('domain').textContent = window.location.hostname;
+        document.getElementById('time').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
