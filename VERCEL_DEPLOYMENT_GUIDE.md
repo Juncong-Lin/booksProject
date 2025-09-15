@@ -22,18 +22,20 @@ This guide will help you deploy your bookstore project to Vercel, which offers a
 #### 1. Sign Up for Vercel
 
 1. Go to [vercel.com](https://vercel.com)
-2. Click "Start Deploying" 
+2. Click "Start Deploying"
 3. Sign up with GitHub (recommended for seamless integration)
 4. Authorize Vercel to access your repositories
 
 #### 2. Deploy Your Project
 
 1. **Import Project**:
+
    - Click "New Project" in your Vercel dashboard
    - Select "Import Git Repository"
    - Choose your `booksProject` repository
 
 2. **Configure Project**:
+
    - **Project Name**: `juncong-bookstore` (or your preferred name)
    - **Framework Preset**: Other (since this is a vanilla HTML/JS project)
    - **Root Directory**: Leave as `.` (root)
@@ -42,6 +44,7 @@ This guide will help you deploy your bookstore project to Vercel, which offers a
    - **Install Command**: Leave empty
 
 3. **Environment Variables** (if needed):
+
    - For frontend-only deployment, no environment variables are typically needed
    - The backend API calls will be proxied to your existing Render backend
 
@@ -52,11 +55,13 @@ This guide will help you deploy your bookstore project to Vercel, which offers a
 #### 3. Configure Custom Domain
 
 1. **Add Domain**:
+
    - Go to your project settings in Vercel
    - Click "Domains" tab
    - Add your domain: `www.juncongmall.com`
 
 2. **Update DNS Settings**:
+
    - Go to your domain registrar (where you bought the domain)
    - Update the DNS records:
      ```
@@ -114,6 +119,7 @@ After deployment:
 ### Rollback Plan
 
 If you need to rollback:
+
 1. The original Netlify configuration is preserved in `netlify.toml`
 2. Your Render backend continues to work independently
 3. You can easily switch between deployments

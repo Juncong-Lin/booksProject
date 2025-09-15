@@ -1,0 +1,13 @@
+{
+  "name": "juncong-bookstore-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Juncong Bookstore",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "echo 'Static site deployed'"
+  },
+  "keywords": ["bookstore", "ecommerce", "frontend"],
+  "author": "Juncong Lin",
+  "license": "MIT"
+}
