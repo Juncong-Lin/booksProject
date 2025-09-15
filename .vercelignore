@@ -1,0 +1,52 @@
+# Vercel ignore file - excludes files from deployment
+
+# Backend files (since backend is deployed on Render)
+backend/
+node_modules/
+*.log
+
+# Development files
+.git/
+.gitignore
+README.md
+*.md
+!VERCEL_DEPLOYMENT_GUIDE.md
+
+# Build artifacts
+build/
+dist/
+.cache/
+
+# Environment files
+.env*
+!.env.example
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Netlify specific files (since we're migrating to Vercel)
+netlify.toml
+_redirects
+.netlify/
+
+# Scripts that aren't needed in production
+scripts/testing/
+page-analysis/
+
+# Large files that aren't needed
+*.zip
+*.tar.gz
+*.rar
+
+# Temporary files
+tmp/
+temp/
+*.tmp

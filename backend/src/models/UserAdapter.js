@@ -122,9 +122,11 @@ userSchema.methods.getSignedJwtToken = function () {
   // Ensure we have a valid expiresIn value
   const jwtExpire = process.env.JWT_EXPIRE;
   let expiresIn = "15m"; // Default fallback
-  
-  console.log(`🔧 JWT Token Generation - Raw JWT_EXPIRE: "${jwtExpire}" (type: ${typeof jwtExpire})`);
-  
+
+  console.log(
+    `🔧 JWT Token Generation - Raw JWT_EXPIRE: "${jwtExpire}" (type: ${typeof jwtExpire})`
+  );
+
   // Validate the JWT_EXPIRE environment variable
   if (
     jwtExpire &&
@@ -137,8 +139,10 @@ userSchema.methods.getSignedJwtToken = function () {
       expiresIn = jwtExpire;
     }
   }
-  
-  console.log(`🔧 JWT Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`);
+
+  console.log(
+    `🔧 JWT Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`
+  );
 
   try {
     const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
@@ -149,7 +153,9 @@ userSchema.methods.getSignedJwtToken = function () {
   } catch (error) {
     console.error(`❌ JWT Token generation error:`, error.message);
     // Try with a simple numeric value as fallback
-    console.log(`🔄 Retrying with numeric expiresIn (900 seconds = 15 minutes)`);
+    console.log(
+      `🔄 Retrying with numeric expiresIn (900 seconds = 15 minutes)`
+    );
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
       expiresIn: 900, // 15 minutes in seconds
     });
@@ -161,8 +167,10 @@ userSchema.methods.getSignedRefreshToken = function () {
   // Ensure we have a valid expiresIn value
   const jwtRefreshExpire = process.env.JWT_REFRESH_EXPIRE;
   let expiresIn = "7d"; // Default fallback
-  
-  console.log(`🔧 Refresh Token Generation - Raw JWT_REFRESH_EXPIRE: "${jwtRefreshExpire}" (type: ${typeof jwtRefreshExpire})`);
+
+  console.log(
+    `🔧 Refresh Token Generation - Raw JWT_REFRESH_EXPIRE: "${jwtRefreshExpire}" (type: ${typeof jwtRefreshExpire})`
+  );
 
   // Validate the JWT_REFRESH_EXPIRE environment variable
   if (
@@ -180,8 +188,10 @@ userSchema.methods.getSignedRefreshToken = function () {
       expiresIn = jwtRefreshExpire;
     }
   }
-  
-  console.log(`🔧 Refresh Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`);
+
+  console.log(
+    `🔧 Refresh Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`
+  );
 
   try {
     const token = jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
