@@ -271,11 +271,31 @@ class UserModel {
     return await mockStorage.findByEmailWithPassword(email);
   }
 
-  static async findById(id) {
+  static async findById(id, selectFields) {
     if (isConnected()) {
-      return await MongoUser.findById(id);
+      let query = MongoUser.findById(id);
+      if (selectFields) {
+        query = query.select(selectFields);
+      }
+      return await query;
     }
     return await mockStorage.findById(id);
+  }
+
+  // New method to support query building with select
+  static findByIdQuery(id) {
+    if (isConnected()) {
+      return MongoUser.findById(id);
+    }
+    // For mock storage, return a mock query object that supports select
+    return {
+      select: (fields) => {
+        return {
+          exec: () => mockStorage.findByIdWithPassword(id)
+        };
+      },
+      exec: () => mockStorage.findById(id)
+    };
   }
 
   static async findByIdWithPassword(id) {

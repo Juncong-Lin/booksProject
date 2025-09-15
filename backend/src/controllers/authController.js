@@ -619,11 +619,18 @@ const updateProfile = asyncHandler(async (req, res) => {
 const changePassword = asyncHandler(async (req, res) => {
   const { currentPassword, newPassword } = req.body;
 
-  // Get user with password
-  const user = await User.findById(req.user._id).select("+password");
+  // Get user with password using the proper method
+  const user = await User.findByIdWithPassword(req.user._id);
 
-  // Check current password
-  const isCurrentPasswordMatch = await user.comparePassword(currentPassword);
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "User not found",
+    });
+  }
+
+  // Check current password - use the correct method name
+  const isCurrentPasswordMatch = await user.matchPassword(currentPassword);
   if (!isCurrentPasswordMatch) {
     return res.status(400).json({
       success: false,

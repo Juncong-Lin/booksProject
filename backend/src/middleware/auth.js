@@ -174,10 +174,8 @@ const optionalAuth = async (req, res, next) => {
         // Verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        // Get user from database (excluding password)
-        const user = await User.findById(decoded.id).select(
-          "-password -refreshTokens"
-        );
+        // Get user from database (excluding password) - use direct findById since we want to exclude password
+        const user = await User.findById(decoded.id);
 
         if (user) {
           req.user = user;
