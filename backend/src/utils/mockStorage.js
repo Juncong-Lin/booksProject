@@ -57,25 +57,30 @@ class MockUser {
   }
 
   getSignedJwtToken() {
-    // Set a reliable default and validate the environment variable
-    let expiresIn = "15m"; // Default fallback
+    // Always use a safe numeric fallback to avoid any JWT library issues
+    let expiresIn = 900; // 15 minutes in seconds (safe fallback)
     const jwtExpire = process.env.JWT_EXPIRE;
 
     console.log(
       `🔧 Mock JWT Token Generation - Raw JWT_EXPIRE: "${jwtExpire}" (type: ${typeof jwtExpire})`
     );
 
-    // Validate and set expiresIn
+    // Only use environment value if it's definitely valid
     if (jwtExpire) {
-      // If it's a number (as string or actual number), convert to number
-      if (/^\d+$/.test(String(jwtExpire))) {
-        expiresIn = parseInt(jwtExpire, 10);
+      const strValue = String(jwtExpire).trim();
+      
+      // Check for pure numeric values (seconds)
+      if (/^\d+$/.test(strValue)) {
+        const numValue = parseInt(strValue, 10);
+        if (numValue > 0 && numValue < 31536000) { // Between 1 second and 1 year
+          expiresIn = numValue;
+        }
       }
-      // If it's a time string format (like "15m", "1h", "7d")
-      else if (/^\d+[smhd]$/.test(String(jwtExpire))) {
-        expiresIn = String(jwtExpire);
+      // Check for time string format (like "15m", "1h", "7d")
+      else if (/^\d+[smhd]$/.test(strValue)) {
+        expiresIn = strValue;
       }
-      // Keep default if format is invalid
+      // Invalid format - keep safe numeric default
     }
 
     console.log(
@@ -90,36 +95,39 @@ class MockUser {
       return token;
     } catch (error) {
       console.error(`❌ Mock JWT Token generation error:`, error.message);
-      // Use a reliable fallback - numeric seconds
-      console.log(
-        `🔄 Retrying with fallback expiresIn (900 seconds = 15 minutes)`
-      );
+      // Always use numeric seconds as ultimate fallback
+      console.log(`🔄 Using ultimate fallback: 900 seconds (15 minutes)`);
       return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-        expiresIn: 900, // 15 minutes in seconds
+        expiresIn: 900,
       });
     }
   }
 
   getSignedRefreshToken() {
-    // Set a reliable default and validate the environment variable
-    let expiresIn = "7d"; // Default fallback
+    // Always use a safe numeric fallback to avoid any JWT library issues
+    let expiresIn = 604800; // 7 days in seconds (safe fallback)
     const jwtRefreshExpire = process.env.JWT_REFRESH_EXPIRE;
 
     console.log(
       `🔧 Mock Refresh Token Generation - Raw JWT_REFRESH_EXPIRE: "${jwtRefreshExpire}" (type: ${typeof jwtRefreshExpire})`
     );
 
-    // Validate and set expiresIn
+    // Only use environment value if it's definitely valid
     if (jwtRefreshExpire) {
-      // If it's a number (as string or actual number), convert to number
-      if (/^\d+$/.test(String(jwtRefreshExpire))) {
-        expiresIn = parseInt(jwtRefreshExpire, 10);
+      const strValue = String(jwtRefreshExpire).trim();
+      
+      // Check for pure numeric values (seconds)
+      if (/^\d+$/.test(strValue)) {
+        const numValue = parseInt(strValue, 10);
+        if (numValue > 0 && numValue < 31536000) { // Between 1 second and 1 year
+          expiresIn = numValue;
+        }
       }
-      // If it's a time string format (like "15m", "1h", "7d")
-      else if (/^\d+[smhd]$/.test(String(jwtRefreshExpire))) {
-        expiresIn = String(jwtRefreshExpire);
+      // Check for time string format (like "15m", "1h", "7d")
+      else if (/^\d+[smhd]$/.test(strValue)) {
+        expiresIn = strValue;
       }
-      // Keep default if format is invalid
+      // Invalid format - keep safe numeric default
     }
 
     console.log(
@@ -134,12 +142,10 @@ class MockUser {
       return token;
     } catch (error) {
       console.error(`❌ Mock Refresh Token generation error:`, error.message);
-      // Use a reliable fallback - numeric seconds
-      console.log(
-        `🔄 Retrying with fallback expiresIn (604800 seconds = 7 days)`
-      );
+      // Always use numeric seconds as ultimate fallback
+      console.log(`🔄 Using ultimate fallback: 604800 seconds (7 days)`);
       return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
-        expiresIn: 604800, // 7 days in seconds
+        expiresIn: 604800,
       });
     }
   }
