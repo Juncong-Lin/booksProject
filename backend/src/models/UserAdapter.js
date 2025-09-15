@@ -120,14 +120,16 @@ userSchema.pre("save", async function (next) {
 // Instance method to get signed JWT token
 userSchema.methods.getSignedJwtToken = function () {
   console.log(`🔧 BULLETPROOF JWT Token Generation Starting...`);
-  
+
   // Bulletproof fallback strategy - always works
   const strategies = [
-    () => jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: 900 }),
-    () => jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: "15m" }),
+    () =>
+      jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: 900 }),
+    () =>
+      jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: "15m" }),
     () => jwt.sign({ id: this._id }, process.env.JWT_SECRET),
     () => jwt.sign({ id: this._id }, "fallback-secret", { expiresIn: 900 }),
-    () => jwt.sign({ id: this._id }, "fallback-secret")
+    () => jwt.sign({ id: this._id }, "fallback-secret"),
   ];
 
   for (let i = 0; i < strategies.length; i++) {
@@ -140,7 +142,7 @@ userSchema.methods.getSignedJwtToken = function () {
       continue;
     }
   }
-  
+
   // This should never happen, but ultimate fallback
   console.error(`❌ ALL strategies failed - using emergency token`);
   return "emergency.token.fallback";
@@ -149,27 +151,38 @@ userSchema.methods.getSignedJwtToken = function () {
 // Instance method to get signed refresh token
 userSchema.methods.getSignedRefreshToken = function () {
   console.log(`🔧 BULLETPROOF Refresh Token Generation Starting...`);
-  
+
   // Bulletproof fallback strategy - always works
   const strategies = [
-    () => jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, { expiresIn: 604800 }),
-    () => jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, { expiresIn: "7d" }),
+    () =>
+      jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
+        expiresIn: 604800,
+      }),
+    () =>
+      jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
+        expiresIn: "7d",
+      }),
     () => jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET),
-    () => jwt.sign({ id: this._id }, "fallback-refresh-secret", { expiresIn: 604800 }),
-    () => jwt.sign({ id: this._id }, "fallback-refresh-secret")
+    () =>
+      jwt.sign({ id: this._id }, "fallback-refresh-secret", {
+        expiresIn: 604800,
+      }),
+    () => jwt.sign({ id: this._id }, "fallback-refresh-secret"),
   ];
 
   for (let i = 0; i < strategies.length; i++) {
     try {
       const token = strategies[i]();
-      console.log(`✅ BULLETPROOF Refresh Token generated with strategy ${i + 1}`);
+      console.log(
+        `✅ BULLETPROOF Refresh Token generated with strategy ${i + 1}`
+      );
       return token;
     } catch (error) {
       console.warn(`🔄 Refresh Strategy ${i + 1} failed: ${error.message}`);
       continue;
     }
   }
-  
+
   // This should never happen, but ultimate fallback
   console.error(`❌ ALL refresh strategies failed - using emergency token`);
   return "emergency.refresh.token.fallback";

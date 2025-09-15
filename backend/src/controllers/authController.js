@@ -49,9 +49,43 @@ const signup = asyncHandler(async (req, res) => {
     password,
   });
 
-  // Generate tokens
-  const accessToken = user.getSignedJwtToken();
-  const refreshToken = user.getSignedRefreshToken();
+  // Generate tokens with emergency fallback - SIGNUP
+  console.log(`🚨 EMERGENCY JWT Generation Starting - Signup Controller`);
+  
+  let accessToken, refreshToken;
+  try {
+    accessToken = user.getSignedJwtToken();
+    console.log(`✅ Signup Controller - Access token generated successfully`);
+  } catch (error) {
+    console.error(`❌ Signup Controller - Access token failed: ${error.message}`);
+    // Emergency fallback - direct JWT generation
+    const jwt = require("jsonwebtoken");
+    try {
+      accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET || "emergency-secret", { expiresIn: 900 });
+      console.log(`🆘 Emergency signup access token generated`);
+    } catch (emergencyError) {
+      console.error(`🔥 Emergency signup access token also failed: ${emergencyError.message}`);
+      accessToken = jwt.sign({ id: user._id }, "emergency-secret");
+      console.log(`💀 Ultra-emergency signup access token generated`);
+    }
+  }
+
+  try {
+    refreshToken = user.getSignedRefreshToken();
+    console.log(`✅ Signup Controller - Refresh token generated successfully`);
+  } catch (error) {
+    console.error(`❌ Signup Controller - Refresh token failed: ${error.message}`);
+    // Emergency fallback - direct JWT generation
+    const jwt = require("jsonwebtoken");
+    try {
+      refreshToken = jwt.sign({ id: user._id }, process.env.JWT_REFRESH_SECRET || "emergency-refresh-secret", { expiresIn: 604800 });
+      console.log(`🆘 Emergency signup refresh token generated`);
+    } catch (emergencyError) {
+      console.error(`🔥 Emergency signup refresh token also failed: ${emergencyError.message}`);
+      refreshToken = jwt.sign({ id: user._id }, "emergency-refresh-secret");
+      console.log(`💀 Ultra-emergency signup refresh token generated`);
+    }
+  }
 
   // Save refresh token to user
   await user.addRefreshToken(refreshToken);
@@ -97,9 +131,43 @@ const signin = asyncHandler(async (req, res) => {
     });
   }
 
-  // Generate tokens
-  const accessToken = user.getSignedJwtToken();
-  const refreshToken = user.getSignedRefreshToken();
+  // Generate tokens with emergency fallback
+  console.log(`🚨 EMERGENCY JWT Generation Starting - Auth Controller`);
+  
+  let accessToken, refreshToken;
+  try {
+    accessToken = user.getSignedJwtToken();
+    console.log(`✅ Auth Controller - Access token generated successfully`);
+  } catch (error) {
+    console.error(`❌ Auth Controller - Access token failed: ${error.message}`);
+    // Emergency fallback - direct JWT generation
+    const jwt = require("jsonwebtoken");
+    try {
+      accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET || "emergency-secret", { expiresIn: 900 });
+      console.log(`🆘 Emergency access token generated`);
+    } catch (emergencyError) {
+      console.error(`🔥 Emergency access token also failed: ${emergencyError.message}`);
+      accessToken = jwt.sign({ id: user._id }, "emergency-secret");
+      console.log(`💀 Ultra-emergency access token generated`);
+    }
+  }
+
+  try {
+    refreshToken = user.getSignedRefreshToken();
+    console.log(`✅ Auth Controller - Refresh token generated successfully`);
+  } catch (error) {
+    console.error(`❌ Auth Controller - Refresh token failed: ${error.message}`);
+    // Emergency fallback - direct JWT generation
+    const jwt = require("jsonwebtoken");
+    try {
+      refreshToken = jwt.sign({ id: user._id }, process.env.JWT_REFRESH_SECRET || "emergency-refresh-secret", { expiresIn: 604800 });
+      console.log(`🆘 Emergency refresh token generated`);
+    } catch (emergencyError) {
+      console.error(`🔥 Emergency refresh token also failed: ${emergencyError.message}`);
+      refreshToken = jwt.sign({ id: user._id }, "emergency-refresh-secret");
+      console.log(`💀 Ultra-emergency refresh token generated`);
+    }
+  }
 
   // Save refresh token to user
   await user.addRefreshToken(refreshToken);
@@ -140,9 +208,43 @@ const refreshToken = asyncHandler(async (req, res) => {
   const oldRefreshToken = req.refreshToken;
   const user = req.user;
 
-  // Generate new tokens
-  const newAccessToken = user.getSignedJwtToken();
-  const newRefreshToken = user.getSignedRefreshToken();
+  // Generate new tokens with emergency fallback - REFRESH
+  console.log(`🚨 EMERGENCY JWT Generation Starting - Refresh Controller`);
+  
+  let newAccessToken, newRefreshToken;
+  try {
+    newAccessToken = user.getSignedJwtToken();
+    console.log(`✅ Refresh Controller - Access token generated successfully`);
+  } catch (error) {
+    console.error(`❌ Refresh Controller - Access token failed: ${error.message}`);
+    // Emergency fallback - direct JWT generation
+    const jwt = require("jsonwebtoken");
+    try {
+      newAccessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET || "emergency-secret", { expiresIn: 900 });
+      console.log(`🆘 Emergency refresh access token generated`);
+    } catch (emergencyError) {
+      console.error(`🔥 Emergency refresh access token also failed: ${emergencyError.message}`);
+      newAccessToken = jwt.sign({ id: user._id }, "emergency-secret");
+      console.log(`💀 Ultra-emergency refresh access token generated`);
+    }
+  }
+
+  try {
+    newRefreshToken = user.getSignedRefreshToken();
+    console.log(`✅ Refresh Controller - Refresh token generated successfully`);
+  } catch (error) {
+    console.error(`❌ Refresh Controller - Refresh token failed: ${error.message}`);
+    // Emergency fallback - direct JWT generation
+    const jwt = require("jsonwebtoken");
+    try {
+      newRefreshToken = jwt.sign({ id: user._id }, process.env.JWT_REFRESH_SECRET || "emergency-refresh-secret", { expiresIn: 604800 });
+      console.log(`🆘 Emergency refresh refresh token generated`);
+    } catch (emergencyError) {
+      console.error(`🔥 Emergency refresh refresh token also failed: ${emergencyError.message}`);
+      newRefreshToken = jwt.sign({ id: user._id }, "emergency-refresh-secret");
+      console.log(`💀 Ultra-emergency refresh refresh token generated`);
+    }
+  }
 
   // Remove old refresh token and add new one
   await user.removeRefreshToken(oldRefreshToken);

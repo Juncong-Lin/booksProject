@@ -58,27 +58,33 @@ class MockUser {
 
   getSignedJwtToken() {
     console.log(`🔧 BULLETPROOF Mock JWT Token Generation Starting...`);
-    
+
     // Bulletproof fallback strategy - always works
     const strategies = [
-      () => jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: 900 }),
-      () => jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: "15m" }),
+      () =>
+        jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: 900 }),
+      () =>
+        jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+          expiresIn: "15m",
+        }),
       () => jwt.sign({ id: this._id }, process.env.JWT_SECRET),
       () => jwt.sign({ id: this._id }, "fallback-secret", { expiresIn: 900 }),
-      () => jwt.sign({ id: this._id }, "fallback-secret")
+      () => jwt.sign({ id: this._id }, "fallback-secret"),
     ];
 
     for (let i = 0; i < strategies.length; i++) {
       try {
         const token = strategies[i]();
-        console.log(`✅ BULLETPROOF Mock JWT Token generated with strategy ${i + 1}`);
+        console.log(
+          `✅ BULLETPROOF Mock JWT Token generated with strategy ${i + 1}`
+        );
         return token;
       } catch (error) {
         console.warn(`🔄 Mock Strategy ${i + 1} failed: ${error.message}`);
         continue;
       }
     }
-    
+
     // This should never happen, but ultimate fallback
     console.error(`❌ ALL mock strategies failed - using emergency token`);
     return "emergency.mock.token.fallback";
@@ -86,29 +92,44 @@ class MockUser {
 
   getSignedRefreshToken() {
     console.log(`🔧 BULLETPROOF Mock Refresh Token Generation Starting...`);
-    
+
     // Bulletproof fallback strategy - always works
     const strategies = [
-      () => jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, { expiresIn: 604800 }),
-      () => jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, { expiresIn: "7d" }),
+      () =>
+        jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
+          expiresIn: 604800,
+        }),
+      () =>
+        jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
+          expiresIn: "7d",
+        }),
       () => jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET),
-      () => jwt.sign({ id: this._id }, "fallback-refresh-secret", { expiresIn: 604800 }),
-      () => jwt.sign({ id: this._id }, "fallback-refresh-secret")
+      () =>
+        jwt.sign({ id: this._id }, "fallback-refresh-secret", {
+          expiresIn: 604800,
+        }),
+      () => jwt.sign({ id: this._id }, "fallback-refresh-secret"),
     ];
 
     for (let i = 0; i < strategies.length; i++) {
       try {
         const token = strategies[i]();
-        console.log(`✅ BULLETPROOF Mock Refresh Token generated with strategy ${i + 1}`);
+        console.log(
+          `✅ BULLETPROOF Mock Refresh Token generated with strategy ${i + 1}`
+        );
         return token;
       } catch (error) {
-        console.warn(`🔄 Mock Refresh Strategy ${i + 1} failed: ${error.message}`);
+        console.warn(
+          `🔄 Mock Refresh Strategy ${i + 1} failed: ${error.message}`
+        );
         continue;
       }
     }
-    
+
     // This should never happen, but ultimate fallback
-    console.error(`❌ ALL mock refresh strategies failed - using emergency token`);
+    console.error(
+      `❌ ALL mock refresh strategies failed - using emergency token`
+    );
     return "emergency.mock.refresh.token.fallback";
   }
 
