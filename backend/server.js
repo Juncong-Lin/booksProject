@@ -44,15 +44,15 @@ const validateJWTConfig = () => {
     );
   }
 
-  // Validate JWT_EXPIRE format
-  if (jwtExpire && !/^(\d+[smhd]|\d+)$/.test(jwtExpire)) {
+  // Validate JWT_EXPIRE format - improved validation
+  if (jwtExpire && !/^(\d+[smhd]|\d+)$/.test(String(jwtExpire))) {
     console.warn(
       `⚠️  Invalid JWT_EXPIRE format: "${jwtExpire}". Should be like "15m", "1h", "7d", or number of seconds. Using default "15m".`
     );
   }
 
-  // Validate JWT_REFRESH_EXPIRE format
-  if (jwtRefreshExpire && !/^(\d+[smhd]|\d+)$/.test(jwtRefreshExpire)) {
+  // Validate JWT_REFRESH_EXPIRE format - improved validation
+  if (jwtRefreshExpire && !/^(\d+[smhd]|\d+)$/.test(String(jwtRefreshExpire))) {
     console.warn(
       `⚠️  Invalid JWT_REFRESH_EXPIRE format: "${jwtRefreshExpire}". Should be like "15m", "1h", "7d", or number of seconds. Using default "7d".`
     );
