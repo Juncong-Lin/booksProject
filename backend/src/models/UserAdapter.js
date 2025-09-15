@@ -121,17 +121,15 @@ userSchema.pre("save", async function (next) {
 // Instance method to get signed JWT token
 userSchema.methods.getSignedJwtToken = function () {
   const expiresIn = processSafeExpiresIn(process.env.JWT_EXPIRE);
-  
+
   console.log(
     `🔧 Ultra-Safe JWT Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`
   );
 
   try {
-    const token = generateSafeJWT(
-      { id: this._id }, 
-      process.env.JWT_SECRET, 
-      { expiresIn }
-    );
+    const token = generateSafeJWT({ id: this._id }, process.env.JWT_SECRET, {
+      expiresIn,
+    });
     console.log(`✅ Ultra-Safe JWT Token generated successfully`);
     return token;
   } catch (error) {
@@ -143,22 +141,26 @@ userSchema.methods.getSignedJwtToken = function () {
 
 // Instance method to get signed refresh token
 userSchema.methods.getSignedRefreshToken = function () {
-  const expiresIn = processSafeExpiresIn(process.env.JWT_REFRESH_EXPIRE) || 604800; // 7 days fallback
-  
+  const expiresIn =
+    processSafeExpiresIn(process.env.JWT_REFRESH_EXPIRE) || 604800; // 7 days fallback
+
   console.log(
     `🔧 Ultra-Safe Refresh Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`
   );
 
   try {
     const token = generateSafeJWT(
-      { id: this._id }, 
-      process.env.JWT_REFRESH_SECRET, 
+      { id: this._id },
+      process.env.JWT_REFRESH_SECRET,
       { expiresIn }
     );
     console.log(`✅ Ultra-Safe Refresh Token generated successfully`);
     return token;
   } catch (error) {
-    console.error(`❌ Ultra-Safe Refresh Token generation error:`, error.message);
+    console.error(
+      `❌ Ultra-Safe Refresh Token generation error:`,
+      error.message
+    );
     // This should never happen with our safe function, but just in case
     return generateSafeJWT({ id: this._id }, process.env.JWT_REFRESH_SECRET);
   }

@@ -64,7 +64,8 @@ function processSafeExpiresIn(envValue) {
     // Test numeric values
     if (/^\d+$/.test(strValue)) {
       const numValue = parseInt(strValue, 10);
-      if (numValue > 0 && numValue <= 86400 * 30) { // Max 30 days
+      if (numValue > 0 && numValue <= 86400 * 30) {
+        // Max 30 days
         return numValue;
       }
     }
