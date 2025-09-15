@@ -33,26 +33,34 @@ const validateJWTConfig = () => {
   const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET;
   const jwtExpire = process.env.JWT_EXPIRE;
   const jwtRefreshExpire = process.env.JWT_REFRESH_EXPIRE;
-  
+
   if (!jwtSecret || jwtSecret.length < 32) {
-    console.warn('⚠️  JWT_SECRET is not set or too short. Using default.');
+    console.warn("⚠️  JWT_SECRET is not set or too short. Using default.");
   }
-  
+
   if (!jwtRefreshSecret || jwtRefreshSecret.length < 32) {
-    console.warn('⚠️  JWT_REFRESH_SECRET is not set or too short. Using default.');
+    console.warn(
+      "⚠️  JWT_REFRESH_SECRET is not set or too short. Using default."
+    );
   }
-  
+
   // Validate JWT_EXPIRE format
   if (jwtExpire && !/^(\d+[smhd]|\d+)$/.test(jwtExpire)) {
-    console.warn(`⚠️  Invalid JWT_EXPIRE format: "${jwtExpire}". Should be like "15m", "1h", "7d", or number of seconds. Using default "15m".`);
+    console.warn(
+      `⚠️  Invalid JWT_EXPIRE format: "${jwtExpire}". Should be like "15m", "1h", "7d", or number of seconds. Using default "15m".`
+    );
   }
-  
+
   // Validate JWT_REFRESH_EXPIRE format
   if (jwtRefreshExpire && !/^(\d+[smhd]|\d+)$/.test(jwtRefreshExpire)) {
-    console.warn(`⚠️  Invalid JWT_REFRESH_EXPIRE format: "${jwtRefreshExpire}". Should be like "15m", "1h", "7d", or number of seconds. Using default "7d".`);
+    console.warn(
+      `⚠️  Invalid JWT_REFRESH_EXPIRE format: "${jwtRefreshExpire}". Should be like "15m", "1h", "7d", or number of seconds. Using default "7d".`
+    );
   }
-  
-  console.log(`✅ JWT Config - Expire: ${jwtExpire || '15m'}, Refresh Expire: ${jwtRefreshExpire || '7d'}`);
+
+  console.log(
+    `✅ JWT Config - Expire: ${jwtExpire || "15m"}, Refresh Expire: ${jwtRefreshExpire || "7d"}`
+  );
 };
 
 validateJWTConfig();

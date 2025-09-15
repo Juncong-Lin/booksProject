@@ -57,15 +57,83 @@ class MockUser {
   }
 
   getSignedJwtToken() {
-    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRE || "15m",
-    });
+    // Ensure we have a valid expiresIn value
+    const jwtExpire = process.env.JWT_EXPIRE;
+    let expiresIn = "15m"; // Default fallback
+    
+    console.log(`🔧 Mock JWT Token Generation - Raw JWT_EXPIRE: "${jwtExpire}" (type: ${typeof jwtExpire})`);
+    
+    // Validate the JWT_EXPIRE environment variable
+    if (
+      jwtExpire &&
+      (typeof jwtExpire === "string" || typeof jwtExpire === "number")
+    ) {
+      // Common valid formats: "15m", "1h", "7d", 900 (seconds)
+      if (typeof jwtExpire === "string" && /^(\d+[smhd]|\d+)$/.test(jwtExpire)) {
+        expiresIn = jwtExpire;
+      } else if (typeof jwtExpire === "number" && jwtExpire > 0) {
+        expiresIn = jwtExpire;
+      }
+    }
+    
+    console.log(`🔧 Mock JWT Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`);
+
+    try {
+      const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+        expiresIn: expiresIn,
+      });
+      console.log(`✅ Mock JWT Token generated successfully`);
+      return token;
+    } catch (error) {
+      console.error(`❌ Mock JWT Token generation error:`, error.message);
+      // Try with a simple numeric value as fallback
+      console.log(`🔄 Retrying with numeric expiresIn (900 seconds = 15 minutes)`);
+      return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+        expiresIn: 900, // 15 minutes in seconds
+      });
+    }
   }
 
   getSignedRefreshToken() {
-    return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
-      expiresIn: process.env.JWT_REFRESH_EXPIRE || "7d",
-    });
+    // Ensure we have a valid expiresIn value
+    const jwtRefreshExpire = process.env.JWT_REFRESH_EXPIRE;
+    let expiresIn = "7d"; // Default fallback
+    
+    console.log(`🔧 Mock Refresh Token Generation - Raw JWT_REFRESH_EXPIRE: "${jwtRefreshExpire}" (type: ${typeof jwtRefreshExpire})`);
+
+    // Validate the JWT_REFRESH_EXPIRE environment variable
+    if (
+      jwtRefreshExpire &&
+      (typeof jwtRefreshExpire === "string" ||
+        typeof jwtRefreshExpire === "number")
+    ) {
+      // Common valid formats: "15m", "1h", "7d", 604800 (seconds)
+      if (
+        typeof jwtRefreshExpire === "string" &&
+        /^(\d+[smhd]|\d+)$/.test(jwtRefreshExpire)
+      ) {
+        expiresIn = jwtRefreshExpire;
+      } else if (typeof jwtRefreshExpire === "number" && jwtRefreshExpire > 0) {
+        expiresIn = jwtRefreshExpire;
+      }
+    }
+    
+    console.log(`🔧 Mock Refresh Token Generation - Using expiresIn: "${expiresIn}" (type: ${typeof expiresIn})`);
+
+    try {
+      const token = jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
+        expiresIn: expiresIn,
+      });
+      console.log(`✅ Mock Refresh Token generated successfully`);
+      return token;
+    } catch (error) {
+      console.error(`❌ Mock Refresh Token generation error:`, error.message);
+      // Try with a simple numeric value as fallback
+      console.log(`🔄 Retrying with numeric expiresIn (604800 seconds = 7 days)`);
+      return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
+        expiresIn: 604800, // 7 days in seconds
+      });
+    }
   }
 
   async addRefreshToken(refreshToken) {
