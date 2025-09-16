@@ -1,46 +1,20 @@
 /* Legal Pages Styling - Terms of Service & Privacy Policy */
 
-/* Fix double scrollbar while keeping one functional scrollbar */
 body.legal-page {
-  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%) !important;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif !important;
-  color: #ffffff !important;
-
-  /* Layout reset */
-  display: flex !important;
-  flex-direction: column !important;
-  position: static !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  height: 100vh !important;
-  min-height: 100vh !important;
-  max-height: 100vh !important;
-
-  /* Keep ONE functional scrollbar */
-  overflow-x: hidden !important;
-  overflow-y: scroll !important;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  font-family: Roboto, Arial, sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
-/* Prevent html from interfering but allow body scroll to show */
-html {
-  overflow: hidden !important;
-  height: 100% !important;
-  width: 100% !important;
-}
-
-/* Reset any conflicting styles */
-body.legal-page * {
-  box-sizing: border-box;
-}
-
-/* Ensure no child elements create competing scroll containers */
-body.legal-page div,
-body.legal-page section,
-body.legal-page main {
-  overflow: visible !important;
-  height: auto !important;
-  max-height: none !important;
+/* Main content area for legal pages */
+.legal-page .main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Animated background elements */
