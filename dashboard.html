@@ -522,11 +522,6 @@
     <!-- Initialize Feather Icons -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Delay feather icons initialization to reduce initial CPU load
-        setTimeout(() => {
-          feather.replace();
-        }, 500);
-
         // Initialize search system
         if (window.searchSystem) {
           window.searchSystem.init();

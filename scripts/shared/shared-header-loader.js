@@ -15,6 +15,14 @@ async function loadSharedHeader() {
       // Replace placeholder with actual header content
       placeholder.innerHTML = headerHTML;
 
+      // Initialize Feather icons after header is loaded with a small delay
+      // to ensure all DOM elements are properly rendered
+      setTimeout(() => {
+        if (typeof feather !== "undefined") {
+          feather.replace();
+        }
+      }, 100);
+
       // Initialize cart quantity after header is loaded
       initializeCartQuantityAfterHeaderLoad();
 

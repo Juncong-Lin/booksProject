@@ -221,10 +221,11 @@
   align-items: center;
   justify-content: flex-start;
   gap: 8px; /* Reduced gap to match right section spacing */
-  padding: 0; /* Remove padding since buttons have their own */
+  padding: 4px 8px; /* Match right section padding for consistent alignment */
   flex-shrink: 1; /* Allow some shrinking but maintain usability */
   min-width: fit-content; /* Ensure minimum width */
   overflow: visible; /* Prevent cutoff */
+  height: 52px; /* Explicit height to match right section */
 }
 
 /* Force both left buttons to always be visible */
@@ -841,6 +842,7 @@
   min-width: fit-content; /* Ensure minimum width to contain icons */
   overflow: visible; /* Prevent icon cutoff */
   white-space: nowrap; /* Prevent text wrapping */
+  height: 52px; /* Explicit height to match left section */
 }
 
 /* Hide the orders link since it's empty and just taking space */
@@ -900,6 +902,8 @@
   color: #cbd5e0;
   background: transparent;
   border: 1px solid #4a5568;
+  height: 44px; /* Explicit height for consistent alignment */
+  box-sizing: border-box; /* Include border in height calculation */
 }
 
 .dashboard-link:hover {
@@ -950,6 +954,8 @@
   color: white;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: 1px solid transparent;
+  height: 44px; /* Explicit height for consistent alignment */
+  box-sizing: border-box; /* Include border in height calculation */
 }
 
 .data-management-link:hover {
@@ -1040,6 +1046,8 @@
   background: transparent;
   border: 1px solid #4a5568;
   position: relative;
+  height: 44px; /* Explicit height for consistent alignment */
+  box-sizing: border-box; /* Include border in height calculation */
 }
 
 .cart-link:hover {
@@ -1123,6 +1131,8 @@
   gap: 0.4rem; /* Reduced gap */
   white-space: nowrap;
   flex-shrink: 0; /* Prevent shrinking */
+  height: 44px; /* Explicit height for consistent alignment */
+  box-sizing: border-box; /* Include border in height calculation */
 }
 
 .header-auth-btn.signin {

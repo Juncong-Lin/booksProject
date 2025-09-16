@@ -27,10 +27,7 @@ class SubHeaderNavigation {
         // CRITICAL FIX: If onclick handler exists, let it handle everything
         // The onclick handlers in HTML already handle all navigation and analytics
         if (link.hasAttribute("onclick")) {
-          // Prevent the event listener from interfering with onclick handlers
-          event.preventDefault();
-          event.stopPropagation();
-
+          // DO NOT prevent default or stop propagation - let the onclick handler work!
           // Just handle submenu display if needed
           const submenuId = link.getAttribute("data-submenu");
           if (submenuId) {
@@ -252,8 +249,7 @@ class SubHeaderNavigation {
       allProductsLink.addEventListener("click", (event) => {
         // If onclick handler exists, let it handle everything
         if (allProductsLink.hasAttribute("onclick")) {
-          event.preventDefault();
-          event.stopPropagation();
+          // DO NOT prevent default or stop propagation - let the onclick handler work!
           this.hideAllSubmenus();
           return; // Let onclick handler do the navigation
         }
