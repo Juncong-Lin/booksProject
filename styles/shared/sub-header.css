@@ -1,5 +1,5 @@
 .sub-header {
-  background-color: #1A252F; /* Match Qili's secondary blue */
+  background-color: #1a252f; /* Match Qili's secondary blue */
   color: white;
   padding: 0;
   position: fixed;
@@ -53,9 +53,11 @@
   transition: background-color 0.15s ease;
   white-space: pre-line; /* Preserve line breaks and allow wrapping */
   cursor: pointer;
-  height: auto; /* Allow flexible height */
+  height: 32px; /* Fixed height for consistency */
   line-height: 1.1; /* Tighter line spacing for two lines */
-  display: inline-block;
+  display: inline-flex; /* Use inline-flex for better control */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
   max-width: 130px; /* Further increased width to prevent three lines */
@@ -64,6 +66,7 @@
   vertical-align: top; /* Align items to top for consistent positioning */
   hyphens: auto; /* Enable automatic hyphenation */
   word-break: break-word; /* Break long words if needed */
+  box-sizing: border-box; /* Include padding and border in height calculation */
 }
 
 .sub-header-link:first-child {
@@ -76,7 +79,7 @@
 }
 
 .sub-header-link.active {
-  background-color: #2C3A49; /* Darker blue when active */
+  background-color: #2c3a49; /* Darker blue when active */
   font-weight: bold;
   border-bottom: 3px solid #ffa724; /* Qili orange border */
   box-sizing: border-box;
@@ -84,13 +87,15 @@
 
 /* Make the active state more visible on hover */
 .sub-header-link.active:hover {
-  background-color: #2C3A49; /* Keep the darker blue on hover */
+  background-color: #2c3a49; /* Keep the darker blue on hover */
 }
 
 /* Special styling for "All Products" */
 .sub-header-link:first-child {
   font-weight: 600;
   background-color: rgba(0, 0, 0, 0.05);
+  vertical-align: top; /* Ensure consistent alignment */
+  line-height: 1.1; /* Match other links */
 }
 
 .sub-header-link:first-child.active {
@@ -110,14 +115,15 @@
 }
 
 /* Clone the sub-header All Products link visually into the sidebar */
-@media (min-width: 700px) {  .all-products-link {
+@media (min-width: 700px) {
+  .all-products-link {
     position: fixed;
     top: 104px; /* 60px header + 44px sub-header */
     left: 0;
     width: 180px;
     height: 32px;
-    background: #1A252F;
-    color: #FF9900 !important;
+    background: #1a252f;
+    color: #ff9900 !important;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -133,18 +139,22 @@
   }
   .sub-header .all-products-link {
     width: auto;
-    height: auto;
+    height: 32px; /* Match the fixed height of other links */
     background: none;
     color: white !important;
     font-weight: 600; /* Keep slightly heavier for "See All Departments" */
     padding: 6px 8px;
     justify-content: center;
     position: static;
-    display: inline-block;
+    display: inline-flex; /* Match other links */
+    align-items: center; /* Center content vertically */
     text-align: center;
     font-size: 14px; /* Match sidebar font size */
     max-width: 130px; /* Increased to match main links */
     min-width: 100px;
+    vertical-align: top; /* Ensure consistent alignment with other links */
+    line-height: 1.1; /* Match other links */
+    box-sizing: border-box; /* Include padding and border in height calculation */
   }
 }
 
@@ -152,17 +162,21 @@
   .all-products-link {
     position: static !important;
     width: auto !important;
-    height: auto !important;
+    height: 32px !important; /* Match the fixed height */
     background: none !important;
     color: white !important;
     font-weight: 600; /* Keep slightly heavier for "See All Departments" */
     padding: 6px 8px;
     justify-content: center;
-    display: inline-block;
+    display: inline-flex !important; /* Match other links */
+    align-items: center !important; /* Center content vertically */
     text-align: center;
     font-size: 14px; /* Match sidebar font size */
     max-width: 130px; /* Increased to match main links */
     min-width: 100px;
+    vertical-align: top; /* Ensure consistent alignment */
+    line-height: 1.1; /* Match other links */
+    box-sizing: border-box !important; /* Include padding and border in height calculation */
   }
   .all-products-sidebar-placeholder {
     display: none;
@@ -195,19 +209,19 @@
     max-width: 100px; /* Further increased width */
     min-width: 80px;
   }
-  
+
   .sub-header {
     height: 44px; /* Keep consistent with desktop - no extra padding */
   }
-  
+
   .main {
     margin-top: 104px !important; /* 60px header + 44px sub-header */
   }
-  
+
   .checkout-header ~ .main {
     margin-top: 104px !important;
   }
-  
+
   .sub-header-submenu {
     top: 104px; /* Adjust submenu position */
   }
@@ -221,19 +235,19 @@
     max-width: 95px; /* Increased width */
     min-width: 75px;
   }
-  
+
   .sub-header {
     height: 44px; /* Keep consistent with desktop - no extra padding */
   }
-  
+
   .main {
     margin-top: 104px !important; /* 60px header + 44px sub-header */
   }
-  
+
   .checkout-header ~ .main {
     margin-top: 104px !important;
   }
-  
+
   .sub-header-submenu {
     top: 104px;
   }
@@ -264,7 +278,7 @@
   height: 40px;
   border: 4px solid rgba(35, 47, 62, 0.2);
   border-radius: 50%;
-  border-top-color: #232F3E;
+  border-top-color: #232f3e;
   animation: spin 1s ease-in-out infinite;
   margin-bottom: 15px;
 }
@@ -286,7 +300,7 @@
   top: 104px; /* Below sub-header (60px header + 44px sub-header) */
   left: 0;
   width: 100%;
-  background-color: #232F3E;
+  background-color: #232f3e;
   color: white;
   z-index: 1001; /* Higher z-index to appear above all content */
   opacity: 0;
@@ -333,7 +347,7 @@
 .sub-header-submenu-title {
   font-size: 14px;
   font-weight: 600;
-  color: #FF9900;
+  color: #ff9900;
   margin-bottom: 10px;
   padding: 5px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -354,7 +368,7 @@
 }
 
 .sub-header-submenu-item:hover {
-  color: #FF9900;
+  color: #ff9900;
   background-color: rgba(255, 153, 0, 0.1);
   border-color: rgba(255, 153, 0, 0.2);
 }
@@ -365,7 +379,7 @@
     min-width: 180px;
     padding: 0 12px;
   }
-  
+
   .sub-header-submenu-content {
     padding: 15px;
   }
@@ -377,11 +391,11 @@
     padding: 0 10px;
     max-height: 250px;
   }
-  
+
   .sub-header-submenu-content {
     padding: 12px;
   }
-  
+
   .sub-header-submenu-item {
     font-size: 12px;
     padding: 6px 10px;
@@ -393,7 +407,7 @@
     flex-direction: column;
     padding: 10px;
   }
-  
+
   .sub-header-submenu-column {
     min-width: auto;
     max-height: none;
@@ -401,7 +415,7 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
-  
+
   .sub-header-submenu-item {
     display: inline-block;
     margin: 3px;
@@ -416,26 +430,26 @@
     top: 55px !important; /* Position below reduced-height main header */
     height: 44px !important; /* Keep consistent with desktop - no extra padding */
   }
-  
+
   .sub-header-link {
     font-size: 9px; /* Smaller font to prevent three lines */
     padding: 5px 3px;
     max-width: 90px; /* Further increased width */
     min-width: 70px;
   }
-  
+
   .main {
     margin-top: 99px !important; /* 55px header + 44px sub-header */
   }
-  
+
   .checkout-header ~ .main {
     margin-top: 99px !important;
   }
-  
+
   .sub-header-submenu {
     top: 99px !important;
   }
-  
+
   .all-products-link {
     top: 99px !important;
   }
