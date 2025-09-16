@@ -1060,10 +1060,8 @@ class ProductDiscoveryDashboard {
       const isMobile = window.innerWidth <= 768;
       const isSmallMobile = window.innerWidth <= 480;
 
-      // Update legend position
-      this.charts.categoryClicks.options.plugins.legend.position = isMobile
-        ? "bottom"
-        : "top";
+      // Keep legend position consistently at bottom for all screen sizes
+      this.charts.categoryClicks.options.plugins.legend.position = "bottom";
 
       // Update legend font size
       this.charts.categoryClicks.options.plugins.legend.labels.font.size =
@@ -2489,7 +2487,7 @@ class ProductDiscoveryDashboard {
         interaction: { intersect: false },
         plugins: {
           legend: {
-            position: "bottom", // Always position legend below chart
+            position: "bottom", // Always position legend below chart for consistency
             labels: {
               color: "#ffffff",
               usePointStyle: true,

@@ -80,11 +80,12 @@
 
 /* Dashboard Container */
 .dashboard-container {
-  max-width: 1400px;
+  max-width: 1600px; /* Increased to utilize more screen width */
   margin: 0 auto;
   padding: 40px 24px 40px;
   position: relative;
   z-index: 1;
+  width: 100%; /* Ensure full width utilization */
 }
 
 /* Dashboard Header */
@@ -371,12 +372,19 @@
 /* Charts Grid */
 .charts-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   margin-bottom: 40px;
+  width: 100%;
   /* Remove fixed height constraints to allow natural growth */
   min-height: auto;
+  /* Ensure charts utilize full container width and match summary cards */
+  max-width: none;
+  /* Remove any margin constraints and ensure full width */
+  margin-left: 0;
+  margin-right: 0;
+  /* Force expansion to container edges */
+  box-sizing: border-box;
 }
 
 .chart-card {
@@ -386,10 +394,14 @@
   border-radius: 16px;
   padding: 20px;
   transition: all 0.3s ease;
-  min-height: 340px;
+  /* Flexible sizing that adapts to content and container */
+  min-height: 400px;
+  height: auto;
   /* Remove max-height to allow natural expansion */
   display: flex;
   flex-direction: column;
+  /* Ensure charts fill available width */
+  width: 100%;
 }
 
 .chart-card:hover {
@@ -502,16 +514,21 @@
 .chart-content {
   flex: 1;
   position: relative;
-  min-height: 280px;
-  max-height: 320px;
+  min-height: 300px;
+  /* Remove max-height to allow natural expansion */
+  height: auto;
+  /* Ensure charts fill available width */
+  width: 100%;
 }
 
 .chart-content-with-legend {
   flex: 1;
   display: flex;
   gap: 16px;
-  min-height: 280px;
-  max-height: 320px;
+  min-height: 300px;
+  /* Remove max-height to allow natural expansion */
+  height: auto;
+  width: 100%;
 }
 
 .chart-content-with-legend .chart-content {
@@ -525,17 +542,7 @@
   height: 100% !important;
 }
 
-/* Event Types Chart specific styling for horizontal bar chart */
-.chart-card:has(#event-types-chart) .chart-content {
-  min-height: 280px;
-  max-height: 320px;
-}
-
-.chart-card:has(#event-types-chart) {
-  min-height: 340px;
-  max-height: 380px;
-}
-
+/* Chart-specific adjustments - keep minimal constraints for better layouts */
 .chart-card:has(#event-types-chart) .chart-content-with-legend {
   gap: 20px;
 }
@@ -545,21 +552,11 @@
   max-width: 160px;
 }
 
-/* User Activity Timeline Chart - match Event Types chart height */
-.chart-card:has(#activity-timeline-chart) {
-  min-height: 340px;
-  max-height: 380px;
-}
-
-.chart-card:has(#activity-timeline-chart) .chart-content {
-  min-height: 280px;
-  max-height: 320px;
-}
-
-/* Category Funnel Chart Styles */
+/* Category Funnel Chart Styles - flexible sizing */
 .chart-card:has(#category-funnel-chart),
 .chart-card:has(#search-conversion-chart) {
-  min-height: 380px;
+  min-height: 400px;
+  /* Remove max-height constraint */
 }
 
 .chart-controls {
@@ -1224,78 +1221,70 @@
 /* Responsive Design */
 @media (min-width: 1400px) {
   .charts-grid {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    grid-template-columns: repeat(2, 1fr);
+    /* Remove max-width constraint to match other sections */
   }
 }
 
-/* Medium screens - keep 2x2 layout but adjust spacing */
-@media (max-width: 1100px) and (min-width: 901px) {
+/* Large screens - 4 charts in 2x2 layout */
+@media (min-width: 1200px) and (max-width: 1399px) {
   .charts-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    min-height: 680px;
-    max-height: 760px;
   }
 
   .chart-card {
-    min-height: 320px;
-    max-height: 360px;
+    min-height: 380px;
+  }
+
+  .chart-content {
+    min-height: 280px;
+  }
+}
+
+/* Medium screens - 2 charts per row to match summary cards */
+@media (max-width: 1199px) and (min-width: 769px) {
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .chart-card {
+    min-height: 350px;
     padding: 18px;
   }
 
   .chart-content {
-    min-height: 260px;
-    max-height: 300px;
+    min-height: 250px;
   }
 
   .chart-title h3 {
     font-size: 18px;
   }
-
-  .chart-card:has(#event-types-chart) {
-    min-height: 340px;
-    max-height: 380px;
-  }
-
-  .chart-card:has(#event-types-chart) .chart-content {
-    min-height: 270px;
-    max-height: 320px;
-  }
-
-  .chart-card:has(#activity-timeline-chart) {
-    min-height: 320px;
-    max-height: 360px;
-  }
-
-  .chart-card:has(#activity-timeline-chart) .chart-content {
-    min-height: 260px;
-    max-height: 300px;
-  }
 }
 
-@media (max-width: 900px) {
+/* Small screens and tablets - single column layout to match summary cards */
+@media (max-width: 768px) {
   .charts-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, auto);
-    min-height: auto;
-    max-height: none;
     gap: 20px;
+    width: 100%;
   }
 
   .chart-card {
-    min-height: 400px;
-    max-height: 500px;
+    min-height: 350px;
+    width: 100%;
   }
 
   .chart-content {
-    min-height: 300px;
-    max-height: 380px;
+    min-height: 250px;
+    width: 100%;
   }
 
   .chart-content-with-legend {
     flex-direction: column;
     gap: 16px;
+    min-height: 300px;
   }
 
   .chart-legend {
@@ -1372,7 +1361,8 @@
   }
 
   .charts-grid {
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
     margin-bottom: 30px;
   }
 
@@ -1596,7 +1586,7 @@
 
   /* Ensure legend at bottom has proper spacing on mobile */
   .chart-card:has(#category-clicks-chart) .chart-content {
-    padding-bottom: 8px;
+    padding-bottom: 6px; /* Consistent spacing for legend at bottom */
   }
 
   /* Optimize legend display for mobile */
@@ -1692,7 +1682,8 @@
   }
 
   .charts-grid {
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: 10px;
     margin-bottom: 20px;
   }
 
