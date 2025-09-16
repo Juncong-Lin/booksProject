@@ -22,6 +22,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   setupForms();
   setupPasswordToggles();
   loadUserData();
+
+  // Initialize Feather icons
+  if (typeof feather !== "undefined") {
+    feather.replace();
+  }
 });
 
 function initializeProfile() {

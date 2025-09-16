@@ -323,7 +323,7 @@ body.profile-page {
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 16px 16px 16px 44px;
+  padding: 16px 16px 16px 16px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -332,6 +332,39 @@ body.profile-page {
   color: #ffffff;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
+  appearance: none; /* Remove default select styling */
+}
+
+/* Enhanced select wrapper styling */
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.select-wrapper select {
+  padding-right: 44px; /* Space for custom arrow */
+  cursor: pointer;
+}
+
+.select-icon {
+  position: absolute;
+  right: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.select-wrapper:hover .select-icon {
+  color: #6366f1;
+  transform: translateY(-1px);
+}
+
+.form-group select:focus + .select-icon {
+  color: #6366f1;
+  transform: rotate(180deg);
 }
 
 .form-group input::placeholder,
@@ -354,7 +387,8 @@ body.profile-page {
 }
 
 .input-wrapper input {
-  padding-left: 16px;
+  padding-left: 44px; /* Space for icons on text inputs */
+  padding-right: 16px;
 }
 
 .toggle-password {
